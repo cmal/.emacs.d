@@ -1,0 +1,25 @@
+;;;; Emacs Bookmark Format Version 1 ;;;;
+;;; This format is meant to be slightly human-readable;
+;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
+(("org-refile-last-stored"
+ (filename . "~/org/emacs.org")
+ (front-context-string . "** DONE 修改发送工资单程")
+ (rear-context-string . "64467\n   :END:\n\n")
+ (position . 5227))
+("init.el"
+ (filename . "~/.emacs.d/init.el")
+ (front-context-string)
+ (rear-context-string . "okmark this file")
+ (position . 3542))
+("emacs.org"
+ (filename . "~/org/emacs.org")
+ (front-context-string . "\n**** Nonincreme")
+ (rear-context-string . "j\n\n      其他控制字符:")
+ (position . 173826))
+("杰克伦敦《白牙》.txt"
+ (filename . "~/baidu/cloud/Ebooks-坚强/杰克伦敦《白牙》.txt")
+ (front-context-string . "      在杰茜被扣在木棍上的")
+ (rear-context-string . "\n白牙（10）\n\n―― 桎梏\n\n")
+ (position . 45551))
+)

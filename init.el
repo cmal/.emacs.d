@@ -4,15 +4,46 @@
 ;; | Section I: Custom GUI              |
 ;;  ------------------------------------
 
+(add-to-list 'load-path "~/.emacs.d/site-lisp/color-theme-6.6.0")
+(require 'color-theme)
+(eval-after-load "color-theme"
+                 '(progn
+                    (color-theme-initialize)
+;;                    (color-theme-bharadwaj-slate)))
+;;                   (color-theme-classic)))
+                    (color-theme-dark-laptop)))
+;;                    (color-theme-rotor)))
+;;                    (color-theme-charcoal-black)))
+;;                    (color-theme-infodoc)))
+
 (set-face-attribute
   'default nil :font "Monaco 14")
+
+;; font Inconsolata -- use when programming
+;; (set-face-attribute 'default nil
+;; 		    :family "Inconsolata" :height 140)
+;; (set-face-attribute 'font-lock-comment-face nil
+;; 		    :family "Optima" :height 140 :slant 'italic
+;; 		    :backgrount "#ddddee" :foreground "#000000")
+;; (set-face-attribute 'font-lock-string-face nil
+;; 		    :family "Anonymous Pro" :height 130 :weight 'bold
+;; 		    :foreground "black" :background 'unspecified)
+
+;; font Anonymous Pro
+;; (set-face-attribute 'default nil
+;;		    :family "Anonymous Pro" :height 140)
+;; (set-face-attribute 'font-lock-comment-face nil
+;; 		    :family "Optima" :height 140 :slant 'italic
+;; ;		    :family "Anonymous Pro" :height 140 :slant 'italic
+;; 		    :background "#ddddee" :foreground "#000000")
+
 (set-fontset-font
     (frame-parameter nil 'font)
     'han
-    (font-spec :family "翩翩体-简" :size 16))
+;    (font-spec :family "翩翩体-简" :size 14))
 ;    (font-spec :family "手札体-简" :size 16))
 ;    (font-spec :family "MingLiU" :size 16))
-;    (font-spec :family "冬青黑体简体中文" :size 15))
+    (font-spec :family "冬青黑体简体中文" :size 14))
 
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
@@ -23,20 +54,19 @@
 ;; txt结尾的文件的名字优先用中文编码显示
 (modify-coding-system-alist 'file "\\.txt\\'" 'chinese-iso-8bit)
 
-;; eim输入法, 可merge搜狗输入法词库
+;; eim输入法, 已merge搜狗输入法词库
 (add-to-list 'load-path "~/.emacs.d/site-lisp/eim")
 (autoload 'eim-use-package "eim" "Another emacs input method")
 (setq eim-use-tooltip t)
 (register-input-method
  "eim-py" "euc-cn" 'eim-use-package
   "拼音" "汉字拼音输入法" "py.txt")
-;; 用 ; 暂时输入英文
-(require 'eim-extra)
-(global-set-key ";" 'eim-insert-ascii)
 
 ;;  ----------------------------------
 ;; | Section II: Custom Org-mode GTD  |
 ;;  ----------------------------------
+
+(add-hook 'org-mode-hook 'visual-line-mode)
 
 ;; Org-mode global key setting
 (global-set-key "\C-cl" 'org-store-link)
@@ -54,6 +84,10 @@
 (org-clock-persistence-insinuate)
 
 (custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(org-agenda-files (quote ("~/org/emacs.org"))))
 
 ;; to custom the identification of stuck project
@@ -80,3 +114,22 @@
 ;;  ------------------------
 
 ;(delete-selection-mode)
+
+;; 单行滚动
+(global-set-key (kbd "M-p") 'scroll-down-line)
+(global-set-key (kbd "M-n") 'scroll-up-line)
+
+;; view-mode自动取消fringe
+;;(add-hook 'view-mode-hook
+
+
+;;  -------------------------
+;; | Section IV: Shortcuts   |
+;;  -------------------------
+
+;; register this file name
+(set-register ?i '(file . "~/.emacs.d/init.el"))
+
+;; bookmark this file
+;; already done
+
