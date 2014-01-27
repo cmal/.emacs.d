@@ -10,8 +10,8 @@
                  '(progn
                     (color-theme-initialize)
 ;;                    (color-theme-bharadwaj-slate)))
-;;                   (color-theme-classic)))
-                    (color-theme-dark-laptop)))
+                   (color-theme-classic)))
+;;                    (color-theme-dark-laptop)))
 ;;                    (color-theme-rotor)))
 ;;                    (color-theme-charcoal-black)))
 ;;                    (color-theme-infodoc)))
@@ -47,6 +47,7 @@
 
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
+(set-fringe-mode '(0 . 0))
 
 (add-to-list 'default-frame-alist '(width  . 81))
 (add-to-list 'default-frame-alist '(height  . 40))
@@ -66,7 +67,7 @@
 ;; | Section II: Custom Org-mode GTD  |
 ;;  ----------------------------------
 
-(add-hook 'org-mode-hook 'visual-line-mode)
+(add-hook 'org-mode-hook (lambda () (setq truncate-lines nil)))
 
 ;; Org-mode global key setting
 (global-set-key "\C-cl" 'org-store-link)
@@ -133,3 +134,4 @@
 ;; bookmark this file
 ;; already done
 
+(set-input-method 'eim-py)
