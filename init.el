@@ -1,5 +1,16 @@
 ;-*- coding: utf-8 -*-
 
+;; 解决Emacs执行shell命令command not found的问题, 原因是.bashrc修改的path变量未起作用
+;; Emacs默认以非交互式执行shell命令, 不读取.bashrc, -i指定以交互式启动bash, -c表示命令读取来自字符串, 可以通过设置BASH_ENV来指定非交互式shell的配置文件
+;; bash中, 执行bash脚本的时候，如果BASH_ENV被设置的话，它就会先执行BASH_ENV指向的脚本
+;; 说明: .bash_profile is loaded for your login shell only. If you want to customize regular shells (such as xterm windows, or Emacs shells), you need to put the customization in .bashrc instead. Many people will source .bashrc from .bash_profile, so that you get all of your customizations in your login shell, but only those in .bashrc in your regular shells.
+(setq-default shell-command-switch "-ic")
+
+;;  -----------------------------------
+;; | Section 0: Debugging              |
+;;  -----------------------------------
+(setq-default debug-on-error t)
+
 ;;  ------------------------------------
 ;; | Section I: Custom GUI              |
 ;;  ------------------------------------
@@ -11,13 +22,19 @@
                     (color-theme-initialize)
 ;;                    (color-theme-bharadwaj-slate)))
                    (color-theme-classic)))
+;;		    (color-theme-deep-blue)))
 ;;                    (color-theme-dark-laptop)))
 ;;                    (color-theme-rotor)))
 ;;                    (color-theme-charcoal-black)))
 ;;                    (color-theme-infodoc)))
 
 (set-face-attribute
+;  'default nil :font "MingLiu 14")
   'default nil :font "Monaco 14")
+;  'default nil :font "Verdana-14")
+(if window-system 2
+   (set-fontset-font (frame-parameter nil 'font)
+	  'unicode '("simsun" . "unicode-bmp")))	
 
 ;; font Inconsolata -- use when programming
 ;; (set-face-attribute 'default nil
@@ -40,17 +57,17 @@
 (set-fontset-font
     (frame-parameter nil 'font)
     'han
-;    (font-spec :family "翩翩体-简" :size 14))
-;    (font-spec :family "手札体-简" :size 16))
+    (font-spec :family "翩翩体-简" :size 14))
+;    (font-spec :family "手札体-简" :size 14))
 ;    (font-spec :family "MingLiU" :size 16))
-    (font-spec :family "冬青黑体简体中文" :size 14))
+;    (font-spec :family "冬青黑体简体中文" :size 14))
 
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
 (set-fringe-mode '(0 . 0))
 
 (add-to-list 'default-frame-alist '(width  . 81))
-(add-to-list 'default-frame-alist '(height  . 40))
+(add-to-list 'default-frame-alist '(height  . 36))
 
 ;; txt结尾的文件的名字优先用中文编码显示
 (modify-coding-system-alist 'file "\\.txt\\'" 'chinese-iso-8bit)
@@ -58,7 +75,7 @@
 ;; eim输入法, 已merge搜狗输入法词库
 (add-to-list 'load-path "~/.emacs.d/site-lisp/eim")
 (autoload 'eim-use-package "eim" "Another emacs input method")
-(setq eim-use-tooltip t)
+(setq-default eim-use-tooltip nil)
 (register-input-method
  "eim-py" "euc-cn" 'eim-use-package
   "拼音" "汉字拼音输入法" "py.txt")
@@ -78,10 +95,10 @@
 
 ;; add done time to org headlines,
 ;; if want to add notes, replace 'time with 'note
-(setq org-log-done 'time)
-
+(setq-default org-log-done 'time)
+(setq org-clock-continuously t)
 ;; to save the clock history across Emacs sessions.
-(setq org-clock-persist 'history)
+(setq-default org-clock-persist 'history)
 (org-clock-persistence-insinuate)
 
 (custom-set-variables
@@ -92,36 +109,36 @@
  '(org-agenda-files (quote ("~/org/emacs.org"))))
 
 ;; to custom the identification of stuck project
-(setq org-stuck-projects
+(setq-default org-stuck-projects
       '("+Project/-SDMAYBE-DONE" ("TODO" "QUESTION" "DELEGATED")))
 
 ;; setup MobileOrg directory
 ;; 中文Dropbox应用程序专用路径与英文不同，应用而不是Apps
-(setq org-mobile-directory "~/Dropbox/应用/MobileOrg")
+(setq-default org-mobile-directory "~/Dropbox/应用/MobileOrg")
 
 ;; 快速TODO标签
-(setq org-use-fast-todo-selection t)
+(setq-default org-use-fast-todo-selection t)
 
 ;;忽略scheduled和deadlined的todo项目
 ;;使得todo列表更为紧凑，因为这些项目在agenda列表中显示了
-(setq org-agenda-todo-ignore-scheduled t)
-(setq org-agenda-todo-ignore-deadlines t)
+(setq-default org-agenda-todo-ignore-scheduled t)
+(setq-default org-agenda-todo-ignore-deadlines t)
 
 ;;修改Agenda View显示时间
-(setq org-agenda-span 2 days)
+(setq-default org-agenda-span 1 days)
 
 ;;  ------------------------
 ;; | Section III: Editing   |
 ;;  ------------------------
-
+(server-start)
 ;(delete-selection-mode)
-
+(setq-default delete-by-moving-to-trash t)
 ;; 单行滚动
 (global-set-key (kbd "M-p") 'scroll-down-line)
 (global-set-key (kbd "M-n") 'scroll-up-line)
 
 ;; view-mode自动取消fringe
-;;(add-hook 'view-mode-hook
+(add-hook 'view-mode-hook (set-fringe-mode 0))
 
 
 ;;  -------------------------
@@ -129,9 +146,94 @@
 ;;  -------------------------
 
 ;; register this file name
-(set-register ?i '(file . "~/.emacs.d/init.el"))
+;;(set-register ?i '(file . "~/.emacs.d/init.el"))
 
 ;; bookmark this file
 ;; already done
 
 (set-input-method 'eim-py)
+
+;;  ------------------------
+;; | Section IV: Calendar   |
+;;  ------------------------
+
+;; 让emacs能计算日出日落的时间，在 calendar 上用 S 即可看到
+;(setq-default calendar-latitude +39.54)
+;(setq-default calendar-longitude +116.28)
+;(setq-default calendar-location-name "北京")
+(setq-default calendar-latitude +36.66)
+(setq-default calendar-longitude +117.04)
+(setq-default calendar-location-name "济南")
+
+;; 设置阴历显示，在 calendar 上用 pC 显示阴历
+(setq-default chinese-calendar-celestial-stem
+["甲" "乙" "丙" "丁" "戊" "己" "庚" "辛" "壬" "癸"])
+(setq-default chinese-calendar-terrestrial-branch
+["子" "丑" "寅" "卯" "辰" "巳" "戊" "未" "申" "酉" "戌" "亥"])
+
+;; 去掉不关心的节日，设定中国人在意的节日，在 calendar 上用 a 显示节日列表
+(setq-default christian-holidays nil)
+(setq-default hebrew-holidays nil)
+(setq-default islamic-holidays nil)
+(setq-default solar-holidays nil)
+(setq-default general-holidays
+      '((holiday-fixed 1 1 "元旦")
+	(holiday-fixed 2 14 "情人节")
+	(holiday-fixed 3 14 "白色情人节")
+	(holiday-fixed 4 1 "愚人节")
+	(holiday-fixed 5 1 "劳动节")
+	(holiday-float 5 0 2 "母亲节")
+	(holiday-fixed 6 1 "儿童节")
+	(holiday-float 6 0 3 "父亲节")
+	(holiday-fixed 7 1 "建党节")
+	(holiday-fixed 8 1 "建军节")
+	(holiday-fixed 9 10 "教师节")
+	(holiday-fixed 10 1 "国庆节")
+	(holiday-fixed 12 25 "圣诞节")))
+
+;;  -------------------------------
+;; | Section 0: Tools              |
+;;  -------------------------------
+
+;; epub
+;; (load "~/.emacs.d/site-lisp/epub/epubmode.el")
+
+;; sdcv
+;; 还是有问题
+;(load "~/.emacs.d/site-lisp/sdcv/sdcv-mode.el")
+;(require 'sdcv-mode)
+;(global-set-key (kbd "C-c d") 'sdcv-search)
+
+;; (load "~/.emacs.d/site-lisp/sdcv/showtip.el")
+;; (load "~/.emacs.d/site-lisp/sdcv/sdcv.el")
+;; (require 'sdcv)
+;; (setq-default sdcv-dictionary-simple-list        ;; a simple dictionary list
+;;       '(
+;; ;        "懒虫简明英汉词典"
+;; ;        "懒虫简明汉英词典"
+;; ;        "KDic11万英汉词典"
+;; 	"朗道英汉字典5.0"
+;;         ))
+;; (setq-default sdcv-dictionary-complete-list      ;; a complete dictionary list
+;;       '("KDic11万英汉词典"
+;;         "懒虫简明英汉词典"
+;;         "朗道英汉字典5.0"
+;;         "XDICT英汉辞典"
+;;         "朗道汉英字典5.0"
+;;         "XDICT汉英辞典"
+;;         "懒虫简明汉英词典"
+;;         "牛津英汉双解美化版"
+;;         "stardict1.3英汉辞典"
+;;         "英汉汉英专业词典"
+;;         "CDICT5英汉辞典"
+;;         "Jargon"
+;;         "FOLDOC"
+;;         "WordNet"
+;;         ))
+;; (global-set-key (kbd "C-c d") 'sdcv-search-pointer+)
+;; (global-set-key (kbd "C-c C-d") 'sdcv-search-input)
+
+;; chrome Edit with Emacs
+(add-to-list 'load-path "~/.emacs.d")
+(require 'edit-server)
+(edit-server-start)
