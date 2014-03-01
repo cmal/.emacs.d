@@ -1,11 +1,13 @@
 ;-*- coding: utf-8 -*-
 
+;; global settings
+
 ;; 解决Emacs执行shell命令command not found的问题, 原因是.bashrc修改的path变量未起作用
 ;; Emacs默认以非交互式执行shell命令, 不读取.bashrc, -i指定以交互式启动bash, -c表示命令读取来自字符串, 可以通过设置BASH_ENV来指定非交互式shell的配置文件
 ;; bash中, 执行bash脚本的时候，如果BASH_ENV被设置的话，它就会先执行BASH_ENV指向的脚本
 ;; 说明: .bash_profile is loaded for your login shell only. If you want to customize regular shells (such as xterm windows, or Emacs shells), you need to put the customization in .bashrc instead. Many people will source .bashrc from .bash_profile, so that you get all of your customizations in your login shell, but only those in .bashrc in your regular shells.
 (setq-default shell-command-switch "-ic")
-
+(setq-default current-language-environment "English")
 ;;  -----------------------------------
 ;; | Section 0: Debugging              |
 ;;  -----------------------------------
@@ -17,25 +19,20 @@
 
 (add-to-list 'load-path "~/.emacs.d/site-lisp/color-theme-6.6.0")
 (require 'color-theme)
-(eval-after-load "color-theme"
-                 '(progn
-                    (color-theme-initialize)
-;;                    (color-theme-bharadwaj-slate)))
-                   (color-theme-classic)))
-;;		    (color-theme-deep-blue)))
-;;                    (color-theme-dark-laptop)))
-;;                    (color-theme-rotor)))
-;;                    (color-theme-charcoal-black)))
-;;                    (color-theme-infodoc)))
+;; (eval-after-load "color-theme"
+;;                  '(progn
+;;                     (color-theme-initialize)
+;;                    (color-theme-classic)))
 
-(set-face-attribute
-;  'default nil :font "MingLiu 14")
-  'default nil :font "Monaco 14")
-;  'default nil :font "Verdana-14")
-(if window-system 2
-   (set-fontset-font (frame-parameter nil 'font)
-	  'unicode '("simsun" . "unicode-bmp")))	
+;; (set-face-attribute
+;; ;  'default nil :font "MingLiu 14")
+;;   'default nil :font "Monaco 14")
+;; ;  'default nil :font "Verdana-14")
+;; (if window-system 2
+;;    (set-fontset-font (frame-parameter nil 'font)
+;; 	  'unicode '("simsun" . "unicode-bmp")))	
 
+;;(add-to-list 'default-frame-alist '(font . "Monaco 14"))
 ;; font Inconsolata -- use when programming
 ;; (set-face-attribute 'default nil
 ;; 		    :family "Inconsolata" :height 140)
@@ -60,14 +57,14 @@
     (font-spec :family "翩翩体-简" :size 14))
 ;    (font-spec :family "手札体-简" :size 14))
 ;    (font-spec :family "MingLiU" :size 16))
-;    (font-spec :family "冬青黑体简体中文" :size 14))
+;    (font-spec :family "冬青黑体简体中文" :size 12))
 
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
 (set-fringe-mode '(0 . 0))
 
 (add-to-list 'default-frame-alist '(width  . 81))
-(add-to-list 'default-frame-alist '(height  . 36))
+(add-to-list 'default-frame-alist '(height  . 40))
 
 ;; txt结尾的文件的名字优先用中文编码显示
 (modify-coding-system-alist 'file "\\.txt\\'" 'chinese-iso-8bit)
@@ -234,6 +231,7 @@
 ;; (global-set-key (kbd "C-c C-d") 'sdcv-search-input)
 
 ;; chrome Edit with Emacs
-(add-to-list 'load-path "~/.emacs.d")
+(add-to-list 'load-path "~/.emacs.d/site-lisp/chrome")
 (require 'edit-server)
 (edit-server-start)
+
