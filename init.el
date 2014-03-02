@@ -148,6 +148,7 @@
 ;; bookmark this file
 ;; already done
 
+(setq default-input-method 'eim-py)
 (set-input-method 'eim-py)
 
 ;;  ------------------------
@@ -235,3 +236,6 @@
 (require 'edit-server)
 (edit-server-start)
 
+;;browser
+;(add-to-list 'load-path "~/.emacs.d/site-lisp/eww")
+;(require 'eww)
