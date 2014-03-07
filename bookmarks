@@ -20,6 +20,6 @@
 ("emacs.org"
  (filename . "~/org/emacs.org")
  (front-context-string . "\n**** Maintainin")
- (rear-context-string . ", 编码系统和输入法相关的命令.")
- (position . 315911))
+ (rear-context-string . "nor mode:\n      ")
+ (position . 353088))
 )
