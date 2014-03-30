@@ -2,16 +2,31 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("goal.org"
+(("diary"
+ (filename . "~/.emacs.d/diary")
+ (front-context-string . "12:00pm Lunch\n6:")
+ (rear-context-string)
+ (position . 1))
+("emacs.emacs.org"
+ (filename . "~/org/emacs.org")
+ (front-context-string . "**** TODO Micros")
+ (rear-context-string . "gnu.org.\n      \n")
+ (position . 694420))
+("elisp.emacs.org"
+ (filename . "~/org/emacs.org")
+ (front-context-string . "***** Bitwise Op")
+ (rear-context-string . " 并以浮点数的形式返回该值.\n\n")
+ (position . 768472))
+("goal.org"
  (filename . "~/org/goal.org")
  (front-context-string . "卷:个人的管理\n** 学会自我管")
  (rear-context-string)
  (position . 14))
 ("org-refile-last-stored"
  (filename . "~/org/emacs.org")
- (front-context-string . "** 代码风格\n*** [[ht")
- (rear-context-string . "14:58] =>  0:12\n")
- (position . 325797))
+ (front-context-string . "** TODO 广播体操\n   ")
+ (rear-context-string . "10:58] =>  0:17\n")
+ (position . 647455))
 ("init.el"
  (filename . "~/.emacs.d/init.el")
  (front-context-string . ";    (font-spec ")
@@ -19,7 +34,7 @@
  (position . 2628))
 ("emacs.org"
  (filename . "~/org/emacs.org")
- (front-context-string . "\n**** Maintainin")
- (rear-context-string . "nor mode:\n      ")
- (position . 353088))
+ (front-context-string . "**** Numbers\n   ")
+ (rear-context-string . " #+END_EXAMPLE\n\n")
+ (position . 756201))
 )

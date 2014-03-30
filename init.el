@@ -59,7 +59,8 @@
 ;    (font-spec :family "MingLiU" :size 16))
 ;    (font-spec :family "冬青黑体简体中文" :size 12))
 
-(tool-bar-mode 0)
+(if window-system
+    (tool-bar-mode 0))
 (scroll-bar-mode 0)
 (set-fringe-mode '(0 . 0))
 
@@ -103,6 +104,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector ["#2e3436" "#a40000" "#4e9a06" "#c4a000" "#204a87" "#5c3566" "#729fcf" "#eeeeec"])
+ '(custom-enabled-themes (quote (wheatgrass)))
  '(org-agenda-files (quote ("~/org/emacs.org"))))
 
 ;; to custom the identification of stuck project
@@ -123,6 +126,10 @@
 
 ;;修改Agenda View显示时间
 (setq-default org-agenda-span 1 days)
+
+;;加入日记的约会提醒项目
+(setq-default diary-file "~/.emacs.d/diary")
+(appt-activate t)
 
 ;;  ------------------------
 ;; | Section III: Editing   |
@@ -170,21 +177,17 @@
 ["子" "丑" "寅" "卯" "辰" "巳" "戊" "未" "申" "酉" "戌" "亥"])
 
 ;; 去掉不关心的节日，设定中国人在意的节日，在 calendar 上用 a 显示节日列表
-(setq-default christian-holidays nil)
-(setq-default hebrew-holidays nil)
-(setq-default islamic-holidays nil)
-(setq-default solar-holidays nil)
-(setq-default general-holidays
-      '((holiday-fixed 1 1 "元旦")
-	(holiday-fixed 2 14 "情人节")
-	(holiday-fixed 3 14 "白色情人节")
-	(holiday-fixed 4 1 "愚人节")
+;(setq holiday-christian-holidays nil)
+(setq holiday-hebrew-holidays nil)
+(setq holiday-islamic-holidays nil)
+(setq holiday-solar-holidays nil)
+(setq holiday-bahai-holidays nil)
+(setq holiday-other-holidays
+      '((holiday-fixed 3 14 "白色情人节")
 	(holiday-fixed 5 1 "劳动节")
-	(holiday-float 5 0 2 "母亲节")
 	(holiday-fixed 6 1 "儿童节")
-	(holiday-float 6 0 3 "父亲节")
-	(holiday-fixed 7 1 "建党节")
-	(holiday-fixed 8 1 "建军节")
+;	(holiday-fixed 7 1 "建党节")
+;	(holiday-fixed 8 1 "建军节")
 	(holiday-fixed 9 10 "教师节")
 	(holiday-fixed 10 1 "国庆节")
 	(holiday-fixed 12 25 "圣诞节")))
@@ -239,3 +242,16 @@
 ;;browser
 ;(add-to-list 'load-path "~/.emacs.d/site-lisp/eww")
 ;(require 'eww)
+
+;; make man page of all sections
+(setq-default Man-switches "-a")
+
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+;; Rmail
+(setq-default rmail-preserve-inbox t)
