@@ -88,8 +88,7 @@
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cc" 'org-capture)
-(global-set-key "\C-cms" 'org-mobile-push)
-(global-set-key "\C-cml" 'org-mobile-pull)
+
 
 ;; add done time to org headlines,
 ;; if want to add notes, replace 'time with 'note
@@ -105,7 +104,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector ["#2e3436" "#a40000" "#4e9a06" "#c4a000" "#204a87" "#5c3566" "#729fcf" "#eeeeec"])
- '(custom-enabled-themes (quote (wheatgrass)))
+ '(custom-enabled-themes (quote (adwaita)))
  '(org-agenda-files (quote ("~/org/emacs.org"))))
 
 ;; to custom the identification of stuck project
@@ -142,7 +141,7 @@
 (global-set-key (kbd "M-n") 'scroll-up-line)
 
 ;; view-mode自动取消fringe
-(add-hook 'view-mode-hook (set-fringe-mode 0))
+;(add-hook 'view-mode-hook (set-fringe-mode 0))
 
 
 ;;  -------------------------
@@ -255,3 +254,7 @@
 
 ;; Rmail
 (setq-default rmail-preserve-inbox t)
+(put 'narrow-to-region 'disabled nil)
+
+;; elisp
+(custom-set-variables '(eval-expression-print-length nil))
