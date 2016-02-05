@@ -579,9 +579,14 @@
 
 (require 'ace-pinyin)
 (ace-pinyin-global-mode 1)
+(define-key global-map (kbd "C-c SPC") 'ace-pinyin-jump-char)
 
 ;; helm-swoop
 ;;(require 'helm-swoop)
 
 ;; pinyin-search
-(define-key global-map (kbd "C-c SPC") 'ace-pinyin-jump-char)
+(define-key global-map (kbd "C-S-s") 'pinyin-search)
+(define-key global-map (kbd "C-S-r") 'pinyin-search-backward)
+
+(require 'ace-jump-buffer)
+(define-key global-map (kbd "C-S-a") 'ace-jump-buffer)
