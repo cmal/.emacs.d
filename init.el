@@ -116,7 +116,7 @@
  '(ansi-color-names-vector
    ["#2e3436" "#a40000" "#4e9a06" "#c4a000" "#204a87" "#5c3566" "#729fcf" "#eeeeec"])
  '(cfs--current-profile-name "profile3" t)
- '(cfs--fontsize-steps (quote (3 4 4)) t)
+ '(cfs--fontsize-steps (quote (3 4 5)) t)
  '(compilation-message-face (quote default))
  '(custom-enabled-themes (quote (moe-light)))
  '(custom-safe-themes
@@ -187,6 +187,8 @@
      (340 . "#2790C3")
      (360 . "#66D9EF"))))
  '(vc-annotate-very-old-color nil)
+ '(wakatime-api-key "21ede5a8-53df-4b2d-8666-24d89724a41b")
+ '(wakatime-cli-path "/usr/local/bin/wakatime")
  '(weechat-color-list
    (unspecified "#272822" "#3E3D31" "#A20C41" "#F92672" "#67930F" "#A6E22E" "#968B26" "#E6DB74" "#21889B" "#66D9EF" "#A41F99" "#FD5FF0" "#349B8D" "#A1EFE4" "#F8F8F2" "#F8F8F0"))
  '(when
@@ -483,15 +485,6 @@
     (highlight-parentheses-mode t)))
 (global-highlight-parentheses-mode t)
 
-(require 'key-chord)
-(key-chord-mode 1)
-(key-chord-define-global "vj" 'mc/edit-lines)
-(key-chord-define-global "gd" 'mc/mark-all-symbols-like-this)
-(key-chord-define-global "gg" 'mc/mark-next-like-this-symbol)
-(key-chord-define-global "gp" 'mark/previous-symbol-like-this)
-
-
-
 ;; helm-xcdoc
 ;; to search document
 ;; M-x helm-xcdoc-search
@@ -527,8 +520,8 @@
 (load-file "~/.emacs.d/site-lisp/fcitx.el")
 (require 'fcitx)
 
-(require 'highlight-current-line)
-(highlight-current-line-on t)
+;;(require 'highlight-current-line)
+;;(highlight-current-line-on t)
 
 ;;golden-ratio-scroll-screen
 (require 'golden-ratio-scroll-screen)
@@ -579,10 +572,17 @@
 
 (require 'ace-pinyin)
 (ace-pinyin-global-mode 1)
-(define-key global-map (kbd "C-c SPC") 'ace-pinyin-jump-char)
+(define-key global-map (kbd "C-c C-SPC") 'ace-pinyin-jump-char)
 
 ;; helm-swoop
 ;;(require 'helm-swoop)
+
+(require 'key-chord)
+(key-chord-define-global "vj" 'mc/edit-lines)
+(key-chord-define-global "gd" 'mc/mark-all-symbols-like-this)
+(key-chord-define-global "gg" 'mc/mark-next-like-this-symbol)
+(key-chord-define-global "gp" 'mark/previous-symbol-like-this)
+(key-chord-mode +1)
 
 ;; pinyin-search
 (define-key global-map (kbd "C-S-s") 'pinyin-search)
@@ -590,3 +590,50 @@
 
 (require 'ace-jump-buffer)
 (define-key global-map (kbd "C-S-a") 'ace-jump-buffer)
+
+;;showkey
+(autoload 'showkey-log-mode "showkey-log-mode")
+
+;; osx-location
+(require 'osx-location)
+(eval-after-load 'osx-location
+  '(when (eq system-type 'darwin)
+     (add-hook 'osx-location-changed-hook
+               (lambda ()
+                 (setq calendar-latitude osx-location-latitude
+                       calendar-longitude osx-location-longitude
+                       calendar-location-name (format "%s, %s" osx-location-latitude osx-location-longitude))))))
+(osx-location-watch)
+;; theme-changer, use calendar and latitude/longitude
+(require 'theme-changer)
+(change-theme 'moe-light 'moe-dark)
+
+;; visible-mark
+(require 'visible-mark)
+(global-visible-mark-mode 1)
+ ;; or add (visible-mark-mode) to specific hooks
+(setq visible-mark-max 3)
+
+;; make Emacs transparent
+(require 'seethru)
+(seethru 98)
+
+(require 'wakatime-mode)
+(global-wakatime-mode)
+(setq wakatime-api-key "21ede5a8-53df-4b2d-8666-24d89724a41b")
+(setq wakatime-cli-path "/usr/local/Cellar/wakatime-cli/4.0.14/libexec/lib/python2.7/site-packages/wakatime/cli.py")
+
+(require 'volatile-highlights)
+(volatile-highlights-mode t)
+
+(require 'cal-china-x)
+
+(require 'calfw)
+(require 'calfw-org)
+(define-key global-map (kbd "C-c i") 'cfw:open-org-calendar)
+(setq cfw:org-overwrite-default-keybinding t)
+(setq calendar-week-start-day 1)
+
+(load-file "~/.emacs.d/site-lisp/calfw-git.el")
+(require 'calfw-git)
+(define-key global-map (kbd "C-c g") 'cfw:git-open-calendar)
