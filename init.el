@@ -65,6 +65,18 @@
 (load-file "~/.emacs.d/site-lisp/window-numbering.el")
 (require 'window-numbering)
 (window-numbering-mode 1)
+(defun select-window-next ()
+  (interactive)
+    (select-window-by-number
+     (% (+ (window-numbering-get-number) 1) 10)))
+(defun select-window-previous ()
+  (interactive)
+    (select-window-by-number
+     (% (- (window-numbering-get-number) 1) 10)))
+
+(define-key global-map (kbd "C-c n") 'select-window-next)  ;; similar of C-x o
+(define-key global-map (kbd "C-c p") 'select-window-previous)
+
 
 ;; neotree
 (add-to-list 'load-path "~/.emacs.d/site-lisp/neotree")
@@ -73,7 +85,7 @@
 
 
 (add-to-list 'default-frame-alist '(width  . 121))
-(add-to-list 'default-frame-alist '(height  . 40))
+(add-to-list 'default-frame-alist '(height  . 50))
 
 ;; txt结尾的文件的名字优先用中文编码显示
 (modify-coding-system-alist 'file "\\.txt\\'" 'chinese-iso-8bit)
@@ -138,11 +150,13 @@
      ("#3E3D31" . 100))))
  '(ledger-reports
    (quote
-    (("cleared" "ledger -f my.ledger cleared")
+    (("2bal" "ledger -f %(ledger-file) -d \"l<=2\" bal")
+     ("nbal" "ledger -f %(ledger-file) -n bal")
      ("bal" "ledger -f %(ledger-file) bal")
      ("reg" "ledger -f %(ledger-file) reg")
      ("payee" "ledger -f %(ledger-file) reg @%(payee)")
-     ("account" "ledger -f %(ledger-file) reg %(account)"))))
+     ("account" "ledger -f %(ledger-file) reg %(account)")
+     ("%" "ledger -f %(ledger-file) -%s -S T -d \"l<=2\" bal"))))
  '(magit-diff-use-overlays nil)
  '(nrepl-message-colors
    (quote
@@ -165,6 +179,7 @@
      ("^~/[Gg]its/" ":Git:")
      ("^~/[Gg]it[Hh]ub/" ":Git:")
      ("^~/[Gg]it\\([Hh]ub\\|\\)-?[Pp]rojects/" ":Git:"))))
+ '(tooltip-mode t)
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
    (quote
@@ -226,6 +241,33 @@
 ;; 更改org-clock-table时间显示
 (setq org-time-clocksum-format
       '(:hours "%d" :require-hours t :minutes ":%02d" :require-minutes t))
+
+(load-file "~/.emacs.d/site-lisp/org-bullets.el")
+(require 'org-bullets)
+(add-hook 'org-mode-hook (lambda() (org-bullets-mode)))
+
+;; Show iCal calendars in the org agenda
+;; org-mac-iCal will import events in all checked iCal.app
+;; calendars for the date range org-mac-iCal-range months, centered
+;; around the current date.
+(when (require 'org-mac-iCal nil t)
+  (setq org-agenda-include-diary t
+        org-agenda-custom-commands
+        '(("I" "Import diary from iCal" agenda ""
+           ((org-agenda-mode-hook #'org-mac-iCal)))))
+
+  (add-hook 'org-agenda-cleanup-fancy-diary-hook
+            (lambda ()
+              (goto-char (point-min))
+              (save-excursion
+                (while (re-search-forward "^[a-z]" nil t)
+                  (goto-char (match-beginning 0))
+                  (insert "0:00-24:00 ")))
+              (while (re-search-forward "^ [a-z]" nil t)
+                (goto-char (match-beginning 0))
+                (save-excursion
+                  (re-search-backward "^[0-9]+:[0-9]+-[0-9]+:[0-9]+ " nil t))
+                (insert (match-string 0))))))
 
 
 ;;  ------------------------
@@ -301,15 +343,15 @@
 (setq holiday-islamic-holidays nil)
 (setq holiday-solar-holidays nil)
 (setq holiday-bahai-holidays nil)
-(setq holiday-other-holidays
-      '((holiday-fixed 3 14 "白色情人节")
-	(holiday-fixed 5 1 "劳动节")
-	(holiday-fixed 6 1 "儿童节")
-;	(holiday-fixed 7 1 "建党节")
-;	(holiday-fixed 8 1 "建军节")
-	(holiday-fixed 9 10 "教师节")
-	(holiday-fixed 10 1 "国庆节")
-	(holiday-fixed 12 25 "圣诞节")))
+;; (setq holiday-other-holidays
+;;       '((holiday-fixed 3 14 "白色情人节")
+;; 	(holiday-fixed 5 1 "劳动节")
+;; 	(holiday-fixed 6 1 "儿童节")
+;; ;	(holiday-fixed 7 1 "建党节")
+;; ;	(holiday-fixed 8 1 "建军节")
+;; 	(holiday-fixed 9 10 "教师节")
+;; 	(holiday-fixed 10 1 "国庆节")
+;; 	(holiday-fixed 12 25 "圣诞节")))
 
 ;;  -------------------------------
 ;; | Section 0: Tools              |
@@ -381,9 +423,9 @@
            (goto-char (point-min))))))))
 
 ;; chrome Edit with Emacs
-(add-to-list 'load-path "~/.emacs.d/site-lisp/chrome")
-(require 'edit-server)
-(edit-server-start)
+;; (add-to-list 'load-path "~/.emacs.d/site-lisp/chrome")
+;; (require 'edit-server)
+;; (edit-server-start)
 
 ;;browser
 ;(add-to-list 'load-path "~/.emacs.d/site-lisp/eww")
@@ -393,41 +435,37 @@
 (setq-default Man-switches "-a")
 
 ;; Rmail
-(setq-default rmail-preserve-inbox t)
-(put 'narrow-to-region 'disabled nil)
-
-;; elisp
-
-
+;; (setq-default rmail-preserve-inbox t)
+;; (put 'narrow-to-region 'disabled nil)
 
 ;;  -------------------------------
 ;; | Section V: Publishing         |
 ;;  -------------------------------
 
-(setq org-publish-project-alist
-      '(("org-cmal"
-	 ;; Path to your org files
-	 :base-directory "~/cmal.github.io/org/"
-	 :base-extension "org"
+;; (setq org-publish-project-alist
+;;       '(("org-cmal"
+;; 	 ;; Path to your org files
+;; 	 :base-directory "~/cmal.github.io/org/"
+;; 	 :base-extension "org"
 
-	 ;; Path to your Jekyll project
-	 :publishing-directory "~/cmal.github.io/_posts/"
-	 :recursive t
-	 ;; this is for org-mode pre-version 8
-	 :publishing-function org-publish-org-to-html
-	 ;; this is for org-mode version 8 and on
-	 ;;:publishing-function org-html-publish-to-html
-	 :headline-levels 4
-	 :html-extension "html"
-	 :body-only t ;; Only export section between <body> </body>
-	 )
-	("org-static-cmal"
-	 :base-directory "~/cmal.github.io/org/"
-	 :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf\\|php"
-	 :publishing-directory "~cmal.github.io/assets/"
-	 :recursive t
-	 :publishing-function org-publish-attachment)
-	("github" :components ("org-cmal" "org-static-cmal"))))
+;; 	 ;; Path to your Jekyll project
+;; 	 :publishing-directory "~/cmal.github.io/_posts/"
+;; 	 :recursive t
+;; 	 ;; this is for org-mode pre-version 8
+;; 	 :publishing-function org-publish-org-to-html
+;; 	 ;; this is for org-mode version 8 and on
+;; 	 ;;:publishing-function org-html-publish-to-html
+;; 	 :headline-levels 4
+;; 	 :html-extension "html"
+;; 	 :body-only t ;; Only export section between <body> </body>
+;; 	 )
+;; 	("org-static-cmal"
+;; 	 :base-directory "~/cmal.github.io/org/"
+;; 	 :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf\\|php"
+;; 	 :publishing-directory "~cmal.github.io/assets/"
+;; 	 :recursive t
+;; 	 :publishing-function org-publish-attachment)
+;; 	("github" :components ("org-cmal" "org-static-cmal"))))
 	 
 
 ;; cfs 中文字体 org
@@ -440,7 +478,7 @@
 
 
 (require 'ace-jump-mode)
-;(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 
 
 (load-file "~/.emacs.d/site-lisp/web-mode.el")
@@ -459,14 +497,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(tooltip ((t (:inherit variable-pitch :background "lightyellow" :foreground "black" :height 2.0)))))
 
 
 (autoload 'ledger-mode "ledger-mode" "A major mode for Ledger" t)
-;(add-to-list 'load-path
-;             (expand-file-name "/path/to/ledger/source/lisp/"))
 (add-to-list 'auto-mode-alist '("\\.ledger$" . ledger-mode))
-;;(load-file "~/gits/ledger/my-ledger.el")
 
 (global-anzu-mode 1)
 
@@ -475,6 +510,12 @@
 
 (require 'helm-config)
 (helm-mode 1)
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+;; helm-swoop
+;;(require 'helm-swoop)
+(define-key global-map (kbd "C-S-w") 'helm-swoop)
+
 
 
 (show-paren-mode t)
@@ -489,9 +530,9 @@
 ;; to search document
 ;; M-x helm-xcdoc-search
 ;; M-x helm-xcdoc-search-other-window
-(require 'helm-xcdoc)
-(setq helm-xcdoc-command-path "/Applications/Xcode.app/Contents/Developer/usr/bin/docsetutil")
-(setq helm-xcdoc-document-path "~/Library/Developer/Shared/Documentation/DocSets/com.apple.adc.documentation.AppleiOS8.1.iOSLibrary.docset")
+;; (require 'helm-xcdoc)
+;; (setq helm-xcdoc-command-path "/Applications/Xcode.app/Contents/Developer/usr/bin/docsetutil")
+;; (setq helm-xcdoc-document-path "~/Library/Developer/Shared/Documentation/DocSets/com.apple.adc.documentation.AppleiOS8.1.iOSLibrary.docset")
 
 ;; MarkDown mode
 (autoload 'markdown-mode "markdown-mode"
@@ -504,17 +545,12 @@
 ;;(change-cursor-mode 1)
 ;;(toggle-cursor-type-when-idle 1)
 
-;; corsshairs, to highlight current line and column
-;; (crosshairs-mode 1)
-
 ;; on-screen, highlight when scroll
 ;(require 'on-screen)
 ;(on-screen-global-mode +1)
 
 
 ;; helm-ag, search with helm
-
-
 
 ;; fcitx-remote-os-x --with-input-method=sogou-pinyin
 (load-file "~/.emacs.d/site-lisp/fcitx.el")
@@ -565,7 +601,9 @@
 
 ;;(require 'org-alert)
 ;;(org-alert-enable)
+(require 'rainbow-mode)
 (rainbow-mode 1)
+
 (sml/setup)
 ;(sml/apply-theme "light-powerline")
 ;; (diredful-add CFG-FILE-NAME)
@@ -573,9 +611,6 @@
 (require 'ace-pinyin)
 (ace-pinyin-global-mode 1)
 (define-key global-map (kbd "C-c C-SPC") 'ace-pinyin-jump-char)
-
-;; helm-swoop
-;;(require 'helm-swoop)
 
 (require 'key-chord)
 (key-chord-define-global "vj" 'mc/edit-lines)
@@ -589,10 +624,10 @@
 (define-key global-map (kbd "C-S-r") 'pinyin-search-backward)
 
 (require 'ace-jump-buffer)
-(define-key global-map (kbd "C-S-a") 'ace-jump-buffer)
+(define-key global-map (kbd "C-x C-b") 'ace-jump-buffer)
 
 ;;showkey
-(autoload 'showkey-log-mode "showkey-log-mode")
+;(autoload 'showkey-log-mode "showkey-log-mode")
 
 ;; osx-location
 (require 'osx-location)
@@ -615,8 +650,8 @@
 (setq visible-mark-max 3)
 
 ;; make Emacs transparent
-(require 'seethru)
-(seethru 98)
+;;(require 'seethru)
+;;(seethru 100)
 
 (require 'wakatime-mode)
 (global-wakatime-mode)
@@ -627,6 +662,9 @@
 (volatile-highlights-mode t)
 
 (require 'cal-china-x)
+(setq mark-holidays-in-calendar t)
+(setq cal-china-x-important-holidays cal-china-x-chinese-holidays)
+(setq calendar-holidays cal-china-x-important-holidays)
 
 (require 'calfw)
 (require 'calfw-org)
@@ -637,3 +675,79 @@
 (load-file "~/.emacs.d/site-lisp/calfw-git.el")
 (require 'calfw-git)
 (define-key global-map (kbd "C-c g") 'cfw:git-open-calendar)
+
+(require 'fic-mode)
+(fic-mode 1)
+
+(require 'fancy-narrow)
+
+(require 'guide-key)
+(setq guide-key/guide-key-sequence '("C-x r" "C-x 4"))
+;(setq guide-key/guide-key-sequence '("C-x" "C-c" "C-h"))
+(guide-key-mode 1)
+(setq guide-key/highlight-command-regexp
+      '("rectangle"
+        ("register" . font-lock-type-face)
+        ("bookmark" . "hot pink")))
+(require 'guide-key-tip)
+(setq guide-key-tip/enabled t)
+
+(require 'emojify)
+;; In programming modes only emojis in string and comments are displayed.
+(add-hook 'after-init-hook #'global-emojify-mode)
+;; (require 'emoji-cheat-sheet-plus)
+;; to create a cheatsheet buffer, use:
+;; M-x emoji-cheat-sheet-plus-buffer
+;; enabled emoji in buffer
+(add-hook 'org-mode-hook 'emoji-cheat-sheet-plus-display-mode)
+;; insert emoji with helm
+(global-set-key (kbd "M-S-e") 'emoji-cheat-sheet-plus-insert)
+
+;;(global-subword-mode) ;default
+;;(global-superword-mode)
+
+(encourage-mode)
+
+;; nav, use M-x nav to start
+(require 'nav)
+(nav-disable-overeager-window-splitting)
+
+(require 'diff-hl)
+(add-hook 'vc-dir-mode-hook 'turn-on-diff-hl-mode)
+
+
+;;(require 'lispy)
+
+(require 'elfeed)
+(require 'elfeed-goodies)
+(elfeed-goodies/setup)
+(require 'elfeed-org)
+;; Initialize elfeed-org
+;; This hooks up elfeed-org to read the configuration when elfeed
+;; is started with =M-x elfeed=
+(elfeed-org)
+;; Optionally specify a number of files containing elfeed
+;; configuration. If not set then the location below is used.
+;; Note: The customize interface is also supported.
+(setq rmh-elfeed-org-files (list "~/org/elfeed.org"))
+
+;; other window operations
+(require 'owdriver)
+(global-unset-key (kbd "M-o"))
+(setq owdriver-prefix-key "M-o")
+(owdriver-config-default)
+(owdriver-mode 1)
+;(global-set-key (kbd "M-h") 'owdriver-do-scroll-right)
+;(global-set-key (kbd "M-j") 'owdriver-do-scroll-up)
+;(global-set-key (kbd "C-M-v") 'owdriver-do-scroll-down)
+(global-set-key (kbd "C-M-S-v") 'owdriver-do-scroll-left)
+(global-set-key (kbd "M-s M-s") 'owdriver-do-isearch-forward)
+
+;; (require 'org-tracktable)
+;; org-tracktable-status
+;; org-tracktable-write
+;; (setq org-tracktable-table-name "my-table-name")
+;; org-tracktable-insert-table
+
+;(require 'bbdb-china)
+
