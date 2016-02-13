@@ -694,12 +694,13 @@
 
 (require 'emojify)
 ;; In programming modes only emojis in string and comments are displayed.
-(add-hook 'after-init-hook #'global-emojify-mode)
+;(add-hook 'after-init-hook #'global-emojify-mode)  #bug
 ;; (require 'emoji-cheat-sheet-plus)
 ;; to create a cheatsheet buffer, use:
 ;; M-x emoji-cheat-sheet-plus-buffer
 ;; enabled emoji in buffer
 (add-hook 'org-mode-hook 'emoji-cheat-sheet-plus-display-mode)
+(add-hook 'org-mode-hook 'emojify-mode)
 ;; insert emoji with helm
 (global-set-key (kbd "M-S-e") 'emoji-cheat-sheet-plus-insert)
 
@@ -751,3 +752,6 @@
 
 ;(require 'bbdb-china)
 
+(load-file "~/.emacs.d/pinyin-before-point.el")
+(require 'pinyin-before-point)
+(global-set-key (kbd "C-6") 'convert-pinyin-before-point)
