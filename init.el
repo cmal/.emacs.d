@@ -692,17 +692,17 @@
 (require 'guide-key-tip)
 (setq guide-key-tip/enabled t)
 
-(require 'emojify)
-;; In programming modes only emojis in string and comments are displayed.
-;(add-hook 'after-init-hook #'global-emojify-mode)  #bug
-;; (require 'emoji-cheat-sheet-plus)
-;; to create a cheatsheet buffer, use:
-;; M-x emoji-cheat-sheet-plus-buffer
-;; enabled emoji in buffer
-(add-hook 'org-mode-hook 'emoji-cheat-sheet-plus-display-mode)
-(add-hook 'org-mode-hook 'emojify-mode)
-;; insert emoji with helm
-(global-set-key (kbd "M-S-e") 'emoji-cheat-sheet-plus-insert)
+;; (require 'emojify)
+;; ;; In programming modes only emojis in string and comments are displayed.
+;; ;(add-hook 'after-init-hook #'global-emojify-mode)  #bug
+;; ;; (require 'emoji-cheat-sheet-plus)
+;; ;; to create a cheatsheet buffer, use:
+;; ;; M-x emoji-cheat-sheet-plus-buffer
+;; ;; enabled emoji in buffer
+;; (add-hook 'org-mode-hook 'emoji-cheat-sheet-plus-display-mode)
+;; (add-hook 'org-mode-hook 'emojify-mode)
+;; ;; insert emoji with helm
+;; (global-set-key (kbd "M-S-e") 'emoji-cheat-sheet-plus-insert)
 
 ;;(global-subword-mode) ;default
 ;;(global-superword-mode)
@@ -755,3 +755,41 @@
 (load-file "~/.emacs.d/pinyin-before-point.el")
 (require 'pinyin-before-point)
 (global-set-key (kbd "C-6") 'convert-pinyin-before-point)
+
+(require 'fill-column-indicator)
+(fci-mode)
+
+
+
+;; ===================
+;; Rails settings
+;; ===================
+(require 'mwe-log-commands)
+(require 'rinari)
+(add-hook 'rinari-minor-mode-hook (function mwe:log-keyboard-commands))
+
+;; eshell
+
+(defun wttr/prepend-to-exec-path (path)
+  "prepend the path to the emacs internal `exec-path' and \"PATH\" env variable.
+Return the updated `exec-path'"
+  (setenv "PATH" (concat (expand-file-name path)
+			 path-separator
+			 (getenv "PATH")))
+  (setq exec-path
+	(cons (expand-file-name path)
+	      exec-path)))
+(wttr/prepend-to-exec-path "/Users/cmal/.rvm/gems/ruby-2.2.1/bin:/Users/cmal/.rvm/gems/ruby-2.2.1@global/bin:/Users/cmal/.rvm/rubies/ruby-2.2.1/bin:/opt/local/bin:/opt/local/sbin:/usr/local/heroku/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Users/cmal/.rvm/bin:/Users/cmal/.rvm/bin")
+
+;; rvm
+(require 'rvm)
+;; M-x rvm-use-default prepares the current Emacs session to use
+;; the default ruby configured with rvm.
+;; M-x rvm-use allows you to switch the current session to the ruby
+;; implementation of your choice. You can also change the active gemset.
+(eval-when-compile (require 'cl))
+(defvar eshell-path-env)
+(defvar persp-mode)
+(defvar perspectives-hash)
+(declare-function persp-switch "perspective" (name))
+(rvm-use-default)
