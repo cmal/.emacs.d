@@ -24,9 +24,12 @@
 
 
 ;;  -----------------------------------
-;; | Section 0: Debugging              |
+;; | Section 0: Main                   |
 ;;  -----------------------------------
 (setq-default debug-on-error t)
+;; backup files to a single dir
+(setq-default make-backup-files t)
+(add-to-list 'backup-directory-alist '("." . "/Users/cmal/backup/"))
 
 ;;  ------------------------------------
 ;; | Section I: Custom GUI              |
@@ -553,8 +556,8 @@
 ;; helm-ag, search with helm
 
 ;; fcitx-remote-os-x --with-input-method=sogou-pinyin
-(load-file "~/.emacs.d/site-lisp/fcitx.el")
-(require 'fcitx)
+;; (load-file "~/.emacs.d/site-lisp/fcitx.el")
+;; (require 'fcitx)
 
 ;;(require 'highlight-current-line)
 ;;(highlight-current-line-on t)
@@ -630,18 +633,18 @@
 ;(autoload 'showkey-log-mode "showkey-log-mode")
 
 ;; osx-location
-(require 'osx-location)
-(eval-after-load 'osx-location
-  '(when (eq system-type 'darwin)
-     (add-hook 'osx-location-changed-hook
-               (lambda ()
-                 (setq calendar-latitude osx-location-latitude
-                       calendar-longitude osx-location-longitude
-                       calendar-location-name (format "%s, %s" osx-location-latitude osx-location-longitude))))))
-(osx-location-watch)
+;; (require 'osx-location)
+;; (eval-after-load 'osx-location
+;;   '(when (eq system-type 'darwin)
+;;      (add-hook 'osx-location-changed-hook
+;;                (lambda ()
+;;                  (setq calendar-latitude osx-location-latitude
+;;                        calendar-longitude osx-location-longitude
+;;                        calendar-location-name (format "%s, %s" osx-location-latitude osx-location-longitude))))))
+;;(osx-location-watch)
 ;; theme-changer, use calendar and latitude/longitude
-(require 'theme-changer)
-(change-theme 'moe-light 'moe-dark)
+;;(require 'theme-changer)
+;;(change-theme 'moe-light 'moe-dark)
 
 ;; visible-mark
 (require 'visible-mark)
@@ -733,16 +736,16 @@
 (setq rmh-elfeed-org-files (list "~/org/elfeed.org"))
 
 ;; other window operations
-(require 'owdriver)
-(global-unset-key (kbd "M-o"))
-(setq owdriver-prefix-key "M-o")
-(owdriver-config-default)
-(owdriver-mode 1)
-;(global-set-key (kbd "M-h") 'owdriver-do-scroll-right)
-;(global-set-key (kbd "M-j") 'owdriver-do-scroll-up)
-;(global-set-key (kbd "C-M-v") 'owdriver-do-scroll-down)
-(global-set-key (kbd "C-M-S-v") 'owdriver-do-scroll-left)
-(global-set-key (kbd "M-s M-s") 'owdriver-do-isearch-forward)
+;; (require 'owdriver)
+;; (global-unset-key (kbd "M-o"))
+;; (setq owdriver-prefix-key "M-o")
+;; (owdriver-config-default)
+;; (owdriver-mode 1)
+;; ;(global-set-key (kbd "M-h") 'owdriver-do-scroll-right)
+;; ;(global-set-key (kbd "M-j") 'owdriver-do-scroll-up)
+;; ;(global-set-key (kbd "C-M-v") 'owdriver-do-scroll-down)
+;; (global-set-key (kbd "C-M-S-v") 'owdriver-do-scroll-left)
+;; (global-set-key (kbd "M-s M-s") 'owdriver-do-isearch-forward)
 
 ;; (require 'org-tracktable)
 ;; org-tracktable-status
@@ -793,3 +796,4 @@ Return the updated `exec-path'"
 (defvar perspectives-hash)
 (declare-function persp-switch "perspective" (name))
 (rvm-use-default)
+
