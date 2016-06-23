@@ -35,51 +35,13 @@
 ;; | Section I: Custom GUI              |
 ;;  ------------------------------------
 
-;;(add-to-list 'load-path "~/.emacs.d/site-lisp/color-theme-6.6.0")
-;;(require 'color-theme)
-;; (eval-after-load "color-theme"
-;;                  '(progn
-;;                     (color-theme-initialize)
-;;                    (color-theme-classic)))
-
-;; (set-face-attribute
-;; ;  'default nil :font "MingLiu 14")
-;;   'default nil :font "Monaco 13")
-;; ;  'default nil :font "Verdana-14")
-;; ;; (if window-system 2
-;; ;;    (set-fontset-font (frame-parameter nil 'font)
-;; ;; 	  'unicode '("simsun" . "unicode-bmp")))	
-
-;; ;(set-fontset-font
-;; ;    (frame-parameter nil 'font)
-;; ;    'han
-;; ;    (font-spec :family "翩翩体-简" :size 14))
-;; ;    (font-spec :family "手札体-简" :size 14))
-;; ;    (font-spec :family "MingLiU" :size 16))
-;; ;    (font-spec :family "冬青黑体简体中文" :size 12))
+;; cfs 中文字体 org
+(require 'chinese-fonts-setup)
 
 (if window-system
     (tool-bar-mode 0))
 (scroll-bar-mode 0)
 (set-fringe-mode '(0 . 0))
-
-
-;;window numbering
-(load-file "~/.emacs.d/site-lisp/window-numbering.el")
-(require 'window-numbering)
-(window-numbering-mode 1)
-(defun select-window-next ()
-  (interactive)
-    (select-window-by-number
-     (% (+ (window-numbering-get-number) 1) 10)))
-(defun select-window-previous ()
-  (interactive)
-    (select-window-by-number
-     (% (- (window-numbering-get-number) 1) 10)))
-
-(define-key global-map (kbd "C-c n") 'select-window-next)  ;; similar of C-x o
-(define-key global-map (kbd "C-c p") 'select-window-previous)
-
 
 ;; neotree
 (add-to-list 'load-path "~/.emacs.d/site-lisp/neotree")
@@ -92,14 +54,6 @@
 
 ;; txt结尾的文件的名字优先用中文编码显示
 (modify-coding-system-alist 'file "\\.txt\\'" 'chinese-iso-8bit)
-
-;; ;; eim输入法, 已merge搜狗输入法词库
-;; (add-to-list 'load-path "~/.emacs.d/site-lisp/eim")
-;; (autoload 'eim-use-package "eim" "Another emacs input method")
-;; (setq-default eim-use-tooltip nil)
-;; (register-input-method
-;;  "eim-py" "euc-cn" 'eim-use-package
-;;   "拼音" "汉字拼音输入法" "py.txt")
 
 ;;  ----------------------------------
 ;; | Section II: Custom Org-mode GTD  |
@@ -136,7 +90,7 @@
  '(custom-enabled-themes (quote (moe-light)))
  '(custom-safe-themes
    (quote
-    ("36d92f830c21797ce34896a4cf074ce25dbe0dabe77603876d1b42316530c99d" "b04425cc726711a6c91e8ebc20cf5a3927160681941e06bc7900a5a5bfe1a77f" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "b809c70eeba09728804ebfbd16bf40f408c1dbe751b94330ff9e8d14a77b3370" "3625c04fa4b8a802e96922d2db3f48c9cb2f93526e1dc24ba0b400e4ee4ccd8a" "74278d14b7d5cf691c4d846a4bbf6e62d32104986f104c1e61f718f9669ec04b" "fe1682ca8f7a255cf295e76b0361438a21bb657d8846a05d9904872aa2fb86f2" "26ce7eea701bfd143ac536e6805224cff5598b75effb60f047878fe9c4833ae4" "8577da1641ed4bdf255341ca92e3d0e49c9f4d574458f09ce78159690442cade" "e8825f26af32403c5ad8bc983f8610a4a4786eb55e3a363fa9acb48e0677fe7e" "cdd26fa6a8c6706c9009db659d2dffd7f4b0350f9cc94e5df657fa295fffec71" "1012cf33e0152751078e9529a915da52ec742dabf22143530e86451ae8378c1a" "9d7e517b49068e9fef941fe4083ad3d2a4b040895dca5175b84be48739689707" "38ba6a938d67a452aeb1dada9d7cdeca4d9f18114e9fc8ed2b972573138d4664" "40bc0ac47a9bd5b8db7304f8ef628d71e2798135935eb450483db0dbbfff8b11" "603a9c7f3ca3253cb68584cb26c408afcf4e674d7db86badcfe649dd3c538656" "5999e12c8070b9090a2a1bbcd02ec28906e150bb2cdce5ace4f965c76cf30476" "badc4f9ae3ee82a5ca711f3fd48c3f49ebe20e6303bba1912d4e2d19dd60ec98" "519d1b3cb7345cc9be10b4b0489436ae2d1b0690470d8d78f8e4e1ff19b83a86" "5dd70fe6b64f3278d5b9ad3ff8f709b5e15cd153b0377d840c5281c352e8ccce" "12b7ed9b0e990f6d41827c343467d2a6c464094cbcc6d0844df32837b50655f9" "3d5307e5d6eb221ce17b0c952aa4cf65dbb3fa4a360e12a71e03aab78e0176c5" "f5eb916f6bd4e743206913e6f28051249de8ccfd070eae47b5bde31ee813d55f" default)))
+    ("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "36d92f830c21797ce34896a4cf074ce25dbe0dabe77603876d1b42316530c99d" "b04425cc726711a6c91e8ebc20cf5a3927160681941e06bc7900a5a5bfe1a77f" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "b809c70eeba09728804ebfbd16bf40f408c1dbe751b94330ff9e8d14a77b3370" "3625c04fa4b8a802e96922d2db3f48c9cb2f93526e1dc24ba0b400e4ee4ccd8a" "74278d14b7d5cf691c4d846a4bbf6e62d32104986f104c1e61f718f9669ec04b" "fe1682ca8f7a255cf295e76b0361438a21bb657d8846a05d9904872aa2fb86f2" "26ce7eea701bfd143ac536e6805224cff5598b75effb60f047878fe9c4833ae4" "8577da1641ed4bdf255341ca92e3d0e49c9f4d574458f09ce78159690442cade" "e8825f26af32403c5ad8bc983f8610a4a4786eb55e3a363fa9acb48e0677fe7e" "cdd26fa6a8c6706c9009db659d2dffd7f4b0350f9cc94e5df657fa295fffec71" "1012cf33e0152751078e9529a915da52ec742dabf22143530e86451ae8378c1a" "9d7e517b49068e9fef941fe4083ad3d2a4b040895dca5175b84be48739689707" "38ba6a938d67a452aeb1dada9d7cdeca4d9f18114e9fc8ed2b972573138d4664" "40bc0ac47a9bd5b8db7304f8ef628d71e2798135935eb450483db0dbbfff8b11" "603a9c7f3ca3253cb68584cb26c408afcf4e674d7db86badcfe649dd3c538656" "5999e12c8070b9090a2a1bbcd02ec28906e150bb2cdce5ace4f965c76cf30476" "badc4f9ae3ee82a5ca711f3fd48c3f49ebe20e6303bba1912d4e2d19dd60ec98" "519d1b3cb7345cc9be10b4b0489436ae2d1b0690470d8d78f8e4e1ff19b83a86" "5dd70fe6b64f3278d5b9ad3ff8f709b5e15cd153b0377d840c5281c352e8ccce" "12b7ed9b0e990f6d41827c343467d2a6c464094cbcc6d0844df32837b50655f9" "3d5307e5d6eb221ce17b0c952aa4cf65dbb3fa4a360e12a71e03aab78e0176c5" "f5eb916f6bd4e743206913e6f28051249de8ccfd070eae47b5bde31ee813d55f" default)))
  '(eval-expression-print-length nil)
  '(fci-rule-color "#3E3D31")
  '(helm-ag-base-command "ack --nocolor --nogroup")
@@ -224,7 +178,7 @@
 
 ;; setup MobileOrg directory
 ;; 中文Dropbox应用程序专用路径与英文不同，应用而不是Apps
-(setq-default org-mobile-directory "~/Dropbox/应用/MobileOrg")
+;; (setq-default org-mobile-directory "~/Dropbox/应用/MobileOrg")
 
 ;; 快速TODO标签
 (setq-default org-use-fast-todo-selection t)
@@ -245,9 +199,10 @@
 (setq org-time-clocksum-format
       '(:hours "%d" :require-hours t :minutes ":%02d" :require-minutes t))
 
-(load-file "~/.emacs.d/site-lisp/org-bullets.el")
-(require 'org-bullets)
-(add-hook 'org-mode-hook (lambda() (org-bullets-mode)))
+;; 将org mode的层级标识显示为utf-8字符
+;;(load-file "~/.emacs.d/site-lisp/org-bullets.el")
+;;(require 'org-bullets)
+;;(add-hook 'org-mode-hook (lambda() (org-bullets-mode)))
 
 ;; Show iCal calendars in the org agenda
 ;; org-mac-iCal will import events in all checked iCal.app
@@ -286,33 +241,23 @@
 ;; view-mode自动取消fringe
 ;(add-hook 'view-mode-hook (set-fringe-mode 0))
 
-;; org mode 自动显示图片
+;; org mode 自动显示图片 :FIXME: 不工作
 ;; iimage mode
-(autoload 'iimage-mode "iimage" "Support Inline image minor mode." t)
-(autoload 'turn-on-iimage-mode "iimage" "Turn on Inline image minor mode." t)
-(defun org-toggle-iimage-in-org ()
-  "display images in your org file"
-  (interactive)
-  (if (face-underline-p 'org-link)
-      (set-face-underline-p 'org-link nil)
-      (set-face-underline-p 'org-link t))
-  (iimage-mode))
+;; (autoload 'iimage-mode "iimage" "Support Inline image minor mode." t)
+;; (autoload 'turn-on-iimage-mode "iimage" "Turn on Inline image minor mode." t)
+;; (defun org-toggle-iimage-in-org ()
+;;   "display images in your org file"
+;;   (interactive)
+;;   (if (face-underline-p 'org-link)
+;;       (set-face-underline-p 'org-link nil)
+;;       (set-face-underline-p 'org-link t))
+;;   (iimage-mode))
 
 
 
 ;;  -------------------------
 ;; | Section IV: Shortcuts   |
 ;;  -------------------------
-
-;; register this file name
-;;(set-register ?i '(file . "~/.emacs.d/init.el"))
-
-;; bookmark this file
-;; already done
-
-;;(setq default-input-method 'eim-py)
-;;(set-input-method 'eim-py)
-
 
 ;; 中文计数
 ;; status bar 依次显示：
@@ -346,58 +291,15 @@
 (setq holiday-islamic-holidays nil)
 (setq holiday-solar-holidays nil)
 (setq holiday-bahai-holidays nil)
-;; (setq holiday-other-holidays
-;;       '((holiday-fixed 3 14 "白色情人节")
-;; 	(holiday-fixed 5 1 "劳动节")
-;; 	(holiday-fixed 6 1 "儿童节")
-;; ;	(holiday-fixed 7 1 "建党节")
-;; ;	(holiday-fixed 8 1 "建军节")
-;; 	(holiday-fixed 9 10 "教师节")
-;; 	(holiday-fixed 10 1 "国庆节")
-;; 	(holiday-fixed 12 25 "圣诞节")))
 
 ;;  -------------------------------
 ;; | Section 0: Tools              |
 ;;  -------------------------------
 
-;; epub
-;; (load "~/.emacs.d/site-lisp/epub/epubmode.el")
+;; tumashu's sdcv
+;;(require 'chinese-yasdcv)
 
-;; sdcv
-;; 还是有问题
-;(load "~/.emacs.d/site-lisp/sdcv/sdcv-mode.el")
-;(require 'sdcv-mode)
-;(global-set-key (kbd "C-c d") 'sdcv-search)
-
-;; (load "~/.emacs.d/site-lisp/sdcv/showtip.el")
-;; (load "~/.emacs.d/site-lisp/sdcv/sdcv.el")
-;; (require 'sdcv)
-;; (setq-default sdcv-dictionary-simple-list        ;; a simple dictionary list
-;;       '(
-;; ;        "懒虫简明英汉词典"
-;; ;        "懒虫简明汉英词典"
-;; ;        "KDic11万英汉词典"
-;; 	"朗道英汉字典5.0"
-;;         ))
-;; (setq-default sdcv-dictionary-complete-list      ;; a complete dictionary list
-;;       '("KDic11万英汉词典"
-;;         "懒虫简明英汉词典"
-;;         "朗道英汉字典5.0"
-;;         "XDICT英汉辞典"
-;;         "朗道汉英字典5.0"
-;;         "XDICT汉英辞典"
-;;         "懒虫简明汉英词典"
-;;         "牛津英汉双解美化版"
-;;         "stardict1.3英汉辞典"
-;;         "英汉汉英专业词典"
-;;         "CDICT5英汉辞典"
-;;         "Jargon"
-;;         "FOLDOC"
-;;         "WordNet"
-;;         ))
-;; (global-set-key (kbd "C-c d") 'sdcv-search-pointer+)
-;; (global-set-key (kbd "C-c C-d") 'sdcv-search-input)
-
+;;; a working sdcv version kid-sdcv
 (global-set-key (kbd "C-c d") 'kid-sdcv-to-buffer)
 (defun kid-sdcv-to-buffer ()
   (interactive)
@@ -424,11 +326,14 @@
                                         (unless (null (cdr (window-list))) ; only one window
                                           (delete-window)))))
            (goto-char (point-min))))))))
+;; end of kid-sdcv
+
+
 
 ;; chrome Edit with Emacs
-;; (add-to-list 'load-path "~/.emacs.d/site-lisp/chrome")
-;; (require 'edit-server)
-;; (edit-server-start)
+(add-to-list 'load-path "~/.emacs.d/site-lisp/chrome")
+(require 'edit-server)
+(edit-server-start)
 
 ;;browser
 ;(add-to-list 'load-path "~/.emacs.d/site-lisp/eww")
@@ -471,23 +376,18 @@
 ;; 	("github" :components ("org-cmal" "org-static-cmal"))))
 	 
 
-;; cfs 中文字体 org
-(require 'chinese-fonts-setup)
-
 (require 'chinese-pyim)
 (setq default-input-method "chinese-pyim")
 (global-set-key (kbd "C-\\") 'toggle-input-method)
 (global-set-key (kbd "C-;") 'pyim-toggle-full-width-punctuation)
 
-
 (require 'ace-jump-mode)
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
-
 
 (load-file "~/.emacs.d/site-lisp/web-mode.el")
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
-
+;;(add-to-list 'auto-mode-alist '("\\.js\\'" . web-mode))
 
 (require 'multiple-cursors)
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
@@ -519,8 +419,6 @@
 ;;(require 'helm-swoop)
 (define-key global-map (kbd "C-S-w") 'helm-swoop)
 
-
-
 (show-paren-mode t)
 
 (define-globalized-minor-mode global-highlight-parentheses-mode
@@ -543,24 +441,7 @@
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
-;; cursor-chg
-;;(require 'cursor-chg)
-;;(change-cursor-mode 1)
-;;(toggle-cursor-type-when-idle 1)
-
-;; on-screen, highlight when scroll
-;(require 'on-screen)
-;(on-screen-global-mode +1)
-
-
 ;; helm-ag, search with helm
-
-;; fcitx-remote-os-x --with-input-method=sogou-pinyin
-;; (load-file "~/.emacs.d/site-lisp/fcitx.el")
-;; (require 'fcitx)
-
-;;(require 'highlight-current-line)
-;;(highlight-current-line-on t)
 
 ;;golden-ratio-scroll-screen
 (require 'golden-ratio-scroll-screen)
@@ -571,6 +452,7 @@
 ;;(diredful-mode 1)
 
 (require 'dash)
+
 (require 'blog-admin)
 ;; (setq blog-admin-backend-path "~/gits/blog")
 ;; (setq blog-admin-backend-type 'hexo)
@@ -615,12 +497,12 @@
 (ace-pinyin-global-mode 1)
 (define-key global-map (kbd "C-c C-SPC") 'ace-pinyin-jump-char)
 
-(require 'key-chord)
-(key-chord-define-global "vj" 'mc/edit-lines)
-(key-chord-define-global "gd" 'mc/mark-all-symbols-like-this)
-(key-chord-define-global "gg" 'mc/mark-next-like-this-symbol)
-(key-chord-define-global "gp" 'mark/previous-symbol-like-this)
-(key-chord-mode +1)
+;; (require 'key-chord)
+;; (key-chord-define-global "vj" 'mc/edit-lines)
+;; (key-chord-define-global "gd" 'mc/mark-all-symbols-like-this)
+;; (key-chord-define-global "gg" 'mc/mark-next-like-this-symbol)
+;; (key-chord-define-global "gp" 'mark/previous-symbol-like-this)
+;; (key-chord-mode +1)
 
 ;; pinyin-search
 (define-key global-map (kbd "C-S-s") 'pinyin-search)
@@ -629,8 +511,6 @@
 (require 'ace-jump-buffer)
 (define-key global-map (kbd "C-x C-b") 'ace-jump-buffer)
 
-;;showkey
-;(autoload 'showkey-log-mode "showkey-log-mode")
 
 ;; osx-location
 ;; (require 'osx-location)
@@ -664,20 +544,20 @@
 (require 'volatile-highlights)
 (volatile-highlights-mode t)
 
-(require 'cal-china-x)
-(setq mark-holidays-in-calendar t)
-(setq cal-china-x-important-holidays cal-china-x-chinese-holidays)
-(setq calendar-holidays cal-china-x-important-holidays)
+;; (require 'cal-china-x)
+;; (setq mark-holidays-in-calendar t)
+;; (setq cal-china-x-important-holidays cal-china-x-chinese-holidays)
+;; (setq calendar-holidays cal-china-x-important-holidays)
 
-(require 'calfw)
-(require 'calfw-org)
-(define-key global-map (kbd "C-c i") 'cfw:open-org-calendar)
-(setq cfw:org-overwrite-default-keybinding t)
-(setq calendar-week-start-day 1)
+;; (require 'calfw)
+;; (require 'calfw-org)
+;; (define-key global-map (kbd "C-c i") 'cfw:open-org-calendar)
+;; (setq cfw:org-overwrite-default-keybinding t)
+;; (setq calendar-week-start-day 1)
 
-(load-file "~/.emacs.d/site-lisp/calfw-git.el")
-(require 'calfw-git)
-(define-key global-map (kbd "C-c g") 'cfw:git-open-calendar)
+;; (load-file "~/.emacs.d/site-lisp/calfw-git.el")
+;; (require 'calfw-git)
+;; (define-key global-map (kbd "C-c g") 'cfw:git-open-calendar)
 
 (require 'fic-mode)
 (fic-mode 1)
@@ -759,15 +639,18 @@
 (require 'pinyin-before-point)
 (global-set-key (kbd "C-6") 'convert-pinyin-before-point)
 
-(require 'fill-column-indicator)
-(fci-mode)
-
+;; not working as emacs starts
+;;(require 'fill-column-indicator)
+;;(fci-mode 1)
 
 
 ;; ===================
 ;; Rails settings
 ;; ===================
+;;showkey
+;(autoload 'showkey-log-mode "showkey-log-mode")
 (require 'mwe-log-commands)
+
 (require 'rinari)
 (add-hook 'rinari-minor-mode-hook (function mwe:log-keyboard-commands))
 
@@ -797,3 +680,42 @@ Return the updated `exec-path'"
 (declare-function persp-switch "perspective" (name))
 (rvm-use-default)
 
+(require 'nodejs-repl)
+;(require 'js2-mode)
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+;; as a minor mode
+;;(add-hook 'js-mode-hook 'js2-minor-mode)
+;;hook it in for shell scripts running via node.js:
+(add-to-list 'interpreter-mode-alist '("node" . js2-mode))
+;;Support for JSX is available via the derived mode `js2-jsx-mode'.  If you
+;;also want JSX support, use that mode instead:
+;;(add-to-list 'auto-mode-alist '("\\.jsx?\\'" . js2-jsx-mode))
+;;(add-to-list 'interpreter-mode-alist '("node" . js2-jsx-mode))
+;;To customize how it works:
+;;M-x customize-group RET js2-mode RET
+
+(add-to-list 'auto-mode-alist '("\\.jade\\'" . jade-mode))
+
+;; scpaste
+;;(setq scpaste-http-destination "http://p.hagelb.org"
+;;      scpaste-scp-destination "p.hagelb.org:p.hagelb.org")
+;;(setq scpaste-scp-pubkey "~/.ssh/my_keyfile.pub")
+;;Optionally you can set the displayed name and where it should link to:
+
+(setq scpaste-user-name "cmal"
+            scpaste-user-address "http://github.com/cmal/")
+
+
+
+(require 'saveplace)
+(setq-default save-place t)
+(setq save-lace-file "~/.emacs.d/save-places")
+(setq save-place-forget-unreadable-files)
+
+;;(require 'say-what-im-doing)
+
+(global-smartscan-mode 1)
+
+;; smart-parens
+(require 'smartparens-config)
+(add-hook 'js2-mode-hook #'smartparens-mode)
