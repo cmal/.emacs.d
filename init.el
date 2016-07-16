@@ -19,8 +19,8 @@
              '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
 
-(add-to-list 'custom-theme-load-path "~/.emacs.d/elpa/moe-theme-20151124.1509")
-(add-to-list 'load-path "~/.emacs.d/elpa/moe-theme-20151124.1509")
+(add-to-list 'custom-theme-load-path "~/.emacs.d/elpa/moe-theme-20160606.2236")
+(add-to-list 'load-path "~/.emacs.d/elpa/moe-theme-20160606.2236")
 
 
 ;;  -----------------------------------
@@ -66,6 +66,22 @@
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cc" 'org-capture)
 
+;; org-capture
+;; (setq org-default-notes-file (concat org-directory "~/org/notes.org"))
+(setq org-capture-templates
+      '(("t" "Todo" entry (file+headline "~/org/gtd.org" "Tasks")
+	 "* TODO %?\n  %i\n  %a")
+	("i" "Inspiration" plain (file+headline "~/org/inspiration.org" "Inspirations")
+	 "* %?\n  %i\n  %a")
+	("r" "React" plain (file+headline "~/org/js.org" "React")
+	 "** %?\n  %i\n  %a")
+	("j" "JavaScript" plain (file+headline "~/org/js.org" "JavaScript")
+	 "** %?\n  %i\n  %a")
+	("c" "Css" plain (file+headline "~/org/css.org" "Css")
+	 "** %?\n  %i\n  %a")
+        ("j" "Journal" entry (file+datetree "~/org/journal.org")
+	 "* %?\nEntered on %U\n  %i\n  %a")))
+
 
 ;; add done time to org headlines,
 ;; if want to add notes, replace 'time with 'note
@@ -84,17 +100,28 @@
    [default default default italic underline success warning error])
  '(ansi-color-names-vector
    ["#2e3436" "#a40000" "#4e9a06" "#c4a000" "#204a87" "#5c3566" "#729fcf" "#eeeeec"])
- '(cfs--current-profile-name "profile3" t)
+ '(cfs--current-profile "profile2" t)
+ '(cfs--current-profile-name "profile2" t)
  '(cfs--fontsize-steps (quote (3 4 5)) t)
  '(compilation-message-face (quote default))
+ '(cua-global-mark-cursor-color "#2aa198")
+ '(cua-normal-cursor-color "#839496")
+ '(cua-overwrite-cursor-color "#b58900")
+ '(cua-read-only-cursor-color "#859900")
  '(custom-enabled-themes (quote (moe-light)))
  '(custom-safe-themes
    (quote
-    ("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "36d92f830c21797ce34896a4cf074ce25dbe0dabe77603876d1b42316530c99d" "b04425cc726711a6c91e8ebc20cf5a3927160681941e06bc7900a5a5bfe1a77f" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "b809c70eeba09728804ebfbd16bf40f408c1dbe751b94330ff9e8d14a77b3370" "3625c04fa4b8a802e96922d2db3f48c9cb2f93526e1dc24ba0b400e4ee4ccd8a" "74278d14b7d5cf691c4d846a4bbf6e62d32104986f104c1e61f718f9669ec04b" "fe1682ca8f7a255cf295e76b0361438a21bb657d8846a05d9904872aa2fb86f2" "26ce7eea701bfd143ac536e6805224cff5598b75effb60f047878fe9c4833ae4" "8577da1641ed4bdf255341ca92e3d0e49c9f4d574458f09ce78159690442cade" "e8825f26af32403c5ad8bc983f8610a4a4786eb55e3a363fa9acb48e0677fe7e" "cdd26fa6a8c6706c9009db659d2dffd7f4b0350f9cc94e5df657fa295fffec71" "1012cf33e0152751078e9529a915da52ec742dabf22143530e86451ae8378c1a" "9d7e517b49068e9fef941fe4083ad3d2a4b040895dca5175b84be48739689707" "38ba6a938d67a452aeb1dada9d7cdeca4d9f18114e9fc8ed2b972573138d4664" "40bc0ac47a9bd5b8db7304f8ef628d71e2798135935eb450483db0dbbfff8b11" "603a9c7f3ca3253cb68584cb26c408afcf4e674d7db86badcfe649dd3c538656" "5999e12c8070b9090a2a1bbcd02ec28906e150bb2cdce5ace4f965c76cf30476" "badc4f9ae3ee82a5ca711f3fd48c3f49ebe20e6303bba1912d4e2d19dd60ec98" "519d1b3cb7345cc9be10b4b0489436ae2d1b0690470d8d78f8e4e1ff19b83a86" "5dd70fe6b64f3278d5b9ad3ff8f709b5e15cd153b0377d840c5281c352e8ccce" "12b7ed9b0e990f6d41827c343467d2a6c464094cbcc6d0844df32837b50655f9" "3d5307e5d6eb221ce17b0c952aa4cf65dbb3fa4a360e12a71e03aab78e0176c5" "f5eb916f6bd4e743206913e6f28051249de8ccfd070eae47b5bde31ee813d55f" default)))
+    ("6bf237d23440fb0b340f4336695f2a08c6b785aa98288b3313526e76c38bca19" "3b903d4b0a528b92e7ec980568a47d47ee0cb3c56acd156340757817e2ddf1e5" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "a164837cd2821475e1099911f356ed0d7bd730f13fa36907895f96a719e5ac3e" "345f8f92edc3508574c61850b98a2e0a7a3f5ba3bb9ed03a50f6e41546fe2de0" "c4a784404a2a732ef86ee969ab94ec8b8033aee674cd20240b8addeba93e1612" "40f6a7af0dfad67c0d4df2a1dd86175436d79fc69ea61614d668a635c2cd94ab" "c567c85efdb584afa78a1e45a6ca475f5b55f642dfcd6277050043a568d1ac6f" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "36d92f830c21797ce34896a4cf074ce25dbe0dabe77603876d1b42316530c99d" "b04425cc726711a6c91e8ebc20cf5a3927160681941e06bc7900a5a5bfe1a77f" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "b809c70eeba09728804ebfbd16bf40f408c1dbe751b94330ff9e8d14a77b3370" "3625c04fa4b8a802e96922d2db3f48c9cb2f93526e1dc24ba0b400e4ee4ccd8a" "74278d14b7d5cf691c4d846a4bbf6e62d32104986f104c1e61f718f9669ec04b" "fe1682ca8f7a255cf295e76b0361438a21bb657d8846a05d9904872aa2fb86f2" "26ce7eea701bfd143ac536e6805224cff5598b75effb60f047878fe9c4833ae4" "8577da1641ed4bdf255341ca92e3d0e49c9f4d574458f09ce78159690442cade" "e8825f26af32403c5ad8bc983f8610a4a4786eb55e3a363fa9acb48e0677fe7e" "cdd26fa6a8c6706c9009db659d2dffd7f4b0350f9cc94e5df657fa295fffec71" "1012cf33e0152751078e9529a915da52ec742dabf22143530e86451ae8378c1a" "9d7e517b49068e9fef941fe4083ad3d2a4b040895dca5175b84be48739689707" "38ba6a938d67a452aeb1dada9d7cdeca4d9f18114e9fc8ed2b972573138d4664" "40bc0ac47a9bd5b8db7304f8ef628d71e2798135935eb450483db0dbbfff8b11" "603a9c7f3ca3253cb68584cb26c408afcf4e674d7db86badcfe649dd3c538656" "5999e12c8070b9090a2a1bbcd02ec28906e150bb2cdce5ace4f965c76cf30476" "badc4f9ae3ee82a5ca711f3fd48c3f49ebe20e6303bba1912d4e2d19dd60ec98" "519d1b3cb7345cc9be10b4b0489436ae2d1b0690470d8d78f8e4e1ff19b83a86" "5dd70fe6b64f3278d5b9ad3ff8f709b5e15cd153b0377d840c5281c352e8ccce" "12b7ed9b0e990f6d41827c343467d2a6c464094cbcc6d0844df32837b50655f9" "3d5307e5d6eb221ce17b0c952aa4cf65dbb3fa4a360e12a71e03aab78e0176c5" "f5eb916f6bd4e743206913e6f28051249de8ccfd070eae47b5bde31ee813d55f" default)))
  '(eval-expression-print-length nil)
  '(fci-rule-color "#3E3D31")
  '(helm-ag-base-command "ack --nocolor --nogroup")
  '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
+ '(highlight-symbol-colors
+   (--map
+    (solarized-color-blend it "#002b36" 0.25)
+    (quote
+     ("#b58900" "#2aa198" "#dc322f" "#6c71c4" "#859900" "#cb4b16" "#268bd2"))))
+ '(highlight-symbol-foreground-color "#93a1a1")
  '(highlight-tail-colors
    (quote
     (("#3E3D31" . 0)
@@ -105,6 +132,13 @@
      ("#A45E0A" . 70)
      ("#A41F99" . 85)
      ("#3E3D31" . 100))))
+ '(hl-bg-colors
+   (quote
+    ("#7B6000" "#8B2C02" "#990A1B" "#93115C" "#3F4D91" "#00629D" "#00736F" "#546E00")))
+ '(hl-fg-colors
+   (quote
+    ("#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36")))
+ '(js2-basic-offset 2)
  '(ledger-reports
    (quote
     (("2bal" "ledger -f %(ledger-file) -d \"l<=2\" bal")
@@ -115,6 +149,11 @@
      ("account" "ledger -f %(ledger-file) reg %(account)")
      ("%" "ledger -f %(ledger-file) -%s -S T -d \"l<=2\" bal"))))
  '(magit-diff-use-overlays nil)
+ '(notmuch-search-line-faces
+   (quote
+    (("unread" :foreground "#aeee00")
+     ("flagged" :foreground "#0a9dff")
+     ("deleted" :foreground "#ff2c4b" :bold t))))
  '(nrepl-message-colors
    (quote
     ("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3")))
@@ -124,6 +163,7 @@
  '(pyim-dicts
    (quote
     ((:name "BigDict-01" :file "/Users/cmal/.emacs.d/pyim/dicts/pyim-bigdict.pyim" :coding utf-8-unix :dict-type pinyin-dict))))
+ '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
  '(sml/replacer-regexp-list
    (quote
     (("^~/org" ":Org:")
@@ -136,6 +176,8 @@
      ("^~/[Gg]its/" ":Git:")
      ("^~/[Gg]it[Hh]ub/" ":Git:")
      ("^~/[Gg]it\\([Hh]ub\\|\\)-?[Pp]rojects/" ":Git:"))))
+ '(term-default-bg-color "#002b36")
+ '(term-default-fg-color "#839496")
  '(tooltip-mode t)
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
@@ -161,6 +203,8 @@
  '(vc-annotate-very-old-color nil)
  '(wakatime-api-key "21ede5a8-53df-4b2d-8666-24d89724a41b")
  '(wakatime-cli-path "/usr/local/bin/wakatime")
+ '(web-mode-code-indent-offset 2)
+ '(web-mode-markup-indent-offset 2)
  '(weechat-color-list
    (unspecified "#272822" "#3E3D31" "#A20C41" "#F92672" "#67930F" "#A6E22E" "#968B26" "#E6DB74" "#21889B" "#66D9EF" "#A41F99" "#FD5FF0" "#349B8D" "#A1EFE4" "#F8F8F2" "#F8F8F0"))
  '(when
@@ -170,7 +214,11 @@
 	 (quote ansi-term-color-vector)))
        (not
 	(facep
-	 (aref ansi-term-color-vector 0))))))
+	 (aref ansi-term-color-vector 0)))))
+ '(xterm-color-names
+   ["#073642" "#dc322f" "#859900" "#b58900" "#268bd2" "#d33682" "#2aa198" "#eee8d5"])
+ '(xterm-color-names-bright
+   ["#002b36" "#cb4b16" "#586e75" "#657b83" "#839496" "#6c71c4" "#93a1a1" "#fdf6e3"]))
 
 ;; to custom the identification of stuck project
 (setq-default org-stuck-projects
@@ -200,9 +248,9 @@
       '(:hours "%d" :require-hours t :minutes ":%02d" :require-minutes t))
 
 ;; 将org mode的层级标识显示为utf-8字符
-;;(load-file "~/.emacs.d/site-lisp/org-bullets.el")
-;;(require 'org-bullets)
-;;(add-hook 'org-mode-hook (lambda() (org-bullets-mode)))
+(load-file "~/.emacs.d/site-lisp/org-bullets.el")
+(require 'org-bullets)
+(add-hook 'org-mode-hook (lambda() (org-bullets-mode)))
 
 ;; Show iCal calendars in the org agenda
 ;; org-mac-iCal will import events in all checked iCal.app
@@ -235,8 +283,8 @@
 ;(delete-selection-mode)
 (setq-default delete-by-moving-to-trash t)
 ;; 单行滚动
-(global-set-key (kbd "M-p") 'scroll-down-line)
-(global-set-key (kbd "M-n") 'scroll-up-line)
+;;(global-set-key (kbd "M-p") 'scroll-down-line)
+;;(global-set-key (kbd "M-n") 'scroll-up-line)
 
 ;; view-mode自动取消fringe
 ;(add-hook 'view-mode-hook (set-fringe-mode 0))
@@ -387,6 +435,7 @@
 (load-file "~/.emacs.d/site-lisp/web-mode.el")
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.css\\'" . web-mode))
 ;;(add-to-list 'auto-mode-alist '("\\.js\\'" . web-mode))
 
 (require 'multiple-cursors)
@@ -475,7 +524,6 @@
 ;(setq op/personal-duoshuo-shortname "cmal")
 ;;; the configuration below are optional
 ;;(setq op/personal-google-analytics-id "your_google_analytics_id")
-
 (setq op/site-main-title "M-x psychotherapist")
 (setq op/site-sub-title "cmal@bitbucket.org")
 (setq op/personal-github-link "https://github.com/cmal")
@@ -486,9 +534,10 @@
 
 ;;(require 'org-alert)
 ;;(org-alert-enable)
-(require 'rainbow-mode)
-(rainbow-mode 1)
+;;(require 'rainbow-mode)
+;;(rainbow-mode 1)
 
+;; smart-mode-line
 (sml/setup)
 ;(sml/apply-theme "light-powerline")
 ;; (diredful-add CFG-FILE-NAME)
@@ -536,10 +585,10 @@
 ;;(require 'seethru)
 ;;(seethru 100)
 
-(require 'wakatime-mode)
-(global-wakatime-mode)
-(setq wakatime-api-key "21ede5a8-53df-4b2d-8666-24d89724a41b")
-(setq wakatime-cli-path "/usr/local/Cellar/wakatime-cli/4.0.14/libexec/lib/python2.7/site-packages/wakatime/cli.py")
+;; (require 'wakatime-mode)
+;; (global-wakatime-mode)
+;; (setq wakatime-api-key "21ede5a8-53df-4b2d-8666-24d89724a41b")
+;; (setq wakatime-cli-path "/usr/local/Cellar/wakatime-cli/6.0.7/libexec/lib/python2.7/site-packages/wakatime/cli.py")
 
 (require 'volatile-highlights)
 (volatile-highlights-mode t)
@@ -689,8 +738,8 @@ Return the updated `exec-path'"
 (add-to-list 'interpreter-mode-alist '("node" . js2-mode))
 ;;Support for JSX is available via the derived mode `js2-jsx-mode'.  If you
 ;;also want JSX support, use that mode instead:
-;;(add-to-list 'auto-mode-alist '("\\.jsx?\\'" . js2-jsx-mode))
-;;(add-to-list 'interpreter-mode-alist '("node" . js2-jsx-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx?\\'" . js2-jsx-mode))
+(add-to-list 'interpreter-mode-alist '("node" . js2-jsx-mode))
 ;;To customize how it works:
 ;;M-x customize-group RET js2-mode RET
 
@@ -704,8 +753,6 @@ Return the updated `exec-path'"
 
 (setq scpaste-user-name "cmal"
             scpaste-user-address "http://github.com/cmal/")
-
-
 
 (require 'saveplace)
 (setq-default save-place t)
