@@ -108,7 +108,7 @@
  '(cua-normal-cursor-color "#839496")
  '(cua-overwrite-cursor-color "#b58900")
  '(cua-read-only-cursor-color "#859900")
- '(custom-enabled-themes (quote (moe-light)))
+ '(custom-enabled-themes (quote (smart-mode-line-light)))
  '(custom-safe-themes
    (quote
     ("6bf237d23440fb0b340f4336695f2a08c6b785aa98288b3313526e76c38bca19" "3b903d4b0a528b92e7ec980568a47d47ee0cb3c56acd156340757817e2ddf1e5" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "a164837cd2821475e1099911f356ed0d7bd730f13fa36907895f96a719e5ac3e" "345f8f92edc3508574c61850b98a2e0a7a3f5ba3bb9ed03a50f6e41546fe2de0" "c4a784404a2a732ef86ee969ab94ec8b8033aee674cd20240b8addeba93e1612" "40f6a7af0dfad67c0d4df2a1dd86175436d79fc69ea61614d668a635c2cd94ab" "c567c85efdb584afa78a1e45a6ca475f5b55f642dfcd6277050043a568d1ac6f" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "36d92f830c21797ce34896a4cf074ce25dbe0dabe77603876d1b42316530c99d" "b04425cc726711a6c91e8ebc20cf5a3927160681941e06bc7900a5a5bfe1a77f" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "b809c70eeba09728804ebfbd16bf40f408c1dbe751b94330ff9e8d14a77b3370" "3625c04fa4b8a802e96922d2db3f48c9cb2f93526e1dc24ba0b400e4ee4ccd8a" "74278d14b7d5cf691c4d846a4bbf6e62d32104986f104c1e61f718f9669ec04b" "fe1682ca8f7a255cf295e76b0361438a21bb657d8846a05d9904872aa2fb86f2" "26ce7eea701bfd143ac536e6805224cff5598b75effb60f047878fe9c4833ae4" "8577da1641ed4bdf255341ca92e3d0e49c9f4d574458f09ce78159690442cade" "e8825f26af32403c5ad8bc983f8610a4a4786eb55e3a363fa9acb48e0677fe7e" "cdd26fa6a8c6706c9009db659d2dffd7f4b0350f9cc94e5df657fa295fffec71" "1012cf33e0152751078e9529a915da52ec742dabf22143530e86451ae8378c1a" "9d7e517b49068e9fef941fe4083ad3d2a4b040895dca5175b84be48739689707" "38ba6a938d67a452aeb1dada9d7cdeca4d9f18114e9fc8ed2b972573138d4664" "40bc0ac47a9bd5b8db7304f8ef628d71e2798135935eb450483db0dbbfff8b11" "603a9c7f3ca3253cb68584cb26c408afcf4e674d7db86badcfe649dd3c538656" "5999e12c8070b9090a2a1bbcd02ec28906e150bb2cdce5ace4f965c76cf30476" "badc4f9ae3ee82a5ca711f3fd48c3f49ebe20e6303bba1912d4e2d19dd60ec98" "519d1b3cb7345cc9be10b4b0489436ae2d1b0690470d8d78f8e4e1ff19b83a86" "5dd70fe6b64f3278d5b9ad3ff8f709b5e15cd153b0377d840c5281c352e8ccce" "12b7ed9b0e990f6d41827c343467d2a6c464094cbcc6d0844df32837b50655f9" "3d5307e5d6eb221ce17b0c952aa4cf65dbb3fa4a360e12a71e03aab78e0176c5" "f5eb916f6bd4e743206913e6f28051249de8ccfd070eae47b5bde31ee813d55f" default)))
@@ -444,11 +444,14 @@
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
+(global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click)
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(highlight-current-line-face ((t (:background "color-17"))))
  '(tooltip ((t (:inherit variable-pitch :background "lightyellow" :foreground "black" :height 2.0)))))
 
 
@@ -593,6 +596,8 @@
 (require 'volatile-highlights)
 (volatile-highlights-mode t)
 
+(require 'highlight-current-line)
+(highlight-current-line-on t)
 ;; (require 'cal-china-x)
 ;; (setq mark-holidays-in-calendar t)
 ;; (setq cal-china-x-important-holidays cal-china-x-chinese-holidays)
@@ -766,3 +771,7 @@ Return the updated `exec-path'"
 ;; smart-parens
 (require 'smartparens-config)
 (add-hook 'js2-mode-hook #'smartparens-mode)
+
+;; use C-up and C-down to move line or region
+(load-file "~/.emacs.d/site-lisp/move-text.el")
+
