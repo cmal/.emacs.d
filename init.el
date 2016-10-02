@@ -17,11 +17,14 @@
 (require 'package) ;; You might already have this line
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/"))
+(add-to-list 'package-archives
+	     '("marmalade" . "http://marmalade-repo.org/packages/") t)
 (package-initialize)
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/elpa/moe-theme-20160606.2236")
 (add-to-list 'load-path "~/.emacs.d/elpa/moe-theme-20160606.2236")
 
+(require 'better-defaults)
 
 ;;  -----------------------------------
 ;; | Section 0: Main                   |
@@ -36,11 +39,11 @@
 ;;  ------------------------------------
 
 ;; cfs 中文字体 org
-(require 'chinese-fonts-setup)
+;;(require 'chinese-fonts-setup)
 
 (if window-system
     (tool-bar-mode 0))
-(scroll-bar-mode 0)
+;;(scroll-bar-mode 0)
 (set-fringe-mode '(0 . 0))
 
 ;; neotree
@@ -108,12 +111,58 @@
  '(cua-normal-cursor-color "#839496")
  '(cua-overwrite-cursor-color "#b58900")
  '(cua-read-only-cursor-color "#859900")
- '(custom-enabled-themes (quote (smart-mode-line-light)))
+ '(custom-enabled-themes (quote (dracula)))
  '(custom-safe-themes
    (quote
-    ("6bf237d23440fb0b340f4336695f2a08c6b785aa98288b3313526e76c38bca19" "3b903d4b0a528b92e7ec980568a47d47ee0cb3c56acd156340757817e2ddf1e5" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "a164837cd2821475e1099911f356ed0d7bd730f13fa36907895f96a719e5ac3e" "345f8f92edc3508574c61850b98a2e0a7a3f5ba3bb9ed03a50f6e41546fe2de0" "c4a784404a2a732ef86ee969ab94ec8b8033aee674cd20240b8addeba93e1612" "40f6a7af0dfad67c0d4df2a1dd86175436d79fc69ea61614d668a635c2cd94ab" "c567c85efdb584afa78a1e45a6ca475f5b55f642dfcd6277050043a568d1ac6f" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "36d92f830c21797ce34896a4cf074ce25dbe0dabe77603876d1b42316530c99d" "b04425cc726711a6c91e8ebc20cf5a3927160681941e06bc7900a5a5bfe1a77f" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "b809c70eeba09728804ebfbd16bf40f408c1dbe751b94330ff9e8d14a77b3370" "3625c04fa4b8a802e96922d2db3f48c9cb2f93526e1dc24ba0b400e4ee4ccd8a" "74278d14b7d5cf691c4d846a4bbf6e62d32104986f104c1e61f718f9669ec04b" "fe1682ca8f7a255cf295e76b0361438a21bb657d8846a05d9904872aa2fb86f2" "26ce7eea701bfd143ac536e6805224cff5598b75effb60f047878fe9c4833ae4" "8577da1641ed4bdf255341ca92e3d0e49c9f4d574458f09ce78159690442cade" "e8825f26af32403c5ad8bc983f8610a4a4786eb55e3a363fa9acb48e0677fe7e" "cdd26fa6a8c6706c9009db659d2dffd7f4b0350f9cc94e5df657fa295fffec71" "1012cf33e0152751078e9529a915da52ec742dabf22143530e86451ae8378c1a" "9d7e517b49068e9fef941fe4083ad3d2a4b040895dca5175b84be48739689707" "38ba6a938d67a452aeb1dada9d7cdeca4d9f18114e9fc8ed2b972573138d4664" "40bc0ac47a9bd5b8db7304f8ef628d71e2798135935eb450483db0dbbfff8b11" "603a9c7f3ca3253cb68584cb26c408afcf4e674d7db86badcfe649dd3c538656" "5999e12c8070b9090a2a1bbcd02ec28906e150bb2cdce5ace4f965c76cf30476" "badc4f9ae3ee82a5ca711f3fd48c3f49ebe20e6303bba1912d4e2d19dd60ec98" "519d1b3cb7345cc9be10b4b0489436ae2d1b0690470d8d78f8e4e1ff19b83a86" "5dd70fe6b64f3278d5b9ad3ff8f709b5e15cd153b0377d840c5281c352e8ccce" "12b7ed9b0e990f6d41827c343467d2a6c464094cbcc6d0844df32837b50655f9" "3d5307e5d6eb221ce17b0c952aa4cf65dbb3fa4a360e12a71e03aab78e0176c5" "f5eb916f6bd4e743206913e6f28051249de8ccfd070eae47b5bde31ee813d55f" default)))
+    ("1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "82d2cac368ccdec2fcc7573f24c3f79654b78bf133096f9b40c20d97ec1d8016" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "5e3fc08bcadce4c6785fc49be686a4a82a356db569f55d411258984e952f194a" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" "2dd32048690787844d8cba601ed3dd8b2f419e9bd985898d0c3792671a05b96b" "b9e9ba5aeedcc5ba8be99f1cc9301f6679912910ff92fdf7980929c2fc83ab4d" "715fdcd387af7e963abca6765bd7c2b37e76154e65401cd8d86104f22dd88404" "66881e95c0eda61d34aa7f08ebacf03319d37fe202d68ecf6a1dbfd49d664bc3" "7ceb8967b229c1ba102378d3e2c5fef20ec96a41f615b454e0dc0bfa1d326ea6" "a0feb1322de9e26a4d209d1cfa236deaf64662bb604fa513cca6a057ddf0ef64" "ab04c00a7e48ad784b52f34aa6bfa1e80d0c3fcacc50e1189af3651013eb0d58" "04dd0236a367865e591927a3810f178e8d33c372ad5bfef48b5ce90d4b476481" "7356632cebc6a11a87bc5fcffaa49bae528026a78637acd03cae57c091afd9b9" "e3d194a55a73cb87b602d902bb21210f3970d4c07303276c073f4bdb73ba2a3b" "29af7993f426d7871a605776a48e38ecc22bc80dd9bff0bc65303dfe5798ac64" "e5c6caa4860b1ba51dc5ad335c0c2734ea650a6098dd9652a1ab3d9aa702e185" "6bf237d23440fb0b340f4336695f2a08c6b785aa98288b3313526e76c38bca19" "3b903d4b0a528b92e7ec980568a47d47ee0cb3c56acd156340757817e2ddf1e5" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "a164837cd2821475e1099911f356ed0d7bd730f13fa36907895f96a719e5ac3e" "345f8f92edc3508574c61850b98a2e0a7a3f5ba3bb9ed03a50f6e41546fe2de0" "c4a784404a2a732ef86ee969ab94ec8b8033aee674cd20240b8addeba93e1612" "40f6a7af0dfad67c0d4df2a1dd86175436d79fc69ea61614d668a635c2cd94ab" "c567c85efdb584afa78a1e45a6ca475f5b55f642dfcd6277050043a568d1ac6f" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "36d92f830c21797ce34896a4cf074ce25dbe0dabe77603876d1b42316530c99d" "b04425cc726711a6c91e8ebc20cf5a3927160681941e06bc7900a5a5bfe1a77f" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "b809c70eeba09728804ebfbd16bf40f408c1dbe751b94330ff9e8d14a77b3370" "3625c04fa4b8a802e96922d2db3f48c9cb2f93526e1dc24ba0b400e4ee4ccd8a" "74278d14b7d5cf691c4d846a4bbf6e62d32104986f104c1e61f718f9669ec04b" "fe1682ca8f7a255cf295e76b0361438a21bb657d8846a05d9904872aa2fb86f2" "26ce7eea701bfd143ac536e6805224cff5598b75effb60f047878fe9c4833ae4" "8577da1641ed4bdf255341ca92e3d0e49c9f4d574458f09ce78159690442cade" "e8825f26af32403c5ad8bc983f8610a4a4786eb55e3a363fa9acb48e0677fe7e" "cdd26fa6a8c6706c9009db659d2dffd7f4b0350f9cc94e5df657fa295fffec71" "1012cf33e0152751078e9529a915da52ec742dabf22143530e86451ae8378c1a" "9d7e517b49068e9fef941fe4083ad3d2a4b040895dca5175b84be48739689707" "38ba6a938d67a452aeb1dada9d7cdeca4d9f18114e9fc8ed2b972573138d4664" "40bc0ac47a9bd5b8db7304f8ef628d71e2798135935eb450483db0dbbfff8b11" "603a9c7f3ca3253cb68584cb26c408afcf4e674d7db86badcfe649dd3c538656" "5999e12c8070b9090a2a1bbcd02ec28906e150bb2cdce5ace4f965c76cf30476" "badc4f9ae3ee82a5ca711f3fd48c3f49ebe20e6303bba1912d4e2d19dd60ec98" "519d1b3cb7345cc9be10b4b0489436ae2d1b0690470d8d78f8e4e1ff19b83a86" "5dd70fe6b64f3278d5b9ad3ff8f709b5e15cd153b0377d840c5281c352e8ccce" "12b7ed9b0e990f6d41827c343467d2a6c464094cbcc6d0844df32837b50655f9" "3d5307e5d6eb221ce17b0c952aa4cf65dbb3fa4a360e12a71e03aab78e0176c5" "f5eb916f6bd4e743206913e6f28051249de8ccfd070eae47b5bde31ee813d55f" default)))
+ '(diary-entry-marker (quote font-lock-variable-name-face))
+ '(emms-mode-line-icon-image-cache
+   (quote
+    (image :type xpm :ascent center :data "/* XPM */
+static char *note[] = {
+/* width height num_colors chars_per_pixel */
+\"    10   11        2            1\",
+/* colors */
+\". c #1fb3b3\",
+\"# c None s None\",
+/* pixels */
+\"###...####\",
+\"###.#...##\",
+\"###.###...\",
+\"###.#####.\",
+\"###.#####.\",
+\"#...#####.\",
+\"....#####.\",
+\"#..######.\",
+\"#######...\",
+\"######....\",
+\"#######..#\" };")))
  '(eval-expression-print-length nil)
  '(fci-rule-color "#3E3D31")
+ '(gnus-logo-colors (quote ("#528d8d" "#c0c0c0")) t)
+ '(gnus-mode-line-image-cache
+   (quote
+    (image :type xpm :ascent center :data "/* XPM */
+static char *gnus-pointer[] = {
+/* width height num_colors chars_per_pixel */
+\"    18    13        2            1\",
+/* colors */
+\". c #1fb3b3\",
+\"# c None s None\",
+/* pixels */
+\"##################\",
+\"######..##..######\",
+\"#####........#####\",
+\"#.##.##..##...####\",
+\"#...####.###...##.\",
+\"#..###.######.....\",
+\"#####.########...#\",
+\"###########.######\",
+\"####.###.#..######\",
+\"######..###.######\",
+\"###....####.######\",
+\"###..######.######\",
+\"###########.######\" };")) t)
  '(helm-ag-base-command "ack --nocolor --nogroup")
  '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
  '(highlight-symbol-colors
@@ -138,7 +187,8 @@
  '(hl-fg-colors
    (quote
     ("#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36")))
- '(js2-basic-offset 2)
+ '(js-indent-level 2)
+ '(json-reformat:indent-width 2)
  '(ledger-reports
    (quote
     (("2bal" "ledger -f %(ledger-file) -d \"l<=2\" bal")
@@ -164,18 +214,7 @@
    (quote
     ((:name "BigDict-01" :file "/Users/cmal/.emacs.d/pyim/dicts/pyim-bigdict.pyim" :coding utf-8-unix :dict-type pinyin-dict))))
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
- '(sml/replacer-regexp-list
-   (quote
-    (("^~/org" ":Org:")
-     ("^~/\\.emacs\\.d/elpa/" ":ELPA:")
-     ("^~/\\.emacs\\.d/" ":ED:")
-     ("^/sudo:.*:" ":SU:")
-     ("^~/Documents/" ":Doc:")
-     ("^~/Dropbox/" ":DB:")
-     ("^:\\([^:]*\\):Documento?s/" ":\\1/Doc:")
-     ("^~/[Gg]its/" ":Git:")
-     ("^~/[Gg]it[Hh]ub/" ":Git:")
-     ("^~/[Gg]it\\([Hh]ub\\|\\)-?[Pp]rojects/" ":Git:"))))
+ '(tab-stop-list (quote (2 4 6)))
  '(term-default-bg-color "#002b36")
  '(term-default-fg-color "#839496")
  '(tooltip-mode t)
@@ -210,11 +249,11 @@
  '(when
       (or
        (not
-	(boundp
-	 (quote ansi-term-color-vector)))
+        (boundp
+         (quote ansi-term-color-vector)))
        (not
-	(facep
-	 (aref ansi-term-color-vector 0)))))
+        (facep
+         (aref ansi-term-color-vector 0)))))
  '(xterm-color-names
    ["#073642" "#dc322f" "#859900" "#b58900" "#268bd2" "#d33682" "#2aa198" "#eee8d5"])
  '(xterm-color-names-bright
@@ -279,8 +318,13 @@
 ;;  ------------------------
 ;; | Section III: Editing   |
 ;;  ------------------------
-(server-start)
+;;(server-start)
 ;(delete-selection-mode)
+
+;;(setq-default indent-tabs-mode nil)
+;;(setq-default tab-width 2)
+;;(setq indent-line-function 'insert-tab)
+
 (setq-default delete-by-moving-to-trash t)
 ;; 单行滚动
 ;;(global-set-key (kbd "M-p") 'scroll-down-line)
@@ -438,20 +482,23 @@
 (add-to-list 'auto-mode-alist '("\\.css\\'" . web-mode))
 ;;(add-to-list 'auto-mode-alist '("\\.js\\'" . web-mode))
 
+;; json & flymake
+(add-to-list 'auto-mode-alist '("\\.json\\'" . js-mode))
+(add-hook 'js-mode-hook 'flymake-json-maybe-load)
+
 (require 'multiple-cursors)
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
-(global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click)
+(global-set-key (kbd "<s-mouse-1>") 'mc/add-cursor-on-click)
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(highlight-current-line-face ((t (:background "color-17"))))
  '(tooltip ((t (:inherit variable-pitch :background "lightyellow" :foreground "black" :height 2.0)))))
 
 
@@ -473,11 +520,11 @@
 
 (show-paren-mode t)
 
-(define-globalized-minor-mode global-highlight-parentheses-mode
-  highlight-parentheses-mode
-  (lambda ()
-    (highlight-parentheses-mode t)))
-(global-highlight-parentheses-mode t)
+;; (define-globalized-minor-mode global-highlight-parentheses-mode
+;;   highlight-parentheses-mode
+;;   (lambda ()
+;;     (highlight-parentheses-mode t)))
+;; (global-highlight-parentheses-mode t)
 
 ;; helm-xcdoc
 ;; to search document
@@ -541,13 +588,13 @@
 ;;(rainbow-mode 1)
 
 ;; smart-mode-line
-(sml/setup)
+;;(sml/setup)
 ;(sml/apply-theme "light-powerline")
 ;; (diredful-add CFG-FILE-NAME)
 
-(require 'ace-pinyin)
-(ace-pinyin-global-mode 1)
-(define-key global-map (kbd "C-c C-SPC") 'ace-pinyin-jump-char)
+;;(require 'ace-pinyin)
+;;(ace-pinyin-global-mode 1)
+;;(define-key global-map (kbd "C-c C-SPC") 'ace-pinyin-jump-char)
 
 ;; (require 'key-chord)
 ;; (key-chord-define-global "vj" 'mc/edit-lines)
@@ -593,12 +640,12 @@
 ;; (setq wakatime-api-key "21ede5a8-53df-4b2d-8666-24d89724a41b")
 ;; (setq wakatime-cli-path "/usr/local/Cellar/wakatime-cli/6.0.7/libexec/lib/python2.7/site-packages/wakatime/cli.py")
 
-(require 'volatile-highlights)
-(volatile-highlights-mode t)
+;; (require 'volatile-highlights)
+;; (volatile-highlights-mode t)
 
-(require 'highlight-current-line)
-(highlight-current-line-on t)
-;; (require 'cal-china-x)
+(global-hl-line-mode 1)
+
+;; (Require 'cal-china-x)
 ;; (setq mark-holidays-in-calendar t)
 ;; (setq cal-china-x-important-holidays cal-china-x-chinese-holidays)
 ;; (setq calendar-holidays cal-china-x-important-holidays)
@@ -618,16 +665,16 @@
 
 (require 'fancy-narrow)
 
-(require 'guide-key)
-(setq guide-key/guide-key-sequence '("C-x r" "C-x 4"))
-;(setq guide-key/guide-key-sequence '("C-x" "C-c" "C-h"))
-(guide-key-mode 1)
-(setq guide-key/highlight-command-regexp
-      '("rectangle"
-        ("register" . font-lock-type-face)
-        ("bookmark" . "hot pink")))
-(require 'guide-key-tip)
-(setq guide-key-tip/enabled t)
+;; (require 'guide-key)
+;; (setq guide-key/guide-key-sequence '("C-x r" "C-x 4"))
+;; ;(setq guide-key/guide-key-sequence '("C-x" "C-c" "C-h"))
+;; (guide-key-mode 1)
+;; (setq guide-key/highlight-command-regexp
+;;       '("rectangle"
+;;         ("register" . font-lock-type-face)
+;;         ("bookmark" . "hot pink")))
+;; (require 'guide-key-tip)
+;; (setq guide-key-tip/enabled t)
 
 ;; (require 'emojify)
 ;; ;; In programming modes only emojis in string and comments are displayed.
@@ -774,4 +821,44 @@ Return the updated `exec-path'"
 
 ;; use C-up and C-down to move line or region
 (load-file "~/.emacs.d/site-lisp/move-text.el")
+
+;; swank-js
+;;(global-set-key [f5] 'slime-js-reload)
+;;(add-hook 'js2-mode-hook
+;;	  (lambda ()
+;;	    (slime-js-minor-mode 1)))
+
+
+;; font settings for FiraCode font
+(when (window-system)
+  (set-default-font "Fira Code"))
+(let ((alist '((33 . ".\\(?:\\(?:==\\|!!\\)\\|[!=]\\)")
+               (35 . ".\\(?:###\\|##\\|_(\\|[#(?[_{]\\)")
+               (36 . ".\\(?:>\\)")
+               (37 . ".\\(?:\\(?:%%\\)\\|%\\)")
+               (38 . ".\\(?:\\(?:&&\\)\\|&\\)")
+               (42 . ".\\(?:\\(?:\\*\\*/\\)\\|\\(?:\\*[*/]\\)\\|[*/>]\\)")
+               (43 . ".\\(?:\\(?:\\+\\+\\)\\|[+>]\\)")
+               (45 . ".\\(?:\\(?:-[>-]\\|<<\\|>>\\)\\|[<>}~-]\\)")
+;;               (46 . ".\\(?:\\(?:\\.[.<]\\)\\|[.=-]\\)")
+               (47 . ".\\(?:\\(?:\\*\\*\\|//\\|==\\)\\|[*/=>]\\)")
+               (48 . ".\\(?:x[a-zA-Z]\\)")
+               (58 . ".\\(?:::\\|[:=]\\)")
+               (59 . ".\\(?:;;\\|;\\)")
+               (60 . ".\\(?:\\(?:!--\\)\\|\\(?:~~\\|->\\|\\$>\\|\\*>\\|\\+>\\|--\\|<[<=-]\\|=[<=>]\\||>\\)\\|[*$+~/<=>|-]\\)")
+               (61 . ".\\(?:\\(?:/=\\|:=\\|<<\\|=[=>]\\|>>\\)\\|[<=>~]\\)")
+               (62 . ".\\(?:\\(?:=>\\|>[=>-]\\)\\|[=>-]\\)")
+               (63 . ".\\(?:\\(\\?\\?\\)\\|[:=?]\\)")
+               (91 . ".\\(?:]\\)")
+               (92 . ".\\(?:\\(?:\\\\\\\\\\)\\|\\\\\\)")
+               (94 . ".\\(?:=\\)")
+               (119 . ".\\(?:ww\\)")
+               (123 . ".\\(?:-\\)")
+               (124 . ".\\(?:\\(?:|[=|]\\)\\|[=>|]\\)")
+               (126 . ".\\(?:~>\\|~~\\|[>=@~-]\\)")
+               )
+             ))
+  (dolist (char-regexp alist)
+    (set-char-table-range composition-function-table (car char-regexp)
+                          `([,(cdr char-regexp) 0 font-shape-gstring]))))
 
