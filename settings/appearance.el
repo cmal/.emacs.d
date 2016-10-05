@@ -90,7 +90,7 @@
 (rename-modeline "js2-mode" js2-mode "JS2")
 (rename-modeline "clojure-mode" clojure-mode "Clj")
 
-(add-to-list 'default-frame-alist '(width  . 240))
+(add-to-list 'default-frame-alist '(width  . 160))
 (add-to-list 'default-frame-alist '(height  . 80))
 
 (provide 'appearance)
