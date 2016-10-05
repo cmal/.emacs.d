@@ -71,7 +71,7 @@
      ;; hydra
      paredit
      move-text
-     ;; chinese-fonts-setup
+     chinese-fonts-setup
      golden-ratio-scroll-screen
      helm
      helm-org-rifle
@@ -91,6 +91,8 @@
      flycheck
      flycheck-pos-tip
      flycheck-clojure
+     smooth-scrolling
+     undo-tree
      ;; flx
      ;; f
      ;; flx-ido
