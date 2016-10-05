@@ -28,7 +28,7 @@
  :font (font-spec :name "-*-Input Mono Compressed-normal-normal-ultracondensed-*-*-*-*-*-m-0-iso10646-1"
                   :weight 'normal
                   :slant 'normal
-                  :size 14.0))
+                  :size 13.0))
 (dolist (charset '(kana han symbol cjk-misc bopomofo))
   (set-fontset-font
    (frame-parameter nil 'font)

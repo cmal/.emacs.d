@@ -91,6 +91,8 @@
      flycheck
      flycheck-pos-tip
      flycheck-clojure
+     smooth-scrolling
+     undo-tree
      ;; flx
      ;; f
      ;; flx-ido
