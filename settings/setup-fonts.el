@@ -42,8 +42,7 @@
      (font-spec :name "ZoomlaXige-A002"
                 :weight 'normal
                 :slant 'normal
-                :size 20.0)))
-  )
+                :size 20.0))))
 ;;(use-font-set-ptmono)
 (use-font-set-pragmata)
 (provide 'setup-fonts)

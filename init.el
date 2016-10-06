@@ -158,6 +158,7 @@
 
 ;; Setup extensions
 (require 'setup-fonts)
+(require 'setup-sdcv)
 
 (require 'helm)
 (require 'setup-locale)
