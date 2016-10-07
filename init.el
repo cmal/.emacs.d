@@ -278,3 +278,6 @@
 ;; (put 'upcase-region 'disabled nil)
 ;; (put 'narrow-to-region 'disabled nil)
 
+;; Chrome edit server
+(require 'edit-server)
+(edit-server-start)
