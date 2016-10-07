@@ -56,4 +56,6 @@
 
 (global-whitespace-cleanup-mode)
 
+(set-default 'truncate-lines t)
+
 (provide 'setup-editing)
