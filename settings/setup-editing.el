@@ -33,6 +33,7 @@
 ;;  (local-set-key (kbd "RET") 'newline-and-indent))
   (local-set-key (kbd "RET") 'electric-newline-and-maybe-indent))
 (add-hook 'prog-mode-hook 'set-newline-and-indent)
+(add-hook 'prog-mode-hook 'linum-mode)
 
 (display-time-mode 1)
 ;;(encourage-mode)
