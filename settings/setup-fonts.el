@@ -34,7 +34,7 @@
    :font (font-spec :name "-*-PragmataPro-normal-normal-normal-*-*-*-*-*-m-0-iso10646-1"
                     :weight 'normal
                     :slant 'normal
-                    :size 20.0))
+                    :size 14.0)) ;; 20.0
   (dolist (charset '(kana han symbol cjk-misc bopomofo))
     (set-fontset-font
      (frame-parameter nil 'font)
@@ -42,7 +42,7 @@
      (font-spec :name "ZoomlaXige-A002"
                 :weight 'normal
                 :slant 'normal
-                :size 20.0))))
+                :size 14.0)))) ;; 20.0
 ;;(use-font-set-ptmono)
 (use-font-set-pragmata)
 (provide 'setup-fonts)

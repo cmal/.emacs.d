@@ -8,12 +8,17 @@
 (add-to-list 'auto-mode-alist '("Carton$" . emacs-lisp-mode))
 (add-to-list 'auto-mode-alist '("Cask$" . emacs-lisp-mode))
 
+;; Emmet mode
+(autoload 'emmet-mode "emmet-mode")
+
 ;; CSS
 (add-to-list 'auto-mode-alist '("\\.scss$" . css-mode))
-(add-to-list 'auto-mode-alist '("\\.scc$" . css-mode))
+(add-to-list 'auto-mode-alist '("\\.css$" . css-mode))
 (add-to-list 'auto-mode-alist '("\\.less$" . less-css-mode))
 (add-hook 'css-mode-hook (lambda() (rainbow-mode)))
+(add-hook 'css-mode-hook (lambda() (emmet-mode)))
 (add-hook 'less-css-mode-hook (lambda() (rainbow-mode)))
+(add-hook 'less-css-mode-hook (lambda() (emmet-mode)))
 
 ;; Restclient
 (add-to-list 'auto-mode-alist '("\\.restclient$" . restclient-mode))
@@ -27,27 +32,29 @@
 (add-to-list 'auto-mode-alist '("\\.adv$" . adventur-mode))
 
 ;; Jade and Stylus (sws = significant whitespace)
-(autoload 'sws-mode "sws-mode")
+;; (autoload 'sws-mode "sws-mode")
 (autoload 'jade-mode "jade-mode")
-(add-to-list 'auto-mode-alist '("\\.styl$" . sws-mode))
+;; (add-to-list 'auto-mode-alist '("\\.styl$" . sws-mode))
 (add-to-list 'auto-mode-alist '("\\.jade$" . jade-mode))
 
 ;; HTML
-(add-to-list 'auto-mode-alist '("\\.html\\'" . crappy-jsp-mode))
-(add-to-list 'auto-mode-alist '("\\.tag$" . html-mode))
-(add-to-list 'auto-mode-alist '("\\.vm$" . html-mode))
-(add-to-list 'auto-mode-alist '("\\.ejs$" . html-mode))
+(autoload 'web-mode "web-mode")
+;; (add-to-list 'auto-mode-alist '("\\.html\\'" . crappy-jsp-mode))
+(add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tag$" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.vm$" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.ejs$" . web-mode))
 
 ;; JSP
-(autoload 'crappy-jsp-mode "crappy-jsp-mode")
-(add-to-list 'auto-mode-alist '("\\.jsp$" . crappy-jsp-mode))
-(add-to-list 'auto-mode-alist '("\\.jspf$" . crappy-jsp-mode))
+;; (autoload 'crappy-jsp-mode "crappy-jsp-mode")
+;; (add-to-list 'auto-mode-alist '("\\.jsp$" . crappy-jsp-mode))
+;; (add-to-list 'auto-mode-alist '("\\.jspf$" . crappy-jsp-mode))
 ;;(add-to-list 'auto-mode-alist '("\\.js$'" . js2-mode))
 
 ;;Support for JSX is available via the derived mode `js2-jsx-mode'.  If you
 ;;also want JSX support, use that mode instead:
-(add-to-list 'auto-mode-alist '("\\.jsx?$\\'" . js2-jsx-mode))
-(add-to-list 'interpreter-mode-alist '("node" . js2-jsx-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx?$\\'" . js2-mode))
+(add-to-list 'interpreter-mode-alist '("node" . js2-mode))
 
 
 ;; Ruby
@@ -88,7 +95,8 @@
 
 ;; JavaScript
 (autoload 'js2-mode "js2-mode" nil t)
-(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+(autoload 'javascript-mode "javascript-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.js$" . javascript-mode))
 (add-to-list 'auto-mode-alist '("\\.json$" . javascript-mode))
 (add-to-list 'auto-mode-alist '("\\.jshintrc$" . javascript-mode))
 (add-to-list 'magic-mode-alist '("#!/usr/bin/env node" . js2-mode))

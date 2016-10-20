@@ -73,14 +73,17 @@
      move-text
      chinese-fonts-setup
      golden-ratio-scroll-screen
+     emmet-mode
      helm
      helm-org-rifle
+     helm-descbinds
      org-redmine
      org-repo-todo
      helm-ack
      helm-projectile
      helm-ls-git
-     helm-swoop
+     ;; helm-swoop
+     helm-emmet
      swiper-helm
      org-redmine
      ;; gist
@@ -93,6 +96,7 @@
      flycheck-clojure
      smooth-scrolling
      undo-tree
+     smartscan
      ;; flx
      ;; f
      ;; flx-ido
@@ -114,6 +118,8 @@
      clojure-mode-extra-font-locking
      cider
      helm-cider
+     inf-clojure
+     4clojure
      ;; groovy-mode
      ;; prodigy
      yesql-ghosts
@@ -126,6 +132,7 @@
      wgrep
      change-inner
      ;; web dev
+     web-mode
      js2-mode
      js2-refactor
      nodejs-repl
@@ -163,6 +170,7 @@
 (require 'helm)
 (require 'setup-locale)
 (require 'setup-editing)
+(require 'setup-keymaps)
 (eval-after-load 'helm '(require 'setup-helm))
 ;; (eval-after-load 'ido '(require 'setup-ido))
 (eval-after-load 'org '(require 'setup-org))
@@ -198,7 +206,7 @@
   (add-hook it 'turn-on-smartparens-mode))
 
 ;; Language specific setup files
-(eval-after-load 'js2-mode '(require 'setup-js2-mode))
+;; (eval-after-load 'js2-mode '(require 'setup-js2-mode))
 ;; (eval-after-load 'ruby-mode '(require 'setup-ruby-mode))
 (eval-after-load 'clojure-mode '(require 'setup-clojure-mode))
 (eval-after-load 'markdown-mode '(require 'setup-markdown-mode))
@@ -245,7 +253,8 @@
 
 ;; Fill column indicator
 (require 'fill-column-indicator)
-(setq fci-rule-color "#111122")
+;; (setq fci-rule-color "#111122")
+(setq fci-rule-color "#ffffff")
 
 
 ;; ;; Browse kill ring
@@ -276,8 +285,11 @@
 ;; ;; Run at full power please
 ;; (put 'downcase-region 'disabled nil)
 ;; (put 'upcase-region 'disabled nil)
-;; (put 'narrow-to-region 'disabled nil)
 
 ;; Chrome edit server
 (require 'edit-server)
 (edit-server-start)
+(put 'narrow-to-region 'disabled nil)
+
+
+(require 'move-text)

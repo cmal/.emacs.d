@@ -58,5 +58,8 @@
 ;; (require 'org-bullets)
 ;; (add-hook 'org-mode-hook (lambda() (org-bullets-mode)))
 
+(global-set-key (kbd "C-'") 'ort/capture-todo)
+;; (global-set-key (kbd "C-'") 'ort/capture-checkitem)
+(global-set-key (kbd "C-`") 'ort/goto-todos)
 
 (provide 'setup-org)

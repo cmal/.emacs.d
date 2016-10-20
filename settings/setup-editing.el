@@ -7,9 +7,9 @@
       trash-directory "~/.Trash/emacs"))
 
 (add-hook 'view-mode-hook
-          (lambda() ((set-fringe-mode 0))))
-(global-set-key (kbd "M-p") 'scroll-down-line)
-(global-set-key (kbd "M-n") 'scroll-up-line)
+          (lambda() (set-fringe-mode 0)))
+(global-set-key (kbd "s-p") 'scroll-down-line)
+(global-set-key (kbd "s-n") 'scroll-up-line)
 
 (require 'multiple-cursors)
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
@@ -29,17 +29,20 @@
 (add-hook 'prog-mode-hook 'fic-mode)
 
 ;; auto indent
-(defun set-newline-and-indent ()
-;;  (local-set-key (kbd "RET") 'newline-and-indent))
-  (local-set-key (kbd "RET") 'electric-newline-and-maybe-indent))
-(add-hook 'prog-mode-hook 'set-newline-and-indent)
+;; (defun set-newline-and-indent ()
+;; ;;  (local-set-key (kbd "RET") 'newline-and-indent))
+;;   (local-set-key (kbd "RET") 'electric-newline-and-maybe-indent))
+(electric-indent-mode)
+
+;; (add-hook 'prog-mode-hook 'set-newline-and-indent)
+;; (remove-hook 'prog-mode-hook 'set-newline-and-indent)
 (add-hook 'prog-mode-hook 'linum-mode)
 
 (display-time-mode 1)
 (encourage-mode)
 
 ;; move-text
-(move-text-default-bindings)
+;; (move-text-default-bindings)
 
 
 ;; comment code
@@ -57,5 +60,7 @@
 (global-whitespace-cleanup-mode)
 
 (set-default 'truncate-lines t)
+(require 'smartscan)
+(global-smartscan-mode)
 
 (provide 'setup-editing)

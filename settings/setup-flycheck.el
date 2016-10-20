@@ -1,6 +1,8 @@
 (require 'flycheck)
 (require 'flycheck-pos-tip)
 
+(add-hook 'prog-mode-hook 'flycheck-mode)
+
 (defun magnars/adjust-flycheck-automatic-syntax-eagerness ()
   "Adjust how often we check for errors based on if there are any.
 
