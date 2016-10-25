@@ -68,6 +68,7 @@
    '(magit
      edn
      uuid
+     dash
      diminish
      inflections
      spinner
