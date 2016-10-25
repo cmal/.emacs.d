@@ -63,4 +63,7 @@
 (require 'smartscan)
 (global-smartscan-mode)
 
+;; mic-paren
+(paren-activate)
+
 (provide 'setup-editing)

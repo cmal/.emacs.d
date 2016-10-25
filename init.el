@@ -66,13 +66,14 @@
 (defun init--install-packages ()
   (packages-install
    '(magit
-     ;; edn
-     ;; inflections
-     ;; hydra
-     paredit
+     edn
+     uuid
+     inflections
+     spinner
      move-text
      chinese-fonts-setup
      golden-ratio-scroll-screen
+     yasnippet
      emmet-mode
      helm
      helm-org-rifle
@@ -82,12 +83,9 @@
      helm-ack
      helm-projectile
      helm-ls-git
-     ;; helm-swoop
      helm-emmet
      swiper-helm
      org-redmine
-     ;; gist
-     ;; htmlize
      visual-regexp
      markdown-mode
      fill-column-indicator
@@ -97,31 +95,29 @@
      smooth-scrolling
      undo-tree
      smartscan
-     ;; flx
-     ;; f
-     ;; flx-ido
-     ;; dired-details
-     ;; css-eldoc
-     ;; yasnippet
      smartparens
-     ;; ido-vertical-mode
-     ;; ido-at-point
-     ;; simple-httpd
      guide-key
      sx
      highlight-escape-sequences
      whitespace-cleanup-mode
      elisp-slime-nav
-     ;; dockerfile-mode
      clojure-mode
+     align-cljlet
      clj-refactor
      clojure-mode-extra-font-locking
      cider
+     eval-sexp-fu
+     cider-eval-sexp-fu
+     auto-complete
+     ac-cider
      helm-cider
-     inf-clojure
+     clj-refactor
      4clojure
-     ;; groovy-mode
-     ;; prodigy
+     rainbow-delimiters
+     thingatpt
+     paredit
+     mic-paren
+
      yesql-ghosts
      string-edit
      ledger-mode
@@ -164,13 +160,8 @@
 (setq guide-key/popup-window-position 'bottom)
 
 ;; Setup extensions
-(require 'setup-fonts)
-(require 'setup-sdcv)
 
 (require 'helm)
-(require 'setup-locale)
-(require 'setup-editing)
-(require 'setup-keymaps)
 (eval-after-load 'helm '(require 'setup-helm))
 ;; (eval-after-load 'ido '(require 'setup-ido))
 (eval-after-load 'org '(require 'setup-org))
@@ -183,7 +174,17 @@
 ;; (require 'setup-perspective)
 ;; (require 'setup-ffip)
 ;; (require 'setup-html-mode)
-;; (require 'setup-paredit)
+(require 'setup-paredit)
+(require 'setup-auto-complete)
+(require 'setup-clojure-mode)
+(require 'setup-cider)
+
+
+(require 'setup-fonts)
+(require 'setup-sdcv)
+(require 'setup-locale)
+(require 'setup-editing)
+(require 'setup-keymaps)
 
 ;; (require 'prodigy)
 ;; (global-set-key (kbd "C-x M-m") 'prodigy)
@@ -214,7 +215,7 @@
 ;; Load stuff on demand
 (autoload 'skewer-start "setup-skewer" nil t)
 (autoload 'skewer-demo "setup-skewer" nil t)
-(autoload 'auto-complete-mode "auto-complete" nil t)
+;; (autoload 'auto-complete-mode "auto-complete" nil t)
 (eval-after-load 'flycheck '(require 'setup-flycheck))
 
 ;; Map files to modes
