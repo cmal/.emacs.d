@@ -68,6 +68,7 @@
    '(magit
      edn
      uuid
+     diminish
      inflections
      spinner
      move-text
