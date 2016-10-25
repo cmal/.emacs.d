@@ -185,6 +185,7 @@
 (require 'setup-sdcv)
 (require 'setup-locale)
 (require 'setup-editing)
+(require 'setup-diminish)
 (require 'setup-keymaps)
 
 ;; (require 'prodigy)
