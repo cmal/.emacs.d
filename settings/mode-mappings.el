@@ -79,16 +79,17 @@
 (add-to-list 'auto-mode-alist '("\\.gradle$" . groovy-mode))
 
 ;; Scala
-(autoload 'scala-mode "scala-mode2")
-(add-to-list 'auto-mode-alist '("\\.scala$" . scala-mode))
-(autoload 'ensime-scala-mode-hook "ensime")
-(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
+;; (autoload 'scala-mode "scala-mode2")
+;; (add-to-list 'auto-mode-alist '("\\.scala$" . scala-mode))
+;; (autoload 'ensime-scala-mode-hook "ensime")
+;; (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
 
 ;; Clojure
 (autoload 'clojure-mode "clojure-mode")
 (add-to-list 'auto-mode-alist '("\\.clj$" . clojure-mode))
 (add-to-list 'auto-mode-alist '("\\.cljs$" . clojurescript-mode))
 (add-to-list 'auto-mode-alist '("\\.cljc$" . clojurec-mode))
+(add-hook 'clojure-mode-hook 'hs-minor-mode)
 
 ;; SVG
 (add-to-list 'auto-mode-alist '("\\.svg$" . image-mode))

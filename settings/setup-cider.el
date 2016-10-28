@@ -45,8 +45,8 @@
 
 ;; (add-hook 'nrepl-connected-hook 'live-nrepl-set-print-length)
 
-(setq nrepl-port "4555")
-
+(setq nrepl-port "7022")
+(setq cider-repl-history-file "~/cider-history-file.clj")
 
 ;; Pull in the awesome clj-refactor lib by magnars
 ;; (require 'jump)
