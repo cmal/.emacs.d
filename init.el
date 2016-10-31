@@ -296,5 +296,4 @@
 (edit-server-start)
 (put 'narrow-to-region 'disabled nil)
 
-
 (require 'move-text)
