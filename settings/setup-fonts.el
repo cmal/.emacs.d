@@ -43,6 +43,10 @@
                 :weight 'normal
                 :slant 'normal
                 :size 14.0)))) ;; 20.0
-;;(use-font-set-ptmono)
-(use-font-set-pragmata)
+;; (use-font-set-ptmono)
+;; (use-font-set-pragmata)
+(set-default-font "Inziu IosevkaCC CL-14")
+;; (set-default-font "Inziu Iosevka CL-16")
+;; (cl-prettyprint (font-family-list))
+
 (provide 'setup-fonts)
