@@ -80,7 +80,6 @@
       (kill-buffer buffer))))
 
 (defun org-mode-custom-keys-config ()
-  (interactive)
   (local-set-key (kbd "C-c i") 'insert-image-from-url))
 (add-hook 'org-mode-hook 'org-mode-custom-keys-config)
 
