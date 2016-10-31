@@ -57,7 +57,7 @@
 ;;         ))
 
 ;; Highlight matching parentheses when the point is on them.
-(show-paren-mode 1)
+;; (show-paren-mode 1)
 
 (when window-system
   (setq frame-title-format '(buffer-file-name "%f" ("%b")))

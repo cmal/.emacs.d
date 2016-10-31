@@ -39,8 +39,7 @@
 (add-hook 'prog-mode-hook 'linum-mode)
 
 (display-time-mode 1)
-(encourage-mode)
-
+(global-visual-line-mode 1)
 ;; move-text
 ;; (move-text-default-bindings)
 

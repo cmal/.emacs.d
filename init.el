@@ -24,6 +24,8 @@
 ;; Set up load path
 (add-to-list 'load-path settings-dir)
 (add-to-list 'load-path site-lisp-dir)
+(require 'encourage-mode)
+(encourage-mode)
 
 ;; Keep emacs Custom-settings in separate file
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
@@ -73,7 +75,7 @@
      inflections
      spinner
      move-text
-     chinese-fonts-setup
+;;     chinese-fonts-setup
      golden-ratio-scroll-screen
      yasnippet
      emmet-mode
