@@ -1,4 +1,4 @@
-* My Emacs Config Files on MBP/MBPR
+* My Emacs Config Files on MBP/MBPR/Debian
 
 Mainly used for frontend development and Clojure backend development.
 
@@ -6,8 +6,8 @@ Its structure are stolen from Magnars.
 
 Its Clojure configs are stolen from Emacs-live.
 
-It has a modified encourage-mode which will provide you a sentence of
- `LaoTze` (or `Tao Te Ching`) on every file-saving action.
+It has a modified version of `encourage-mode` which will provide you
+ a sentence of `LaoTze` (or `Tao Te Ching`) on every file-saving action.
 
 Chinese font settings are exported from `chinese-fonts-setup` package
 which is available in melpa packages. Fonts used is `Inziu` which is
