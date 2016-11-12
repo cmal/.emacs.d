@@ -1,4 +1,5 @@
 ;; Setup shell
+(add-to-list 'exec-path "/usr/local/bin")
 
 ;; 解决Emacs执行shell命令command not found的问题, 原因是.bashrc修改的path变量未起作用
 ;; Emacs默认以非交互式执行shell命令, 不读取.bashrc, -i指定以交互式启动bash, -c表示命令读取来自
