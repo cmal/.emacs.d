@@ -15,3 +15,7 @@ request/*
 .places
 .mc-lists.el
 tramp
+*~
+*#
+diary
+places
