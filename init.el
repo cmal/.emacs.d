@@ -88,7 +88,7 @@
      helm-projectile
      helm-ls-git
      helm-emmet
-     swiper-helm
+     ;; swiper-helm
      org-redmine
      visual-regexp
      markdown-mode
@@ -121,7 +121,6 @@
      thingatpt
      paredit
      mic-paren
-
      yesql-ghosts
      string-edit
      ledger-mode
@@ -137,8 +136,13 @@
      nodejs-repl
      restclient
      less-css-mode
+     yaml-mode
      ;; learn
      sicp
+     ;; drawing
+     graphviz-dot-mode
+     ;; blog, need hexo, hexo-renderer-org
+     blog-admin
      )))
 
 (condition-case nil
@@ -297,3 +301,13 @@
 (put 'narrow-to-region 'disabled nil)
 
 (require 'move-text)
+
+
+;; blog-admin
+(require 'blog-admin)
+(setq blog-admin-backend-path "~/gits/learning_clojure")
+(setq blog-admin-backend-type 'hexo)
+(setq blog-admin-backend-new-post-in-drafts nil)
+(setq blog-admin-backend-new-post-with-same-name-dir nil)
+(setq blog-admin-backend-hexo-config-file "_config.yml")
+(add-hook 'blog-admin-backend-after-new-post-hook 'find-file)

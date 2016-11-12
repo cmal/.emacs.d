@@ -6,8 +6,9 @@
   (setq delete-by-moving-to-trash t
       trash-directory "~/.Trash/emacs"))
 
-(add-hook 'view-mode-hook
-          (lambda() (set-fringe-mode 0)))
+;; (add-hook 'view-mode-hook
+;;     (lambda() (set-fringe-mode '(0 . 0))))
+(set-fringe-mode '(0 . 0))
 (global-set-key (kbd "s-p") 'scroll-down-line)
 (global-set-key (kbd "s-n") 'scroll-up-line)
 
@@ -38,6 +39,11 @@
 ;; (remove-hook 'prog-mode-hook 'set-newline-and-indent)
 (add-hook 'prog-mode-hook 'linum-mode)
 
+;; %H -> %I to make it display 12hr hours
+(setq-default display-time-format "%H:%M:%S %Y/%m/%d")
+;; caution: maybe the next line will slow down your Emacs,
+;; set it to 60 or more if this happens.
+(setq-default display-time-interval 1)
 (display-time-mode 1)
 (global-visual-line-mode 1)
 ;; move-text
