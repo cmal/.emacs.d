@@ -11,7 +11,7 @@
 (add-to-list 'ac-dictionary-directories (concat user-emacs-directory "auto-complete/dict"))
 (setq ac-comphist-file (concat user-emacs-directory "tmp/ac-comphist.dat"))
 
-(global-auto-complete-mode t)
+(global-auto-complete-mode nil)
 (setq ac-auto-show-menu t)
 (setq ac-dwim t)
 (setq ac-use-menu-map t)
@@ -43,5 +43,6 @@
 (define-key ac-completing-map (kbd "M-RET") 'ac-help)
 (define-key ac-completing-map "\r" 'nil)
 
+(add-hook 'clojure-mode-hook 'auto-complete-mode)
 
 (provide 'setup-auto-complete)
