@@ -8,7 +8,7 @@
 
 ;; (add-hook 'view-mode-hook
 ;;     (lambda() (set-fringe-mode '(0 . 0))))
-(set-fringe-mode '(0 . 0))
+(if (display-graphic-p) (set-fringe-mode '(0 . 0)))
 (global-set-key (kbd "s-p") 'scroll-down-line)
 (global-set-key (kbd "s-n") 'scroll-up-line)
 

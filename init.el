@@ -207,7 +207,8 @@
 (require 'setup-editing)
 (require 'setup-diminish)
 (require 'setup-keymaps)
-(require 'setup-keylogger)
+
+(require 'keylogger)
 
 ;; (require 'prodigy)
 ;; (global-set-key (kbd "C-x M-m") 'prodigy)
