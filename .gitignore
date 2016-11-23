@@ -19,3 +19,6 @@ tramp
 *#
 diary
 places
+out.html*
+.DS_Store
+*.DS_Store

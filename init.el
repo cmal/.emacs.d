@@ -92,6 +92,7 @@
      golden-ratio-scroll-screen
      yasnippet
      emmet-mode
+     json-mode
      helm
      helm-org-rifle
      helm-descbinds
