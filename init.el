@@ -175,7 +175,8 @@
 
 ;; guide-key
 (require 'guide-key)
-(setq guide-key/guide-key-sequence '("C-x r" "C-x 4" "C-x v" "C-x 8" "C-x +" "C-c @"))
+(setq guide-key/guide-key-sequence
+      '("C-x r" "C-x 4" "C-x v" "C-x 8" "C-x +" "C-c @"))
 (guide-key-mode 1)
 (setq guide-key/recursive-key-sequence-flag t)
 (setq guide-key/popup-window-position 'bottom)
@@ -266,8 +267,8 @@
 ;; (require 'delsel)
 ;; (require 'jump-char)
 ;; (require 'eproject)
-(require 'wgrep)
-(require 'change-inner)
+;; (require 'wgrep)
+;; (require 'change-inner)
 ;; (require 'multifiles)
 
 ;; ;; Don't use expand-region fast keys
@@ -317,7 +318,6 @@
 (put 'narrow-to-region 'disabled nil)
 
 (require 'move-text)
-
 
 ;; blog-admin
 (require 'blog-admin)

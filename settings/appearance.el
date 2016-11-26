@@ -43,7 +43,9 @@
 ;; (use-default-theme)
 
 (load-file (concat custom-theme-directory "/color-theme-tomorrow.el"))
-(load-theme 'tomorrow-night-bright)
+;;; (load-theme 'tomorrow-night-bright)
+;;(load-theme 'afternoon)
+(load-theme 'word-perfect)
 ;; (load-theme 'cyberpunk)
 ;; Don't defer screen updates when performing operations
 ;; (setq redisplay-dont-pause t)
@@ -67,9 +69,9 @@
 ;; Make zooming affect frame instead of buffers
 ;; (require 'zoom-frm)
 
+;; (add-to-list 'default-frame-alist '(width  . 160))
+;; (add-to-list 'default-frame-alist '(height  . 80))
 
-
-(add-to-list 'default-frame-alist '(width  . 160))
-(add-to-list 'default-frame-alist '(height  . 80))
+(toggle-frame-fullscreen)
 
 (provide 'appearance)
