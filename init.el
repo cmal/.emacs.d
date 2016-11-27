@@ -157,6 +157,7 @@
      graphviz-dot-mode
      ;; blog, need hexo, hexo-renderer-org
      blog-admin
+     edit-server
      )))
 
 (condition-case nil
