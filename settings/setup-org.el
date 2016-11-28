@@ -19,10 +19,6 @@
 ;;(global-set-key (kbd "C-;") 'ort/capture-checkitem)
 (global-set-key (kbd "C-`") 'ort/goto-todos)
 
-;; org-redmine
-(setq org-redmine-uri "http://redmine.9sand.cn:10086")
-(setq org-redmine-auth-api-key "80eae813c8a8c81126d07c604173a43bd0e0e78d")
-
 (add-hook 'org-mode-hook (lambda () (setq truncate-lines nil)))
 ;; Org-mode global key setting
 (global-set-key "\C-cl" 'org-store-link)
