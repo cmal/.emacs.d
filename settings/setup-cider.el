@@ -29,13 +29,17 @@
 (setq cider-overlays-use-font-lock t)
 
 ;;Auto Complete
-(require 'ac-cider )
+;; (require 'ac-cider )
 
-(add-hook 'cider-mode-hook 'ac-cider-setup)
-(add-hook 'cider-repl-mode-hook 'ac-cider-setup)
+;; (add-hook 'cider-mode-hook 'ac-cider-setup)
+;; (add-hook 'cider-repl-mode-hook 'ac-cider-setup)
 
-(eval-after-load "auto-complete"
-  '(add-to-list 'ac-modes 'cider-mode))
+;; (eval-after-load "auto-complete"
+;;   '(add-to-list 'ac-modes 'cider-mode))
+
+;; company mode
+(add-hook 'cider-repl-mode-hook #'company-mode)
+(add-hook 'cider-mode-hook #'company-mode)
 
 ;; Specify the print length to be 100 to stop infinite sequences killing
 ;; things. This might be dangerous for some people relying on
@@ -164,5 +168,44 @@
 
 (eval-after-load 'cider
   '(live-esf-initialize-cider))
+
+
+;; clojurescript and figwheel settings
+
+;; (defun cider-figwheel-repl ()
+;;   (interactive)
+;;   (save-some-buffers)
+;;   (with-current-buffer (cider-current-repl-buffer)
+;;     (goto-char (point-max))
+;;     (insert "(require 'figwheel-sidecar.repl-api)
+;;              (figwheel-sidecar.repl-api/start-figwheel!) ; idempotent
+;;              (figwheel-sidecar.repl-api/cljs-repl)")
+;;     (cider-repl-return)))
+
+
+;; ;; Additionally there are times where you want to send block
+;; ;; directly to the browser (as opposed to evaluating them in Emacs).
+
+;; (defun user/cider-send-to-repl ()
+;;   (interactive)
+;;   (let ((s (buffer-substring-no-properties
+;;             (nth 0 (cider-last-sexp 'bounds))
+;;             (nth 1 (cider-last-sexp 'bounds)))))
+;;     (with-current-buffer (cider-current-connection)
+;;       (insert s)
+;;       (cider-repl-return))))
+
+;; (add-hook 'clojurescript-mode-hook
+;;           (lambda ()
+;;             (do
+;;                 (local-set-key (kbd "C-c C-f") 'cider-figwheel-repl)
+;;                 (local-set-key (kbd "C-c C-s") 'user/cider-send-to-repl))))
+
+
+(setq cider-cljs-lein-repl
+      "(do (require 'figwheel-sidecar.repl-api)
+           (figwheel-sidecar.repl-api/start-figwheel!)
+           (figwheel-sidecar.repl-api/cljs-repl))")
+
 
 (provide 'setup-cider)

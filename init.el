@@ -126,7 +126,8 @@
      clojure-mode-extra-font-locking
      cider
      cider-eval-sexp-fu
-     auto-complete
+     ;; auto-complete
+     company
      ac-cider
      helm-cider
      clj-refactor
@@ -197,7 +198,8 @@
 ;; (require 'setup-ffip)
 ;; (require 'setup-html-mode)
 (require 'setup-paredit)
-(require 'setup-auto-complete)
+;; (require 'setup-auto-complete)
+(require 'setup-company)
 (require 'setup-clojure-mode)
 (require 'setup-cider)
 
@@ -240,7 +242,7 @@
 ;; Load stuff on demand
 (autoload 'skewer-start "setup-skewer" nil t)
 (autoload 'skewer-demo "setup-skewer" nil t)
-(autoload 'auto-complete-mode "auto-complete" nil t)
+;; (autoload 'auto-complete-mode "auto-complete" nil t)
 (eval-after-load 'flycheck '(require 'setup-flycheck))
 
 ;; Map files to modes
