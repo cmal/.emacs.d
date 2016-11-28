@@ -81,6 +81,7 @@
 (defun init--install-packages ()
   (packages-install
    '(magit
+     git-timemachine
      edn
      uuid
      dash
