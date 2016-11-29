@@ -21,9 +21,9 @@
 
 (require 'smart-forward)
 
-(require 'golden-ratio-scroll-screen)
-(global-set-key [remap scroll-down-command] 'golden-ratio-scroll-screen-down)
-(global-set-key [remap scroll-up-command] 'golden-ratio-scroll-screen-up)
+;; (require 'golden-ratio-scroll-screen)
+;; (global-set-key [remap scroll-down-command] 'golden-ratio-scroll-screen-down)
+;; (global-set-key [remap scroll-up-command] 'golden-ratio-scroll-screen-up)
 
  ;; highlight FIXME TODO BUG (...)
 (require 'fic-mode)
@@ -70,5 +70,8 @@
 
 ;; mic-paren
 (paren-activate)
+
+;; mouse scroll one line at a time
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
 
 (provide 'setup-editing)
