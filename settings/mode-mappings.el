@@ -23,19 +23,19 @@
 ;; Restclient
 (add-to-list 'auto-mode-alist '("\\.restclient$" . restclient-mode))
 
-;; Cucumber
-(autoload 'feature-mode "feature-mode")
-(add-to-list 'auto-mode-alist '("\\.feature$" . feature-mode))
+;; ;; Cucumber
+;; (autoload 'feature-mode "feature-mode")
+;; (add-to-list 'auto-mode-alist '("\\.feature$" . feature-mode))
 
-;; Adventur
-(autoload 'adventur-mode "adventur-mode")
-(add-to-list 'auto-mode-alist '("\\.adv$" . adventur-mode))
+;; ;; Adventur
+;; (autoload 'adventur-mode "adventur-mode")
+;; (add-to-list 'auto-mode-alist '("\\.adv$" . adventur-mode))
 
 ;; Jade and Stylus (sws = significant whitespace)
 ;; (autoload 'sws-mode "sws-mode")
-(autoload 'jade-mode "jade-mode")
-;; (add-to-list 'auto-mode-alist '("\\.styl$" . sws-mode))
-(add-to-list 'auto-mode-alist '("\\.jade$" . jade-mode))
+;; (autoload 'jade-mode "jade-mode")
+;; ;; (add-to-list 'auto-mode-alist '("\\.styl$" . sws-mode))
+;; (add-to-list 'auto-mode-alist '("\\.jade$" . jade-mode))
 
 ;; HTML
 (autoload 'web-mode "web-mode")
@@ -69,14 +69,14 @@
 (add-to-list 'auto-mode-alist '("capfile" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.erb$" . rhtml-mode))
 
-;; Puppet
-(autoload 'puppet-mode "puppet-mode")
-(add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))
+;; ;; Puppet
+;; (autoload 'puppet-mode "puppet-mode")
+;; (add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))
 
-;; Groovy
-(autoload 'groovy-mode "groovy-mode")
-(add-to-list 'auto-mode-alist '("\\.groovy$" . groovy-mode))
-(add-to-list 'auto-mode-alist '("\\.gradle$" . groovy-mode))
+;; ;; Groovy
+;; (autoload 'groovy-mode "groovy-mode")
+;; (add-to-list 'auto-mode-alist '("\\.groovy$" . groovy-mode))
+;; (add-to-list 'auto-mode-alist '("\\.gradle$" . groovy-mode))
 
 ;; Scala
 ;; (autoload 'scala-mode "scala-mode2")
@@ -106,8 +106,8 @@
 (add-to-list 'auto-mode-alist '("\\.offlineimaprc$" . conf-mode))
 
 ;; Snippets
-(add-to-list 'auto-mode-alist '("yasnippet/snippets" . snippet-mode))
-(add-to-list 'auto-mode-alist '("\\.yasnippet$" . snippet-mode))
+;; (add-to-list 'auto-mode-alist '("yasnippet/snippets" . snippet-mode))
+;; (add-to-list 'auto-mode-alist '("\\.yasnippet$" . snippet-mode))
 
 ;; Buster.JS
 ;(autoload 'buster-mode "buster-mode")

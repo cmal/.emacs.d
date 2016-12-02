@@ -111,7 +111,7 @@
      flycheck
      flycheck-pos-tip
      flycheck-clojure
-     smooth-scrolling
+     ;; smooth-scrolling
      undo-tree
      smartscan
      smartparens

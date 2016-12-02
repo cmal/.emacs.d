@@ -201,11 +201,22 @@
 ;;                 (local-set-key (kbd "C-c C-f") 'cider-figwheel-repl)
 ;;                 (local-set-key (kbd "C-c C-s") 'user/cider-send-to-repl))))
 
-
 (setq cider-cljs-lein-repl
       "(do (require 'figwheel-sidecar.repl-api)
            (figwheel-sidecar.repl-api/start-figwheel!)
            (figwheel-sidecar.repl-api/cljs-repl))")
+
+;; clojurescript when figwheel connected
+(defun cider-send-to-repl ()
+  (interactive)
+  (let ((s (buffer-substring-no-properties
+            (nth 0 (cider-last-sexp 'bounds))
+            (nth 1 (cider-last-sexp 'bounds)))))
+    (with-current-buffer (cider-current-connection)
+      (insert s)
+      (cider-repl-return))))
+
+(define-key clojure-mode-map (kbd "C-c C-l") 'cider-send-to-repl)
 
 
 (provide 'setup-cider)
