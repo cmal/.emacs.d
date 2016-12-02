@@ -23,3 +23,5 @@ out.html*
 .DS_Store
 *.DS_Store
 users/
+keys
+image-dired/
