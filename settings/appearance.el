@@ -72,6 +72,6 @@
 ;; (add-to-list 'default-frame-alist '(width  . 160))
 ;; (add-to-list 'default-frame-alist '(height  . 80))
 
-(toggle-frame-fullscreen)
+;; (toggle-frame-fullscreen)
 
 (provide 'appearance)
