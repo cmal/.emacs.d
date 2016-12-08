@@ -74,4 +74,7 @@
 ;; mouse scroll one line at a time
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
 
+(require 'expand-region)
+(global-set-key (kbd "C-=") 'er/expand-region)
+
 (provide 'setup-editing)
