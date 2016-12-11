@@ -160,6 +160,10 @@
      ;; blog, need hexo, hexo-renderer-org
      blog-admin
      edit-server
+     keyfreq
+     expand-region
+     use-package
+     markdown-preview-mode
      )))
 
 (condition-case nil
@@ -214,6 +218,9 @@
 (require 'setup-keymaps)
 
 (require 'keylogger)
+(require 'keyfreq)
+(keyfreq-mode 1)
+(keyfreq-autosave-mode 1)
 
 ;; (require 'prodigy)
 ;; (global-set-key (kbd "C-x M-m") 'prodigy)
@@ -331,3 +338,18 @@
 (setq blog-admin-backend-new-post-with-same-name-dir nil)
 (setq blog-admin-backend-hexo-config-file "_config.yml")
 (add-hook 'blog-admin-backend-after-new-post-hook 'find-file)
+
+;;(require 'markdown-preview-mode)
+
+;; (add-to-list 'markdown-preview-javascript '("http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML" . async))
+
+;;(setq-default markdown-preview-style "file:///User/yuzhao/.emacs.d/solarized-light.min.css")
+
+;; (setq-default markdown-preview-style "http://thomasf.github.io/solarized-css/solarized-light.min.css")
+
+(setq-default markdown-preview-style "file:///User/yuzhao/.emacs.d/solarized-light.min.css")
+;; (add-to-list 'markdown-preview-style "https://raw.githubusercontent.com/jwarby/jekyll-pygments-themes/master/emacs.css")
+
+;; (add-to-list 'markdown-css-paths "http://thomasf.github.io/solarized-css/solarized-light.min.css")
+;; (add-to-list 'markdown-css-paths "https://raw.githubusercontent.com/jwarby/jekyll-pygments-themes/master/emacs.css")
+
