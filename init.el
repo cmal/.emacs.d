@@ -106,7 +106,7 @@
      ;; swiper-helm
      org-redmine
      visual-regexp
-     markdown-mode
+;;     markdown-mode
      fill-column-indicator
      flycheck
      flycheck-pos-tip
@@ -162,8 +162,8 @@
      edit-server
      keyfreq
      expand-region
-     use-package
-     markdown-preview-mode
+;;     use-package
+;;     markdown-preview-mode
      )))
 
 (condition-case nil
@@ -237,7 +237,7 @@
           js2-mode-hook
           java-mode
           ruby-mode
-          markdown-mode
+;;          markdown-mode
           groovy-mode
           scala-mode)
   (add-hook it 'turn-on-smartparens-mode))
@@ -246,7 +246,7 @@
 ;; (eval-after-load 'js2-mode '(require 'setup-js2-mode))
 ;; (eval-after-load 'ruby-mode '(require 'setup-ruby-mode))
 (eval-after-load 'clojure-mode '(require 'setup-clojure-mode))
-(eval-after-load 'markdown-mode '(require 'setup-markdown-mode))
+;; (eval-after-load 'markdown-mode '(require 'setup-markdown-mode))
 
 ;; Load stuff on demand
 (autoload 'skewer-start "setup-skewer" nil t)
@@ -339,18 +339,4 @@
 (setq blog-admin-backend-hexo-config-file "_config.yml")
 (add-hook 'blog-admin-backend-after-new-post-hook 'find-file)
 
-;;(require 'markdown-preview-mode)
-
-;; (add-to-list 'markdown-preview-javascript '("http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML" . async))
-
-;;(setq-default markdown-preview-style "file:///User/yuzhao/.emacs.d/solarized-light.min.css")
-
-;; (setq-default markdown-preview-style "http://thomasf.github.io/solarized-css/solarized-light.min.css")
-
-;; (setq-default markdown-preview-style "https://raw.githubusercontent.com/cmal/.emacs.d/master/solarized-light.min.css")
-
-;; (add-to-list 'markdown-preview-style "https://raw.githubusercontent.com/jwarby/jekyll-pygments-themes/master/emacs.css")
-
-;; (add-to-list 'markdown-css-paths "http://thomasf.github.io/solarized-css/solarized-light.min.css")
-;; (add-to-list 'markdown-css-paths "https://raw.githubusercontent.com/jwarby/jekyll-pygments-themes/master/emacs.css")
 

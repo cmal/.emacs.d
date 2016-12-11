@@ -114,20 +114,6 @@
 ;(setq buster-node-executable "/usr/local/bin/node")
 ;(add-file-find-hook-with-pattern "test\\.js$" (lambda () (buster-mode)) "require(\\(\"\\|'\\)buster")
 
-;; Markdown
-;; (autoload 'markdown-mode "markdown-mode")
-;; (add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
-;; (add-to-list 'auto-mode-alist '("\\.markdown$" . markdown-mode))
-(use-package markdown-mode
-             :ensure t
-             :commands (markdown-mode gfm-mode)
-             :mode (("README\\.md\\'" . gfm-mode)
-                    ("\\.md\\'" . markdown-mode)
-                    ("\\.markdown\\'" . markdown-mode))
-             :init (setq markdown-command "python -m markdown -x markdown.extensions.extra -x markdown.extensions.codehilite -x markdown.extensions.headerid -x markdown.extensions.meta -x markdown.extensions.nl2br -x markdown.extensions.sane_lists -x markdown.extensions.smarty -x markdown.extensions.toc -x markdown.extensions.wikilinks "))
-
-
-
 ;; org-mode
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 
