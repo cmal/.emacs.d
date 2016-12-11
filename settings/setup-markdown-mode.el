@@ -9,7 +9,7 @@
 ;; use pip install markdown to install necessary package
 (setq markdown-command "python -m markdown -x markdown.extensions.extra -x markdown.extensions.codehilite -x markdown.extensions.headerid -x markdown.extensions.meta -x markdown.extensions.nl2br -x markdown.extensions.sane_lists -x markdown.extensions.smarty -x markdown.extensions.toc -x markdown.extensions.wikilinks")
 (setq markdown-css-dir "~/.emacs.d/markdown-css/")
-(setq markdown-css-theme "markdown")
+(setq markdown-css-theme "solarized-light")
 
 ;; use M-x markdown-preview to show with markdown-css themes
 ;; but without syntax highlight
@@ -25,7 +25,7 @@
 
 ;; markdown-preview codehilite list
 ;; http://richleland.github.io/pygments-css/
-
+(setq markdown-code-highlight-style "https://rawgit.com/richleland/pygments-css/master/zenburn.css")
 
 (setq markdown-imenu-generic-expression
       '(("title"  "^\\(.*\\)[\n]=+$" 1)

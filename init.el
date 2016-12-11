@@ -246,7 +246,7 @@
 ;; (eval-after-load 'js2-mode '(require 'setup-js2-mode))
 ;; (eval-after-load 'ruby-mode '(require 'setup-ruby-mode))
 (eval-after-load 'clojure-mode '(require 'setup-clojure-mode))
-;; (eval-after-load 'markdown-mode '(require 'setup-markdown-mode))
+(eval-after-load 'markdown-mode '(require 'setup-markdown-mode))
 
 ;; Load stuff on demand
 (autoload 'skewer-start "setup-skewer" nil t)
