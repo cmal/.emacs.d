@@ -347,7 +347,8 @@
 
 ;; (setq-default markdown-preview-style "http://thomasf.github.io/solarized-css/solarized-light.min.css")
 
-(setq-default markdown-preview-style "file:///User/yuzhao/.emacs.d/solarized-light.min.css")
+;; (setq-default markdown-preview-style "https://raw.githubusercontent.com/cmal/.emacs.d/master/solarized-light.min.css")
+
 ;; (add-to-list 'markdown-preview-style "https://raw.githubusercontent.com/jwarby/jekyll-pygments-themes/master/emacs.css")
 
 ;; (add-to-list 'markdown-css-paths "http://thomasf.github.io/solarized-css/solarized-light.min.css")
