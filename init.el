@@ -163,7 +163,7 @@
      keyfreq
      expand-region
 ;;     use-package
-;;     markdown-preview-mode
+     markdown-preview-mode
      )))
 
 (condition-case nil
