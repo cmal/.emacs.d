@@ -133,6 +133,8 @@
      helm-cider
      clj-refactor
      4clojure
+     helm-clojuredocs
+     helm-cider-history
      rainbow-delimiters
      thingatpt
      paredit
@@ -164,6 +166,12 @@
      expand-region
 ;;     use-package
      markdown-preview-mode
+     beacon
+     bug-hunter
+     ;; capture
+     helm-chrome
+     multi-term
+     helm-mt
      )))
 
 (condition-case nil
