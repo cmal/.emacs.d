@@ -34,7 +34,6 @@
 (setq-default org-clock-persist 'history)
 (org-clock-persistence-insinuate)
 
-
 ;; 快速TODO标签
 (setq-default org-use-fast-todo-selection t)
 ;;忽略scheduled和deadlined的todo项目

@@ -51,6 +51,7 @@
 (setq user-settings-dir
       (concat user-emacs-directory "users/" user-login-name))
 (add-to-list 'load-path user-settings-dir)
+(require 'user-settings)
 
 ;; Add external projects to load path
 ;; (dolist (project (directory-files site-lisp-dir t "\\w+"))
@@ -104,7 +105,6 @@
      helm-ls-git
      helm-emmet
      ;; swiper-helm
-     org-redmine
      visual-regexp
 ;;     markdown-mode
      fill-column-indicator
