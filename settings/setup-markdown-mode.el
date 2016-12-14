@@ -26,7 +26,7 @@
 ;; markdown-preview codehilite list
 ;; http://richleland.github.io/pygments-css/
 (setq markdown-code-highlight-style "https://rawgit.com/richleland/pygments-css/master/zenburn.css")
-;; (setq markdown-table-style "./table.css")
+(setq markdown-table-style "https://rawgit.com/cmal/.emacs.d/master/elpa/markdown-preview-mode/table.css")
 
 (setq markdown-imenu-generic-expression
       '(("title"  "^\\(.*\\)[\n]=+$" 1)

@@ -69,6 +69,12 @@
   :group 'markdown-preview
   :type 'string)
 
+(defcustom markdown-table-style
+  "https://rawgit.com/cmal/.emacs.d/master/elpa/markdown-preview-mode/table.css"
+  "Markdown table style URI."
+  :group 'markdown-preview
+  :type 'string)
+
 (defcustom markdown-preview-file-name ".markdown-preview.html"
   "Markdown preview file name."
   :group 'markdown-preview
@@ -112,6 +118,8 @@
         (replace-match markdown-preview-style t))
     (if (search-forward "${MD_CODE_HIGHLIGHT_STYLE}" nil t)
         (replace-match markdown-code-highlight-style t))
+    (if (search-forward "${MD_TABLE_STYLE}" nil t)
+        (replace-match markdown-table-style t))
     (if (search-forward "${MD_JS}" nil t)
         (replace-match
          (mapconcat (lambda (x)
