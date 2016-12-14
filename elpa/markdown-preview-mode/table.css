@@ -1,5 +1,4 @@
-table {
-    td {
-        border: 4px solid #ddd;
-    }
+table td {
+    border: 1px solid #ddd;
+
 }
