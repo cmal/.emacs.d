@@ -170,8 +170,19 @@
      bug-hunter
      ;; capture
      helm-chrome
-     multi-term
-     helm-mt
+     ;; multi-term
+     ;; helm-mt
+
+     ;; emms starts
+     emms
+     helm-emms
+     emms-player-mpv
+     ;; emms-browser
+     ;; emms-source-file
+     ;; emms-source-playlist
+     ;; emms-lyrics
+     ;; emms-info
+     ;; emms ends
      )))
 
 (condition-case nil
@@ -348,3 +359,8 @@
 (add-hook 'blog-admin-backend-after-new-post-hook 'find-file)
 
 
+;; M-x emms-add-netease-album RET
+;; Enter ALBUM_ID RET
+(require 'emms-netease)
+(require 'emms-player-mpv)
+(add-to-list 'emms-player-list 'emms-player-mpv)

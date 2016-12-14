@@ -8,6 +8,7 @@
    [default bold shadow italic underline bold bold-italic bold])
  '(ansi-color-names-vector
    ["#000000" "#8b0000" "#00ff00" "#ffa500" "#7b68ee" "#dc8cc3" "#93e0e3" "#dcdccc"])
+ '(beacon-mode t)
  '(buffer-flip-mode t)
  '(cfs--current-profile "read-code" t)
  '(cfs--profiles-steps (quote (("unset" . 10) ("coding" . 8) ("read-code" . 9))) t)
@@ -31,7 +32,7 @@
  '(linum-format "%3d| ")
  '(package-selected-packages
    (quote
-    (helm-mt multi-term poker beacon helm-chrome helm-cider-history helm-clojuredocs use-package markdown-preview-mode keyfreq smooth-scrolling git-timemachine company key-chord json-mode paper-theme yaml-mode blog-admin graphviz-dot-mode mic-paren rainbow-delimiters ac-cider auto-complete cider-eval-sexp-fu eval-sexp-fu align-cljlet uuid 4clojure helm-emmet emmet-mode smartscan web-mode helm-descbinds edit-server sicp yesql-ghosts helm-cider core-async-mode clj-refactor js2-refactor js2-mode js-mode fill-column-indicator change-inner wgrep visual-regexp swiper-helm elisp-slime-nav whitespace-cleanup-mode highlight-escape-sequences smartparens smart-forward encourage-mode encourange-mode fic-mode multiple-cursors ledger-mode string-edit less-css-mode rainbow-mode clojure-mode-extra-font-locking sx flycheck-clojure flycheck-pos-tip helm-swoop helm-ls-git org-repo-todo helm-projectile helm-ack org-redmine helm-org-rifle golden-ratio-scroll-screen chinese-fonts-setup chinese-font-setup undo-tree diminish exec-path-from-shell cider restclient nodejs-repl guide-key flycheck move-text paredit magit dash helm)))
+    (emms-player-mpv emms-soundcloud helm-emms emms helm-mt multi-term poker beacon helm-chrome helm-cider-history helm-clojuredocs use-package markdown-preview-mode keyfreq smooth-scrolling git-timemachine company key-chord json-mode paper-theme yaml-mode blog-admin graphviz-dot-mode mic-paren rainbow-delimiters ac-cider auto-complete cider-eval-sexp-fu eval-sexp-fu align-cljlet uuid 4clojure helm-emmet emmet-mode smartscan web-mode helm-descbinds edit-server sicp yesql-ghosts helm-cider core-async-mode clj-refactor js2-refactor js2-mode js-mode fill-column-indicator change-inner wgrep visual-regexp swiper-helm elisp-slime-nav whitespace-cleanup-mode highlight-escape-sequences smartparens smart-forward encourage-mode encourange-mode fic-mode multiple-cursors ledger-mode string-edit less-css-mode rainbow-mode clojure-mode-extra-font-locking sx flycheck-clojure flycheck-pos-tip helm-swoop helm-ls-git org-repo-todo helm-projectile helm-ack org-redmine helm-org-rifle golden-ratio-scroll-screen chinese-fonts-setup chinese-font-setup undo-tree diminish exec-path-from-shell cider restclient nodejs-repl guide-key flycheck move-text paredit magit dash helm)))
  '(smartscan-symbol-selector "symbol")
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
