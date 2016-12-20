@@ -32,7 +32,7 @@
  '(linum-format "%3d| ")
  '(package-selected-packages
    (quote
-    (emms-player-mpv emms-soundcloud helm-emms emms helm-mt multi-term poker beacon helm-chrome helm-cider-history helm-clojuredocs use-package markdown-preview-mode keyfreq smooth-scrolling git-timemachine company key-chord json-mode paper-theme yaml-mode blog-admin graphviz-dot-mode mic-paren rainbow-delimiters ac-cider auto-complete cider-eval-sexp-fu eval-sexp-fu align-cljlet uuid 4clojure helm-emmet emmet-mode smartscan web-mode helm-descbinds edit-server sicp yesql-ghosts helm-cider core-async-mode clj-refactor js2-refactor js2-mode js-mode fill-column-indicator change-inner wgrep visual-regexp swiper-helm elisp-slime-nav whitespace-cleanup-mode highlight-escape-sequences smartparens smart-forward encourage-mode encourange-mode fic-mode multiple-cursors ledger-mode string-edit less-css-mode rainbow-mode clojure-mode-extra-font-locking sx flycheck-clojure flycheck-pos-tip helm-swoop helm-ls-git org-repo-todo helm-projectile helm-ack org-redmine helm-org-rifle golden-ratio-scroll-screen chinese-fonts-setup chinese-font-setup undo-tree diminish exec-path-from-shell cider restclient nodejs-repl guide-key flycheck move-text paredit magit dash helm)))
+    (atomic-chrome adoc-mode swbuff-x el-get e2wm e2wm-bookmark helm-github-stars bug-hunter emms-player-mpv emms-soundcloud helm-emms emms helm-mt multi-term poker beacon helm-chrome helm-cider-history helm-clojuredocs use-package markdown-preview-mode keyfreq smooth-scrolling git-timemachine company key-chord json-mode paper-theme yaml-mode blog-admin graphviz-dot-mode mic-paren rainbow-delimiters ac-cider auto-complete cider-eval-sexp-fu eval-sexp-fu align-cljlet uuid 4clojure helm-emmet emmet-mode smartscan web-mode helm-descbinds edit-server sicp yesql-ghosts helm-cider core-async-mode clj-refactor js2-refactor js2-mode js-mode fill-column-indicator change-inner wgrep visual-regexp swiper-helm elisp-slime-nav whitespace-cleanup-mode highlight-escape-sequences smartparens smart-forward encourage-mode encourange-mode fic-mode multiple-cursors ledger-mode string-edit less-css-mode rainbow-mode clojure-mode-extra-font-locking sx flycheck-clojure flycheck-pos-tip helm-swoop helm-ls-git org-repo-todo helm-projectile helm-ack org-redmine helm-org-rifle golden-ratio-scroll-screen chinese-fonts-setup chinese-font-setup undo-tree diminish exec-path-from-shell cider restclient nodejs-repl guide-key flycheck move-text paredit magit dash helm)))
  '(smartscan-symbol-selector "symbol")
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
@@ -68,4 +68,9 @@
  '(ediff-odd-diff-A ((((class color) (background dark)) (:background "dark green"))))
  '(ediff-odd-diff-B ((((class color) (background dark)) (:background "dark red"))))
  '(mumamo-background-chunk-major ((((class color) (background dark)) (:background "black"))))
- '(mumamo-background-chunk-submode1 ((((class color) (background dark)) (:background "black")))))
+ '(mumamo-background-chunk-submode1 ((((class color) (background dark)) (:background "black"))))
+ '(tabbar-button ((t (:inherit tabbar-default :box (:line-width 1 :color "gray72" :style released-button)))))
+ '(tabbar-default ((t (:inherit variable-pitch :background "gray60" :foreground "grey75" :height 0.8))))
+ '(tabbar-selected ((t (:inherit tabbar-default :background "#f2f2f6" :foreground "black"))))
+ '(tabbar-separator ((t (:inherit tabbar-default :height 0.7))))
+ '(tabbar-unselected ((t (:inherit tabbar-default :background "gray85" :foreground "gray30")))))

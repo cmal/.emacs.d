@@ -8,6 +8,10 @@
 ;; You may delete these explanatory comments.
 (package-initialize)
 
+;; add el-get libs before loading custom.el
+(el-get-bundle dholm/tabbar)
+(require 'tabbar)
+
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
@@ -106,7 +110,6 @@
      helm-emmet
      ;; swiper-helm
      visual-regexp
-;;     markdown-mode
      fill-column-indicator
      flycheck
      flycheck-pos-tip
@@ -147,7 +150,6 @@
      smart-forward
      wgrep
      change-inner
-     ;; web dev
      web-mode
      js2-mode
      js2-refactor
@@ -155,35 +157,38 @@
      restclient
      less-css-mode
      yaml-mode
-     ;; learn
      sicp
-     ;; drawing
      graphviz-dot-mode
      ;; blog, need hexo, hexo-renderer-org
      blog-admin
      edit-server
      keyfreq
      expand-region
-;;     use-package
+     ;; use-package
      markdown-preview-mode
+     adoc-mode ;; for asciidoc
      beacon
      bug-hunter
      ;; capture
      helm-chrome
      ;; multi-term
      ;; helm-mt
-
-     ;; emms starts
-     emms
-     helm-emms
-     emms-player-mpv
+     helm-github-stars
+     ;; emms
+     ;; helm-emms
+     ;; emms-player-mpv
      ;; emms-browser
      ;; emms-source-file
      ;; emms-source-playlist
      ;; emms-lyrics
      ;; emms-info
-     ;; emms ends
+     ;; e2wm
+     swbuff
+     swbuff-x
+
+     atomic-chrome
      )))
+
 
 (condition-case nil
     (init--install-packages)
@@ -235,6 +240,7 @@
 (require 'setup-editing)
 (require 'setup-diminish)
 (require 'setup-keymaps)
+(require 'setup-dired)
 
 (require 'keylogger)
 (require 'keyfreq)
@@ -347,6 +353,10 @@
 (edit-server-start)
 (put 'narrow-to-region 'disabled nil)
 
+(atomic-chrome-start-server)
+(setq atomic-chrome-buffer-open-style 'frame)
+;; (setq atomic-chrome-extension-type-list '(atomic-chrome ghost-text))
+
 (require 'move-text)
 
 ;; blog-admin
@@ -361,6 +371,33 @@
 
 ;; M-x emms-add-netease-album RET
 ;; Enter ALBUM_ID RET
-(require 'emms-netease)
-(require 'emms-player-mpv)
-(add-to-list 'emms-player-list 'emms-player-mpv)
+;; (require 'emms-netease)
+;; (require 'emms-player-mpv)
+;; (add-to-list 'emms-player-list 'emms-player-mpv)
+
+;; ;; el-get
+;; (add-to-list 'load-path "~/.emacs.d/site-lisp/el-get")
+
+;; (unless (require 'el-get nil 'noerror)
+;;   (require 'package)
+;;   (add-to-list 'package-archives
+;;                '("melpa" . "http://melpa.org/packages/"))
+;;   (package-refresh-contents)
+;;   (package-initialize)
+;;   (package-install 'el-get)
+;;   (require 'el-get))
+;; (add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
+;; (el-get 'sync)
+
+
+;; el-get install github packages
+;; (el-get-bundle tarao/tab-group-el)
+;; (require 'tab-group)
+
+;; (el-get-bundle tkf/ne2wm)
+;; (require 'ne2wm-setup)
+;; (require 'ne2wm-plugin-org-clock)
+
+(require 'swbuff-x)
+(define-key global-map (kbd "C-<tab>") 'swbuff-switch-to-next-buffer)
+(define-key global-map (kbd "M-<tab>") 'swbuff-switch-to-previous-buffer)

@@ -79,4 +79,6 @@
 
 (global-set-key (kbd "M-j") 'join-line)
 
+(setq-default scroll-margin 4)
+
 (provide 'setup-editing)

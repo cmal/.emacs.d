@@ -74,4 +74,15 @@
 
 ;; (toggle-frame-fullscreen)
 
+;; tabbar
+
+;; (require 'tabbar)
+
+;; (defun my-tabbar-buffer-groups (buffer)
+;;   "Put files in the same directory into the same tab bar"
+;;     (with-current-buffer (get-buffer buffer)
+;;       (list (expand-file-name default-directory))))
+;; (setq tabbar-buffer-groups-function
+;;       'my-tabbar-buffer-groups)
+
 (provide 'appearance)

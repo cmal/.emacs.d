@@ -70,4 +70,9 @@
 
 (require 'helm-emmet)
 
+(require 'helm-github-stars)
+;; Setup your github username:
+(setq helm-github-stars-username "cmal")
+
+
 (provide 'setup-helm)

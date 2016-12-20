@@ -91,6 +91,9 @@
 (add-to-list 'auto-mode-alist '("\\.cljc$" . clojurec-mode))
 (add-hook 'clojure-mode-hook 'hs-minor-mode)
 
+(add-to-list 'auto-mode-alist '("\\.asciidoc$" . adoc-mode))
+;; (add-hook 'adoc-mode-hook 'cider-mode) ;; added in setup-cider.el
+
 ;; SVG
 (add-to-list 'auto-mode-alist '("\\.svg$" . image-mode))
 
