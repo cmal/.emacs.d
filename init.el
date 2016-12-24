@@ -41,6 +41,10 @@
 (require 'encourage-mode)
 (encourage-mode)
 
+;; add el-get libs before loading custom.el
+;; (el-get-bundle dholm/tabbar)
+;; (require 'tabbar)
+
 ;; Keep emacs Custom-settings in separate file
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
@@ -182,7 +186,7 @@
      ;; e2wm
      swbuff
      swbuff-x
-     el-get
+;;     el-get
      atomic-chrome
      )))
 
@@ -376,20 +380,17 @@
 ;; ;; el-get
 ;; (add-to-list 'load-path "~/.emacs.d/site-lisp/el-get")
 
-(unless (require 'el-get nil 'noerror)
-  (require 'package)
-  (add-to-list 'package-archives
-               '("melpa" . "http://melpa.org/packages/"))
-  (package-refresh-contents)
-  (package-initialize)
-  (package-install 'el-get)
-  (require 'el-get))
+;; (unless (require 'el-get nil 'noerror)
+;;   (require 'package)
+;;   (add-to-list 'package-archives
+;;                '("melpa" . "http://melpa.org/packages/"))
+;;   (package-refresh-contents)
+;;   (package-initialize)
+;;   (package-install 'el-get)
+;;   (require 'el-get))
 ;; (add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
 ;; (el-get 'sync)
 
-;; add el-get libs before loading custom.el
-(el-get-bundle dholm/tabbar)
-(require 'tabbar)
 
 ;; el-get install github packages
 ;; (el-get-bundle tarao/tab-group-el)
