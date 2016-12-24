@@ -260,8 +260,9 @@
           java-mode
           ruby-mode
 ;;          markdown-mode
-          groovy-mode
-          scala-mode)
+;;          groovy-mode
+;;          scala-mode
+          )
   (add-hook it 'turn-on-smartparens-mode))
 
 ;; Language specific setup files
