@@ -185,8 +185,11 @@
      ;; e2wm
      swbuff
      swbuff-x
-
+     ace-jump-mode
      atomic-chrome
+     vue-mode
+     editorconfig
+     sass-mode
      )))
 
 
@@ -401,3 +404,5 @@
 (require 'swbuff-x)
 (define-key global-map (kbd "C-<tab>") 'swbuff-switch-to-next-buffer)
 (define-key global-map (kbd "M-<tab>") 'swbuff-switch-to-previous-buffer)
+
+(tabbar-mode)
