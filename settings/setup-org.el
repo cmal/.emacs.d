@@ -74,8 +74,16 @@
            (insert-image (create-image data nil t)))
       (kill-buffer buffer))))
 
+(defun org-add-current-file-to-agenda ()
+  (interactive)
+  (customize-save-variable
+   'org-agenda-files
+   (add-to-list 'org-agenda-files buffer-file-name)))
+
 (defun org-mode-custom-keys-config ()
-  (local-set-key (kbd "C-c i") 'insert-image-from-url))
+  (local-set-key (kbd "C-c i") 'insert-image-from-url)
+  (local-set-key (kbd "C-c f a") 'org-add-current-file-to-agenda))
+
 (add-hook 'org-mode-hook 'org-mode-custom-keys-config)
 
 (provide 'setup-org)

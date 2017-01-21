@@ -132,4 +132,12 @@
 (autoload 'ledger-mode "ledger-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.ledger$" . ledger-mode))
 
+;; php mode
+(setq auto-mode-alist
+      (append '(("\\.php$" . php-mode)) auto-mode-alist))
+
+;; python mode
+(setq auto-mode-alist
+      (append '(("\\.py$" . python-mode)) auto-mode-alist))
+
 (provide 'mode-mappings)

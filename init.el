@@ -9,8 +9,11 @@
 (package-initialize)
 
 ;; add el-get libs before loading custom.el
-(el-get-bundle dholm/tabbar)
-(require 'tabbar)
+
+;; tabbar
+;;(el-get-bundle dholm/tabbar)
+;;(require 'tabbar)
+;;(tabbar-mode)
 
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
@@ -190,6 +193,12 @@
      vue-mode
      editorconfig
      sass-mode
+     ;; php
+     psysh
+     php-mode
+     ;; python
+     jedi
+     jedi-direx
      )))
 
 
@@ -234,6 +243,7 @@
 ;; (require 'setup-auto-complete)
 (require 'setup-company)
 (require 'setup-clojure-mode)
+(require 'setup-python)
 (require 'setup-cider)
 
 
@@ -405,4 +415,4 @@
 (define-key global-map (kbd "C-<tab>") 'swbuff-switch-to-next-buffer)
 (define-key global-map (kbd "M-<tab>") 'swbuff-switch-to-previous-buffer)
 
-(tabbar-mode)
+

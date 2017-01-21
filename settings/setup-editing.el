@@ -81,4 +81,23 @@
 
 (setq-default scroll-margin 4)
 
+;; auto-jump-mode
+(autoload
+  'ace-jump-mode-pop-mark
+  "ace-jump-mode"
+  "Ace jump back:-)"
+  t)
+(eval-after-load "ace-jump-mode"
+  '(ace-jump-mode-enable-mark-sync))
+(define-key global-map (kbd "C-c C-\\") 'ace-jump-mode)
+(define-key global-map (kbd "C-c C-/") 'ace-jump-mode-pop-mark)
+
+;;If you use viper mode :
+;; (define-key viper-vi-global-user-map (kbd "SPC") 'ace-jump-mode)
+;;If you use evil
+;; (define-key evil-normal-state-map (kbd "SPC") 'ace-jump-mode)
+
+(require 'editorconfig)
+(editorconfig-mode 1)
+
 (provide 'setup-editing)

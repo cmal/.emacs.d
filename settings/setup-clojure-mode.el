@@ -66,5 +66,24 @@
 (define-key clojure-mode-map (kbd "C-c C-l") 'live-warn-when-cider-not-connected)
 (define-key clojure-mode-map (kbd "C-c C-r") 'live-warn-when-cider-not-connected)
 
+;; hs-minor-mode
+(defun hs-clojure-hide-namespace-and-folds ()
+  "Hide the first (ns ...) expression in the file, and also all
+the (^:fold ...) expressions."
+  (interactive)
+  (hs-life-goes-on
+   (save-excursion
+     (goto-char (point-min))
+     (when (ignore-errors (re-search-forward "^(ns "))
+       (hs-hide-block))
+
+     (while (ignore-errors (re-search-forward "\\^:fold"))
+       (hs-hide-block)
+       (next-line)))))
+(defun hs-clojure-mode-hook ()
+  (interactive)
+  (hs-minor-mode 1)
+  (hs-clojure-hide-namespace-and-folds))
+(add-hook 'clojure-mode-hook 'hs-clojure-mode-hook)
 
 (provide 'setup-clojure-mode)
