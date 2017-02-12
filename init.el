@@ -199,6 +199,8 @@
      ;; python
      jedi
      jedi-direx
+     ;; wolfram
+     wolfram-mode
      )))
 
 
@@ -254,6 +256,7 @@
 (require 'setup-diminish)
 (require 'setup-keymaps)
 (require 'setup-dired)
+(require 'setup-gui)
 
 (require 'keylogger)
 (require 'keyfreq)
@@ -415,4 +418,10 @@
 (define-key global-map (kbd "C-<tab>") 'swbuff-switch-to-next-buffer)
 (define-key global-map (kbd "M-<tab>") 'swbuff-switch-to-previous-buffer)
 
+(require 'wolfram-mode)
+(autoload 'wolfram-mode "wolfram-mode" nil t)
+(autoload 'run-wolfram "wolfram-mode" nil t)
+(setq wolfram-program "/Applications/Mathematica.app/Contents/MacOS/MathKernel")
+(add-to-list 'auto-mode-alist '("\\.m$" . wolfram-mode))
+(define-key wolfram-mode-map (kbd "C-x C-e") 'wolfram-send-last-mathexp)
 
