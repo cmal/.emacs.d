@@ -263,7 +263,7 @@
 (require 'setup-dired)
 (require 'setup-gui)
 
-(require 'keylogger)
+;; (require 'keylogger) ;; BUG in helm minibuffer
 (require 'keyfreq)
 (keyfreq-mode 1)
 (keyfreq-autosave-mode 1)
