@@ -10,8 +10,8 @@
 ;; rifle
 
 ;; project find word
-(helm-projectile-on)
-(global-set-key (kbd "C-x M-f") 'helm-projectile-grep)
+;; (helm-projectile-on)
+;; (global-set-key (kbd "C-x M-f") 'helm-projectile-grep)
 
 ;; and this one find those git registered files
 (global-set-key (kbd "C-x f") 'helm-ls-git-ls)
