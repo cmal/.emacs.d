@@ -112,7 +112,7 @@
      org-redmine
      org-repo-todo
      helm-ack
-     helm-projectile
+     ;; helm-projectile
      helm-ls-git
      helm-emmet
      ;; swiper-helm
