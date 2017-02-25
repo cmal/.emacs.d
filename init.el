@@ -47,6 +47,10 @@
 (require 'encourage-mode)
 (encourage-mode)
 
+;; add el-get libs before loading custom.el
+;; (el-get-bundle dholm/tabbar)
+;; (require 'tabbar)
+
 ;; Keep emacs Custom-settings in separate file
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
@@ -189,6 +193,7 @@
      swbuff
      swbuff-x
      ace-jump-mode
+     ;; el-get
      atomic-chrome
      vue-mode
      editorconfig
@@ -279,8 +284,9 @@
           java-mode
           ruby-mode
 ;;          markdown-mode
-          groovy-mode
-          scala-mode)
+;;          groovy-mode
+;;          scala-mode
+          )
   (add-hook it 'turn-on-smartparens-mode))
 
 ;; Language specific setup files
