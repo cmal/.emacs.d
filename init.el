@@ -193,6 +193,7 @@
      swbuff
      swbuff-x
      ace-jump-mode
+     pinyin-search
      ;; el-get
      atomic-chrome
      vue-mode
