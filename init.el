@@ -207,6 +207,11 @@
      jedi-direx
      ;; wolfram
      wolfram-mode
+     ;; eww
+     language-detection
+     ;; w3m
+     w3m
+     helm-w3m
      )))
 
 
