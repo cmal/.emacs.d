@@ -212,6 +212,8 @@
      ;; w3m
      w3m
      helm-w3m
+     ;; bookmark
+     bookmark+
      )))
 
 
@@ -269,6 +271,7 @@
 (require 'setup-dired)
 (require 'setup-gui)
 
+(require 'setup-mail)
 ;; (require 'keylogger) ;; BUG in helm minibuffer
 (require 'keyfreq)
 (keyfreq-mode 1)
@@ -309,7 +312,6 @@
 
 ;; Map files to modes
 (require 'mode-mappings)
-
 
 ;; Highlight escape sequences
 (require 'highlight-escape-sequences)

@@ -9,6 +9,7 @@
  '(ansi-color-names-vector
    ["#000000" "#8b0000" "#00ff00" "#ffa500" "#7b68ee" "#dc8cc3" "#93e0e3" "#dcdccc"])
  '(beacon-mode t)
+ '(bmkp-last-as-first-bookmark-file "~/.emacs.d/bookmarks")
  '(buffer-flip-mode t)
  '(cfs--current-profile "read-code" t)
  '(cfs--profiles-steps (quote (("unset" . 10) ("coding" . 8) ("read-code" . 9))) t)
@@ -34,10 +35,11 @@
  '(linum-format "%4d| ")
  '(org-agenda-files
    (quote
-    ("/Users/yuzhao/gits/frontend/TODO.org" "/Users/yuzhao/gits/fcc-voting/TODO.org" "/Users/yuzhao/gits/data-nav-reframe/TODO.org" "/Users/yuzhao/gits/SICP/TODO.org" "/Users/yuzhao/gits/stockinfogate/TODO.org" "/Users/yuzhao/gits/mobile/TODO.org" "/Users/yuzhao/.emacs.d/TODO.org")))
+    ("/Users/yuzhao/gits/vue/msg-management/TODO.org" "/Users/yuzhao/TODO.org" "/Users/yuzhao/gits/frontend/TODO.org" "/Users/yuzhao/gits/fcc-voting/TODO.org" "/Users/yuzhao/gits/data-nav-reframe/TODO.org" "/Users/yuzhao/gits/SICP/TODO.org" "/Users/yuzhao/gits/stockinfogate/TODO.org" "/Users/yuzhao/gits/mobile/TODO.org" "/Users/yuzhao/.emacs.d/TODO.org")))
  '(package-selected-packages
    (quote
-    (helm-w3m w3m language-detection pinyin-search wolfram-mode jedi-direx jedi php-mode psysh sass-mode editorconfig vue-mode ace-jump-mode atomic-chrome adoc-mode swbuff-x el-get e2wm e2wm-bookmark helm-github-stars bug-hunter emms-player-mpv emms-soundcloud helm-emms emms helm-mt multi-term poker beacon helm-chrome helm-cider-history helm-clojuredocs use-package markdown-preview-mode keyfreq smooth-scrolling git-timemachine company key-chord json-mode paper-theme yaml-mode blog-admin graphviz-dot-mode mic-paren rainbow-delimiters ac-cider auto-complete cider-eval-sexp-fu eval-sexp-fu align-cljlet uuid 4clojure helm-emmet emmet-mode smartscan web-mode helm-descbinds edit-server sicp yesql-ghosts helm-cider core-async-mode clj-refactor js2-refactor js2-mode js-mode fill-column-indicator change-inner wgrep visual-regexp swiper-helm elisp-slime-nav whitespace-cleanup-mode highlight-escape-sequences smartparens smart-forward encourage-mode encourange-mode fic-mode multiple-cursors ledger-mode string-edit less-css-mode rainbow-mode clojure-mode-extra-font-locking sx flycheck-clojure flycheck-pos-tip helm-swoop helm-ls-git org-repo-todo helm-projectile helm-ack org-redmine helm-org-rifle golden-ratio-scroll-screen chinese-fonts-setup chinese-font-setup undo-tree diminish exec-path-from-shell cider restclient nodejs-repl guide-key flycheck move-text paredit magit dash helm)))
+    (vue-html-mode bookmark+ helm-w3m w3m language-detection pinyin-search wolfram-mode jedi-direx jedi php-mode psysh sass-mode editorconfig vue-mode ace-jump-mode atomic-chrome adoc-mode swbuff-x el-get e2wm e2wm-bookmark helm-github-stars bug-hunter emms-player-mpv emms-soundcloud helm-emms emms helm-mt multi-term poker beacon helm-chrome helm-cider-history helm-clojuredocs use-package markdown-preview-mode keyfreq smooth-scrolling git-timemachine company key-chord json-mode paper-theme yaml-mode blog-admin graphviz-dot-mode mic-paren rainbow-delimiters ac-cider auto-complete cider-eval-sexp-fu eval-sexp-fu align-cljlet uuid 4clojure helm-emmet emmet-mode smartscan web-mode helm-descbinds edit-server sicp yesql-ghosts helm-cider core-async-mode clj-refactor js2-refactor js2-mode js-mode fill-column-indicator change-inner wgrep visual-regexp swiper-helm elisp-slime-nav whitespace-cleanup-mode highlight-escape-sequences smartparens smart-forward encourage-mode encourange-mode fic-mode multiple-cursors ledger-mode string-edit less-css-mode rainbow-mode clojure-mode-extra-font-locking sx flycheck-clojure flycheck-pos-tip helm-swoop helm-ls-git org-repo-todo helm-projectile helm-ack org-redmine helm-org-rifle golden-ratio-scroll-screen chinese-fonts-setup chinese-font-setup undo-tree diminish exec-path-from-shell cider restclient nodejs-repl guide-key flycheck move-text paredit magit dash helm)))
+ '(send-mail-function (quote smtpmail-send-it))
  '(smartscan-symbol-selector "symbol")
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
