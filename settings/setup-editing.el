@@ -92,6 +92,7 @@
 (define-key global-map (kbd "C-c C-\\") 'ace-jump-mode)
 (define-key global-map (kbd "C-c C-/") 'ace-jump-mode-pop-mark)
 
+(require 'markdown-mode)
 (define-key markdown-mode-map (kbd "C-c C-s") 'pinyin-search)
 
 ;;If you use viper mode :
