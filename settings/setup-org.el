@@ -137,7 +137,8 @@ update it for multiple appts?")
         ((eq appt-display-format 'alert)
          (alert (if (listp string)
                     (mapconcat 'identity string "\n")
-                  string)))))
+                  string)
+                :title "APPT"))))
 
 (setq appt-display-format 'alert)
 
