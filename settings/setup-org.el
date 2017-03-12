@@ -89,6 +89,56 @@
 (setq-default appt-display-duration 600)
 
 (require 'alert)
-(setq alert-default-style 'osx-notifier)
+(setq alert-default-style 'notifier) ;; or osx-notifier
+(setq alert-notifier-command "/usr/local/bin/terminal-notifier") ;; only for 'notifier
 (require 'org-alert)
+
+
+;; modify appt.el appt-display-message to add alert
+(defun appt-display-message (string mins)
+  "Display a reminder about an appointment.
+The string STRING describes the appointment, due in integer MINS minutes.
+The arguments may also be lists, where each element relates to a
+separate appointment.  The variable `appt-display-format' controls
+the format of the visible reminder.  If `appt-audible' is non-nil,
+also calls `beep' for an audible reminder."
+  (if appt-audible (beep 1))
+  ;; Backwards compatibility: avoid passing lists to a-d-w-f if not necessary.
+  (and (listp mins)
+       (= (length mins) 1)
+       (setq mins (car mins)
+             string (car string)))
+  (cond ((eq appt-display-format 'window)
+         ;; TODO use calendar-month-abbrev-array rather than %b?
+         (let ((time (format-time-string "%a %b %e "))
+               err)
+           (condition-case err
+               (funcall appt-disp-window-function
+                        (if (listp mins)
+                            (mapcar 'number-to-string mins)
+                          (number-to-string mins))
+                        time string)
+             (wrong-type-argument
+              (if (not (listp mins))
+                  (signal (car err) (cdr err))
+                (message "Argtype error in `appt-disp-window-function' - \
+update it for multiple appts?")
+                ;; Fallback to just displaying the first appt, as we used to.
+                (funcall appt-disp-window-function
+                         (number-to-string (car mins)) time
+                         (car string))))))
+         (run-at-time (format "%d sec" appt-display-duration)
+                      nil
+                      appt-delete-window-function))
+        ((eq appt-display-format 'echo)
+         (message "%s" (if (listp string)
+                           (mapconcat 'identity string "\n")
+                         string)))
+        ((eq appt-display-format 'alert)
+         (alert (if (listp string)
+                    (mapconcat 'identity string "\n")
+                  string)))))
+
+(setq appt-display-format 'alert)
+
 (provide 'setup-org)
