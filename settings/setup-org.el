@@ -86,4 +86,5 @@
 
 (add-hook 'org-mode-hook 'org-mode-custom-keys-config)
 
+(setq-default appt-display-duration 600)
 (provide 'setup-org)
