@@ -87,4 +87,8 @@
 (add-hook 'org-mode-hook 'org-mode-custom-keys-config)
 
 (setq-default appt-display-duration 600)
+
+(require 'alert)
+(setq alert-default-style 'osx-notifier)
+(require 'org-alert)
 (provide 'setup-org)

@@ -214,6 +214,9 @@
      helm-w3m
      ;; bookmark
      bookmark+
+     ;; alert
+     alert
+     org-alert
      )))
 
 
