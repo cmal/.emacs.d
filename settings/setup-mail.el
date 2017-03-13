@@ -7,5 +7,12 @@
 (setq user-full-name "Yu Zhao 赵宇")
 (setq user-mail-address "yu.zhao@joudou.com")
 
+;; use my-org-screenshot in setup-org.el to capture screen
+
+;; key shortcuts
+(defun message-mode-custom-keys-config ()
+  (local-set-key (kbd "C-c x") 'mail-add-attachment))
+
+(add-hook 'message-mode-hook 'message-mode-custom-keys-config)
 
 (provide 'setup-mail)
