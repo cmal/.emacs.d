@@ -25,3 +25,10 @@ out.html*
 users/
 keys
 image-dired/
+.python-environments/
+ac-comphist.dat
+el-get/
+emms/
+eww-bookmarks
+hgs-cache
+settings/setup-org.el_imgs/
