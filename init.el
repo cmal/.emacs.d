@@ -441,4 +441,3 @@
 (setq wolfram-program "/Applications/Mathematica.app/Contents/MacOS/MathKernel")
 (add-to-list 'auto-mode-alist '("\\.m$" . wolfram-mode))
 (define-key wolfram-mode-map (kbd "C-x C-e") 'wolfram-send-last-mathexp)
-

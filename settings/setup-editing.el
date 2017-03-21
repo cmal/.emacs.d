@@ -44,7 +44,7 @@
 ;; caution: maybe the next line will slow down your Emacs,
 ;; set it to 60 or more if this happens.
 (setq-default display-time-interval 1)
-(display-time-mode 1)
+;; (display-time-mode 1)
 (global-visual-line-mode 1)
 ;; move-text
 ;; (move-text-default-bindings)

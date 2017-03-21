@@ -121,7 +121,6 @@ same directory as the org-buffer and insert a link to this file."
 (setq alert-notifier-command "/usr/local/bin/terminal-notifier") ;; only for 'notifier
 (require 'org-alert)
 
-
 ;; modify appt.el appt-display-message to add alert
 (defun appt-display-message (string mins)
   "Display a reminder about an appointment.
