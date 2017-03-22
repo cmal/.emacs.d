@@ -43,11 +43,19 @@
                 :weight 'normal
                 :slant 'normal
                 :size 14.0)))) ;; 20.0
+
+(defun use-font-set-inziu ()
+  (interactive)
+  (set-default-font "Inziu IosevkaCC CL-16"))
+
 ;; (if (display-graphic-p) (use-font-set-ptmono))
+;; (if (display-graphic-p) (use-font-set-inziu))
 
 (if (display-graphic-p) (use-font-set-pragmata))
 
-;; (set-default-font "Inziu IosevkaCC CL-16")
+
+
+
 ;; (cl-prettyprint (font-family-list))
 
 (provide 'setup-fonts)
