@@ -393,6 +393,7 @@
 ;; (setq atomic-chrome-extension-type-list '(atomic-chrome ghost-text))
 
 (require 'move-text)
+(require 'my-utils)
 
 ;; blog-admin
 (require 'blog-admin)
@@ -446,3 +447,7 @@
 
 
 (setq debug-on-error t)
+
+
+;; info+ ??
+(advice-remove 'kill-ring-save 'ad-Advice-kill-ring-save)
