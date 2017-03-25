@@ -219,6 +219,7 @@
      org-alert
      info+
      hyperbole
+     suggest
      )))
 ;; ad--addoit-function
 
