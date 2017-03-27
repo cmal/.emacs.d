@@ -450,4 +450,6 @@
 
 
 ;; info+ ??
-(advice-remove 'kill-ring-save 'ad-Advice-kill-ring-save)
+;; (advice-remove 'kill-ring-save 'ad-Advice-kill-ring-save)
+
+(require 'extends)
