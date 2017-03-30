@@ -220,6 +220,7 @@
      info+
      hyperbole
      suggest
+     hledger-mode
      )))
 ;; ad--addoit-function
 

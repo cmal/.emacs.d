@@ -140,4 +140,8 @@
 (setq auto-mode-alist
       (append '(("\\.py$" . python-mode)) auto-mode-alist))
 
+;; ledger mode
+(autoload 'ledger-mode "ledger-mode" "A major mode for Ledger" t)
+(add-to-list 'auto-mode-alist '("\\.ledger$" . ledger-mode))
+
 (provide 'mode-mappings)
