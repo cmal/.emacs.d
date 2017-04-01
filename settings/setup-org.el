@@ -61,7 +61,7 @@
 ;; or use M-x ffap to show image in browser
 ;; (require 'url)
 (defun insert-image-from-url (&optional url)
-  (interactive)
+  (interactive "*")
   (unless url (setq url (url-get-url-at-point)))
   (unless url
     (error "Couldn't find URL."))
@@ -86,7 +86,7 @@
 (defun my-org-screenshot ()
   "Take a screenshot into a time stamped unique-named file in the
 same directory as the org-buffer and insert a link to this file."
-  (interactive)
+  (interactive "*")
   (org-display-inline-images)
   (setq filename
         (concat

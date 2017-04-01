@@ -53,7 +53,7 @@
 ;; comment code
 (defun comment-or-uncomment-region-or-line ()
     "Comments or uncomments the region or the current line if there's no active region."
-    (interactive)
+    (interactive "*")
     (let (beg end)
         (if (region-active-p)
             (setq beg (region-beginning) end (region-end))
