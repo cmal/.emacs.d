@@ -79,6 +79,8 @@
 
 (global-set-key (kbd "M-j") 'join-line)
 
+(global-set-key (kbd "s-t") 'transpose-paragraphs)
+
 (setq-default scroll-margin 4)
 
 ;; auto-jump-mode
