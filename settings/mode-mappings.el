@@ -53,7 +53,7 @@
 
 ;;Support for JSX is available via the derived mode `js2-jsx-mode'.  If you
 ;;also want JSX support, use that mode instead:
-(add-to-list 'auto-mode-alist '("\\.jsx?$\\'" . js-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx\\'" . js-mode))
 (add-to-list 'interpreter-mode-alist '("node" . js2-mode))
 
 
@@ -139,5 +139,9 @@
 ;; python mode
 (setq auto-mode-alist
       (append '(("\\.py$" . python-mode)) auto-mode-alist))
+
+;; ledger mode
+(autoload 'ledger-mode "ledger-mode" "A major mode for Ledger" t)
+(add-to-list 'auto-mode-alist '("\\.ledger$" . ledger-mode))
 
 (provide 'mode-mappings)

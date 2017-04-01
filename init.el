@@ -151,7 +151,6 @@
      mic-paren
      yesql-ghosts
      string-edit
-     ledger-mode
      multiple-cursors
      fic-mode
      smart-forward
@@ -220,6 +219,8 @@
      info+
      hyperbole
      suggest
+     ledger-mode
+     hledger-mode
      )))
 ;; ad--addoit-function
 
@@ -449,9 +450,14 @@
 
 (setq debug-on-error t)
 
+;; javascript indent
+;; you should use set-variable for js-indent-level to 2 or 4 to switch.
 
 ;; info+ ??
 (advice-remove 'kill-ring-save 'ad-Advice-kill-ring-save)
 
-;; javascript indent
-;; you should use set-variable for js-indent-level to 2 or 4 to switch.
+;; (advice-remove 'kill-ring-save 'ad-Advice-kill-ring-save)
+
+;; (require 'extends)
+
+
