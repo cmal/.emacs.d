@@ -80,6 +80,8 @@
 (global-set-key (kbd "M-j") 'join-line)
 
 (global-set-key (kbd "s-t") 'transpose-paragraphs)
+(global-set-key (kbd "s-[") 'backward-paragraph)
+(global-set-key (kbd "s-]") 'forward-paragraph)
 
 (setq-default scroll-margin 4)
 
