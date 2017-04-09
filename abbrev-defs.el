@@ -141,12 +141,12 @@
 
 (define-abbrev-table 'ledger-mode-abbrev-table
   '(
-    ("assets:微信:零钱" "lq" nil 0)
-    ;; ("Liabilities:信用卡" "xyk" nil 0)
-    ;; ("Assets:现金" "xj" nil 0)
-    ;; ("Assets:支付宝:余额宝" "yeb" nil 0)
-    ;; ("Assets:平安银行:活期存款" "payh" nil 0)
-    ;; ("Income:工资" "gz" nil 0)
+    ("lq" "Assets:微信:零钱" nil 0)
+    ("xyk" "Liabilities:信用卡" nil 0)
+    ("xj" "Assets:现金" nil 0)
+    ("yeb" "Assets:支付宝:余额宝" nil 0)
+    ("payh" "Assets:平安银行:活期存款" nil 0)
+    ("gz" "Income:工资" nil 0)
    ))
 
 (define-abbrev-table 'ledger-reconcile-mode-abbrev-table '())
