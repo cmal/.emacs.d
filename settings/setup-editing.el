@@ -103,4 +103,13 @@
 (require 'editorconfig)
 (editorconfig-mode 1)
 
+;; abbrev-mode
+(setq abbrev-file-name "~/.emacs.d/abbrev-defs.el")
+(setq save-abbrevs t)
+(setq-default abbrev-mode t)
+(if (file-exists-p abbrev-file-name)
+    (quietly-read-abbrev-file))
+(setq default-abbrev-mode t)
+;; (add-hook 'ledger-mode-hook (lambda () (abbrev-mode 1)))
+
 (provide 'setup-editing)

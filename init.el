@@ -395,6 +395,9 @@
 ;; (setq atomic-chrome-extension-type-list '(atomic-chrome ghost-text))
 
 (require 'move-text)
+(global-set-key (kbd "s-<up>") 'move-text-up)
+(global-set-key (kbd "s-<down>") 'move-text-down)
+
 (require 'my-utils)
 
 ;; blog-admin
@@ -454,4 +457,10 @@
 ;; info+ ??
 ;; (advice-remove 'kill-ring-save 'ad-Advice-kill-ring-save)
 
+(setq js-indent-level 2)
+(setq js-indent-level 4)
+
+(define-key helm-find-files-map (kbd "M-f") 'helm-ff-run-grep-ag)
+
 (require 'extends)
+

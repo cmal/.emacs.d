@@ -36,7 +36,4 @@
      (move-text-internal (- arg))
      (forward-line))
 
-(global-set-key (kbd "C-<up>") 'move-text-up)
-(global-set-key (kbd "C-<down>") 'move-text-down)
-
 (provide 'move-text)
