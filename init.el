@@ -92,136 +92,9 @@
 ;; Install extensions if they're missing
 (defun init--install-packages ()
   (packages-install
-   '(magit
-     git-timemachine
-     edn
-     uuid
-     dash
-     diminish
-     inflections
-     spinner
-     move-text
-;;     chinese-fonts-setup
-     golden-ratio-scroll-screen
-     yasnippet
-     emmet-mode
-     json-mode
-     helm
-     helm-org-rifle
-     helm-descbinds
-     org-redmine
-     org-repo-todo
-     helm-ack
-     ;; helm-projectile
-     helm-ls-git
-     helm-emmet
-     ;; swiper-helm
-     visual-regexp
-     fill-column-indicator
-     flycheck
-     flycheck-pos-tip
-     flycheck-clojure
-     ;; smooth-scrolling
-     undo-tree
-     smartscan
-     smartparens
-     guide-key
-     sx
-     highlight-escape-sequences
-     whitespace-cleanup-mode
-     elisp-slime-nav
-     eval-sexp-fu
-     clojure-mode
-     align-cljlet
-     clj-refactor
-     clojure-mode-extra-font-locking
-     cider
-     cider-eval-sexp-fu
-     ;; auto-complete
-     company
-     ac-cider
-     helm-cider
-     clj-refactor
-     4clojure
-     helm-clojuredocs
-     helm-cider-history
-     rainbow-delimiters
-     thingatpt
-     paredit
-     mic-paren
-     yesql-ghosts
-     string-edit
-     ledger-mode
-     multiple-cursors
-     fic-mode
-     smart-forward
-     wgrep
-     change-inner
-     web-mode
-     js2-mode
-     js2-refactor
-     nodejs-repl
-     restclient
-     less-css-mode
-     yaml-mode
-     sicp
-     graphviz-dot-mode
-     ;; blog, need hexo, hexo-renderer-org
-     blog-admin
-     edit-server
-     keyfreq
-     expand-region
-     ;; use-package
-     markdown-preview-mode
-     adoc-mode ;; for asciidoc
-     beacon
-     bug-hunter
-     ;; capture
-     helm-chrome
-     ;; multi-term
-     ;; helm-mt
-     helm-github-stars
-     ;; emms
-     ;; helm-emms
-     ;; emms-player-mpv
-     ;; emms-browser
-     ;; emms-source-file
-     ;; emms-source-playlist
-     ;; emms-lyrics
-     ;; emms-info
-     ;; e2wm
-     swbuff
-     swbuff-x
-     ace-jump-mode
-     pinyin-search
-     ;; el-get
-     atomic-chrome
-     vue-mode
-     editorconfig
-     sass-mode
-     ;; php
-     psysh
-     php-mode
-     ;; python
-     jedi
-     jedi-direx
-     ;; wolfram
-     wolfram-mode
-     ;; eww
-     language-detection
-     ;; w3m
-     w3m
-     helm-w3m
-     ;; bookmark
-     bookmark+
-     ;; alert
-     alert
-     org-alert
-     info+
-     hyperbole
-     suggest
-     hledger-mode
-     )))
+   '(magit git-timemachine edn uuid dash diminish inflections spinner move-text golden-ratio-scroll-screen yasnippet emmet-mode json-mode helm helm-org-rifle helm-descbinds org-redmine org-repo-todo helm-ack helm-ls-git helm-emmet visual-regexp fill-column-indicator flycheck flycheck-pos-tip flycheck-clojure undo-tree smartscan smartparens guide-key sx highlight-escape-sequences whitespace-cleanup-mode elisp-slime-nav eval-sexp-fu clojure-mode align-cljlet clj-refactor clojure-mode-extra-font-locking cider cider-eval-sexp-fu company ac-cider helm-cider clj-refactor 4clojure helm-clojuredocs helm-cider-history rainbow-delimiters thingatpt paredit mic-paren yesql-ghosts string-edit multiple-cursors fic-mode smart-forward wgrep change-inner web-mode js2-mode js2-refactor nodejs-repl restclient less-css-mode yaml-mode sicp graphviz-dot-mode blog-admin edit-server keyfreq expand-region markdown-preview-mode adoc-mode beacon bug-hunter helm-chrome helm-github-stars swbuff swbuff-x ace-jump-mode pinyin-search atomic-chrome vue-mode editorconfig sass-mode psysh php-mode jedi jedi-direx wolfram-mode language-detection w3m helm-w3m bookmark+ alert org-alert info+ hyperbole suggest ledger-mode hledger-mode
+;; use-package capture multi-term helm-mt chinese-fonts-setup helm-projectile swiper-helm smooth-scrolling auto-complete emms helm-emms emms-player-mpv emms-browser emms-source-file emms-source-playlist emms-lyrics emms-info e2wm el-get
+           )))
 ;; ad--addoit-function
 
 (condition-case nil
@@ -453,14 +326,15 @@
 
 (setq debug-on-error t)
 
+;; javascript indent
+;; you should use set-variable for js-indent-level to 2 or 4 to switch.
 
 ;; info+ ??
+(advice-remove 'kill-ring-save 'ad-Advice-kill-ring-save)
+
 ;; (advice-remove 'kill-ring-save 'ad-Advice-kill-ring-save)
 
 (setq js-indent-level 2)
 (setq js-indent-level 4)
 
 (define-key helm-find-files-map (kbd "M-f") 'helm-ff-run-grep-ag)
-
-(require 'extends)
-

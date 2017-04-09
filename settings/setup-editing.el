@@ -53,7 +53,7 @@
 ;; comment code
 (defun comment-or-uncomment-region-or-line ()
     "Comments or uncomments the region or the current line if there's no active region."
-    (interactive)
+    (interactive "*")
     (let (beg end)
         (if (region-active-p)
             (setq beg (region-beginning) end (region-end))
@@ -78,6 +78,10 @@
 (global-set-key (kbd "C-=") 'er/expand-region)
 
 (global-set-key (kbd "M-j") 'join-line)
+
+(global-set-key (kbd "s-t") 'transpose-paragraphs)
+(global-set-key (kbd "s-[") 'backward-paragraph)
+(global-set-key (kbd "s-]") 'forward-paragraph)
 
 (setq-default scroll-margin 4)
 
