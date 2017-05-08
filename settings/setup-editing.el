@@ -116,4 +116,11 @@
 (setq default-abbrev-mode t)
 ;; (add-hook 'ledger-mode-hook (lambda () (abbrev-mode 1)))
 
+(setq large-file-warning-threshold 2000000)
+
+;; a defined kbd macro
+;; use for change clojure hashmap to a 2 column csv format
+(fset 'hashmap-to-csv
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([4 134217790 backspace 134217788 134217848 114 101 112 108 97 99 101 45 115 116 114 105 110 103 return 44 32 return 17 10 return 134217788 134217848 114 101 112 108 97 99 101 45 115 116 114 105 110 103 return 58 return 39 return 134217788 134217848 114 101 112 108 97 99 101 45 115 116 114 105 110 103 return 32 return 44 return] 0 "%d")) arg)))
+
 (provide 'setup-editing)

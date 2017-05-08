@@ -52,7 +52,7 @@
 
 (define-key clojure-mode-map (kbd "M-t") 'live-transpose-words-with-hyphens)
 
-(dolist (x '(scheme emacs-lisp lisp clojure))
+(dolist (x '(scheme emacs-lisp lisp clojure racket))
   (add-hook (intern (concat (symbol-name x) "-mode-hook")) 'enable-paredit-mode)
   (add-hook (intern (concat (symbol-name x) "-mode-hook")) 'rainbow-delimiters-mode))
 

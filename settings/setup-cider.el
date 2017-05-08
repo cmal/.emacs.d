@@ -206,6 +206,12 @@
            (figwheel-sidecar.repl-api/start-figwheel!)
            (figwheel-sidecar.repl-api/cljs-repl))")
 
+(setq cider-cljs-lein-repl
+      "(do (use 'figwheel-sidecar.repl-api)
+           (start-figwheel!)
+           (cljs-repl))")
+
+
 ;; clojurescript when figwheel connected
 (defun cider-send-to-repl ()
   (interactive)

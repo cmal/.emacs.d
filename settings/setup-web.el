@@ -93,3 +93,6 @@
 ;;             (local-set-key (kbd "<C-tab>") #'w3m-next-buffer)
 ;;             (local-set-key [mouse-1] #'w3m-mouse-view-this-url)
 ;;             (local-set-key [mouse-2] #'w3m-mouse-view-this-url-new-session)))
+
+
+;; use T to toggle image display
