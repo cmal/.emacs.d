@@ -331,7 +331,7 @@
 
 ;; (advice-remove 'kill-ring-save 'ad-Advice-kill-ring-save)
 
-(setq js-indent-level 2)
+;; (setq js-indent-level 2)
 (setq js-indent-level 4)
 
 (define-key helm-find-files-map (kbd "M-f") 'helm-ff-run-grep-ag)
