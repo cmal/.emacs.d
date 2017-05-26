@@ -92,8 +92,8 @@
 ;; Install extensions if they're missing
 (defun init--install-packages ()
   (packages-install
-   '(magit git-timemachine edn uuid dash diminish inflections spinner move-text golden-ratio-scroll-screen yasnippet emmet-mode json-mode helm helm-org-rifle helm-descbinds org-redmine org-repo-todo helm-ack helm-ls-git helm-emmet visual-regexp fill-column-indicator flycheck flycheck-pos-tip flycheck-clojure undo-tree smartscan smartparens guide-key sx highlight-escape-sequences whitespace-cleanup-mode elisp-slime-nav eval-sexp-fu clojure-mode align-cljlet clj-refactor clojure-mode-extra-font-locking cider cider-eval-sexp-fu company ac-cider helm-cider clj-refactor 4clojure helm-clojuredocs helm-cider-history rainbow-delimiters thingatpt paredit mic-paren yesql-ghosts string-edit multiple-cursors fic-mode smart-forward wgrep change-inner web-mode js2-mode js2-refactor nodejs-repl restclient less-css-mode yaml-mode sicp graphviz-dot-mode blog-admin edit-server keyfreq expand-region markdown-preview-mode adoc-mode beacon bug-hunter helm-chrome helm-github-stars swbuff swbuff-x ace-jump-mode pinyin-search atomic-chrome vue-mode editorconfig sass-mode psysh php-mode jedi jedi-direx wolfram-mode language-detection w3m helm-w3m bookmark+ alert org-alert info+ hyperbole suggest ledger-mode hledger-mode vlf racket-mode exec-path-from-shell
-;; use-package capture multi-term helm-mt chinese-fonts-setup helm-projectile swiper-helm smooth-scrolling auto-complete emms helm-emms emms-player-mpv emms-browser emms-source-file emms-source-playlist emms-lyrics emms-info e2wm el-get
+   '(magit git-timemachine edn uuid dash diminish inflections spinner move-text golden-ratio-scroll-screen yasnippet emmet-mode json-mode helm helm-org-rifle helm-descbinds org-redmine org-repo-todo helm-ack helm-ls-git helm-emmet visual-regexp fill-column-indicator flycheck flycheck-pos-tip flycheck-clojure undo-tree smartscan smartparens guide-key sx highlight-escape-sequences whitespace-cleanup-mode elisp-slime-nav eval-sexp-fu clojure-mode align-cljlet clj-refactor clojure-mode-extra-font-locking cider cider-eval-sexp-fu company ac-cider helm-cider clj-refactor 4clojure helm-clojuredocs helm-cider-history rainbow-delimiters thingatpt paredit mic-paren yesql-ghosts string-edit multiple-cursors fic-mode smart-forward wgrep change-inner web-mode js2-mode js2-refactor nodejs-repl restclient less-css-mode yaml-mode sicp graphviz-dot-mode blog-admin edit-server keyfreq expand-region markdown-preview-mode adoc-mode bug-hunter helm-chrome helm-github-stars swbuff swbuff-x ace-jump-mode pinyin-search atomic-chrome vue-mode editorconfig sass-mode psysh php-mode jedi jedi-direx wolfram-mode language-detection w3m helm-w3m bookmark+ alert org-alert info+ hyperbole suggest ledger-mode hledger-mode vlf racket-mode exec-path-from-shell pangu-spacing aggressive-indent
+           ;; use-package capture multi-term helm-mt chinese-fonts-setup helm-projectile swiper-helm smooth-scrolling auto-complete emms helm-emms emms-player-mpv emms-browser emms-source-file emms-source-playlist emms-lyrics emms-info e2wm el-get beacon 
            )))
 ;; ad--addoit-function
 
@@ -114,7 +114,7 @@
 ;; guide-key
 (require 'guide-key)
 (setq guide-key/guide-key-sequence
-      '("C-x r" "C-x 4" "C-x v" "C-x 8" "C-x +" "C-c @"))
+      '("C-x r" "C-x 4" "C-x v" "C-x 8" "C-x +" "C-c @" "C-c RET"))
 (guide-key-mode 1)
 (setq guide-key/recursive-key-sequence-flag t)
 (setq guide-key/popup-window-position 'bottom)
@@ -161,6 +161,11 @@
 ;; (require 'prodigy)
 ;; (global-set-key (kbd "C-x M-m") 'prodigy)
 
+;; after require setup-font
+;; (if (display-graphic-p) (use-font-set-ptmono))
+(if (display-graphic-p) (use-font-set-inziu))
+;; (if (display-graphic-p) (use-font-set-pragmata))
+
 ;; Font lock dash.el
 (eval-after-load "dash" '(dash-enable-font-lock))
 
@@ -168,14 +173,15 @@
 (require 'smartparens-config)
 (setq sp-autoescape-string-quote nil)
 (--each '(css-mode-hook
+          scss-mode-hook
           restclient-mode-hook
           js-mode-hook
           js2-mode-hook
           java-mode
           ruby-mode
-;;          markdown-mode
-;;          groovy-mode
-;;          scala-mode
+          ;; markdown-mode
+          ;; groovy-mode
+          ;; scala-mode
           )
   (add-hook it 'turn-on-smartparens-mode))
 
@@ -260,12 +266,12 @@
 ;; (put 'upcase-region 'disabled nil)
 
 ;; Chrome edit server
-(require 'edit-server)
-(edit-server-start)
-(put 'narrow-to-region 'disabled nil)
+;; (require 'edit-server)
+;; (edit-server-start)
+;; (put 'narrow-to-region 'disabled nil)
 
-(atomic-chrome-start-server)
-(setq atomic-chrome-buffer-open-style 'frame)
+;; (atomic-chrome-start-server)
+;; (setq atomic-chrome-buffer-open-style 'frame)
 ;; (setq atomic-chrome-extension-type-list '(atomic-chrome ghost-text))
 
 (require 'my-utils)

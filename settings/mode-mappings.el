@@ -12,13 +12,24 @@
 (autoload 'emmet-mode "emmet-mode")
 
 ;; CSS
-(add-to-list 'auto-mode-alist '("\\.scss$" . css-mode))
+(add-to-list 'auto-mode-alist '("\\.scss$" . scss-mode))
+(add-to-list 'auto-mode-alist '("\\.sass$" . sass-mode))
 (add-to-list 'auto-mode-alist '("\\.css$" . css-mode))
 (add-to-list 'auto-mode-alist '("\\.less$" . less-css-mode))
+
 (add-hook 'css-mode-hook (lambda() (rainbow-mode)))
 (add-hook 'css-mode-hook (lambda() (emmet-mode)))
+
+(add-hook 'scss-mode-hook (lambda () (rainbow-mode)))
+(add-hook 'scss-mode-hook (lambda () (emmet-mode)))
+(add-hook 'scss-mode-hook (lambda () (rainbow-delimiters-mode)))
+(add-hook 'scss-mode-hook (lambda () (subword-mode)))
+(add-to-list 'rainbow-html-colors-major-mode-list 'scss-mode)
+
+(add-hook 'scss-mode-hook (lambda () (aggressive-indent-mode)))
 (add-hook 'less-css-mode-hook (lambda() (rainbow-mode)))
 (add-hook 'less-css-mode-hook (lambda() (emmet-mode)))
+(add-to-list 'rainbow-html-colors-major-mode-list 'less-css-mode)
 
 ;; Restclient
 (add-to-list 'auto-mode-alist '("\\.restclient$" . restclient-mode))
@@ -90,6 +101,7 @@
 (add-to-list 'auto-mode-alist '("\\.cljs$" . clojurescript-mode))
 (add-to-list 'auto-mode-alist '("\\.cljc$" . clojurec-mode))
 (add-hook 'clojure-mode-hook 'hs-minor-mode)
+(add-hook 'clojurescript-mode-hook 'hs-minor-mode)
 
 (add-to-list 'auto-mode-alist '("\\.asciidoc$" . adoc-mode))
 ;; (add-hook 'adoc-mode-hook 'cider-mode) ;; added in setup-cider.el

@@ -4,6 +4,9 @@
 ;; functions!
 (setq cljr-eagerly-build-asts-on-startup nil)
 
+;; wiki of clj-refactor
+;; https://github.com/clojure-emacs/clj-refactor.el/wiki
+
 (eval-after-load 'clojure-mode
   '(font-lock-add-keywords
     'clojure-mode `(("(\\(fn\\)[\[[:space:]]"
@@ -54,7 +57,10 @@
 
 (dolist (x '(scheme emacs-lisp lisp clojure racket))
   (add-hook (intern (concat (symbol-name x) "-mode-hook")) 'enable-paredit-mode)
-  (add-hook (intern (concat (symbol-name x) "-mode-hook")) 'rainbow-delimiters-mode))
+  (add-hook (intern (concat (symbol-name x) "-mode-hook")) 'rainbow-delimiters-mode)
+  (add-hook (intern (concat (symbol-name x) "-mode-hook")) 'subword-mode)
+  (add-hook (intern (concat (symbol-name x) "-mode-hook")) 'aggressive-indent-mode))
+
 
 (defun live-warn-when-cider-not-connected ()
       (interactive)
@@ -85,5 +91,18 @@ the (^:fold ...) expressions."
   (hs-minor-mode 1)
   (hs-clojure-hide-namespace-and-folds))
 (add-hook 'clojure-mode-hook 'hs-clojure-mode-hook)
+
+(setq cljr-magic-require-namespaces
+      '(("io"   . "clojure.java.io")
+        ("set"  . "clojure.set")
+        ("s"  . "clojure.string")
+        ("walk" . "clojure.walk")
+        ("zip"  . "clojure.zip")
+        ("time" . "clj-time.core")
+        ("log"  . "clojure.tools.logging")
+        ("json" . "cheshire.core")))
+
+(require 'clojure-mode-extra-font-locking)
+(setq clojure-align-forms-automatically t)
 
 (provide 'setup-clojure-mode)

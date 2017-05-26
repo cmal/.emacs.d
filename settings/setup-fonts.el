@@ -48,14 +48,6 @@
   (interactive)
   (set-default-font "Inziu IosevkaCC CL-16"))
 
-;; (if (display-graphic-p) (use-font-set-ptmono))
-;; (if (display-graphic-p) (use-font-set-inziu))
-
-(if (display-graphic-p) (use-font-set-pragmata))
-
-
-
-
 ;; (cl-prettyprint (font-family-list))
 
 (provide 'setup-fonts)

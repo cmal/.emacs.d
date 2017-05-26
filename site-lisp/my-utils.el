@@ -1,7 +1,5 @@
 ;; my utils, by yuzhao
 
-(require 'extends)
-
 (defun other-window-backward (&optional n)
   "Select Nth previous window."
   (interactive "P")

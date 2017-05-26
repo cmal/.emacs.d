@@ -12,6 +12,7 @@
  '(buffer-flip-mode t)
  '(cfs--current-profile "read-code" t)
  '(cfs--profiles-steps (quote (("unset" . 10) ("coding" . 8) ("read-code" . 9))) t)
+ '(compilation-message-face (quote default))
  '(custom-enabled-themes (quote (monokai)))
  '(custom-safe-themes
    (quote
@@ -19,6 +20,17 @@
  '(electric-indent-mode t)
  '(fci-rule-color "#383838")
  '(flycheck-display-errors-function (function flycheck-pos-tip-error-messages))
+ '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
+ '(highlight-tail-colors
+   (quote
+    (("#3C3D37" . 0)
+     ("#679A01" . 20)
+     ("#4BBEAE" . 30)
+     ("#1DB4D0" . 50)
+     ("#9A8F21" . 60)
+     ("#A75B00" . 70)
+     ("#F309DF" . 85)
+     ("#3C3D37" . 100))))
  '(json-reformat:indent-width 2)
  '(ledger-post-amount-alignment-at :decimal)
  '(ledger-post-amount-alignment-column 62)
@@ -31,13 +43,16 @@
      ("payee" "ledger -f %(ledger-file) reg @%(payee)")
      ("account" "ledger -f %(ledger-file) reg %(account)")
      ("%" "ledger -f %(ledger-file) -%s -S T -d \"l<=2\" bal"))))
- '(linum-format "%4d| ")
+ '(linum-format "%4d福 ")
+ '(magit-diff-use-overlays nil)
  '(org-agenda-files
    (quote
     ("/Users/yuzhao/gits/org/clojure.org" "/Users/yuzhao/gits/frontend/TODO.org" "/Users/yuzhao/gits/fcc-voting/TODO.org" "/Users/yuzhao/gits/data-nav-reframe/TODO.org" "/Users/yuzhao/gits/SICP/TODO.org" "/Users/yuzhao/gits/stockinfogate/TODO.org" "/Users/yuzhao/gits/mobile/TODO.org" "/Users/yuzhao/.emacs.d/TODO.org")))
  '(package-selected-packages
    (quote
-    (monokai-theme darkokai-theme slim-mode coffee-mode racket-mode vlf magit niceify-info hledger-mode suggest hyperbole info+ org-alert alert helm-w3m w3m language-detection pinyin-search wolfram-mode jedi-direx jedi php-mode psysh sass-mode editorconfig vue-mode ace-jump-mode atomic-chrome adoc-mode swbuff-x el-get e2wm e2wm-bookmark helm-github-stars bug-hunter emms-player-mpv emms-soundcloud helm-emms emms helm-mt multi-term poker beacon helm-chrome helm-cider-history helm-clojuredocs use-package markdown-preview-mode keyfreq smooth-scrolling git-timemachine company key-chord json-mode paper-theme yaml-mode blog-admin graphviz-dot-mode mic-paren rainbow-delimiters ac-cider auto-complete cider-eval-sexp-fu eval-sexp-fu align-cljlet uuid 4clojure helm-emmet emmet-mode smartscan web-mode helm-descbinds edit-server yesql-ghosts helm-cider core-async-mode clj-refactor js2-refactor js2-mode js-mode fill-column-indicator change-inner wgrep visual-regexp swiper-helm elisp-slime-nav whitespace-cleanup-mode highlight-escape-sequences smartparens smart-forward encourage-mode encourange-mode fic-mode multiple-cursors ledger-mode string-edit less-css-mode rainbow-mode clojure-mode-extra-font-locking sx flycheck-clojure flycheck-pos-tip helm-swoop helm-ls-git org-repo-todo helm-projectile helm-ack org-redmine helm-org-rifle golden-ratio-scroll-screen chinese-fonts-setup chinese-font-setup undo-tree diminish exec-path-from-shell cider restclient nodejs-repl guide-key flycheck move-text paredit dash helm)))
+    (aggressive-indent pangu-spacing nrepl-eval-sexp-fu nrepl-sync monokai-theme darkokai-theme slim-mode coffee-mode racket-mode vlf magit niceify-info hledger-mode suggest hyperbole info+ org-alert alert helm-w3m w3m language-detection pinyin-search wolfram-mode jedi-direx jedi php-mode psysh sass-mode editorconfig vue-mode ace-jump-mode atomic-chrome adoc-mode swbuff-x el-get e2wm e2wm-bookmark helm-github-stars bug-hunter emms-player-mpv emms-soundcloud helm-emms emms helm-mt multi-term poker beacon helm-chrome helm-cider-history helm-clojuredocs use-package markdown-preview-mode keyfreq smooth-scrolling git-timemachine company key-chord json-mode paper-theme yaml-mode blog-admin graphviz-dot-mode mic-paren rainbow-delimiters ac-cider auto-complete cider-eval-sexp-fu eval-sexp-fu align-cljlet uuid 4clojure helm-emmet emmet-mode smartscan web-mode helm-descbinds edit-server yesql-ghosts helm-cider core-async-mode clj-refactor js2-refactor js2-mode js-mode fill-column-indicator change-inner wgrep visual-regexp swiper-helm elisp-slime-nav whitespace-cleanup-mode highlight-escape-sequences smartparens smart-forward encourage-mode encourange-mode fic-mode multiple-cursors ledger-mode string-edit less-css-mode rainbow-mode clojure-mode-extra-font-locking sx flycheck-clojure flycheck-pos-tip helm-swoop helm-ls-git org-repo-todo helm-projectile helm-ack org-redmine helm-org-rifle golden-ratio-scroll-screen chinese-fonts-setup chinese-font-setup undo-tree diminish exec-path-from-shell cider restclient nodejs-repl guide-key flycheck move-text paredit dash helm)))
+ '(pos-tip-background-color "#A6E22E")
+ '(pos-tip-foreground-color "#272822")
  '(send-mail-function (quote smtpmail-send-it))
  '(smartscan-symbol-selector "symbol")
  '(vc-annotate-background nil)
@@ -62,7 +77,9 @@
      (340 . "#e7c547")
      (360 . "DarkOliveGreen3"))))
  '(vc-annotate-very-old-color nil)
- '(web-mode-code-indent-offset 2))
+ '(web-mode-code-indent-offset 2)
+ '(weechat-color-list
+   (unspecified "#272822" "#3C3D37" "#F70057" "#F92672" "#86C30D" "#A6E22E" "#BEB244" "#E6DB74" "#40CAE4" "#66D9EF" "#FB35EA" "#FD5FF0" "#74DBCD" "#A1EFE4" "#F8F8F2" "#F8F8F0")))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
