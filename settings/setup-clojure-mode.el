@@ -4,6 +4,7 @@
 ;; functions!
 (setq cljr-eagerly-build-asts-on-startup nil)
 
+(require 'clj-refactor)
 ;; wiki of clj-refactor
 ;; https://github.com/clojure-emacs/clj-refactor.el/wiki
 
@@ -63,8 +64,8 @@
 
 
 (defun live-warn-when-cider-not-connected ()
-      (interactive)
-      (message "nREPL server not connected. Run M-x cider or M-x cider-jack-in to connect."))
+  (interactive)
+  (message "nREPL server not connected. Run M-x cider or M-x cider-jack-in to connect."))
 
 (define-key clojure-mode-map (kbd "C-M-x")   'live-warn-when-cider-not-connected)
 (define-key clojure-mode-map (kbd "C-x C-e") 'live-warn-when-cider-not-connected)
@@ -91,6 +92,9 @@ the (^:fold ...) expressions."
   (hs-minor-mode 1)
   (hs-clojure-hide-namespace-and-folds))
 (add-hook 'clojure-mode-hook 'hs-clojure-mode-hook)
+
+(add-hook 'clojure-mode-hook 'clj-refactor-mode)
+(add-hook 'clojure-mode-hook 'yas-minor-mode) ;; needed by clj-refactor-mode
 
 (setq cljr-magic-require-namespaces
       '(("io"   . "clojure.java.io")
