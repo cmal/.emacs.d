@@ -44,7 +44,8 @@
 
 (load-file (concat custom-theme-directory "/color-theme-tomorrow.el"))
 ;;; (load-theme 'tomorrow-night-bright)
-(load-theme 'afternoon)
+;; (load-theme 'afternoon)
+(load-theme 'monokai)
 ;; (load-theme 'word-perfect)
 ;; (load-theme 'cyberpunk)
 ;; Don't defer screen updates when performing operations

@@ -52,7 +52,7 @@
 ;; HTML
 (autoload 'web-mode "web-mode")
 ;; (add-to-list 'auto-mode-alist '("\\.html\\'" . crappy-jsp-mode))
-(add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.html\\'" . html-mode))
 (add-to-list 'auto-mode-alist '("\\.tag$" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.vm$" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.ejs$" . web-mode))

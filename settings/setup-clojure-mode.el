@@ -91,7 +91,7 @@ the (^:fold ...) expressions."
   (interactive)
   (hs-minor-mode 1)
   (hs-clojure-hide-namespace-and-folds))
-(add-hook 'clojure-mode-hook 'hs-clojure-mode-hook)
+;; (add-hook 'clojure-mode-hook 'hs-clojure-mode-hook)
 
 (add-hook 'clojure-mode-hook 'clj-refactor-mode)
 (add-hook 'clojure-mode-hook 'yas-minor-mode) ;; needed by clj-refactor-mode

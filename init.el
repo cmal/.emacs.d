@@ -130,7 +130,7 @@
 ;; (eval-after-load 'grep '(require 'setup-rgrep))
 ;; (eval-after-load 'shell '(require 'setup-shell))
 ;; (require 'setup-hippie)
-;; (require 'setup-yasnippet)
+(require 'setup-yasnippet)
 ;; (require 'setup-perspective)
 ;; (require 'setup-ffip)
 ;; (require 'setup-html-mode)
@@ -336,3 +336,15 @@
 (require 'move-text)
 
 (require 'setup-keymaps)
+
+;; seq.el 25.1 remove
+(defun seq-map-indexed (function sequence)
+  "Return the result of applying FUNCTION to each element of SEQUENCE.
+Unlike `seq-map', FUNCTION takes two arguments: the element of
+the sequence, and its index within the sequence."
+  (let ((index 0))
+    (seq-map (lambda (elt)
+               (prog1
+                   (funcall function elt index)
+                 (setq index (1+ index))))
+             sequence)))
