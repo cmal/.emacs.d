@@ -350,3 +350,5 @@ the sequence, and its index within the sequence."
              sequence)))
 
 (require 'reddit)
+
+(require 'bookmark+)
