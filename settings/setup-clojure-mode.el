@@ -109,4 +109,11 @@ the (^:fold ...) expressions."
 (require 'clojure-mode-extra-font-locking)
 (setq clojure-align-forms-automatically t)
 
+;; sayid: clojure profiler and debugger
+;; add this to `project.clj`:
+;; [com.billpiel/sayid "0.0.15"]
+;; and uncomment the following s-exp
+;; (eval-after-load 'clojure-mode
+;;   '(sayid-setup-package))
+
 (provide 'setup-clojure-mode)

@@ -265,7 +265,6 @@
 ;; Chrome edit server
 ;; (require 'edit-server)
 ;; (edit-server-start)
-;; (put 'narrow-to-region 'disabled nil)
 
 ;; (atomic-chrome-start-server)
 ;; (setq atomic-chrome-buffer-open-style 'frame)
@@ -352,3 +351,4 @@ the sequence, and its index within the sequence."
 (require 'reddit)
 
 (require 'bookmark+)
+(put 'narrow-to-region 'disabled nil)
