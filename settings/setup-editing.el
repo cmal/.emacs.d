@@ -125,4 +125,10 @@
 
 (global-undo-tree-mode)
 
+
+;; input method
+(require 'chinese-wubi)
+(register-input-method "chinese-wubi" "Chinese-GB" 'quail-use-package "WB" "汉字输入∷五笔输入法∷")
+(setq default-input-method "chinese-wubi")
+
 (provide 'setup-editing)
