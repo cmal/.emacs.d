@@ -65,7 +65,7 @@
    (98 . "子b")
    (97 . "工a"))
 
-"汉字输入∷五笔字型∷
+ "汉字输入∷五笔字型∷
 
 Created by Dai Yuwen (daiyuwen@freeshell.org).
 Modified by Zhitao Gong (me@gongzhitaao.org).
@@ -142,11 +142,13 @@ Modified by Zhitao Gong (me@gongzhitaao.org).
   C 又巴马 丢矢矣
   X 慈母无心弓和匕 幼无力
 "
-'(("\C-?" . quail-delete-last-char)
-  (" " . quail-select-current))
-nil nil nil nil)
+ '(("\C-?" . quail-delete-last-char)
+   (" " . quail-select-current))
+ nil nil nil nil)
 
-(load "chinese-wubi-rules.el")
+;; (load "chinese-wubi-rules.el")
+
+(load "chinese-wubi-single-rules.el")
 
 (provide 'chinese-wubi)
 ;;; chinese-wubi.el ends here
