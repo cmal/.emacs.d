@@ -12,3 +12,9 @@ It has a modified version of `encourage-mode` which will provide you
 Chinese font settings are exported from `chinese-fonts-setup` package
 which is available in melpa packages. Fonts used is `Inziu` which is
 available on http://be5invis.github.io/Iosevka/inziu.html .(需要翻墙)
+
+NOTE: You need to run
+
+    git submodule udpate --init --recursive
+
+in the repo's folder after you cloned it.

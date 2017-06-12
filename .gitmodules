@@ -1,3 +1,6 @@
 [submodule "site-lisp/eim"]
 	path = site-lisp/eim
 	url = git@github.com:cmal/eim.git
+[submodule "site-lisp/wubi-practice"]
+	path = site-lisp/wubi-practice
+	url = git@github.com:cmal/wubi-practice.git
