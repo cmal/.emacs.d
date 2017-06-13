@@ -11,7 +11,7 @@
  '(ansi-term-color-vector
    [unspecified "#1B2229" "#ff6c6b" "#98be65" "#ECBE7B" "#51afef" "#c678dd" "#46D9FF" "#DFDFDF"] t)
  '(beacon-mode nil)
- '(bmkp-last-as-first-bookmark-file "~/.emacs.d/bookmarks")
+ '(bmkp-last-as-first-bookmark-file "/Users/yuzhao/.emacs.d/bookmarks")
  '(buffer-flip-mode t)
  '(cfs--current-profile "read-code" t)
  '(cfs--profiles-steps (quote (("unset" . 10) ("coding" . 8) ("read-code" . 9))) t)

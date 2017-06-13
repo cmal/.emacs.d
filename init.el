@@ -31,18 +31,19 @@
 ;; Set up load path
 (add-to-list 'load-path settings-dir)
 (add-to-list 'load-path site-lisp-dir)
+
 ;; add site-lisp-dir and all of its first child dir
 ;; to 'load-path
-;; (defun add-site-lisp-and-sub-dir ()
-;;     (let ((base (expand-file-name "site-lisp" user-emacs-directory)))
-;;       (add-to-list 'load-path base)
-;;       (dolist (f (directory-files base))
-;; 	(let ((name (concat base "/" f)))
-;; 	  (when (and (file-directory-p name) 
-;; 		     (not (equal f ".."))
-;; 		     (not (equal f ".")))
-;; 	    (add-to-list 'load-path name))))))
-;; (add-site-lisp-and-sub-dir)
+(defun add-site-lisp-and-sub-dir ()
+  (let ((base (expand-file-name "site-lisp" user-emacs-directory)))
+    (add-to-list 'load-path base)
+    (dolist (f (directory-files base))
+      (let ((name (concat base "/" f)))
+        (when (and (file-directory-p name) 
+                   (not (equal f ".."))
+                   (not (equal f ".")))
+          (add-to-list 'load-path name))))))
+(add-site-lisp-and-sub-dir)
 
 (require 'encourage-mode)
 (encourage-mode)
@@ -352,3 +353,5 @@ the sequence, and its index within the sequence."
 
 (require 'bookmark+)
 (put 'narrow-to-region 'disabled nil)
+
+(require 'wubi-practice)
