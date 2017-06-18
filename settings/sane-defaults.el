@@ -141,4 +141,6 @@
 
 (add-to-list 'find-file-not-found-functions 'my-create-non-existent-directory)
 
+(put 'narrow-to-region 'disabled nil)
+
 (provide 'sane-defaults)

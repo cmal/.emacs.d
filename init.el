@@ -322,16 +322,13 @@
 
 (setq debug-on-error t)
 
-;; javascript indent
-;; you should use set-variable for js-indent-level to 2 or 4 to switch.
-
 ;; info+ ??
 (advice-remove 'kill-ring-save 'ad-Advice-kill-ring-save)
 
-;; (advice-remove 'kill-ring-save 'ad-Advice-kill-ring-save)
-
-;; (setq js-indent-level 2)
-(setq js-indent-level 4)
+;; javascript indent
+;; you should use set-variable for js-indent-level to 2 or 4 to switch.
+(setq js-indent-level 2)
+(set-variable 'js-indent-level 4)
 
 (require 'move-text)
 
@@ -352,6 +349,5 @@ the sequence, and its index within the sequence."
 (require 'reddit)
 
 (require 'bookmark+)
-(put 'narrow-to-region 'disabled nil)
 
-(require 'wubi-practice)
+(require 'cmal-randomize)

@@ -33,7 +33,7 @@
 ;; (defun set-newline-and-indent ()
 ;; ;;  (local-set-key (kbd "RET") 'newline-and-indent))
 ;;   (local-set-key (kbd "RET") 'electric-newline-and-maybe-indent))
-(electric-indent-mode)
+;; (electric-indent-mode)  ;; comment due to aggressive-indent-mode
 
 ;; (add-hook 'prog-mode-hook 'set-newline-and-indent)
 ;; (remove-hook 'prog-mode-hook 'set-newline-and-indent)
@@ -52,13 +52,13 @@
 
 ;; comment code
 (defun comment-or-uncomment-region-or-line ()
-    "Comments or uncomments the region or the current line if there's no active region."
-    (interactive "*")
-    (let (beg end)
-        (if (region-active-p)
-            (setq beg (region-beginning) end (region-end))
-            (setq beg (line-beginning-position) end (line-end-position)))
-        (comment-or-uncomment-region beg end)))
+  "Comments or uncomments the region or the current line if there's no active region."
+  (interactive "*")
+  (let (beg end)
+    (if (region-active-p)
+        (setq beg (region-beginning) end (region-end))
+      (setq beg (line-beginning-position) end (line-end-position)))
+    (comment-or-uncomment-region beg end)))
 
 (global-set-key (kbd "M-;") 'comment-or-uncomment-region-or-line)
 
@@ -69,7 +69,7 @@
 (global-smartscan-mode)
 
 ;; mic-paren
-(paren-activate)
+;; (paren-activate)
 
 ;; mouse scroll one line at a time
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
@@ -83,7 +83,7 @@
 (global-set-key (kbd "s-[") 'backward-paragraph)
 (global-set-key (kbd "s-]") 'forward-paragraph)
 
-(setq-default scroll-margin 4)
+(setq-default scroll-margin 2)
 
 ;; auto-jump-mode
 (autoload
@@ -125,6 +125,7 @@
 
 (global-undo-tree-mode)
 
+(define-key lisp-interaction-mode-map (kbd "C-M-j") 'eval-print-last-sexp)
 
 ;; input method
 (require 'chinese-wubi)

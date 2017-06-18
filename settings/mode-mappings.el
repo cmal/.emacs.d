@@ -157,4 +157,9 @@
 (autoload 'ledger-mode "ledger-mode" "A major mode for Ledger" t)
 (add-to-list 'auto-mode-alist '("\\.ledger$" . ledger-mode))
 
+;; wolfram mode
+(autoload 'wolfram-mode "wolfram-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.wl$" . wolfram-mode))
+(add-to-list 'auto-mode-alist '("\\.m$" . wolfram-mode))
+
 (provide 'mode-mappings)
