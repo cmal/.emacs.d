@@ -59,11 +59,16 @@
 ;; Set up appearance early
 (require 'appearance)
 
+;; Are we on a mac?
+(setq is-mac (equal system-type 'darwin))
+
 ;; Settings for currently logged in user
-(setq user-settings-dir
-      (concat user-emacs-directory "users/" user-login-name))
-(add-to-list 'load-path user-settings-dir)
-(require 'user-settings)
+(when is-mac
+  (progn
+    (setq user-settings-dir
+          (concat user-emacs-directory "users/" user-login-name))
+    (add-to-list 'load-path user-settings-dir)
+    (require 'user-settings)))
 
 ;; Add external projects to load path
 ;; (dolist (project (directory-files site-lisp-dir t "\\w+"))
@@ -84,8 +89,6 @@
 (setq-default save-place t)
 (setq save-place-file (expand-file-name ".places" user-emacs-directory))
 
-;; Are we on a mac?
-(setq is-mac (equal system-type 'darwin))
 
 ;; Setup packages
 (require 'setup-package)
