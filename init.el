@@ -337,7 +337,6 @@
 (require 'move-text)
 
 (require 'setup-keymaps)
-(require 'setup-midnight)
 
 ;; seq.el 25.1 remove
 (defun seq-map-indexed (function sequence)
