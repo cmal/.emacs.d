@@ -25,24 +25,38 @@
 ;; ==========
 ;; send mail at specific time
 (require 'midnight)
-(midnight-delay-set 'midnight-delay "19:00pm")
-;; or (midnight-delay-set 'midnight-delay 16200) ;; (eq (* 4.5 60 60) "4:30am")
-(add-hook 'midnight-hook (lambda ()
-                           (with-current-buffer "*unsent mail*"
-                             (call-interactively 'message-send))))
-(add-hook 'midnight-hook 'calendar)
+
+(defun schedule-mail-sending ()
+  (interactive)
+  (midnight-delay-set 'midnight-delay "19:00pm")
+  ;; or (midnight-delay-set 'midnight-delay 16200) ;; (eq (* 4.5 60 60) "4:30am")
+  (add-hook 'midnight-hook (lambda ()
+                             (with-current-buffer "*unsent mail*"
+                               (call-interactively 'message-send)))))
+;; (add-hook 'midnight-hook 'calendar)
 ;; (cancel-timer midnight-timer)
 ;; (setq midnight-period 7200) ;; (eq (* 2 60 60) "2 hours")
 ;; ==========
 
 
-(defun send-month-check-mail-at-some-time ()
-  (interactive)
-  (run-at-time
-   (encode-time 59 21 14 30 6 2017) ;; TODO should change this to month end
-   nil
-   (lambda ()
-     (with-current-buffer "*monthcheck mail*"
-       (call-interactively 'message-send)))))
+;; a timer example
+;; (setq tmp-timer (run-at-time "2 sec" 1
+;;                              (lambda ()
+;;                                (with-current-buffer "*scratch*"
+;;                                  (insert "++++++++++++++")))))
+
+;; (cancel-timer tmp-timer)
+
+
+;; change the time and eval this to send mail this month
+;; (setq monthcheck-timer
+;;       (run-at-time
+;;        (encode-time 59 21 14 30 6 2017) ;; TODO should change this to EVERY month end
+;;        nil
+;;        (lambda ()
+;;          (with-current-buffer "*monthcheck mail*"
+;;            (call-interactively 'message-send)))))
+
+;; (cancel-timer month-check-timer)
 
 (provide 'setup-mail)
