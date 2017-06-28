@@ -48,6 +48,10 @@
   (interactive)
   (set-default-font "Inziu IosevkaCC CL-16"))
 
+(defun use-font-iosevka-slab ()
+  (interactive)
+  (set-default-font "Iosevka Slab-16"))
+
 ;; (cl-prettyprint (font-family-list))
 
 (provide 'setup-fonts)

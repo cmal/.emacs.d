@@ -47,7 +47,7 @@
      ("payee" "ledger -f %(ledger-file) reg @%(payee)")
      ("account" "ledger -f %(ledger-file) reg %(account)")
      ("%" "ledger -f %(ledger-file) -%s -S T -d \"l<=2\" bal"))))
- '(linum-format "%4d福 ")
+ '(linum-format "%4d| ")
  '(magit-diff-use-overlays nil)
  '(org-agenda-files
    (quote

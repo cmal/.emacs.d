@@ -96,7 +96,7 @@
 ;; Install extensions if they're missing
 (defun init--install-packages ()
   (packages-install
-   '(magit git-timemachine edn uuid dash diminish inflections spinner move-text golden-ratio-scroll-screen yasnippet emmet-mode json-mode helm helm-org-rifle helm-descbinds org-redmine org-repo-todo helm-ack helm-ls-git helm-emmet visual-regexp fill-column-indicator flycheck flycheck-pos-tip flycheck-clojure undo-tree smartscan smartparens guide-key sx highlight-escape-sequences whitespace-cleanup-mode elisp-slime-nav eval-sexp-fu clojure-mode align-cljlet clj-refactor clojure-mode-extra-font-locking cider cider-eval-sexp-fu company ac-cider helm-cider clj-refactor 4clojure helm-clojuredocs helm-cider-history rainbow-mode rainbow-delimiters thingatpt paredit mic-paren yesql-ghosts string-edit multiple-cursors fic-mode smart-forward wgrep change-inner web-mode js2-mode js2-refactor nodejs-repl restclient less-css-mode yaml-mode sicp graphviz-dot-mode blog-admin edit-server keyfreq expand-region markdown-preview-mode adoc-mode bug-hunter helm-chrome helm-github-stars swbuff swbuff-x ace-jump-mode pinyin-search atomic-chrome vue-mode editorconfig sass-mode psysh php-mode jedi jedi-direx wolfram-mode language-detection w3m helm-w3m bookmark+ alert org-alert info+ hyperbole suggest ledger-mode hledger-mode vlf racket-mode exec-path-from-shell pangu-spacing aggressive-indent tree-mode geiser monokai-theme
+   '(magit git-timemachine edn uuid dash diminish inflections spinner move-text golden-ratio-scroll-screen yasnippet emmet-mode json-mode helm helm-org-rifle helm-descbinds org-redmine org-repo-todo helm-ack helm-ls-git helm-emmet visual-regexp fill-column-indicator flycheck flycheck-pos-tip flycheck-clojure undo-tree smartscan smartparens guide-key sx highlight-escape-sequences whitespace-cleanup-mode elisp-slime-nav eval-sexp-fu clojure-mode align-cljlet clj-refactor clojure-mode-extra-font-locking cider cider-eval-sexp-fu company ac-cider helm-cider clj-refactor 4clojure helm-clojuredocs helm-cider-history rainbow-mode rainbow-delimiters thingatpt paredit mic-paren yesql-ghosts string-edit multiple-cursors fic-mode smart-forward wgrep change-inner web-mode js2-mode js2-refactor nodejs-repl restclient less-css-mode yaml-mode sicp graphviz-dot-mode blog-admin edit-server keyfreq expand-region web-server markdown-preview-mode adoc-mode bug-hunter helm-chrome helm-github-stars swbuff swbuff-x ace-jump-mode pinyin-search atomic-chrome vue-mode editorconfig sass-mode psysh php-mode jedi jedi-direx wolfram-mode language-detection w3m helm-w3m bookmark+ alert org-alert info+ hyperbole suggest ledger-mode hledger-mode vlf racket-mode exec-path-from-shell pangu-spacing aggressive-indent tree-mode geiser monokai-theme
            ;; use-package capture multi-term helm-mt chinese-fonts-setup helm-projectile swiper-helm smooth-scrolling auto-complete emms helm-emms emms-player-mpv emms-browser emms-source-file emms-source-playlist emms-lyrics emms-info e2wm el-get beacon 
            )))
 ;; ad--addoit-function
@@ -337,6 +337,7 @@
 (require 'move-text)
 
 (require 'setup-keymaps)
+(require 'setup-midnight)
 
 ;; seq.el 25.1 remove
 (defun seq-map-indexed (function sequence)
@@ -355,3 +356,4 @@ the sequence, and its index within the sequence."
 (require 'bookmark+)
 
 (require 'cmal-randomize)
+
