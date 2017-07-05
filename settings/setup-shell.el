@@ -1,5 +1,9 @@
 ;; Setup shell
 
+;; setup time in Linux
+;; not working yet
+(if (eq system-type 'gnu/linux)
+    (setenv "TZ" "Asia/Shanghai"))
 
 ;; use exec-path-from-shell package
 (when (memq window-system '(mac ns))
