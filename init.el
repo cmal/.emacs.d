@@ -109,7 +109,7 @@
 
 ;; Lets start with a smattering of sanity
 (require 'sane-defaults)
-(load-theme 'monokai) ; load later
+;; (load-theme 'monokai) ; load later
 
 ;; Setup environment variables from the user's shell.
 (when is-mac

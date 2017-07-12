@@ -27,10 +27,10 @@
 ;;     (set-face-attribute 'default nil :font magnars/presentation-font)))
 
 ;;(defun use-default-theme ()
-  ;;(interactive)
-  ;; (load-theme 'default-black)
-  ;; (when (boundp 'magnars/default-font)
-  ;;   (set-face-attribute 'default nil :font magnars/default-font)))
+;;(interactive)
+;; (load-theme 'default-black)
+;; (when (boundp 'magnars/default-font)
+;;   (set-face-attribute 'default nil :font magnars/default-font)))
 
 ;; (defun toggle-presentation-mode ()
 ;;   (interactive)
@@ -42,7 +42,7 @@
 
 ;; (use-default-theme)
 
-(load-file (concat custom-theme-directory "/color-theme-tomorrow.el"))
+;; (load-file (concat custom-theme-directory "/color-theme-tomorrow.el"))
 ;;; (load-theme 'tomorrow-night-bright)
 ;; (load-theme 'afternoon)
 ;; (load-theme 'monokai) ; load later
@@ -60,7 +60,7 @@
 ;;         ))
 
 ;; Highlight matching parentheses when the point is on them.
-;; (show-paren-mode 1)
+(show-paren-mode 1)
 
 (when window-system
   (setq frame-title-format '(buffer-file-name "%f" ("%b")))
