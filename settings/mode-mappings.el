@@ -162,4 +162,9 @@
 (add-to-list 'auto-mode-alist '("\\.wl$" . wolfram-mode))
 (add-to-list 'auto-mode-alist '("\\.m$" . wolfram-mode))
 
+;; haskell mode
+(autoload 'haskell-mode "haskell-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.hs$" . haskell-mode))
+(add-hook 'haskell-mode-hook 'intero-mode)
+
 (provide 'mode-mappings)
