@@ -356,3 +356,5 @@ the sequence, and its index within the sequence."
 
 (require 'cmal-randomize)
 
+(require 're-builder)
+(setq reb-re-syntax 'string)
