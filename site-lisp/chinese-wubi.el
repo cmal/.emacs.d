@@ -148,7 +148,7 @@ Modified by Zhitao Gong (me@gongzhitaao.org).
 
 ;; (load "chinese-wubi-rules.el")
 
-(load "chinese-wubi-single-rules.el")
+(load "chinese-wubi-rules.el")
 
 (provide 'chinese-wubi)
 ;;; chinese-wubi.el ends here
