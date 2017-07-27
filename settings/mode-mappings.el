@@ -167,4 +167,8 @@
 (add-to-list 'auto-mode-alist '("\\.hs$" . haskell-mode))
 (add-hook 'haskell-mode-hook 'intero-mode)
 
+;; conf mode
+(autoload 'conf-mode "conf-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.conf$" . conf-mode))
+
 (provide 'mode-mappings)

@@ -10,4 +10,5 @@
         (select-window (funcall selector)))
       (setq arg (if (plusp arg) (1- arg) (1+ arg))))))
 
+(defalias 'swap-buffers 'transpose-buffers)
 (provide 'setup-gui)
