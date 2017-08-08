@@ -8,6 +8,10 @@
 ;; wiki of clj-refactor
 ;; https://github.com/clojure-emacs/clj-refactor.el/wiki
 
+(require 'cljr-helm)  ;; helm helper used by clojure-refactor
+(define-key clojure-mode-map (kbd "C-c C-r") 'cljr-helm)
+
+
 (eval-after-load 'clojure-mode
   '(font-lock-add-keywords
     'clojure-mode `(("(\\(fn\\)[\[[:space:]]"
@@ -71,7 +75,7 @@
 (define-key clojure-mode-map (kbd "C-x C-e") 'live-warn-when-cider-not-connected)
 (define-key clojure-mode-map (kbd "C-c C-e") 'live-warn-when-cider-not-connected)
 (define-key clojure-mode-map (kbd "C-c C-l") 'live-warn-when-cider-not-connected)
-(define-key clojure-mode-map (kbd "C-c C-r") 'live-warn-when-cider-not-connected)
+;;(define-key clojure-mode-map (kbd "C-c C-r") 'live-warn-when-cider-not-connected)
 
 ;; hs-minor-mode
 (defun hs-clojure-hide-namespace-and-folds ()

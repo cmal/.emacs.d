@@ -94,5 +94,6 @@
 ;;             (local-set-key [mouse-1] #'w3m-mouse-view-this-url)
 ;;             (local-set-key [mouse-2] #'w3m-mouse-view-this-url-new-session)))
 
+(setq-default w3m-fill-column 80)
 
 ;; use T to toggle image display
