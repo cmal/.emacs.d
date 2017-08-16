@@ -28,4 +28,7 @@
 
 (global-set-key (kbd "C-c d") 'kid-sdcv-to-buffer)
 
+;; 恢复弹出前 window layout
+;; 如果有一个 before-popup-hook 的话, 可以把 layout 存成一个全局变量
+
 (provide 'setup-sdcv)

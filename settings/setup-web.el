@@ -97,3 +97,5 @@
 (setq-default w3m-fill-column 80)
 
 ;; use T to toggle image display
+
+(provide 'setup-web)

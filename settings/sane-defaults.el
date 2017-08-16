@@ -52,10 +52,13 @@
 
 ;; Lines should be 80 characters wide, not 72
 (setq fill-column 80)
+;; 80 chars is a good width.
+;;(set-default 'fill-column 80)
 
 ;; Save a list of recent files visited. (open recent file with C-x f)
-(recentf-mode 1)
-(setq recentf-max-saved-items 100) ;; just 20 is too recent
+;; comment due to using helm
+;;(recentf-mode 1)
+;;(setq recentf-max-saved-items 100) ;; just 20 is too recent
 
 ;; Save minibuffer history
 (savehist-mode 1)
@@ -99,12 +102,10 @@
 ;; Sentences do not need double spaces to end. Period.
 ;; (set-default 'sentence-end-double-space nil)
 
-;; 80 chars is a good width.
-(set-default 'fill-column 80)
-
 ;; Add parts of each file's directory to the buffer name if not unique
 (require 'uniquify)
-(setq uniquify-buffer-name-style 'forward)
+;;(setq uniquify-buffer-name-style 'forward)
+(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 
 ;; A saner ediff
 (setq ediff-diff-options "-w")

@@ -123,13 +123,11 @@
 (fset 'hashmap-to-csv
       (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([4 134217790 backspace 134217788 134217848 114 101 112 108 97 99 101 45 115 116 114 105 110 103 return 44 32 return 17 10 return 134217788 134217848 114 101 112 108 97 99 101 45 115 116 114 105 110 103 return 58 return 39 return 134217788 134217848 114 101 112 108 97 99 101 45 115 116 114 105 110 103 return 32 return 44 return] 0 "%d")) arg)))
 
-;; (global-undo-tree-mode)
-
 (define-key lisp-interaction-mode-map (kbd "C-M-j") 'eval-print-last-sexp)
 
 ;; input method
-(require 'chinese-wubi)
-(register-input-method "chinese-wubi" "Chinese-GB" 'quail-use-package "WB" "汉字输入∷五笔输入法∷")
-(setq default-input-method "chinese-wubi")
+;; (require 'chinese-wubi)
+;; (register-input-method "chinese-wubi" "Chinese-GB" 'quail-use-package "WB" "汉字输入∷五笔输入法∷")
+;; (setq default-input-method "chinese-wubi")
 
 (provide 'setup-editing)
