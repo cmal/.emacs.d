@@ -52,6 +52,18 @@
   (interactive)
   (set-default-font "Iosevka Slab-16"))
 
+(defun my-buffer-face-mode-serif ()
+  "Sets a fixed width (monospace) font in current buffer"
+  (interactive)
+  (setq buffer-face-mode-face '(:family "Times New Roman"))
+  (buffer-face-mode))
+
+(defun my-buffer-face-mode-caecilia ()
+  "Sets a not fixed width font in current buffer(for read)"
+  (interactive)
+  (setq buffer-face-mode-face '(:family "Caecilia LT Std"))
+  (buffer-face-mode))
+
 ;; (cl-prettyprint (font-family-list))
 
 (provide 'setup-fonts)
