@@ -103,7 +103,7 @@ same directory as the org-buffer and insert a link to this file."
       (call-process "import" nil nil nil filename))
   ; insert into file if correctly taken
   (if (file-exists-p filename)
-    (insert (concat "[[file:" filename "]]"))))
+    (insert filename)))
 
 
 ;; key shortcuts

@@ -22,6 +22,7 @@
  '(electric-indent-mode t)
  '(fci-rule-color "#383838")
  '(flycheck-display-errors-function (function flycheck-pos-tip-error-messages))
+ '(global-undo-tree-mode t)
  '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
  '(highlight-tail-colors
    (quote
