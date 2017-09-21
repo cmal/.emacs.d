@@ -3,6 +3,9 @@
 (global-unset-key (kbd "C-z"))
 (global-unset-key (kbd "C-x C-z"))
 (global-unset-key (kbd "M-`"))
+;; disable input method
+(global-unset-key (kbd "C-\\"))
+
 
 ;; (global-set-key (kbd "C-x C-b") 'switch-to-prev-buffer)
 ;; (global-set-key (kbd "C-x C-n") 'switch-to-next-buffer)
@@ -33,4 +36,7 @@
 
 ;; magit
 (define-key global-map (kbd "C-c m") 'magit-status-fullscreen)
+
+
+
 (provide 'setup-keymaps)
