@@ -168,9 +168,13 @@
 ;; (global-set-key (kbd "C-x M-m") 'prodigy)
 
 ;; after require setup-font
-;; (if (display-graphic-p) (use-font-set-ptmono))
-(if (display-graphic-p) (use-font-set-inziu))
-;; (if (display-graphic-p) (use-font-set-pragmata))
+(if (display-graphic-p)
+    (progn
+      ;; (use-font-set-inziu)
+      ;; (use-font-set-ptmono)
+      (use-font-iosevka-slab)
+      ;; (use-font-set-pragmata)
+      ))
 
 ;; Font lock dash.el
 (eval-after-load "dash" '(dash-enable-font-lock))

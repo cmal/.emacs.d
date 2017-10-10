@@ -27,7 +27,7 @@
 (add-hook 'scss-mode-hook (lambda () (subword-mode)))
 (add-to-list 'rainbow-html-colors-major-mode-list 'scss-mode)
 
-(add-hook 'scss-mode-hook (lambda () (aggressive-indent-mode)))
+;;(add-hook 'scss-mode-hook (lambda () (aggressive-indent-mode)))
 (add-hook 'less-css-mode-hook (lambda() (rainbow-mode)))
 (add-hook 'less-css-mode-hook (lambda() (emmet-mode)))
 (add-to-list 'rainbow-html-colors-major-mode-list 'less-css-mode)
@@ -166,9 +166,22 @@
 (autoload 'haskell-mode "haskell-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.hs$" . haskell-mode))
 (add-hook 'haskell-mode-hook 'intero-mode)
+(add-hook 'haskell-mode-hook 'smartparens-mode)
 
 ;; conf mode
 (autoload 'conf-mode "conf-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.conf$" . conf-mode))
+
+;; csharp mode
+(autoload 'csharp-mode "csharp-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.cs$" . csharp-mode))
+(add-hook 'csharp-mode-hook 'smartparens-mode)
+
+;; Lisp modes
+(dolist (x '(scheme emacs-lisp lisp clojure racket))
+  (add-hook (intern (concat (symbol-name x) "-mode-hook")) 'enable-paredit-mode)
+  (add-hook (intern (concat (symbol-name x) "-mode-hook")) 'rainbow-delimiters-mode)
+  (add-hook (intern (concat (symbol-name x) "-mode-hook")) 'subword-mode)
+  (add-hook (intern (concat (symbol-name x) "-mode-hook")) 'aggressive-indent-mode))
 
 (provide 'mode-mappings)

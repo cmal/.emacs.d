@@ -60,13 +60,6 @@
 
 (define-key clojure-mode-map (kbd "M-t") 'live-transpose-words-with-hyphens)
 
-(dolist (x '(scheme emacs-lisp lisp clojure racket))
-  (add-hook (intern (concat (symbol-name x) "-mode-hook")) 'enable-paredit-mode)
-  (add-hook (intern (concat (symbol-name x) "-mode-hook")) 'rainbow-delimiters-mode)
-  (add-hook (intern (concat (symbol-name x) "-mode-hook")) 'subword-mode)
-  (add-hook (intern (concat (symbol-name x) "-mode-hook")) 'aggressive-indent-mode))
-
-
 (defun live-warn-when-cider-not-connected ()
   (interactive)
   (message "nREPL server not connected. Run M-x cider or M-x cider-jack-in to connect."))
