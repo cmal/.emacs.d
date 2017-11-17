@@ -178,7 +178,7 @@
 (add-hook 'csharp-mode-hook 'smartparens-mode)
 
 ;; Lisp modes
-(dolist (x '(scheme emacs-lisp lisp clojure racket))
+(dolist (x '(scheme emacs-lisp lisp racket clojure))
   (add-hook (intern (concat (symbol-name x) "-mode-hook")) 'enable-paredit-mode)
   (add-hook (intern (concat (symbol-name x) "-mode-hook")) 'rainbow-delimiters-mode)
   (add-hook (intern (concat (symbol-name x) "-mode-hook")) 'subword-mode)

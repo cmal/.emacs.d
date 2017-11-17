@@ -48,6 +48,8 @@
 ;; (load-theme 'monokai) ; load later
 ;; (load-theme 'word-perfect)
 ;; (load-theme 'cyberpunk)
+;; (load-theme 'monokai)
+(load-theme 'leuven)
 ;; Don't defer screen updates when performing operations
 ;; (setq redisplay-dont-pause t)
 
