@@ -113,7 +113,8 @@
 ;; JavaScript
 (autoload 'js2-mode "js2-mode" nil t)
 (autoload 'javascript-mode "javascript-mode" nil t)
-(add-to-list 'auto-mode-alist '("\\.js$" . javascript-mode))
+;;(add-to-list 'auto-mode-alist '("\\.js$" . javascript-mode))
+(add-to-list 'auto-mode-alist '("\\.js$" . js-mode))
 (add-to-list 'auto-mode-alist '("\\.json$" . json-mode))
 (add-to-list 'auto-mode-alist '("\\.jshintrc$" . javascript-mode))
 (add-to-list 'magic-mode-alist '("#!/usr/bin/env node" . js2-mode))
@@ -126,9 +127,9 @@
 ;; (add-to-list 'auto-mode-alist '("\\.yasnippet$" . snippet-mode))
 
 ;; Buster.JS
-;(autoload 'buster-mode "buster-mode")
-;(setq buster-node-executable "/usr/local/bin/node")
-;(add-file-find-hook-with-pattern "test\\.js$" (lambda () (buster-mode)) "require(\\(\"\\|'\\)buster")
+                                        ;(autoload 'buster-mode "buster-mode")
+                                        ;(setq buster-node-executable "/usr/local/bin/node")
+                                        ;(add-file-find-hook-with-pattern "test\\.js$" (lambda () (buster-mode)) "require(\\(\"\\|'\\)buster")
 
 ;; org-mode
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
