@@ -1,4 +1,4 @@
-;;; setup-js-mode.el --- tweak javascript-mode settings -*- lexical-binding: t; -*-
+;;; setup-js-mode.el --- tweak js-mode settings -*- lexical-binding: t; -*-
 
 (add-hook 'js-mode-hook 'electric-pair-local-mode)
 (defun my-electric-pair-post-self-insert-function (orig-fun)
