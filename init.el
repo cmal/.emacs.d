@@ -337,7 +337,7 @@
 ;; javascript indent
 ;; you should use set-variable for js-indent-level to 2 or 4 to switch.
 (setq js-indent-level 2)
-(set-variable 'js-indent-level 4)
+;;(set-variable 'js-indent-level 4)
 
 (require 'move-text)
 
