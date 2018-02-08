@@ -27,8 +27,9 @@
 (define-key wolfram-mode-map (kbd "C-x C-e") 'wolfram-send-last-mathexp)
 
 ;; swbuff-x
-(define-key global-map (kbd "C-<tab>") 'swbuff-switch-to-next-buffer)
-(define-key global-map (kbd "M-<tab>") 'swbuff-switch-to-previous-buffer)
+(define-key global-map (kbd "C-S-u") 'swbuff-switch-to-next-buffer)
+(define-key global-map (kbd "C-S-i") 'swbuff-switch-to-previous-buffer)
+(define-key global-map (kbd "C-S-k") 'swbuff-kill-this-buffer)
 
 ;; visual-regexp
 (define-key global-map (kbd "M-&") 'vr/query-replace)

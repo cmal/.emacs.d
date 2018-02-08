@@ -131,4 +131,12 @@
 ;; (setq default-input-method "chinese-wubi")
 
 
+;; setup swbuff-mode
+;; requiring swbuff-x
+(setq swbuff-exclude-mode-regexp
+      "helm\\|magit\\|fundamental\\|diff\\|nodejs\\|help\\|message\\|org\\|text")
+(setq swbuff-start-with-current-centered t)
+(setq swbuff-display-intermediate-buffers t)
+(setq swbuff-clear-delay 0.5)
+
 (provide 'setup-editing)
