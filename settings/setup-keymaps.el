@@ -1,6 +1,7 @@
 ;;; custom keymaps
 
 (global-unset-key (kbd "C-z"))
+(global-unset-key (kbd "M-z"))
 (global-unset-key (kbd "C-x C-z"))
 (global-unset-key (kbd "M-`"))
 ;; disable input method
@@ -37,7 +38,5 @@
 
 ;; magit
 (define-key global-map (kbd "C-c m") 'magit-status-fullscreen)
-
-
 
 (provide 'setup-keymaps)

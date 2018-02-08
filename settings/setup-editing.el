@@ -137,6 +137,7 @@
       "helm\\|magit\\|fundamental\\|diff\\|nodejs\\|help\\|message\\|org\\|text")
 (setq swbuff-start-with-current-centered t)
 (setq swbuff-display-intermediate-buffers t)
-(setq swbuff-clear-delay 0.5)
+(setq swbuff-clear-delay 2)
+;;(setq swbuff-window-min-text-height 2)
 
 (provide 'setup-editing)
