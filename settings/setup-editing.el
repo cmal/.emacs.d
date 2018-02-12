@@ -140,4 +140,10 @@
 (setq swbuff-clear-delay 2)
 ;;(setq swbuff-window-min-text-height 2)
 
+
+;; paredit
+(add-hook 'prog-mode-hook 'paredit-everywhere-mode)
+(eval-after-load 'paredit-mode
+  (require 'paredit-menu))
+
 (provide 'setup-editing)

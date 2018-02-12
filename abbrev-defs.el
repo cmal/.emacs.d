@@ -15,9 +15,21 @@
 
 (define-abbrev-table 'bibtex-mode-abbrev-table '())
 
+(define-abbrev-table 'blog-admin-mode-abbrev-table '())
+
+(define-abbrev-table 'bmkp-edit-bookmark-record-mode-abbrev-table '())
+
+(define-abbrev-table 'bmkp-edit-bookmark-records-mode-abbrev-table '())
+
+(define-abbrev-table 'bmkp-edit-tags-mode-abbrev-table '())
+
 (define-abbrev-table 'bookmark-bmenu-mode-abbrev-table '())
 
 (define-abbrev-table 'bookmark-edit-annotation-mode-abbrev-table '())
+
+(define-abbrev-table 'bookmark-show-annotation-mode-abbrev-table '())
+
+(define-abbrev-table 'bsh-script-mode-abbrev-table '())
 
 (define-abbrev-table 'c++-mode-abbrev-table
   '(
@@ -42,6 +54,8 @@
 (define-abbrev-table 'cider-docview-mode-abbrev-table '())
 
 (define-abbrev-table 'cider-inspector-mode-abbrev-table '())
+
+(define-abbrev-table 'cider-repl-history-mode-abbrev-table '())
 
 (define-abbrev-table 'cider-repl-mode-abbrev-table '())
 
@@ -68,6 +82,8 @@
 (define-abbrev-table 'custom-new-theme-mode-abbrev-table '())
 
 (define-abbrev-table 'custom-theme-choose-mode-abbrev-table '())
+
+(define-abbrev-table 'data-debug-mode-abbrev-table '())
 
 (define-abbrev-table 'debugger-mode-abbrev-table '())
 
@@ -96,6 +112,8 @@
 (define-abbrev-table 'fundamental-mode-abbrev-table '())
 
 (define-abbrev-table 'gfm-mode-abbrev-table '())
+
+(define-abbrev-table 'git-rebase-mode-abbrev-table '())
 
 (define-abbrev-table 'global-abbrev-table '())
 
@@ -127,6 +145,18 @@
   '(
    ))
 
+(define-abbrev-table 'jdee-mode-abbrev-table
+  '(
+    ("catch" "catch" c-electric-continued-statement 0)
+    ("else" "else" c-electric-continued-statement 0)
+    ("finally" "finally" c-electric-continued-statement 0)
+    ("while" "while" c-electric-continued-statement 0)
+   ))
+
+(define-abbrev-table 'jdee-run-mode-abbrev-table '())
+
+(define-abbrev-table 'jdee-stacktrace-mode-abbrev-table '())
+
 (define-abbrev-table 'js-jsx-mode-abbrev-table '())
 
 (define-abbrev-table 'js-mode-abbrev-table '())
@@ -141,12 +171,12 @@
 
 (define-abbrev-table 'ledger-mode-abbrev-table
   '(
-    ("lq" "Assets:微信:零钱" nil 0)
-    ("xyk" "Liabilities:信用卡" nil 0)
-    ("xj" "Assets:现金" nil 0)
-    ("yeb" "Assets:支付宝:余额宝" nil 0)
-    ("payh" "Assets:平安银行:活期存款" nil 0)
     ("gz" "Income:工资" nil 0)
+    ("lq" "Assets:微信:零钱" nil 0)
+    ("payh" "Assets:平安银行:活期存款" nil 0)
+    ("xj" "Assets:现金" nil 0)
+    ("xyk" "Liabilities:信用卡" nil 0)
+    ("yeb" "Assets:支付宝:余额宝" nil 0)
    ))
 
 (define-abbrev-table 'ledger-reconcile-mode-abbrev-table '())
@@ -199,6 +229,8 @@
 
 (define-abbrev-table 'nrepl-messages-mode-abbrev-table '())
 
+(define-abbrev-table 'nxml-mode-abbrev-table '())
+
 (define-abbrev-table 'objc-mode-abbrev-table
   '(
    ))
@@ -206,6 +238,8 @@
 (define-abbrev-table 'occur-edit-mode-abbrev-table '())
 
 (define-abbrev-table 'occur-mode-abbrev-table '())
+
+(define-abbrev-table 'org-export-stack-mode-abbrev-table '())
 
 (define-abbrev-table 'org-mode-abbrev-table '())
 
@@ -223,9 +257,17 @@
 
 (define-abbrev-table 'python-mode-abbrev-table '())
 
-(define-abbrev-table 'python-mode-skeleton-abbrev-table
-  '(
-   ))
+(define-abbrev-table 'python-mode-skeleton-abbrev-table '())
+
+(define-abbrev-table 'reb-lisp-mode-abbrev-table '())
+
+(define-abbrev-table 'reb-mode-abbrev-table '())
+
+(define-abbrev-table 'reddit-comments-mode-abbrev-table '())
+
+(define-abbrev-table 'reddit-mode-abbrev-table '())
+
+(define-abbrev-table 'reddit-post-mode-abbrev-table '())
 
 (define-abbrev-table 'scheme-mode-abbrev-table '())
 
@@ -253,6 +295,8 @@
 
 (define-abbrev-table 'text-mode-abbrev-table '())
 
+(define-abbrev-table 'tree-mode-abbrev-table '())
+
 (define-abbrev-table 'url-cookie-mode-abbrev-table '())
 
 (define-abbrev-table 'vc-git-log-edit-mode-abbrev-table '())
@@ -262,6 +306,8 @@
 (define-abbrev-table 'vc-git-region-history-mode-abbrev-table '())
 
 (define-abbrev-table 'web-mode-abbrev-table '())
+
+(define-abbrev-table 'wolfram-mode-abbrev-table '())
 
 (define-abbrev-table 'xref--xref-buffer-mode-abbrev-table '())
 
