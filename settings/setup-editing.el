@@ -146,4 +146,36 @@
 (eval-after-load 'paredit-mode
   (require 'paredit-menu))
 
+;; integrating iTerm2
+(defun get-file-dir-or-home ()
+  "If inside a file buffer, return the directory, else return home"
+  (interactive)
+  (let ((filename (buffer-file-name)))
+    (if (not (and filename (file-exists-p filename)))
+	"~/"
+      (file-name-directory filename))))
+
+(defun sam--iterm-goto-filedir-or-home ()
+  "Go to present working dir and focus iterm"
+  (interactive)
+  (do-applescript
+   (concat
+    " tell application \"iTerm2\"\n"
+    "   tell the current session of current window\n"
+    (format "     write text \"cd %s\" \n"
+            ;; string escaping madness for applescript
+            (replace-regexp-in-string "\\\\" "\\\\\\\\"
+                                      (shell-quote-argument (or default-directory "~"))))
+    "   end tell\n"
+    " end tell\n"
+    " do shell script \"open -a iTerm\"\n")))
+
+(defun iterm-focus ()
+  (interactive)
+  (do-applescript
+   " do shell script \"open -a iTerm\"\n"))
+
+(define-key global-map (kbd "s-G") 'sam--iterm-goto-filedir-or-home)
+(define-key global-map (kbd "s-<escape>") 'iterm-focus)
+
 (provide 'setup-editing)
