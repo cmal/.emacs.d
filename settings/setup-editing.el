@@ -1,3 +1,8 @@
+;; setup-editing
+
+(defmacro comment (&rest body)
+  "Comment out one or more s-expressions."
+  nil)
 
 (setq-default delete-by-moving-to-trash t)
 
@@ -177,5 +182,41 @@
 
 (define-key global-map (kbd "s-G") 'sam--iterm-goto-filedir-or-home)
 (define-key global-map (kbd "s-<escape>") 'iterm-focus)
+
+;; add time to function `message`
+
+;; (defun sh/current-time-microseconds ()
+;;   "Return the current time formatted to include microseconds."
+;;   (let* ((nowtime (current-time))
+;;          (now-ms (nth 2 nowtime)))
+;;     (concat (format-time-string
+;;              "[%Y-%m-%dT%T"
+;;              nowtime)
+;;             (format
+;;              ".%d]"
+;;              now-ms))))
+
+;; not working well, maybe using log4e
+;; (defun my-current-time-microseconds ()
+;;   "Return the current time formatted to include microseconds."
+;;   (let* ((nowtime (current-time)))
+;;     (format-time-string "[%Y-%m-%dT%T]" nowtime)))
+
+;; (defun my-ad-timestamp-message (FORMAT-STRING &rest args)
+;;   "Advice to run before `message' that prepends a timestamp to each message.
+;; Activate this advice with: (advice-add 'message :before 'my-ad-timestamp-message)"
+;;   (unless (string-equal FORMAT-STRING "%s%s")
+;;     (let ((deactivate-mark nil)
+;;           (inhibit-read-only t))
+;;       (with-current-buffer "*Messages*"
+;;         (goto-char (point-max))
+;;         (if (not (bolp)) (newline))
+;;         (insert (my-current-time-microseconds) " ")))))
+
+;; (advice-add 'message :after #'my-ad-timestamp-message)
+;; ;; (advice-remove 'message #'my-ad-timestamp-message)
+
+
+(require 'log4j-mode)
 
 (provide 'setup-editing)

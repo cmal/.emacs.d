@@ -157,6 +157,7 @@
 (require 'setup-gui)
 (require 'setup-magit)
 (require 'setup-web)
+(require 'setup-help)
 
 (require 'setup-mail)
 ;; (require 'keylogger) ;; BUG in helm minibuffer

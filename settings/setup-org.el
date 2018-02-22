@@ -44,7 +44,7 @@
 (setq-default org-agenda-span 1 days)
 ;;加入日记的约会提醒项目
 (setq-default diary-file "~/.emacs.d/diary")
-;(appt-activate t)
+;; (appt-activate t)
 ;; 更改org-clock-table时间显示
 (setq org-time-clocksum-format
       '(:hours "%d" :require-hours t :minutes ":%02d" :require-minutes t))
@@ -67,20 +67,23 @@
     (error "Couldn't find URL."))
   (let ((buffer (url-retrieve-synchronously url)))
     (unwind-protect
-         (let ((data (with-current-buffer buffer
-                       (goto-char (point-min))
-                       (search-forward "\n\n")
-                       (buffer-substring (point) (point-max)))))
-           (insert-image (create-image data nil t)))
+        (let ((data (with-current-buffer buffer
+                      (goto-char (point-min))
+                      (search-forward "\n\n")
+                      (buffer-substring (point) (point-max)))))
+          (insert-image (create-image data nil t)))
       (kill-buffer buffer))))
+
+(setq-default org-agenda-files
+              '("/Users/yuzhao/gits/org/"))
+
+(add-to-list 'org-modules 'org-habit)
 
 (defun org-add-current-file-to-agenda ()
   (interactive)
   (customize-save-variable
    'org-agenda-files
    (add-to-list 'org-agenda-files buffer-file-name)))
-
-
 
 ;; screenshot
 (defun my-org-screenshot ()
@@ -96,14 +99,14 @@ same directory as the org-buffer and insert a link to this file."
                   (format-time-string "%Y%m%d_%H%M%S_")) ) ".png"))
   (unless (file-exists-p (file-name-directory filename))
     (make-directory (file-name-directory filename)))
-  ; take screenshot
+                                        ; take screenshot
   (if (eq system-type 'darwin)
       (call-process "screencapture" nil nil nil "-i" filename))
   (if (eq system-type 'gnu/linux)
       (call-process "import" nil nil nil filename))
-  ; insert into file if correctly taken
+                                        ; insert into file if correctly taken
   (if (file-exists-p filename)
-    (insert filename)))
+      (insert filename)))
 
 
 ;; key shortcuts
@@ -114,60 +117,106 @@ same directory as the org-buffer and insert a link to this file."
 
 (add-hook 'org-mode-hook 'org-mode-custom-keys-config)
 
-(setq-default appt-display-duration 600)
 
-(require 'alert)
-(setq alert-default-style 'notifier) ;; or osx-notifier
-(setq alert-notifier-command "/usr/local/bin/terminal-notifier") ;; only for 'notifier
-(require 'org-alert)
+;; alert
+;; NOTE: PLEASE disable 勿扰模式 in System Pereference -> Notifications
+;; (setq-default appt-display-duration 600)
 
-;; modify appt.el appt-display-message to add alert
-(defun appt-display-message (string mins)
-  "Display a reminder about an appointment.
-The string STRING describes the appointment, due in integer MINS minutes.
-The arguments may also be lists, where each element relates to a
-separate appointment.  The variable `appt-display-format' controls
-the format of the visible reminder.  If `appt-audible' is non-nil,
-also calls `beep' for an audible reminder."
-  (if appt-audible (beep 1))
-  ;; Backwards compatibility: avoid passing lists to a-d-w-f if not necessary.
-  (and (listp mins)
-       (= (length mins) 1)
-       (setq mins (car mins)
-             string (car string)))
-  (cond ((eq appt-display-format 'window)
-         ;; TODO use calendar-month-abbrev-array rather than %b?
-         (let ((time (format-time-string "%a %b %e "))
-               err)
-           (condition-case err
-               (funcall appt-disp-window-function
-                        (if (listp mins)
-                            (mapcar 'number-to-string mins)
-                          (number-to-string mins))
-                        time string)
-             (wrong-type-argument
-              (if (not (listp mins))
-                  (signal (car err) (cdr err))
-                (message "Argtype error in `appt-disp-window-function' - \
-update it for multiple appts?")
-                ;; Fallback to just displaying the first appt, as we used to.
-                (funcall appt-disp-window-function
-                         (number-to-string (car mins)) time
-                         (car string))))))
-         (run-at-time (format "%d sec" appt-display-duration)
-                      nil
-                      appt-delete-window-function))
-        ((eq appt-display-format 'echo)
-         (message "%s" (if (listp string)
-                           (mapconcat 'identity string "\n")
-                         string)))
-        ((eq appt-display-format 'alert)
-         (alert (if (listp string)
-                    (mapconcat 'identity string "\n")
-                  string)
-                :title "APPT"))))
+;; (require 'alert)
+;; (setq alert-default-style 'notifier) ;; or osx-notifier
+;; (setq alert-notifier-command "/usr/local/bin/terminal-notifier") ;; only for 'notifier
+;; (require 'org-alert)
 
-(setq appt-display-format 'alert)
+;; ;; modify appt.el appt-display-message to add alert
+;; (defun appt-display-message (string mins)
+;;   "Display a reminder about an appointment.
+;; The string STRING describes the appointment, due in integer MINS minutes.
+;; The arguments may also be lists, where each element relates to a
+;; separate appointment.  The variable `appt-display-format' controls
+;; the format of the visible reminder."
+;;   ;; (if appt-audible (beep 1))
+;;   ;; Backwards compatibility: avoid passing lists to a-d-w-f if not necessary.
+;;   (and (listp mins)
+;;        (= (length mins) 1)
+;;        (setq mins (car mins)
+;;              string (car string)))
+;;   (cond ((eq appt-display-format 'window)
+;;          ;; TODO use calendar-month-abbrev-array rather than %b?
+;;          (let ((time (format-time-string "%a %b %e "))
+;;                err)
+;;            (condition-case err
+;;                (funcall appt-disp-window-function
+;;                         (if (listp mins)
+;;                             (mapcar 'number-to-string mins)
+;;                           (number-to-string mins))
+;;                         time string)
+;;              (wrong-type-argument
+;;               (if (not (listp mins))
+;;                   (signal (car err) (cdr err))
+;;                 (message "Argtype error in `appt-disp-window-function' - \
+;; update it for multiple appts?")
+;;                 ;; Fallback to just displaying the first appt, as we used to.
+;;                 (funcall appt-disp-window-function
+;;                          (number-to-string (car mins)) time
+;;                          (car string))))))
+;;          (run-at-time (format "%d sec" appt-display-duration)
+;;                       nil
+;;                       appt-delete-window-function))
+;;         ((eq appt-display-format 'echo)
+;;          (message "%s" (if (listp string)
+;;                            (mapconcat 'identity string "\n")
+;;                          string)))
+;;         ((eq appt-display-format 'alert)
+;;          (alert (if (listp string)
+;;                     (mapconcat 'identity string "\n")
+;;                   string)
+;;                 :title "APPT"))))
+
+;; (setq appt-display-format 'alert)
+
+;; end alert
+
+;; another alert
+
+;; NOTE: PLEASE disable 勿扰模式 in System Pereference -> Notifications
+
+(require 'appt)
+(setq appt-time-msg-list nil)    ;; clear existing appt list
+(setq appt-display-interval '10) ;; warn every 10 minutes from t - appt-message-warning-time
+(setq
+ appt-message-warning-time '10  ;; send first warning 10 minutes before appointment
+ appt-display-mode-line nil     ;; don't show in the modeline
+ appt-display-format 'window)   ;; pass warnings to the designated window function
+(appt-activate 1)                ;; activate appointment notification
+(display-time)                   ;; activate time display
+
+(org-agenda-to-appt)             ;; generate the appt list from org agenda files on emacs launch
+(run-at-time "24:01" 360 'org-agenda-to-appt)            ;; update appt list hourly
+(add-hook 'org-finalize-agenda-hook 'org-agenda-to-appt) ;; update appt list on agenda view
+
+;; set up the call to terminal-notifier
+(defvar terminal-notifier-path
+  "/usr/local/bin/terminal-notifier")
+
+(defun tn-appt-send-notification (title msg)
+  (shell-command (concat terminal-notifier-path " -message " msg " -title " title)))
+
+;; an alternative command using AppleScript
+(defun applescript-appt-send-notification (title message)
+  (shell-command
+   (concat
+    "osascript" " -e 'display notification \"" message "\" with title \"" title "\"'")))
+
+;; designate the window function for my-appt-send-notification
+(defun tn-appt-display (min-to-app new-time msg)
+  (tn-appt-send-notification
+   (format "'Appointment in %s minutes'" min-to-app)    ;; passed to -title in terminal-notifier call
+   (format "'%s'" msg)))                                ;; passed to -message in terminal-notifier call
+
+(setq appt-disp-window-function (function tn-appt-display))
+;; test
+;; (tn-appt-display 3 nil "dafdsf")
+;; end another alert
 
 
 ;; allow for export=>beamer by placing

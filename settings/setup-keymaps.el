@@ -23,6 +23,9 @@
 
 ;; helm-ls-git
 (define-key helm-find-files-map (kbd "M-f") 'helm-ff-run-grep-ag)
+;; NOTE: ag may use http://sljit.sourceforge.net/pcre.html as regexp compiler
+;; PCRE: http://www.pcre.org/ is Perl Compatible Regular Expressions
+;; or refer to http://www.troubleshooters.com/codecorn/littperl/perlreg.htm
 
 ;; wolfram
 (define-key wolfram-mode-map (kbd "C-x C-e") 'wolfram-send-last-mathexp)
