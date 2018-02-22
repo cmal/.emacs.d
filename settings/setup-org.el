@@ -176,10 +176,9 @@ same directory as the org-buffer and insert a link to this file."
 
 ;; end alert
 
+
 ;; another alert
-
 ;; NOTE: PLEASE disable 勿扰模式 in System Pereference -> Notifications
-
 (require 'appt)
 (setq appt-time-msg-list nil)    ;; clear existing appt list
 (setq appt-display-interval '10) ;; warn every 10 minutes from t - appt-message-warning-time
@@ -216,7 +215,10 @@ same directory as the org-buffer and insert a link to this file."
 (setq appt-disp-window-function (function tn-appt-display))
 ;; test
 ;; (tn-appt-display 3 nil "dafdsf")
+;; (appt-display-message "dafsdf" 0)
 ;; end another alert
+
+
 
 
 ;; allow for export=>beamer by placing
