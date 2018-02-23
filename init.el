@@ -159,6 +159,7 @@
 (require 'setup-magit)
 (require 'setup-web)
 (require 'setup-help)
+(require 'setup-slack)
 
 (require 'setup-mail)
 ;; (require 'keylogger) ;; BUG in helm minibuffer
