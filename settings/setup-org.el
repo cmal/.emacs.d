@@ -75,7 +75,7 @@
       (kill-buffer buffer))))
 
 (setq-default org-agenda-files
-              '("/Users/yuzhao/gits/org/"))
+              '("~/gits/org/"))
 
 (add-to-list 'org-modules 'org-habit)
 
