@@ -275,4 +275,18 @@ same directory as the org-buffer and insert a link to this file."
                ("\\paragraph{%s}" . "\\paragraph*{%s}")
                ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
+;; org-wunderlist settings
+(require 'org-wunderlist)
+;; according to https://github.com/myuhe/org-wunderlist.el
+(comment
+ (setq org-wunderlist-client-id "xxx"
+       org-wunderlist-token "xxx"
+       org-wunderlist-file "~/gits/org/wunderlist.org"
+       org-wunderlist-dir "~/gits/org/org-wunderlist/"
+       ;; org-wunderlist-client-secret "xxx"
+       ;; org-wunderlist-url "http://localhost/nonexisting_url"
+       ;; org-wunderlist-auth-callback-url "http://localhost/nonexisting_url"
+       ))
+
+
 (provide 'setup-org)
