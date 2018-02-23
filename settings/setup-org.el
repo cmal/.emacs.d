@@ -182,10 +182,9 @@ same directory as the org-buffer and insert a link to this file."
 (require 'appt)
 (setq appt-time-msg-list nil)    ;; clear existing appt list
 (setq appt-display-interval '10) ;; warn every 10 minutes from t - appt-message-warning-time
-(setq
- appt-message-warning-time '10  ;; send first warning 10 minutes before appointment
- appt-display-mode-line nil     ;; don't show in the modeline
- appt-display-format 'window)   ;; pass warnings to the designated window function
+(setq appt-message-warning-time '10  ;; send first warning 10 minutes before appointment
+      appt-display-mode-line nil     ;; don't show in the modeline
+      appt-display-format 'window)   ;; pass warnings to the designated window function
 (appt-activate 1)                ;; activate appointment notification
 (display-time)                   ;; activate time display
 
@@ -201,10 +200,16 @@ same directory as the org-buffer and insert a link to this file."
   (shell-command (concat terminal-notifier-path " -message " msg " -title " title)))
 
 ;; an alternative command using AppleScript
-(defun applescript-appt-send-notification (title message)
-  (shell-command
-   (concat
-    "osascript" " -e 'display notification \"" message "\" with title \"" title "\"'")))
+;; (defun applescript-appt-send-notification (title message)
+;;   (shell-command
+;;    (concat
+;;     "osascript" " -e 'display notification \"" message "\" with title \"" title "\"'")))
+;; (defun applescript-appt-display (min-to-appt new-time msg)
+;;   (applescript-appt-send-notification
+;;    (format "'Appointment in %s minutes'" min-to-app)
+;;    (format "'%s'" msg)))
+
+;; (defun applescript-appt-delete ())
 
 ;; designate the window function for my-appt-send-notification
 (defun tn-appt-display (min-to-app new-time msg)
@@ -213,6 +218,15 @@ same directory as the org-buffer and insert a link to this file."
    (format "'%s'" msg)))                                ;; passed to -message in terminal-notifier call
 
 (setq appt-disp-window-function (function tn-appt-display))
+
+(defun tn-appt-remove ()
+  ;; NOTE: this will remove ALL notifications in terminal-notifier
+  (shell-command (concat terminal-notifier-path " -remove " "\"ALL\"")))
+
+(defun tn-appt-delete ()
+  (tn-appt-remove))
+
+(setq appt-delete-window-function #'tn-appt-delete)
 ;; test
 ;; (tn-appt-display 3 nil "dafdsf")
 ;; (appt-display-message "dafsdf" 0)
@@ -279,6 +293,7 @@ same directory as the org-buffer and insert a link to this file."
 (require 'org-wunderlist)
 ;; according to https://github.com/myuhe/org-wunderlist.el
 (comment
+ ;; settings in users/yuzhao/user-settings.el
  (setq org-wunderlist-client-id "xxx"
        org-wunderlist-token "xxx"
        org-wunderlist-file "~/gits/org/wunderlist.org"
@@ -288,5 +303,10 @@ same directory as the org-buffer and insert a link to this file."
        ;; org-wunderlist-auth-callback-url "http://localhost/nonexisting_url"
        ))
 
+;; org-redmine
+(comment
+ ;; settings in users/yuzhao/user-settings.el
+ (setq org-redmine-uri "http://redmine.9sand.cn:10086"
+       org-redmine-auth-api-key "xxx"))
 
 (provide 'setup-org)
