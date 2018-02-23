@@ -1,9 +1,4 @@
 ;; setup-editing
-
-(defmacro comment (&rest body)
-  "Comment out one or more s-expressions."
-  nil)
-
 (setq-default delete-by-moving-to-trash t)
 
 ;; Move to trash when deleting stuff
