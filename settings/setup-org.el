@@ -122,8 +122,8 @@ same directory as the org-buffer and insert a link to this file."
 ;; NOTE: PLEASE disable 勿扰模式 in System Pereference -> Notifications
 ;; (setq-default appt-display-duration 600)
 
-;; (require 'alert)
-;; (setq alert-default-style 'notifier) ;; or osx-notifier
+(require 'alert)
+(setq alert-default-style 'notifier) ;; or osx-notifier
 ;; (setq alert-notifier-command "/usr/local/bin/terminal-notifier") ;; only for 'notifier
 ;; (require 'org-alert)
 
@@ -200,33 +200,41 @@ same directory as the org-buffer and insert a link to this file."
   (shell-command (concat terminal-notifier-path " -message " msg " -title " title)))
 
 ;; an alternative command using AppleScript
-;; (defun applescript-appt-send-notification (title message)
-;;   (shell-command
-;;    (concat
-;;     "osascript" " -e 'display notification \"" message "\" with title \"" title "\"'")))
-;; (defun applescript-appt-display (min-to-appt new-time msg)
-;;   (applescript-appt-send-notification
-;;    (format "'Appointment in %s minutes'" min-to-app)
-;;    (format "'%s'" msg)))
+(defun applescript-appt-send-notification (title message)
+  (shell-command
+   (concat
+    "osascript" " -e 'display notification \"" message "\" with title \"" title "\"'")))
 
-;; (defun applescript-appt-delete ())
+(defun applescript-appt-display (min-to-appt new-time msg)
+  (applescript-appt-send-notification
+   (format "'Appointment in %s minutes'" min-to-app)
+   (format "'%s'" msg)))
+
+(defun applescript-appt-delete ())
 
 ;; designate the window function for my-appt-send-notification
 (defun tn-appt-display (min-to-app new-time msg)
   (tn-appt-send-notification
-   (format "'Appointment in %s minutes'" min-to-app)    ;; passed to -title in terminal-notifier call
-   (format "'%s'" msg)))                                ;; passed to -message in terminal-notifier call
-
-(setq appt-disp-window-function #'tn-appt-display)
+   ;; passed to -title in terminal-notifier call
+   (format "'Appointment in %s minutes'" min-to-app)
+   ;; passed to -message in terminal-notifier call
+   (format "'%s'" msg)))
 
 (defun tn-appt-remove ()
   ;; NOTE: this will remove ALL notifications in terminal-notifier
+  ;; this will remove notices from MAC notification center
   (shell-command (concat terminal-notifier-path " -remove " "\"ALL\"")))
 
 (defun tn-appt-delete ()
-  (tn-appt-remove))
+  (comment (tn-appt-remove)))
 
-(setq appt-delete-window-function #'tn-appt-delete)
+(setq appt-disp-window-function #'tn-appt-display
+      appt-delete-window-function #'tn-appt-delete)
+
+(comment
+ (setq appt-disp-window-function #'applescript-appt-display
+       appt-delete-window-function #'applescript-appt-delete))
+
 ;; test
 ;; (tn-appt-display 3 nil "dafdsf")
 ;; (appt-display-message "dafsdf" 0)
@@ -286,6 +294,7 @@ same directory as the org-buffer and insert a link to this file."
 ;; org-wunderlist settings
 (require 'org-wunderlist)
 ;; according to https://github.com/myuhe/org-wunderlist.el
+
 (comment
  ;; settings in users/yuzhao/user-settings.el
  (setq org-wunderlist-client-id "xxx"
@@ -295,11 +304,7 @@ same directory as the org-buffer and insert a link to this file."
        ;; org-wunderlist-client-secret "xxx"
        ;; org-wunderlist-url "http://localhost/nonexisting_url"
        ;; org-wunderlist-auth-callback-url "http://localhost/nonexisting_url"
-       ))
-
-;; org-redmine
-(comment
- ;; settings in users/yuzhao/user-settings.el
+       )
  (setq org-redmine-uri "http://redmine.9sand.cn:10086"
        org-redmine-auth-api-key "xxx"))
 

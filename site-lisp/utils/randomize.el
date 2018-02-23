@@ -1,4 +1,4 @@
-;;; package --- cmal-randomize.el
+;;; package --- randomize.el
 
 ;;; Commentary:
 
@@ -64,6 +64,6 @@
         (setq i (+ 1 i))))
     string))
 
-(provide 'cmal-randomize)
+(provide 'randomize)
 
-;;; cmal-randomize.el ends here
+;;; randomize.el ends here
