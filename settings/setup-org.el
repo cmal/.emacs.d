@@ -217,7 +217,7 @@ same directory as the org-buffer and insert a link to this file."
    (format "'Appointment in %s minutes'" min-to-app)    ;; passed to -title in terminal-notifier call
    (format "'%s'" msg)))                                ;; passed to -message in terminal-notifier call
 
-(setq appt-disp-window-function (function tn-appt-display))
+(setq appt-disp-window-function #'tn-appt-display)
 
 (defun tn-appt-remove ()
   ;; NOTE: this will remove ALL notifications in terminal-notifier
@@ -231,9 +231,6 @@ same directory as the org-buffer and insert a link to this file."
 ;; (tn-appt-display 3 nil "dafdsf")
 ;; (appt-display-message "dafsdf" 0)
 ;; end another alert
-
-
-
 
 ;; allow for export=>beamer by placing
 
