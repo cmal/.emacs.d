@@ -122,8 +122,8 @@ same directory as the org-buffer and insert a link to this file."
 ;; NOTE: PLEASE disable 勿扰模式 in System Pereference -> Notifications
 ;; (setq-default appt-display-duration 600)
 
-;; (require 'alert)
-;; (setq alert-default-style 'notifier) ;; or osx-notifier
+(require 'alert)
+(setq alert-default-style 'notifier) ;; or osx-notifier
 ;; (setq alert-notifier-command "/usr/local/bin/terminal-notifier") ;; only for 'notifier
 ;; (require 'org-alert)
 
@@ -182,10 +182,9 @@ same directory as the org-buffer and insert a link to this file."
 (require 'appt)
 (setq appt-time-msg-list nil)    ;; clear existing appt list
 (setq appt-display-interval '10) ;; warn every 10 minutes from t - appt-message-warning-time
-(setq
- appt-message-warning-time '10  ;; send first warning 10 minutes before appointment
- appt-display-mode-line nil     ;; don't show in the modeline
- appt-display-format 'window)   ;; pass warnings to the designated window function
+(setq appt-message-warning-time '10  ;; send first warning 10 minutes before appointment
+      appt-display-mode-line nil     ;; don't show in the modeline
+      appt-display-format 'window)   ;; pass warnings to the designated window function
 (appt-activate 1)                ;; activate appointment notification
 (display-time)                   ;; activate time display
 
@@ -206,20 +205,40 @@ same directory as the org-buffer and insert a link to this file."
    (concat
     "osascript" " -e 'display notification \"" message "\" with title \"" title "\"'")))
 
+(defun applescript-appt-display (min-to-appt new-time msg)
+  (applescript-appt-send-notification
+   (format "'Appointment in %s minutes'" min-to-app)
+   (format "'%s'" msg)))
+
+(defun applescript-appt-delete ())
+
 ;; designate the window function for my-appt-send-notification
 (defun tn-appt-display (min-to-app new-time msg)
   (tn-appt-send-notification
-   (format "'Appointment in %s minutes'" min-to-app)    ;; passed to -title in terminal-notifier call
-   (format "'%s'" msg)))                                ;; passed to -message in terminal-notifier call
+   ;; passed to -title in terminal-notifier call
+   (format "'Appointment in %s minutes'" min-to-app)
+   ;; passed to -message in terminal-notifier call
+   (format "'%s'" msg)))
 
-(setq appt-disp-window-function (function tn-appt-display))
+(defun tn-appt-remove ()
+  ;; NOTE: this will remove ALL notifications in terminal-notifier
+  ;; this will remove notices from MAC notification center
+  (shell-command (concat terminal-notifier-path " -remove " "\"ALL\"")))
+
+(defun tn-appt-delete ()
+  (comment (tn-appt-remove)))
+
+(setq appt-disp-window-function #'tn-appt-display
+      appt-delete-window-function #'tn-appt-delete)
+
+(comment
+ (setq appt-disp-window-function #'applescript-appt-display
+       appt-delete-window-function #'applescript-appt-delete))
+
 ;; test
 ;; (tn-appt-display 3 nil "dafdsf")
 ;; (appt-display-message "dafsdf" 0)
 ;; end another alert
-
-
-
 
 ;; allow for export=>beamer by placing
 
@@ -251,9 +270,7 @@ same directory as the org-buffer and insert a link to this file."
       \\usepackage{verbatim}\n
       \\institute{{{{beamerinstitute}}}}\n
        \\subject{{{{beamersubject}}}}\n"
-
                ("\\section{%s}" . "\\section*{%s}")
-
                ("\\begin{frame}[fragile]\\frametitle{%s}"
                 "\\end{frame}"
                 "\\begin{frame}[fragile]\\frametitle{%s}"
@@ -262,7 +279,6 @@ same directory as the org-buffer and insert a link to this file."
 ;; letter class, for formal letters
 
 (add-to-list 'org-export-latex-classes
-
              '("letter"
                "\\documentclass[11pt]{letter}\n
       \\usepackage[utf8]{inputenc}\n
@@ -274,5 +290,22 @@ same directory as the org-buffer and insert a link to this file."
                ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
                ("\\paragraph{%s}" . "\\paragraph*{%s}")
                ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+
+;; org-wunderlist settings
+(require 'org-wunderlist)
+;; according to https://github.com/myuhe/org-wunderlist.el
+
+(comment
+ ;; settings in users/yuzhao/user-settings.el
+ (setq org-wunderlist-client-id "xxx"
+       org-wunderlist-token "xxx"
+       org-wunderlist-file "~/gits/org/wunderlist.org"
+       org-wunderlist-dir "~/gits/org/org-wunderlist/"
+       ;; org-wunderlist-client-secret "xxx"
+       ;; org-wunderlist-url "http://localhost/nonexisting_url"
+       ;; org-wunderlist-auth-callback-url "http://localhost/nonexisting_url"
+       )
+ (setq org-redmine-uri "http://redmine.9sand.cn:10086"
+       org-redmine-auth-api-key "xxx"))
 
 (provide 'setup-org)
