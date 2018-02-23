@@ -262,9 +262,7 @@ same directory as the org-buffer and insert a link to this file."
       \\usepackage{verbatim}\n
       \\institute{{{{beamerinstitute}}}}\n
        \\subject{{{{beamersubject}}}}\n"
-
                ("\\section{%s}" . "\\section*{%s}")
-
                ("\\begin{frame}[fragile]\\frametitle{%s}"
                 "\\end{frame}"
                 "\\begin{frame}[fragile]\\frametitle{%s}"
@@ -273,7 +271,6 @@ same directory as the org-buffer and insert a link to this file."
 ;; letter class, for formal letters
 
 (add-to-list 'org-export-latex-classes
-
              '("letter"
                "\\documentclass[11pt]{letter}\n
       \\usepackage[utf8]{inputenc}\n
