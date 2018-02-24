@@ -129,7 +129,7 @@
            pangu-spacing aggressive-indent tree-mode geiser
            monokai-theme haskell-mode intero helm-ag paredit-menu
            paredit-everywhere jdee help+ help-fns+ help-mode+
-           log4j-mode log4e org-wunderlist slack
+           log4j-mode log4e org-wunderlist slack buffer-flip
            ;; use-package capture multi-term helm-mt
            ;; chinese-fonts-setup helm-projectile swiper-helm
            ;; smooth-scrolling auto-complete emms helm-emms

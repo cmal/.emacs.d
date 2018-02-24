@@ -214,4 +214,15 @@
 
 (require 'log4j-mode)
 
+;; buffer-flip
+(require 'buffer-flip)
+(global-set-key (kbd "M-<tab>") 'buffer-flip)
+(setq buffer-flip-map
+      (let ((map (make-sparse-keymap)))
+        (define-key map (kbd "M-<tab>")   'buffer-flip-forwaqrd) 
+        (define-key map (kbd "M-S-<tab>") 'buffer-flip-backward)
+        (define-key map (kbd "C-g")     'buffer-flip-abort)
+        map))
+
+
 (provide 'setup-editing)
