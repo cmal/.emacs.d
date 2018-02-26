@@ -67,6 +67,22 @@
 
 ;; Are we on a mac?
 (setq is-mac (equal system-type 'darwin))
+;; Are we on a GNU/Linux?
+(setq is-gnu
+      (when (string-match-p
+             ".*GNU.*"
+             (shell-command-to-string "uname -a")
+             t)))
+;; Are we on an Android?
+(setq is-android
+      (when (string-match-p
+             ".*Android.*"
+             (shell-command-to-string "uname -a")
+             t)))
+
+;; Are we on a Windows?
+(setq is-windows
+      (equal system-type 'windows-nt))
 
 ;; Settings for currently logged in user
 (when is-mac
@@ -103,6 +119,7 @@
 ;; NOTE: folder `jdee-sever/` has been added for jdee to work.
 (defun init--install-packages ()
   (packages-install
+   (remove nil
    '(magit git-timemachine edn uuid dash diminish inflections spinner
            move-text golden-ratio-scroll-screen yasnippet emmet-mode
            json-mode helm helm-org-rifle helm-descbinds org-redmine
@@ -110,7 +127,9 @@
            fill-column-indicator flycheck flycheck-pos-tip
            flycheck-clojure undo-tree smartscan smartparens guide-key
            sx highlight-escape-sequences whitespace-cleanup-mode
-           elisp-slime-nav eval-sexp-fu clojure-mode align-cljlet
+           elisp-slime-nav
+           eval-sexp-fu clojure-mode
+           align-cljlet
            clj-refactor cljr-helm clojure-mode-extra-font-locking
            cider cider-eval-sexp-fu company ac-cider helm-cider
            clj-refactor 4clojure helm-clojuredocs helm-cider-history
@@ -177,14 +196,18 @@
 (require 'setup-paredit)
 ;; (require 'setup-auto-complete)
 (require 'setup-company)
-(require 'setup-clojure-mode)
-(require 'setup-python)
-(require 'setup-cider)
-(require 'setup-scheme)
+
+(when (not is-android)
+  (require 'setup-clojure-mode)
+  (require 'setup-cider)
+  (require 'setup-python)
+  (require 'setup-scheme))
 (require 'setup-elisp)
 
-(require 'setup-fonts)
-(require 'setup-sdcv)
+(when (not is-android)
+  (require 'setup-fonts)
+  (require 'setup-sdcv))
+
 (require 'setup-locale)
 (require 'setup-editing)
 (require 'setup-diminish)
