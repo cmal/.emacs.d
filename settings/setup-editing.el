@@ -219,10 +219,18 @@
 (global-set-key (kbd "M-<tab>") 'buffer-flip)
 (setq buffer-flip-map
       (let ((map (make-sparse-keymap)))
-        (define-key map (kbd "M-<tab>")   'buffer-flip-forwaqrd) 
+        (define-key map (kbd "M-<tab>")   'buffer-flip-forward) 
         (define-key map (kbd "M-S-<tab>") 'buffer-flip-backward)
         (define-key map (kbd "C-g")     'buffer-flip-abort)
         map))
+
+(setq buffer-flip-skip-patterns 
+      '(
+        ;;"^\\*helm\\b"
+        ;;"^\\*swiper\\*$"
+        ;;"^\\*magit.*"
+        "^\\*.*"
+        "^#.*#$"))
 
 
 (provide 'setup-editing)
