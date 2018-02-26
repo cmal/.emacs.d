@@ -119,24 +119,22 @@
            smart-forward wgrep change-inner web-mode js2-mode
            js2-refactor nodejs-repl restclient less-css-mode yaml-mode
            sicp graphviz-dot-mode blog-admin edit-server keyfreq
-           expand-region web-server markdown-preview-mode adoc-mode
-           bug-hunter helm-chrome helm-github-stars swbuff swbuff-x
-           ace-jump-mode pinyin-search atomic-chrome vue-mode
-           editorconfig sass-mode psysh php-mode jedi jedi-direx
-           wolfram-mode language-detection w3m helm-w3m bookmark+
-           alert org-alert info+ hyperbole suggest ledger-mode
-           hledger-mode vlf racket-mode exec-path-from-shell
-           pangu-spacing aggressive-indent tree-mode geiser
-           monokai-theme haskell-mode intero helm-ag paredit-menu
-           paredit-everywhere jdee help+ help-fns+ help-mode+
-           log4j-mode log4e org-wunderlist slack buffer-flip
-           ;; use-package capture multi-term helm-mt
-           ;; chinese-fonts-setup helm-projectile swiper-helm
-           ;; smooth-scrolling auto-complete emms helm-emms
-           ;; emms-player-mpv emms-browser emms-source-file
+           expand-region web-server adoc-mode bug-hunter helm-chrome
+           helm-github-stars swbuff swbuff-x ace-jump-mode
+           pinyin-search atomic-chrome vue-mode editorconfig sass-mode
+           psysh php-mode jedi jedi-direx wolfram-mode
+           language-detection w3m helm-w3m bookmark+ alert org-alert
+           info+ hyperbole suggest ledger-mode hledger-mode vlf
+           racket-mode exec-path-from-shell pangu-spacing
+           aggressive-indent tree-mode geiser monokai-theme
+           haskell-mode intero helm-ag paredit-menu paredit-everywhere
+           jdee help+ help-fns+ help-mode+ log4j-mode log4e
+           org-wunderlist slack buffer-flip ;; use-package capture
+           multi-term helm-mt ;; chinese-fonts-setup helm-projectile
+           swiper-helm ;; smooth-scrolling auto-complete emms
+           helm-emms ;; emms-player-mpv emms-browser emms-source-file
            ;; emms-source-playlist emms-lyrics emms-info e2wm el-get
-           ;; beacon
-           )))
+           ;; beacon )))
 ;; ad--addoit-function
 
 (condition-case nil
