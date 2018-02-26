@@ -71,14 +71,14 @@
 (setq is-gnu
       (when (string-match-p
              ".*GNU.*"
-             (shell-command-to-string "uname -a")
-             t)))
+             (shell-command-to-string "uname -a"))
+        t))
 ;; Are we on an Android?
 (setq is-android
       (when (string-match-p
              ".*Android.*"
-             (shell-command-to-string "uname -a")
-             t)))
+             (shell-command-to-string "uname -a"))
+        t))
 
 ;; Are we on a Windows?
 (setq is-windows
