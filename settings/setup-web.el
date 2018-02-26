@@ -84,17 +84,18 @@
 
 
 ;; w3m
-(require 'w3m)
-;; (add-hook 'w3m-mode-hook
-;;           (lambda ()
-;;             (setq w3m-new-session-in-background t)
-;;             (setq-local mouse-1-click-follows-link nil)
-;;             (local-set-key [backspace] #'w3m-view-previous-page)
-;;             (local-set-key (kbd "<C-tab>") #'w3m-next-buffer)
-;;             (local-set-key [mouse-1] #'w3m-mouse-view-this-url)
-;;             (local-set-key [mouse-2] #'w3m-mouse-view-this-url-new-session)))
+(when is-mac
+  (require 'w3m)
+  ;; (add-hook 'w3m-mode-hook
+  ;;           (lambda ()
+  ;;             (setq w3m-new-session-in-background t)
+  ;;             (setq-local mouse-1-click-follows-link nil)
+  ;;             (local-set-key [backspace] #'w3m-view-previous-page)
+  ;;             (local-set-key (kbd "<C-tab>") #'w3m-next-buffer)
+  ;;             (local-set-key [mouse-1] #'w3m-mouse-view-this-url)
+  ;;             (local-set-key [mouse-2] #'w3m-mouse-view-this-url-new-session)))
 
-(setq-default w3m-fill-column 80)
+  (setq-default w3m-fill-column 80))
 
 ;; use T to toggle image display
 

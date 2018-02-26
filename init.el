@@ -238,7 +238,8 @@
 ;; (eval-after-load 'js2-mode '(require 'setup-js2-mode))
 ;; (eval-after-load 'ruby-mode '(require 'setup-ruby-mode))
 (eval-after-load 'clojure-mode '(require 'setup-clojure-mode))
-(eval-after-load 'markdown-mode '(require 'setup-markdown-mode))
+(when is-mac
+  (eval-after-load 'markdown-mode '(require 'setup-markdown-mode)))
 (eval-after-load 'js-mode '(require 'setup-js-mode))
 
 ;; Load stuff on demand
@@ -365,11 +366,12 @@
 
 (require 'swbuff-x)
 
-(require 'wolfram-mode)
-(autoload 'wolfram-mode "wolfram-mode" nil t)
-(autoload 'run-wolfram "wolfram-mode" nil t)
-(setq wolfram-program "/Applications/Mathematica.app/Contents/MacOS/MathKernel")
-(add-to-list 'auto-mode-alist '("\\.m$" . wolfram-mode))
+(when is-mac
+  (require 'wolfram-mode)
+  (autoload 'wolfram-mode "wolfram-mode" nil t)
+  (autoload 'run-wolfram "wolfram-mode" nil t)
+  (setq wolfram-program "/Applications/Mathematica.app/Contents/MacOS/MathKernel")
+  (add-to-list 'auto-mode-alist '("\\.m$" . wolfram-mode)))
 
 (setq debug-on-error t)
 
