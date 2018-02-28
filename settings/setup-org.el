@@ -292,7 +292,7 @@ same directory as the org-buffer and insert a link to this file."
                ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
 ;; org-wunderlist settings
-(require 'org-wunderlist)
+;; (require 'org-wunderlist)
 ;; according to https://github.com/myuhe/org-wunderlist.el
 
 (comment
