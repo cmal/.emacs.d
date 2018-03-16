@@ -6,9 +6,10 @@
 ;; (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/") t)
 ;; (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 
-;; (setq package-archives nil)
+(setq package-archives nil)
 (add-to-list 'package-archives '("gnu"   . "http://elpa.emacs-china.org/gnu/") t)
 (add-to-list 'package-archives '("melpa" . "http://elpa.emacs-china.org/melpa/") t)
+;; (setq package-archives '(("melpa" . "http://elpa.emacs-china.org/melpa/") t))
 
 ;; tsinghua melpa
 ;; (setq package-archives nil)

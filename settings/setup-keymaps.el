@@ -28,7 +28,7 @@
 ;; or refer to http://www.troubleshooters.com/codecorn/littperl/perlreg.htm
 
 ;; wolfram
-(define-key wolfram-mode-map (kbd "C-x C-e") 'wolfram-send-last-mathexp)
+(when is-mac (define-key wolfram-mode-map (kbd "C-x C-e") 'wolfram-send-last-mathexp))
 
 ;; swbuff-x
 (define-key global-map (kbd "C-S-u") 'swbuff-switch-to-next-buffer)

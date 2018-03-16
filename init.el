@@ -79,7 +79,6 @@
              ".*Android.*"
              (shell-command-to-string "uname -a"))
         t))
-
 ;; Are we on a Windows?
 (setq is-windows
       (equal system-type 'windows-nt))
@@ -135,17 +134,22 @@
       js2-refactor nodejs-repl restclient less-css-mode
       yaml-mode sicp graphviz-dot-mode blog-admin edit-server
       keyfreq expand-region web-server markdown-preview-mode
-      adoc-mode bug-hunter helm-chrome helm-github-stars swbuff
-      swbuff-x ace-jump-mode pinyin-search atomic-chrome
+      adoc-mode bug-hunter helm-chrome helm-github-stars ;;swbuff
+      ;;swbuff-x
+      ace-jump-mode pinyin-search atomic-chrome
       vue-mode editorconfig sass-mode psysh php-mode jedi
-      jedi-direx wolfram-mode language-detection w3m helm-w3m
-      bookmark+ alert org-alert info+ hyperbole suggest
+      jedi-direx
+      language-detection w3m helm-w3m
+      alert org-alert suggest
       ledger-mode hledger-mode vlf racket-mode
       exec-path-from-shell pangu-spacing aggressive-indent
       tree-mode geiser monokai-theme haskell-mode intero helm-ag
-      paredit-menu paredit-everywhere jdee help+ help-fns+
-      help-mode+ log4j-mode log4e org-wunderlist
+      paredit-menu paredit-everywhere jdee log4j-mode log4e
       buffer-flip)
+    (when is-mac '(wolfram-mode
+		   swbuff swbuff-x info+ bookmark+
+		   hyperbole help+ help-fns+
+		   help-mode+ org-wunderlist))
     (when (not is-android)
       '(eval-sexp-fu
         clojure-mode align-cljlet
@@ -222,7 +226,7 @@
 (require 'setup-gui)
 (require 'setup-magit)
 (require 'setup-web)
-(require 'setup-help)
+(when is-mac (require 'setup-help))
 ;; (require 'setup-slack)
 
 (require 'setup-mail)
@@ -310,7 +314,7 @@
 ;; (setq er--show-expansion-message t)
 
 ;; Fill column indicator
-(require 'fill-column-indicator)
+(when is-mac (require 'fill-column-indicator))
 ;; (setq fci-rule-color "#111122")
 (setq fci-rule-color "#ffffff")
 
@@ -392,7 +396,7 @@
 ;; (require 'ne2wm-setup)
 ;; (require 'ne2wm-plugin-org-clock)
 
-(require 'swbuff-x)
+(when is-mac (require 'swbuff-x))
 
 (when is-mac
   (require 'wolfram-mode)
@@ -429,9 +433,12 @@ the sequence, and its index within the sequence."
 
 (require 'reddit)
 
-(require 'bookmark+)
+(when is-mac (require 'bookmark+))
 
 ;; (require 'randomize)
 
 (require 're-builder)
 (setq reb-re-syntax 'string)
+
+;; add info file path in Mac
+(add-to-list 'Info-default-directory-list "/var/lib/dpkg/info")
