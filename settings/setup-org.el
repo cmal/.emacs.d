@@ -41,7 +41,7 @@
 (setq-default org-agenda-todo-ignore-scheduled t)
 (setq-default org-agenda-todo-ignore-deadlines t)
 ;;修改Agenda View显示时间
-(setq-default org-agenda-span 1 days)
+(setq-default org-agenda-span 'week)
 ;;加入日记的约会提醒项目
 (setq-default diary-file "~/.emacs.d/diary")
 ;; (appt-activate t)
@@ -75,7 +75,7 @@
       (kill-buffer buffer))))
 
 (setq-default org-agenda-files
-              '("~/gits/org/"))
+              '("~/gits/org/" "~/gits/org/todo"))
 
 (add-to-list 'org-modules 'org-habit)
 
