@@ -2,7 +2,7 @@
 (setq auto-mode-alist
       (append '(("\\.java\\'" . jdee-mode)) auto-mode-alist))
 (custom-set-variables
- '(jdee-server-dir "/Users/yuzhao/.emacs.d/jdee-server"))
+ '(jdee-server-dir "~/.emacs.d/jdee-server"))
 
 ;; only for thinking-in-java
 (setq mindview-jar
