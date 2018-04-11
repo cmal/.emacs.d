@@ -134,15 +134,19 @@
       js2-refactor nodejs-repl restclient less-css-mode
       yaml-mode sicp graphviz-dot-mode blog-admin edit-server
       keyfreq expand-region web-server markdown-preview-mode
-      adoc-mode bug-hunter helm-chrome helm-github-stars ;;swbuff
+      adoc-mode bug-hunter helm-chrome helm-github-stars
+      eredis
+      ;;swbuff
       ;;swbuff-x
       ace-jump-mode pinyin-search atomic-chrome
       vue-mode editorconfig sass-mode psysh php-mode jedi
       jedi-direx
-      language-detection w3m helm-w3m
+      language-detection
+      ;; w3m helm-w3m
       alert org-alert suggest
       ledger-mode hledger-mode vlf racket-mode
-      exec-path-from-shell pangu-spacing aggressive-indent
+      exec-path-from-shell
+      pangu-spacing aggressive-indent
       tree-mode geiser monokai-theme haskell-mode intero helm-ag
       paredit-menu paredit-everywhere jdee log4j-mode log4e
       buffer-flip)
