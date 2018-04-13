@@ -7,14 +7,14 @@
 ;; (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 
 (setq package-archives nil)
-(add-to-list 'package-archives '("gnu"   . "http://elpa.emacs-china.org/gnu/") t)
-(add-to-list 'package-archives '("melpa" . "http://elpa.emacs-china.org/melpa/") t)
+;; (add-to-list 'package-archives '("gnu"   . "http://elpa.emacs-china.org/gnu/") t)
+;; (add-to-list 'package-archives '("melpa" . "http://elpa.emacs-china.org/melpa/") t)
 ;; (setq package-archives '(("melpa" . "http://elpa.emacs-china.org/melpa/") t))
 
 ;; tsinghua melpa
 ;; (setq package-archives nil)
-;; (setq package-archives '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
-;;                         ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")))
+(setq package-archives '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
+                         ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")))
 
 ;; (setq package-pinned-packages '())
 
