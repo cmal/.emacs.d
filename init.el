@@ -149,7 +149,9 @@
       pangu-spacing aggressive-indent
       tree-mode geiser monokai-theme haskell-mode intero helm-ag
       paredit-menu paredit-everywhere jdee log4j-mode log4e
-      buffer-flip)
+      buffer-flip
+      go-mode
+      )
     (when is-mac '(wolfram-mode
 		   swbuff swbuff-x info+ bookmark+
 		   hyperbole help+ help-fns+
