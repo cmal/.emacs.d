@@ -424,7 +424,7 @@
 (require 'move-text)
 
 (require 'setup-keymaps)
-(require 'setup-pdf)
+;; (require 'setup-pdf)
 
 ;; seq.el 25.1 remove
 (defun seq-map-indexed (function sequence)
