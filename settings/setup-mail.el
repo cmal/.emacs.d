@@ -33,6 +33,8 @@
   (add-hook 'midnight-hook (lambda ()
                              (with-current-buffer "*unsent mail*"
                                (call-interactively 'message-send)))))
+
+
 ;; (add-hook 'midnight-hook 'calendar)
 ;; (cancel-timer midnight-timer)
 ;; (setq midnight-period 7200) ;; (eq (* 2 60 60) "2 hours")
@@ -58,5 +60,14 @@
 ;;            (call-interactively 'message-send)))))
 
 ;; (cancel-timer month-check-timer)
+
+
+(defun send-a-mail (receipt subject body)
+  (mail nil receipt subject)
+  (mail-text) (insert body)
+  (mail-send)
+  (kill-buffer "*mail*"))
+
+;; (send-a-mail "yu.zhao@joudou.com" "dafdf" "safdsfsd")
 
 (provide 'setup-mail)
