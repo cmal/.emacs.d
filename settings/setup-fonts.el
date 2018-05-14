@@ -52,6 +52,22 @@
   (interactive)
   (set-default-font "Iosevka Slab-16"))
 
+(defun use-font-fira-code ()
+  (interactive)
+  (set-default-font "Fira Code-12"))
+
+(defun use-font-mononoki ()
+  (interactive)
+  (set-default-font "mononoki-13"))
+
+(defun use-font-monoid ()
+  (interactive)
+  (set-default-font "Monoid-12"))
+
+(defun use-font-monoisome ()
+  (interactive)
+  (set-default-font "Monoisome-12"))
+
 (defun my-buffer-face-mode-serif ()
   "Sets a fixed width (monospace) font in current buffer"
   (interactive)

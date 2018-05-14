@@ -150,7 +150,7 @@
       tree-mode geiser monokai-theme haskell-mode intero helm-ag
       paredit-menu paredit-everywhere jdee log4j-mode log4e
       buffer-flip
-      go-mode
+      go-mode go-dlv go-errcheck go-eldoc
       )
     (when is-mac '(wolfram-mode
 		   swbuff swbuff-x info+ bookmark+
@@ -248,9 +248,10 @@
 (if (display-graphic-p)
     (progn
       ;; (use-font-set-inziu)
-      (use-font-set-ptmono)
+      ;; (use-font-set-ptmono)
       ;; (use-font-iosevka-slab)
       ;; (use-font-set-pragmata)
+      (use-font-mononoki)
       ))
 
 ;; Font lock dash.el
@@ -424,7 +425,7 @@
 (require 'move-text)
 
 (require 'setup-keymaps)
-(require 'setup-pdf)
+;; (require 'setup-pdf)
 
 ;; seq.el 25.1 remove
 (defun seq-map-indexed (function sequence)

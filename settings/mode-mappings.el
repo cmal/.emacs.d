@@ -183,14 +183,19 @@
   (add-hook (intern (concat (symbol-name x) "-mode-hook")) 'enable-paredit-mode)
   (add-hook (intern (concat (symbol-name x) "-mode-hook")) 'rainbow-delimiters-mode)
   (add-hook (intern (concat (symbol-name x) "-mode-hook")) 'subword-mode)
-  (add-hook (intern (concat (symbol-name x) "-mode-hook")) 'aggressive-indent-mode)
+  ;; (add-hook (intern (concat (symbol-name x) "-mode-hook")) 'aggressive-indent-mode)
+  (add-hook (intern (concat (symbol-name x) "-mode-hook")) 'electric-indent-mode)
   )
 
 ;; remove temporary due to performance problem
-(remove-hook 'clojure-mode-hook 'aggressive-indent-mode)
+;; (remove-hook 'clojure-mode-hook 'aggressive-indent-mode)
 
 ;; vue mode
 (autoload 'vue-mode "vue-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.vue$" . vue-mode))
+
+
+;; makefile-bsdmake-mode
+(add-hook 'makefile-bsdmake-mode 'whitespace-mode)
 
 (provide 'mode-mappings)
