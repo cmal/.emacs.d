@@ -450,6 +450,3 @@ the sequence, and its index within the sequence."
 
 ;; add info file path in Mac
 (add-to-list 'Info-default-directory-list "/var/lib/dpkg/info")
-
-
-(require 'leetcode)

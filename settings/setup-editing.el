@@ -232,5 +232,9 @@
         "^\\*.*"
         "^#.*#$"))
 
+;; for whitespace-mode, usually useful for `makefile-bsdmake-mode'
+(setq whitespace-style '(face tabs))
+(modify-face whitespace-tab nil "#F92672")
 
 (provide 'setup-editing)
+

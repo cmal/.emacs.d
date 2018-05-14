@@ -33,6 +33,7 @@
   (add-hook 'midnight-hook (lambda ()
                              (with-current-buffer "*unsent mail*"
                                (call-interactively 'message-send)))))
+
 ;; (add-hook 'midnight-hook 'calendar)
 ;; (cancel-timer midnight-timer)
 ;; (setq midnight-period 7200) ;; (eq (* 2 60 60) "2 hours")

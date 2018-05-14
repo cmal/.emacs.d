@@ -194,4 +194,8 @@
 (autoload 'vue-mode "vue-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.vue$" . vue-mode))
 
+
+;; makefile-bsdmake-mode
+(add-hook 'makefile-bsdmake-mode 'whitespace-mode)
+
 (provide 'mode-mappings)
