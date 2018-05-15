@@ -151,6 +151,7 @@
       paredit-menu paredit-everywhere jdee log4j-mode log4e
       buffer-flip
       go-mode go-dlv go-errcheck go-eldoc
+      rjsx-mode ;; for jsx
       )
     (when is-mac '(wolfram-mode
 		   swbuff swbuff-x info+ bookmark+

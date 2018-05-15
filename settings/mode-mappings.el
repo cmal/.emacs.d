@@ -195,6 +195,10 @@
 (add-to-list 'auto-mode-alist '("\\.vue$" . vue-mode))
 
 
+;; go mode
+(autoload 'go-mode "go-mode" nil t)
+(define-key go-mode-map (kbd "C-c C-c") 'godoc-at-point)
+
 ;; makefile-bsdmake-mode
 (add-hook 'makefile-bsdmake-mode 'whitespace-mode)
 
