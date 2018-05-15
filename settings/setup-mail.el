@@ -21,7 +21,6 @@
 
 (add-hook 'message-mode-hook 'message-mode-custom-keys-config)
 
-
 ;; ==========
 ;; send mail at specific time
 (require 'midnight)
@@ -39,7 +38,6 @@
 ;; (setq midnight-period 7200) ;; (eq (* 2 60 60) "2 hours")
 ;; ==========
 
-
 ;; a timer example
 ;; (setq tmp-timer (run-at-time "2 sec" 1
 ;;                              (lambda ()
@@ -47,7 +45,6 @@
 ;;                                  (insert "++++++++++++++")))))
 
 ;; (cancel-timer tmp-timer)
-
 
 ;; change the time and eval this to send mail this month
 ;; (setq monthcheck-timer
@@ -59,5 +56,14 @@
 ;;            (call-interactively 'message-send)))))
 
 ;; (cancel-timer month-check-timer)
+
+
+(defun send-a-mail (receipt subject body)
+  (mail nil receipt subject)
+  (mail-text) (insert body)
+  (mail-send)
+  (kill-buffer "*mail*"))
+
+;; (send-a-mail "yu.zhao@joudou.com" "dafdf" "safdsfsd")
 
 (provide 'setup-mail)
