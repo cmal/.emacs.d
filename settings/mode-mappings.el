@@ -16,7 +16,6 @@
 (add-to-list 'auto-mode-alist '("\\.scss$" . scss-mode))
 (add-to-list 'auto-mode-alist '("\\.sass$" . sass-mode))
 (add-to-list 'auto-mode-alist '("\\.css$" . css-mode))
-(add-to-list 'auto-mode-alist '("\\.wxss$" . css-mode))
 (add-to-list 'auto-mode-alist '("\\.less$" . less-css-mode))
 
 (add-hook 'css-mode-hook (lambda() (rainbow-mode)))
@@ -202,5 +201,9 @@
 
 ;; makefile-bsdmake-mode
 (add-hook 'makefile-bsdmake-mode 'whitespace-mode)
+
+;; wechat miniprogram
+(add-to-list 'auto-mode-alist '("\\.wxss$" . css-mode))
+(add-to-list 'auto-mode-alist '("\\.wxml$" . xml-mode))
 
 (provide 'mode-mappings)
