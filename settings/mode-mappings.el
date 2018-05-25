@@ -126,13 +126,9 @@
 ;; (add-to-list 'auto-mode-alist '("yasnippet/snippets" . snippet-mode))
 ;; (add-to-list 'auto-mode-alist '("\\.yasnippet$" . snippet-mode))
 
-;; Buster.JS
-                                        ;(autoload 'buster-mode "buster-mode")
-                                        ;(setq buster-node-executable "/usr/local/bin/node")
-                                        ;(add-file-find-hook-with-pattern "test\\.js$" (lambda () (buster-mode)) "require(\\(\"\\|'\\)buster")
-
 ;; org-mode
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+(add-hook 'org-mode-hook 'auto-fill-mode)
 
 ;; Apache config
 (autoload 'apache-mode "apache-mode" nil t)
