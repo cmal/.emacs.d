@@ -130,13 +130,13 @@
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 (add-hook 'org-mode-hook 'auto-fill-mode)
 
-;; Apache config
-(autoload 'apache-mode "apache-mode" nil t)
-(add-to-list 'auto-mode-alist '("\\.htaccess\\'"   . apache-mode))
-(add-to-list 'auto-mode-alist '("httpd\\.conf\\'"  . apache-mode))
-(add-to-list 'auto-mode-alist '("srm\\.conf\\'"    . apache-mode))
-(add-to-list 'auto-mode-alist '("access\\.conf\\'" . apache-mode))
-(add-to-list 'auto-mode-alist '("sites-\\(available\\|enabled\\)/" . apache-mode))
+;; ;; Apache config
+;; (autoload 'apache-mode "apache-mode" nil t)
+;; (add-to-list 'auto-mode-alist '("\\.htaccess\\'"   . apache-mode))
+;; (add-to-list 'auto-mode-alist '("httpd\\.conf\\'"  . apache-mode))
+;; (add-to-list 'auto-mode-alist '("srm\\.conf\\'"    . apache-mode))
+;; (add-to-list 'auto-mode-alist '("access\\.conf\\'" . apache-mode))
+;; (add-to-list 'auto-mode-alist '("sites-\\(available\\|enabled\\)/" . apache-mode))
 
 ;; ledger mode
 (autoload 'ledger-mode "ledger-mode" nil t)
@@ -180,8 +180,7 @@
   (add-hook (intern (concat (symbol-name x) "-mode-hook")) 'rainbow-delimiters-mode)
   (add-hook (intern (concat (symbol-name x) "-mode-hook")) 'subword-mode)
   ;; (add-hook (intern (concat (symbol-name x) "-mode-hook")) 'aggressive-indent-mode)
-  (add-hook (intern (concat (symbol-name x) "-mode-hook")) 'electric-indent-mode)
-  )
+  (add-hook (intern (concat (symbol-name x) "-mode-hook")) 'electric-indent-mode))
 
 ;; remove temporary due to performance problem
 ;; (remove-hook 'clojure-mode-hook 'aggressive-indent-mode)

@@ -25,15 +25,16 @@
 ;; (global-set-key [remap scroll-down-command] 'golden-ratio-scroll-screen-down)
 ;; (global-set-key [remap scroll-up-command] 'golden-ratio-scroll-screen-up)
 
- ;; highlight FIXME TODO BUG (...)
+ ;; highlight: FIXME TODO BUG (...)
 (require 'fic-mode)
 (add-hook 'prog-mode-hook 'fic-mode)
 
 ;; auto indent
-;; (defun set-newline-and-indent ()
-;; ;;  (local-set-key (kbd "RET") 'newline-and-indent))
-;;   (local-set-key (kbd "RET") 'electric-newline-and-maybe-indent))
-;; (electric-indent-mode)  ;; comment due to aggressive-indent-mode
+(defun set-newline-and-indent ()
+;;  (local-set-key (kbd "RET") 'newline-and-indent))
+  (local-set-key (kbd "RET") 'electric-newline-and-maybe-indent))
+;; use electric-indent-mode because aggressive-indent-mode has performance problems
+(electric-indent-mode)
 
 ;; (add-hook 'prog-mode-hook 'set-newline-and-indent)
 ;; (remove-hook 'prog-mode-hook 'set-newline-and-indent)
@@ -235,6 +236,38 @@
 ;; for whitespace-mode, usually useful for `makefile-bsdmake-mode'
 (setq whitespace-style '(face tabs))
 (modify-face whitespace-tab nil "#F92672")
+
+;; open visible-bell for `ding' to work,
+;; `ding' is used in the `smartscan-symbol-at-pt' function below
+(setq visible-bell t)
+
+;; override a smartscan function
+;; change `error' -> `message'
+;; because error is boring.
+(defun smartscan-symbol-at-pt (&optional dir)
+  "Returns the symbol at point and moves point to DIR (either `beginning' or `end') of the symbol.
+
+If `smartscan-use-extended-syntax' is t then that symbol is returned
+instead."
+  ;; we need a quick-and-dirty syntax table hack here to make
+  ;; `thing-at-point' pick up on the fact that '.', '_', etc. are all
+  ;; part of a single expression.
+  (smartscan-with-symbol
+    ;; grab the word and return it
+    (let ((word (thing-at-point (intern smartscan-symbol-selector)))
+          (bounds (bounds-of-thing-at-point (intern smartscan-symbol-selector))))
+      (if word
+          (progn
+            (cond
+             ((eq dir 'beginning) (goto-char (car bounds)))
+             ((eq dir 'end) (goto-char (cdr bounds)))
+             (t (progn
+                  (ding)
+                  (message "Invalid direction"))))
+            word)
+        (progn
+          (ding)
+          (message "No symbol found"))))))
 
 (provide 'setup-editing)
 
