@@ -431,14 +431,14 @@
 ;; (require 'setup-pdf)
 
 ;; seq.el 25.1 remove
-(defun seq-map-indexed (function sequence)
-  "Return the result of applying FUNCTION to each element of SEQUENCE.
-Unlike `seq-map', FUNCTION takes two arguments: the element of
+(defun seq-map-indexed (func sequence)
+  "Return the result of applying FUNC to each element of SEQUENCE.
+Unlike `seq-map', FUNC takes two arguments: the element of
 the sequence, and its index within the sequence."
   (let ((index 0))
     (seq-map (lambda (elt)
                (prog1
-                   (funcall function elt index)
+                   (funcall func elt index)
                  (setq index (1+ index))))
              sequence)))
 
