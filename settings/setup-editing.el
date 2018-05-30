@@ -237,10 +237,6 @@
 (setq whitespace-style '(face tabs))
 (modify-face whitespace-tab nil "#F92672")
 
-;; open visible-bell for `ding' to work,
-;; `ding' is used in the `smartscan-symbol-at-pt' function below
-(setq visible-bell t)
-
 ;; override a smartscan function
 ;; change `error' -> `message'
 ;; because error is boring.
@@ -262,12 +258,10 @@ instead."
              ((eq dir 'beginning) (goto-char (car bounds)))
              ((eq dir 'end) (goto-char (cdr bounds)))
              (t (progn
-                  (ding)
-                  (message "Invalid direction"))))
+                  (user-error "Invalid direction"))))
             word)
         (progn
-          (ding)
-          (message "No symbol found"))))))
+          (user-error "No symbol found"))))))
 
 (provide 'setup-editing)
 
