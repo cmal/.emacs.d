@@ -189,7 +189,6 @@
 (autoload 'vue-mode "vue-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.vue$" . vue-mode))
 
-
 ;; go mode
 (autoload 'go-mode "go-mode" nil t)
 (define-key go-mode-map (kbd "C-c C-c") 'godoc-at-point)
@@ -200,5 +199,9 @@
 ;; wechat miniprogram
 (add-to-list 'auto-mode-alist '("\\.wxss$" . css-mode))
 (add-to-list 'auto-mode-alist '("\\.wxml$" . xml-mode))
+
+;; Info-mode : NOTE this is for `info+', not the default
+;; info-mode-hook
+(add-hook 'Info-mode-hook 'rainbow-delimiters-mode)
 
 (provide 'mode-mappings)

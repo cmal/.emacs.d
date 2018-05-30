@@ -41,7 +41,7 @@
 ;; add site-lisp-dir and all of its first child dir
 ;; to 'load-path
 (defun add-site-lisp-and-sub-dir ()
-  (let ((base (expand-file-name "site-lisp" user-emacs-directory)))
+  (let ((base site-lisp-dir))
     (add-to-list 'load-path base)
     (dolist (f (directory-files base))
       (let ((name (concat base "/" f)))
@@ -49,6 +49,7 @@
                    (not (equal f ".."))
                    (not (equal f ".")))
           (add-to-list 'load-path name))))))
+
 (add-site-lisp-and-sub-dir)
 
 (require 'encourage-mode)
@@ -451,6 +452,8 @@ the sequence, and its index within the sequence."
 (setq reb-re-syntax 'string)
 
 ;; add info file path in Mac
-(add-to-list 'Info-default-directory-list "/var/lib/dpkg/info")
+;; seems wrong
+;; (when is-mac
+;;   (add-to-list 'Info-default-directory-list "/var/lib/dpkg/info"))
 
 (require 'goto-chg)
