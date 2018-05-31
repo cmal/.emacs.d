@@ -198,7 +198,7 @@
 
 ;; wechat miniprogram
 (add-to-list 'auto-mode-alist '("\\.wxss$" . css-mode))
-(add-to-list 'auto-mode-alist '("\\.wxml$" . xml-mode))
+(add-to-list 'auto-mode-alist '("\\.wxml$" . web-mode))
 
 ;; Info-mode : NOTE this is for `info+', not the default
 ;; info-mode-hook
