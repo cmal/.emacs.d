@@ -191,7 +191,11 @@
 
 ;; go mode
 (autoload 'go-mode "go-mode" nil t)
-(define-key go-mode-map (kbd "C-c C-c") 'godoc-at-point)
+(add-to-list 'auto-mode-alist '("\\.go$" . go-mode))
+(add-hook 'go-mode
+          (lambda ()
+            (define-key go-mode-map (kbd "C-c C-c") 'godoc-at-point)))
+
 
 ;; makefile-bsdmake-mode
 (add-hook 'makefile-bsdmake-mode 'whitespace-mode)
