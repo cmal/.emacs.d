@@ -152,6 +152,7 @@
       buffer-flip
       go-mode go-dlv go-errcheck go-eldoc
       rjsx-mode ;; for jsx
+      livereload
       )
     (when is-mac '(wolfram-mode
 		   swbuff swbuff-x info+ bookmark+
@@ -245,15 +246,18 @@
 ;; (require 'prodigy)
 ;; (global-set-key (kbd "C-x M-m") 'prodigy)
 
-;; after require setup-font
-(if (display-graphic-p)
-    (progn
-      ;; (use-font-set-inziu)
-      ;; (use-font-set-ptmono)
-      ;; (use-font-iosevka-slab)
-      ;; (use-font-set-pragmata)
-      (use-font-mononoki)
-      ))
+;; after require setup-fonts
+;; (if (display-graphic-p)
+;;     (progn
+;;       ;; (use-font-set-inziu)
+;;       ;; (use-font-set-ptmono)
+;;       ;; (use-font-iosevka-slab)
+;;       ;; (use-font-set-pragmata)
+;;       (use-font-mononoki)))
+
+;; call func defined in user-settings.el
+(when (and is-mac (display-graphic-p))
+  (user/this-mac-font-settings))
 
 ;; Font lock dash.el
 (eval-after-load "dash" '(dash-enable-font-lock))
@@ -451,3 +455,5 @@ the sequence, and its index within the sequence."
 
 ;; add info file path in Mac
 (add-to-list 'Info-default-directory-list "/var/lib/dpkg/info")
+
+(require 'livereload)
