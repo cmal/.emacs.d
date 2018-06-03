@@ -153,7 +153,7 @@
       buffer-flip
       go-mode go-dlv go-errcheck go-eldoc
       rjsx-mode ;; for jsx
-      livereload goto-chg simple-httpd
+      livereload goto-chg simple-httpd impatient-mode
       )
     (when is-mac '(wolfram-mode
 		   swbuff swbuff-x info+ bookmark+
