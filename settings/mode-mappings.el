@@ -126,21 +126,17 @@
 ;; (add-to-list 'auto-mode-alist '("yasnippet/snippets" . snippet-mode))
 ;; (add-to-list 'auto-mode-alist '("\\.yasnippet$" . snippet-mode))
 
-;; Buster.JS
-                                        ;(autoload 'buster-mode "buster-mode")
-                                        ;(setq buster-node-executable "/usr/local/bin/node")
-                                        ;(add-file-find-hook-with-pattern "test\\.js$" (lambda () (buster-mode)) "require(\\(\"\\|'\\)buster")
-
 ;; org-mode
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+(add-hook 'org-mode-hook 'auto-fill-mode)
 
-;; Apache config
-(autoload 'apache-mode "apache-mode" nil t)
-(add-to-list 'auto-mode-alist '("\\.htaccess\\'"   . apache-mode))
-(add-to-list 'auto-mode-alist '("httpd\\.conf\\'"  . apache-mode))
-(add-to-list 'auto-mode-alist '("srm\\.conf\\'"    . apache-mode))
-(add-to-list 'auto-mode-alist '("access\\.conf\\'" . apache-mode))
-(add-to-list 'auto-mode-alist '("sites-\\(available\\|enabled\\)/" . apache-mode))
+;; ;; Apache config
+;; (autoload 'apache-mode "apache-mode" nil t)
+;; (add-to-list 'auto-mode-alist '("\\.htaccess\\'"   . apache-mode))
+;; (add-to-list 'auto-mode-alist '("httpd\\.conf\\'"  . apache-mode))
+;; (add-to-list 'auto-mode-alist '("srm\\.conf\\'"    . apache-mode))
+;; (add-to-list 'auto-mode-alist '("access\\.conf\\'" . apache-mode))
+;; (add-to-list 'auto-mode-alist '("sites-\\(available\\|enabled\\)/" . apache-mode))
 
 ;; ledger mode
 (autoload 'ledger-mode "ledger-mode" nil t)
@@ -184,8 +180,7 @@
   (add-hook (intern (concat (symbol-name x) "-mode-hook")) 'rainbow-delimiters-mode)
   (add-hook (intern (concat (symbol-name x) "-mode-hook")) 'subword-mode)
   ;; (add-hook (intern (concat (symbol-name x) "-mode-hook")) 'aggressive-indent-mode)
-  (add-hook (intern (concat (symbol-name x) "-mode-hook")) 'electric-indent-mode)
-  )
+  (add-hook (intern (concat (symbol-name x) "-mode-hook")) 'electric-indent-mode))
 
 ;; remove temporary due to performance problem
 ;; (remove-hook 'clojure-mode-hook 'aggressive-indent-mode)
@@ -194,12 +189,23 @@
 (autoload 'vue-mode "vue-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.vue$" . vue-mode))
 
-
 ;; go mode
 (autoload 'go-mode "go-mode" nil t)
-(define-key go-mode-map (kbd "C-c C-c") 'godoc-at-point)
+(add-to-list 'auto-mode-alist '("\\.go$" . go-mode))
+(add-hook 'go-mode
+          (lambda ()
+            (define-key go-mode-map (kbd "C-c C-c") 'godoc-at-point)))
+
 
 ;; makefile-bsdmake-mode
 (add-hook 'makefile-bsdmake-mode 'whitespace-mode)
+
+;; wechat miniprogram
+(add-to-list 'auto-mode-alist '("\\.wxss$" . css-mode))
+(add-to-list 'auto-mode-alist '("\\.wxml$" . web-mode))
+
+;; Info-mode : NOTE this is for `info+', not the default
+;; info-mode-hook
+(add-hook 'Info-mode-hook 'rainbow-delimiters-mode)
 
 (provide 'mode-mappings)

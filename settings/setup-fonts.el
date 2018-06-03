@@ -58,7 +58,26 @@
 
 (defun use-font-mononoki ()
   (interactive)
-  (set-default-font "mononoki-13"))
+  (set-face-attribute
+   'default nil
+   :font (font-spec :name "-*-mononoki-normal-normal-normal-*-*-*-*-*-m-0-iso10646-1"
+                    :weight 'normal
+                    :slant 'normal
+                    :size 15.0))
+  (dolist (charset '(kana han symbol cjk-misc bopomofo))
+    (set-fontset-font
+     (frame-parameter nil 'font)
+     charset
+     (font-spec :name "-*-Hiragino Sans GB-normal-normal-normal-*-*-*-*-*-p-0-iso10646-1"
+                :weight 'normal
+                :slant 'normal
+                :size 16.5)))
+  ;;  (set-default-font "mononoki-13")
+  )
+
+
+
+
 
 (defun use-font-monoid ()
   (interactive)
