@@ -20,6 +20,8 @@
   (when (file-directory-p path)
     (add-to-list 'custom-theme-load-path path)))
 
+(display-time)                   ;; activate time display
+
 ;; Default theme
 ;; (defun use-presentation-theme ()
 ;;   (interactive)
