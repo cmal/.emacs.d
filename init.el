@@ -160,10 +160,13 @@
 		   hyperbole help+ help-fns+
 		   help-mode+ org-wunderlist))
     (when (not is-android)
-      '(eval-sexp-fu
+      '(
+	;; eval-sexp-fu
         clojure-mode align-cljlet
         clj-refactor cljr-helm clojure-mode-extra-font-locking
-        cider cider-eval-sexp-fu company ac-cider helm-cider
+        cider
+	;; cider-eval-sexp-fu
+	company ac-cider helm-cider
         clj-refactor 4clojure helm-clojuredocs helm-cider-history
         slack)))))
 ;; NOT USED:
@@ -257,8 +260,8 @@
 ;;       (use-font-mononoki)))
 
 ;; call func defined in user-settings.el
-(when (and is-mac (display-graphic-p))
-  (user/this-mac-font-settings))
+;; (when (and is-mac (display-graphic-p))
+;;   (user/this-mac-font-settings))
 
 ;; Font lock dash.el
 (eval-after-load "dash" '(dash-enable-font-lock))
