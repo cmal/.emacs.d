@@ -3,7 +3,7 @@
   (interactive)
   (let ((word (if mark-active
                   (buffer-substring-no-properties (region-beginning) (region-end))
-                  (current-word nil t))))
+                (current-word nil t))))
     (setq word (read-string (format "Search the dictionary for (default %s): " word)
                             nil nil word))
     (set-buffer (get-buffer-create "*sdcv*"))
@@ -21,9 +21,14 @@
              (local-set-key (kbd "q") (lambda ()
                                         (interactive)
                                         (bury-buffer)
-                                        (unless (null (cdr (window-list))) ; only one window
-                                          (delete-window)))))
+                                        ;; new add, need to be changed -->
+                                        (other-window -1)
+                                        ;; <--
+                                        (comment
+                                         (unless (null (cdr (window-list))) ; only one window
+                                           (delete-window))))))
            (goto-char (point-min))))))))
+
 ;; end of kid-sdcv
 
 (global-set-key (kbd "C-c d") 'kid-sdcv-to-buffer)
