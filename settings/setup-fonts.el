@@ -75,10 +75,6 @@
   ;;  (set-default-font "mononoki-13")
   )
 
-
-
-
-
 (defun use-font-monoid ()
   (interactive)
   (set-default-font "Monoid-12"))
