@@ -42,4 +42,8 @@
 ;; magit
 (define-key global-map (kbd "C-c m") 'magit-status-fullscreen)
 
+;; goto-chg
+(global-set-key (kbd "C-x C-.") 'goto-last-change)
+(global-set-key (kbd "C-x C-,") 'goto-last-change-reverse)
+
 (provide 'setup-keymaps)

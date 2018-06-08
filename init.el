@@ -41,7 +41,7 @@
 ;; add site-lisp-dir and all of its first child dir
 ;; to 'load-path
 (defun add-site-lisp-and-sub-dir ()
-  (let ((base (expand-file-name "site-lisp" user-emacs-directory)))
+  (let ((base site-lisp-dir))
     (add-to-list 'load-path base)
     (dolist (f (directory-files base))
       (let ((name (concat base "/" f)))
@@ -49,6 +49,7 @@
                    (not (equal f ".."))
                    (not (equal f ".")))
           (add-to-list 'load-path name))))))
+
 (add-site-lisp-and-sub-dir)
 
 (require 'encourage-mode)
@@ -152,16 +153,20 @@
       buffer-flip
       go-mode go-dlv go-errcheck go-eldoc
       rjsx-mode ;; for jsx
+      livereload goto-chg simple-httpd impatient-mode
       )
     (when is-mac '(wolfram-mode
 		   swbuff swbuff-x info+ bookmark+
 		   hyperbole help+ help-fns+
 		   help-mode+ org-wunderlist))
     (when (not is-android)
-      '(eval-sexp-fu
+      '(
+	;; eval-sexp-fu
         clojure-mode align-cljlet
         clj-refactor cljr-helm clojure-mode-extra-font-locking
-        cider cider-eval-sexp-fu company ac-cider helm-cider
+        cider
+	;; cider-eval-sexp-fu
+	company ac-cider helm-cider
         clj-refactor 4clojure helm-clojuredocs helm-cider-history
         slack)))))
 ;; NOT USED:
@@ -245,15 +250,18 @@
 ;; (require 'prodigy)
 ;; (global-set-key (kbd "C-x M-m") 'prodigy)
 
-;; after require setup-font
-(if (display-graphic-p)
-    (progn
-      ;; (use-font-set-inziu)
-      ;; (use-font-set-ptmono)
-      ;; (use-font-iosevka-slab)
-      ;; (use-font-set-pragmata)
-      (use-font-mononoki)
-      ))
+;; after require setup-fonts
+;; (if (display-graphic-p)
+;;     (progn
+;;       ;; (use-font-set-inziu)
+;;       ;; (use-font-set-ptmono)
+;;       ;; (use-font-iosevka-slab)
+;;       ;; (use-font-set-pragmata)
+;;       (use-font-mononoki)))
+
+;; call func defined in user-settings.el
+;; (when (and is-mac (display-graphic-p))
+;;   (user/this-mac-font-settings))
 
 ;; Font lock dash.el
 (eval-after-load "dash" '(dash-enable-font-lock))
@@ -429,14 +437,14 @@
 ;; (require 'setup-pdf)
 
 ;; seq.el 25.1 remove
-(defun seq-map-indexed (function sequence)
-  "Return the result of applying FUNCTION to each element of SEQUENCE.
-Unlike `seq-map', FUNCTION takes two arguments: the element of
+(defun seq-map-indexed (func sequence)
+  "Return the result of applying FUNC to each element of SEQUENCE.
+Unlike `seq-map', FUNC takes two arguments: the element of
 the sequence, and its index within the sequence."
   (let ((index 0))
     (seq-map (lambda (elt)
                (prog1
-                   (funcall function elt index)
+                   (funcall func elt index)
                  (setq index (1+ index))))
              sequence)))
 
@@ -449,5 +457,10 @@ the sequence, and its index within the sequence."
 (require 're-builder)
 (setq reb-re-syntax 'string)
 
+;; seems wrong
 ;; add info file path in Mac
-(add-to-list 'Info-default-directory-list "/var/lib/dpkg/info")
+;; (when is-mac
+;;   (add-to-list 'Info-default-directory-list "/var/lib/dpkg/info"))
+
+(require 'goto-chg)
+(require 'livereload)

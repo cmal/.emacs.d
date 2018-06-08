@@ -185,12 +185,10 @@ same directory as the org-buffer and insert a link to this file."
 (setq appt-message-warning-time '10  ;; send first warning 10 minutes before appointment
       appt-display-mode-line nil     ;; don't show in the modeline
       appt-display-format 'window)   ;; pass warnings to the designated window function
-(appt-activate 1)                ;; activate appointment notification
-(display-time)                   ;; activate time display
-
-(org-agenda-to-appt)             ;; generate the appt list from org agenda files on emacs launch
-(run-at-time "24:01" 360 'org-agenda-to-appt)            ;; update appt list hourly
-(add-hook 'org-finalize-agenda-hook 'org-agenda-to-appt) ;; update appt list on agenda view
+;; (appt-activate 1)                ;; activate appointment notification
+;; (org-agenda-to-appt)             ;; generate the appt list from org agenda files on emacs launch
+;; (run-at-time "24:01" 360 'org-agenda-to-appt)            ;; update appt list hourly
+;; (add-hook 'org-finalize-agenda-hook 'org-agenda-to-appt) ;; update appt list on agenda view
 
 ;; set up the call to terminal-notifier
 (defvar terminal-notifier-path
