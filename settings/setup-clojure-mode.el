@@ -2,14 +2,15 @@
 ;; on connection (this totally conflicts with Overtone
 ;; namespaces that have ready-to-sound side-effecting
 ;; functions!
-(setq cljr-eagerly-build-asts-on-startup nil)
+;; (setq cljr-eagerly-build-asts-on-startup nil)
+;; (setq cljr-inject-dependencies-at-jack-in nil)
 
-(require 'clj-refactor)
+;; (require 'clj-refactor)
 ;; wiki of clj-refactor
 ;; https://github.com/clojure-emacs/clj-refactor.el/wiki
 
-(require 'cljr-helm)  ;; helm helper used by clojure-refactor
-(define-key clojure-mode-map (kbd "C-c C-r") 'cljr-helm)
+;; (require 'cljr-helm)  ;; helm helper used by clojure-refactor
+;; (define-key clojure-mode-map (kbd "C-c C-r") 'cljr-helm)
 
 
 (eval-after-load 'clojure-mode
@@ -30,7 +31,10 @@
   '(font-lock-add-keywords
     'clojure-mode `(("\\(#\\){"
                      (0 (progn (compose-region (match-beginning 1)
-                                               (match-end 1) "∈")
+                                               (match-end 1)
+                                               ;; "∈"
+                                               "Ø"
+                                               )
                                nil))))))
 
 (eval-after-load 'find-file-in-project
@@ -84,24 +88,25 @@ the (^:fold ...) expressions."
      (while (ignore-errors (re-search-forward "\\^:fold"))
        (hs-hide-block)
        (next-line)))))
+
 (defun hs-clojure-mode-hook ()
   (interactive)
   (hs-minor-mode 1)
   (hs-clojure-hide-namespace-and-folds))
 ;; (add-hook 'clojure-mode-hook 'hs-clojure-mode-hook)
 
-(add-hook 'clojure-mode-hook 'clj-refactor-mode)
+;; (add-hook 'clojure-mode-hook 'clj-refactor-mode)
 (add-hook 'clojure-mode-hook 'yas-minor-mode) ;; needed by clj-refactor-mode
 
-(setq cljr-magic-require-namespaces
-      '(("io"   . "clojure.java.io")
-        ("set"  . "clojure.set")
-        ("s"  . "clojure.string")
-        ("walk" . "clojure.walk")
-        ("zip"  . "clojure.zip")
-        ("time" . "clj-time.core")
-        ("log"  . "clojure.tools.logging")
-        ("json" . "cheshire.core")))
+;; (setq cljr-magic-require-namespaces
+;;       '(("io"   . "clojure.java.io")
+;;         ("set"  . "clojure.set")
+;;         ("s"  . "clojure.string")
+;;         ("walk" . "clojure.walk")
+;;         ("zip"  . "clojure.zip")
+;;         ("time" . "clj-time.core")
+;;         ("log"  . "clojure.tools.logging")
+;;         ("json" . "cheshire.core")))
 
 (require 'clojure-mode-extra-font-locking)
 (setq clojure-align-forms-automatically t)

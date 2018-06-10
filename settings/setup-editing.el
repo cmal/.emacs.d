@@ -1,6 +1,9 @@
 ;; setup-editing
 (setq-default delete-by-moving-to-trash t)
 
+;; fill-region
+(global-set-key (kbd "C-M-=") 'fill-region)
+
 ;; Move to trash when deleting stuff
 (when is-mac 
   (setq delete-by-moving-to-trash t

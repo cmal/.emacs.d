@@ -176,11 +176,16 @@
 
 ;; Lisp modes
 (dolist (x '(scheme emacs-lisp lisp racket clojure))
-  (add-hook (intern (concat (symbol-name x) "-mode-hook")) 'enable-paredit-mode)
-  (add-hook (intern (concat (symbol-name x) "-mode-hook")) 'rainbow-delimiters-mode)
-  (add-hook (intern (concat (symbol-name x) "-mode-hook")) 'subword-mode)
-  ;; (add-hook (intern (concat (symbol-name x) "-mode-hook")) 'aggressive-indent-mode)
-  (add-hook (intern (concat (symbol-name x) "-mode-hook")) 'electric-indent-mode))
+  (when-let (hook (intern-soft (concat (symbol-name x) "-mode-hook")))
+    (add-hook hook 'enable-paredit-mode)
+    (add-hook hook 'rainbow-delimiters-mode)
+    (add-hook hook 'subword-mode)
+    ;; (add-hook hook 'aggressive-indent-mode) ;; use electric-indent-mode by default
+    (add-hook hook 'electric-indent-mode)))
+
+(dolist (x '(emacs-lisp lisp clojure))
+  (when-let (kmap (symbol-value (intern-soft (concat (symbol-name x) "-mode-map"))))
+   (define-key kmap (kbd "<C-M-backspace>") 'backward-kill-sexp)))
 
 ;; remove temporary due to performance problem
 ;; (remove-hook 'clojure-mode-hook 'aggressive-indent-mode)
@@ -195,7 +200,6 @@
 (add-hook 'go-mode
           (lambda ()
             (define-key go-mode-map (kbd "C-c C-c") 'godoc-at-point)))
-
 
 ;; makefile-bsdmake-mode
 (add-hook 'makefile-bsdmake-mode 'whitespace-mode)
