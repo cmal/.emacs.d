@@ -37,6 +37,20 @@
                                                )
                                nil))))))
 
+(comment
+ (eval-after-load 'clojure-mode
+   '(progn
+      (font-lock-remove-keywords
+       'clojure-mode `(("\\(#\\){"
+                        (0 (progn (compose-region (match-beginning 1)
+                                                  (match-end 1) "∈")
+                                  nil)))))
+      (font-lock-add-keywords
+       'clojure-mode `(("\\(#\\){"
+                        (0 (progn (compose-region (match-beginning 1)
+                                                  (match-end 1) "Ø")
+                                  nil))))))))
+
 (eval-after-load 'find-file-in-project
   '(add-to-list 'ffip-patterns "*.clj"))
 

@@ -4,8 +4,8 @@
   (let ((word (if mark-active
                   (buffer-substring-no-properties (region-beginning) (region-end))
                 (current-word nil t))))
-    (setq word (read-string (format "Search the dictionary for (default %s): " word)
-                            nil nil word))
+    (comment (setq word (read-string (format "Search the dictionary for (default %s): " word)
+                             nil nil word)))
     (set-buffer (get-buffer-create "*sdcv*"))
     (buffer-disable-undo)
     (erase-buffer)
@@ -31,9 +31,15 @@
 
 ;; end of kid-sdcv
 
-(global-set-key (kbd "C-c d") 'kid-sdcv-to-buffer)
-
 ;; 恢复弹出前 window layout
 ;; 如果有一个 before-popup-hook 的话, 可以把 layout 存成一个全局变量
 
-(provide 'setup-sdcv)
+
+;; emacs-powerthesaurus
+;; powerthesaurus-lookup-word
+;; powerthesaurus-lookup-word-at-point
+(define-key global-map (kbd "C-c d t") 'powerthesaurus-lookup-word-at-point)
+(define-key global-map (kbd "C-c d v") 'kid-sdcv-to-buffer)
+
+
+(provide 'setup-dict)

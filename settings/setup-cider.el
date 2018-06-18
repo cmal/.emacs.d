@@ -258,4 +258,19 @@ the next chapter, open Dired so you can find it manually."
 ;; and evaluate code like you would do in any regular Clojure file.
 (add-hook 'adoc-mode-hook 'cider-mode)
 
+;; FIXME need /src ?
+;; (setq cider-jdk-src-paths '("~/gits/openjdk"
+;;                             "~/gits/clojure"))
+
+;; NOTE this will not work
+;; TODO should specify `:java-cmd' to "/Library/Java/JavaVirtualMachines/jdk-10.0.1.jdk/Contents/Home/bin/java"
+;; in `$HOME/.lein/profiles.clj' (NOT TESTED), or project.clj (TESTED).
+;; choose jvm version
+;; java 8
+;; (setenv "JAVA_HOME" "/Library/Java/JavaVirtualMachines/jdk1.8.0_102.jdk/Contents/Home")
+;; java 10
+;; (setenv "JAVA_HOME" "/Library/Java/JavaVirtualMachines/jdk-10.0.1.jdk/Contents/Home")
+;; (setenv "PATH" (concat (getenv "PATH") "/bin:" (getenv "PATH")))
+;; (setenv "CLASS_PATH" (concat (getenv "JAVA_HOME") "/lib"))
+
 (provide 'setup-cider)
