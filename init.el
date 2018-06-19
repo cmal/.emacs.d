@@ -296,7 +296,7 @@
 ;; (autoload 'auto-complete-mode "auto-complete" nil t)
 (eval-after-load 'flycheck '(require 'setup-flycheck))
 
-(require 'setup-java)
+;; (require 'setup-jdee)
 
 ;; Map files to modes
 (require 'mode-mappings)
