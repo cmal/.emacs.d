@@ -215,4 +215,6 @@
 ;; info-mode-hook
 (add-hook 'Info-mode-hook 'rainbow-delimiters-mode)
 
+(autoload 'apples-mode "apples-mode" nil t)
+
 (provide 'mode-mappings)

@@ -225,38 +225,39 @@
 
 ;; (define-key clojure-mode-map (kbd "C-c C-l") 'cider-send-to-repl)
 
-(require 'adoc-mode)
-;; reading asciidoc book
-(defun increment-clojure-cookbook ()
-  "When reading the Clojure cookbook, find the next section, and
+(comment
+ (require 'adoc-mode)
+ ;; reading asciidoc book
+ (defun increment-clojure-cookbook ()
+   "When reading the Clojure cookbook, find the next section, and
 close the buffer. If the next section is a sub-directory or in
 the next chapter, open Dired so you can find it manually."
-  (interactive)
-  (let* ((cur (buffer-name))
-         (split-cur (split-string cur "[-_]"))
-         (chap (car split-cur))
-         (rec (car (cdr split-cur)))
-         (rec-num (string-to-number rec))
-         (next-rec-num (1+ rec-num))
-         (next-rec-s (number-to-string next-rec-num))
-         (next-rec (if (< next-rec-num 10)
-                       (concat "0" next-rec-s)
-                     next-rec-s))
-         (target (file-name-completion (concat chap "-" next-rec) "")))
-    (progn
-      (if (equal target nil)
-          (dired (file-name-directory (buffer-file-name)))
-        (find-file target))
-      (kill-buffer cur))))
+   (interactive)
+   (let* ((cur (buffer-name))
+          (split-cur (split-string cur "[-_]"))
+          (chap (car split-cur))
+          (rec (car (cdr split-cur)))
+          (rec-num (string-to-number rec))
+          (next-rec-num (1+ rec-num))
+          (next-rec-s (number-to-string next-rec-num))
+          (next-rec (if (< next-rec-num 10)
+                        (concat "0" next-rec-s)
+                      next-rec-s))
+          (target (file-name-completion (concat chap "-" next-rec) "")))
+     (progn
+       (if (equal target nil)
+           (dired (file-name-directory (buffer-file-name)))
+         (find-file target))
+       (kill-buffer cur))))
 
-(define-key adoc-mode-map (kbd "M-+") 'increment-clojure-cookbook)
+ (define-key adoc-mode-map (kbd "M-+") 'increment-clojure-cookbook)
 
-;; Of course, this binding assumes you're using adoc-mode for reading
-;; .asciidoc files. We suggest CIDER for evaluating code interactively.
-;; Adding the following hook to your config will enable cider-mode every
-;; time you enter an AsciiDoc file. Once active, you can start a REPL
-;; and evaluate code like you would do in any regular Clojure file.
-(add-hook 'adoc-mode-hook 'cider-mode)
+ ;; Of course, this binding assumes you're using adoc-mode for reading
+ ;; .asciidoc files. We suggest CIDER for evaluating code interactively.
+ ;; Adding the following hook to your config will enable cider-mode every
+ ;; time you enter an AsciiDoc file. Once active, you can start a REPL
+ ;; and evaluate code like you would do in any regular Clojure file.
+ (add-hook 'adoc-mode-hook 'cider-mode))
 
 ;; FIXME need /src ?
 ;; (setq cider-jdk-src-paths '("~/gits/openjdk"
