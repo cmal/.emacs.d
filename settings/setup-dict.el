@@ -4,8 +4,18 @@
 (defun org-capture-sdcv-result ()
   ;; D is org-template k for sdcv
   (interactive)
+  (goto-char (point-min))
+  ;; replace all pronuciations 
+  (while (re-search-forward "\\[" nil t)
+    (replace-match "{"))
+  (goto-char (point-min))
+  (while (re-search-forward "\\]" nil t)
+    (replace-match "}"))
   (mark-whole-buffer)
-  (funcall 'org-capture nil "D"))
+  (funcall 'org-capture nil "D")
+  (save-buffer)
+  (quit-window)
+  (quit-window))
 
 ;; the following requires `setup-sdcv.el'
 (defun sdcv-capture-template ()
