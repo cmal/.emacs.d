@@ -14,6 +14,7 @@
 (if (display-graphic-p) (set-fringe-mode '(0 . 0)))
 (global-set-key (kbd "s-p") 'scroll-down-line)
 (global-set-key (kbd "s-n") 'scroll-up-line)
+(global-set-key (kbd "C-c s") 'replace-string)
 
 (require 'multiple-cursors)
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
@@ -267,4 +268,3 @@ instead."
           (user-error "No symbol found"))))))
 
 (provide 'setup-editing)
-

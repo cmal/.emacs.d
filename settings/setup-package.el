@@ -14,7 +14,8 @@
 ;; tsinghua melpa
 ;; (setq package-archives nil)
 (setq package-archives '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
-                         ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")))
+                         ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
+                         ("org" . "https://orgmode.org/elpa/")))
 
 ;; (setq package-pinned-packages '())
 
