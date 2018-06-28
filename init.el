@@ -34,9 +34,21 @@
 (setq settings-dir
       (expand-file-name "settings" user-emacs-directory))
 
+;; (setq org-dir
+;;       (expand-file-name "org" user-emacs-directory))
+
+;; (setq org-core-dir
+;;       (expand-file-name "lisp" org-dir))
+
+;; (setq org-contrib-dir
+;;       (expand-file-name "lisp"
+;;                         (expand-file-name "contrib" org-dir)))
+
 ;; Set up load path
 (add-to-list 'load-path settings-dir)
 (add-to-list 'load-path site-lisp-dir)
+;; (add-to-list 'load-path org-core-dir)
+;; (add-to-list 'load-path org-contrib-dir)
 
 ;; add site-lisp-dir and all of its first child dir
 ;; to 'load-path
@@ -120,7 +132,7 @@
 (defun init--install-packages ()
   (packages-install
    (append
-    '(magit
+    '(magit org
       git-timemachine edn uuid dash diminish inflections spinner
       move-text golden-ratio-scroll-screen yasnippet emmet-mode
       json-mode helm helm-org-rifle helm-descbinds org-redmine
@@ -207,7 +219,9 @@
 (require 'helm)
 (eval-after-load 'helm '(require 'setup-helm))
 ;; (eval-after-load 'ido '(require 'setup-ido))
-(eval-after-load 'org '(require 'setup-org))
+(require 'org)
+(require 'setup-org)
+;; (eval-after-load 'org '(require 'setup-org))
 ;; (eval-after-load 'dired '(require 'setup-dired))
 ;; (eval-after-load 'magit '(require 'setup-magit))
 ;; (eval-after-load 'grep '(require 'setup-rgrep))
@@ -230,7 +244,7 @@
 
 (when (not is-android)
   (require 'setup-fonts)
-  (require 'setup-sdcv))
+  (require 'setup-dict))
 
 (require 'setup-locale)
 (require 'setup-editing)
@@ -297,7 +311,7 @@
 ;; (autoload 'auto-complete-mode "auto-complete" nil t)
 (eval-after-load 'flycheck '(require 'setup-flycheck))
 
-(require 'setup-java)
+;; (require 'setup-jdee)
 
 ;; Map files to modes
 (require 'mode-mappings)
@@ -467,3 +481,5 @@ the sequence, and its index within the sequence."
 (require 'livereload)
 
 (achievements-mode t)
+
+(require 'taskwarrior)

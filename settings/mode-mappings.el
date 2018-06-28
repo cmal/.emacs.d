@@ -119,6 +119,9 @@
 (add-to-list 'auto-mode-alist '("\\.jshintrc$" . javascript-mode))
 (add-to-list 'magic-mode-alist '("#!/usr/bin/env node" . js2-mode))
 
+;; Java
+(add-to-list 'auto-mode-alist '("\\.java$" . java-mode))
+
 ;; Configuration files
 (add-to-list 'auto-mode-alist '("\\.offlineimaprc$" . conf-mode))
 
@@ -211,5 +214,7 @@
 ;; Info-mode : NOTE this is for `info+', not the default
 ;; info-mode-hook
 (add-hook 'Info-mode-hook 'rainbow-delimiters-mode)
+
+(autoload 'apples-mode "apples-mode" nil t)
 
 (provide 'mode-mappings)

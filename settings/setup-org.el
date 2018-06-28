@@ -85,7 +85,9 @@
    'org-agenda-files
    (add-to-list 'org-agenda-files buffer-file-name)))
 
-;; screenshot
+;; screenshot on Mac OS X, depends on screencapture on mac
+;; Linux can use this instead, it depends on a linux software `scrot':
+;; https://code.orgmode.org/bzg/org-mode/raw/master/contrib/lisp/org-screenshot.el
 (defun my-org-screenshot ()
   "Take a screenshot into a time stamped unique-named file in the
 same directory as the org-buffer and insert a link to this file."
@@ -107,6 +109,8 @@ same directory as the org-buffer and insert a link to this file."
                                         ; insert into file if correctly taken
   (if (file-exists-p filename)
       (insert filename)))
+
+
 
 
 ;; key shortcuts
@@ -305,5 +309,30 @@ same directory as the org-buffer and insert a link to this file."
        )
  (setq org-redmine-uri "http://redmine.9sand.cn:10086"
        org-redmine-auth-api-key "xxx"))
+
+;; org-capture template
+(require 'org-protocol)
+(setq org-capture-templates
+      (quote
+       (("p"
+         "Selected template for Chrome Org Capture"
+         entry
+         (file+headline "~/gits/org/capture.org" "Webpage Selected")
+         "* %^{Title} %:description \n\n %:initial \n\n Source: %u, %c\n\n %i \n\n %:link \n\n Timestamp: %t"
+         :empty-lines 1)
+        ("L"
+         "UnSelected template for Chrome Org Capture"
+         entry
+         (file+headline "~/gits/org/capture.org" "Webpage whole")
+         "* %^{Title} %:description\n\n Source: %u, %c\n\n %i \n\n %:link \n\n Timestamp:%t"
+         :empty-lines 1))))
+
+;; https://orgmode.org/worg/org-contrib/org-drill.html SRS
+;; I am using it for vocabulary building
+(require 'org-drill)
+(setq org-drill-maximum-items-per-session 20)
+(setq org-drill-maximum-duration 15)   ; 15 minutes
+;; (setq org-drill-spaced-repetition-algorithm 'simple8)
+(setq org-drill-add-random-noise-to-intervals-p t)
 
 (provide 'setup-org)
