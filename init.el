@@ -489,3 +489,4 @@ the sequence, and its index within the sequence."
 ;;  (require 'djvu))
 (require 'plantuml)
 (setq plantuml-jar-path "/usr/local/Cellar/plantuml/1.2018.8/libexec/plantuml.jar")
+(achievements-mode 1)
