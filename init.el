@@ -166,7 +166,7 @@
       go-mode go-dlv go-errcheck go-eldoc
       rjsx-mode ;; for jsx
       livereload goto-chg simple-httpd impatient-mode
-      achievements
+      achievements plantuml-mode flycheck-plantuml
       )
     (when is-mac '(wolfram-mode
 		   swbuff swbuff-x info+ bookmark+
@@ -487,3 +487,5 @@ the sequence, and its index within the sequence."
 ;; after brew install dunn/emacs/djvu-emacs on mac
 ;; (when is-mac
 ;;  (require 'djvu))
+(require 'plantuml)
+(setq plantuml-jar-path "/usr/local/Cellar/plantuml/1.2018.8/libexec/plantuml.jar")
