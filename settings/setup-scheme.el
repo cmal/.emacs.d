@@ -8,8 +8,12 @@
 ;; ========Racket========
 ;; (require 'racket-mode)
 
-(setq racket-racket-program "/Applications/Racket v6.9/bin/racket")
-(setq racket-raco-program   "/Applications/Racket v6.9/bin/raco")
+(setq racket-racket-program
+      (first-existing-file-in-list
+       '("/usr/bin/racket" "/usr/local/bin/racket")))
+(setq racket-raco-program
+      (first-existing-file-in-list
+       '("/usr/bin/raco" "/usr/local/bin/raco")))
 
 ;; An optional Emacs input method, racket-unicode,
 ;; lets you easily type various Unicode symbols that might be useful when writing Racket code.
@@ -25,3 +29,4 @@
 ;; ========Raceket End Here========
 
 (provide 'setup-scheme)
+

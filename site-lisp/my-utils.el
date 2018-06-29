@@ -32,4 +32,11 @@
   (set-window-start nil unscroll-window-start)
   (set-window-hscroll nil unscroll-hscroll))
 
+(defun first-existing-file-in-list (files-list)
+  (when (not (null files-list))
+      (let ((file (car files-list)))
+        (if (file-exists-p file)
+            file
+          (first-existing-file-in-list (cdr files-list))))))
+
 (provide 'my-utils)
