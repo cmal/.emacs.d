@@ -166,6 +166,7 @@
       go-mode go-dlv go-errcheck go-eldoc
       rjsx-mode ;; for jsx
       livereload goto-chg simple-httpd impatient-mode
+      achievements
       )
     (when is-mac '(wolfram-mode
 		   swbuff swbuff-x info+ bookmark+
@@ -478,6 +479,9 @@ the sequence, and its index within the sequence."
 
 (require 'goto-chg)
 (require 'livereload)
+
+(achievements-mode t)
+
 (require 'taskwarrior)
 
 ;; after brew install dunn/emacs/djvu-emacs on mac

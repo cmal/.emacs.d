@@ -1,8 +1,7 @@
 ;; ========MIT-Scheme========
 
-
-
-
+(require 'xscheme)
+;; M-x run-scheme to enter
 
 ;; ========MIT-Scheme End Here========
 
