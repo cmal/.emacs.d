@@ -479,3 +479,7 @@ the sequence, and its index within the sequence."
 (require 'goto-chg)
 (require 'livereload)
 (require 'taskwarrior)
+
+;; after brew install dunn/emacs/djvu-emacs on mac
+;; (when is-mac
+;;  (require 'djvu))
