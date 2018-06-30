@@ -1,5 +1,4 @@
 ;; init.el
-
 (defmacro comment (&rest body)
   "Comment out one or more s-expressions."
   nil)
@@ -64,8 +63,7 @@
 
 (add-site-lisp-and-sub-dir)
 
-(require 'encourage-mode)
-(encourage-mode)
+(require 'my-utils)
 
 ;; add el-get libs before loading custom.el
 ;; (el-get-bundle dholm/tabbar)
@@ -162,12 +160,11 @@
       pangu-spacing aggressive-indent
       tree-mode geiser monokai-theme haskell-mode intero helm-ag
       paredit-menu paredit-everywhere jdee log4j-mode log4e
-      buffer-flip
+      buffer-flip doom-themes
       go-mode go-dlv go-errcheck go-eldoc
       rjsx-mode ;; for jsx
       livereload goto-chg simple-httpd impatient-mode
       achievements plantuml-mode flycheck-plantuml
-
       )
     (when is-mac '(wolfram-mode
 		   swbuff swbuff-x info+ bookmark+
@@ -386,8 +383,6 @@
 ;; (setq atomic-chrome-buffer-open-style 'frame)
 ;; (setq atomic-chrome-extension-type-list '(atomic-chrome ghost-text))
 
-(require 'my-utils)
-
 ;; blog-admin
 (require 'blog-admin)
 (setq blog-admin-backend-path "~/gits/learning_clojure")
@@ -487,6 +482,8 @@ the sequence, and its index within the sequence."
 ;; after brew install dunn/emacs/djvu-emacs on mac
 ;; (when is-mac
 ;;  (require 'djvu))
-(require 'plantuml)
+(require 'plantuml-mode)
 (setq plantuml-jar-path "/usr/local/Cellar/plantuml/1.2018.8/libexec/plantuml.jar")
-(achievements-mode 1)
+
+(require 'encourage-mode)
+(encourage-mode)
