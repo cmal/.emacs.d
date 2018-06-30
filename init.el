@@ -162,7 +162,7 @@
       pangu-spacing aggressive-indent
       tree-mode geiser monokai-theme haskell-mode intero helm-ag
       paredit-menu paredit-everywhere jdee log4j-mode log4e
-      buffer-flip org-drill
+      buffer-flip
       go-mode go-dlv go-errcheck go-eldoc
       rjsx-mode ;; for jsx
       livereload goto-chg simple-httpd impatient-mode
@@ -220,7 +220,6 @@
 (require 'helm)
 (eval-after-load 'helm '(require 'setup-helm))
 ;; (eval-after-load 'ido '(require 'setup-ido))
-(require 'org)
 (require 'setup-org)
 ;; (eval-after-load 'org '(require 'setup-org))
 ;; (eval-after-load 'dired '(require 'setup-dired))

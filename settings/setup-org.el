@@ -1,3 +1,20 @@
+(defun remove-org-dir-from-list (list)
+  "Remove original org path from load-path"
+  (if (string-match-p (regexp-quote "/lisp/org") (car list))
+      (cdr list)
+    (cons (car list)
+          (remove-org-dir-from-list (cdr list)))))
+
+(defun remove-org-dir-from-load-path ()
+  (setq load-path (remove-org-dir-from-list load-path)))
+
+(remove-org-dir-from-load-path)
+
+(add-to-list 'load-path (expand-file-name "org/lisp" site-lisp-dir))
+(add-to-list 'load-path (expand-file-name "org/contrib/lisp" site-lisp-dir))
+
+(require 'org)
+
 (defun myorg-update-parent-cookie ()
   (when (equal major-mode 'org-mode)
     (save-excursion
