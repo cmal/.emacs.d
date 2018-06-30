@@ -53,7 +53,6 @@
 ;; (load-theme 'monokai)
 ;; (load-theme 'leuven)
 ;; (load-theme 'desert)
-(load-theme 'afternoon)
 ;; Don't defer screen updates when performing operations
 ;; (setq redisplay-dont-pause t)
 

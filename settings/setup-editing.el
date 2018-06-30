@@ -50,6 +50,10 @@
 ;; set it to 60 or more if this happens.
 (setq-default display-time-interval 1)
 ;; (display-time-mode 1)
+
+(require 'visual-fill-column)
+;; (add-hook 'visual-line-mode-hook #'visual-fill-column-mode)
+(add-hook 'visual-fill-column-mode-hook #'visual-line-mode)
 (global-visual-line-mode 1)
 ;; move-text
 ;; (move-text-default-bindings)

@@ -146,7 +146,7 @@
       yaml-mode sicp graphviz-dot-mode blog-admin edit-server
       keyfreq expand-region web-server markdown-preview-mode
       adoc-mode bug-hunter helm-chrome helm-github-stars
-      eredis
+      eredis visual-fill-column
       ;;swbuff
       ;;swbuff-x
       ace-jump-mode pinyin-search atomic-chrome
