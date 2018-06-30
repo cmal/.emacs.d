@@ -162,11 +162,12 @@
       pangu-spacing aggressive-indent
       tree-mode geiser monokai-theme haskell-mode intero helm-ag
       paredit-menu paredit-everywhere jdee log4j-mode log4e
-      buffer-flip
+      buffer-flip org-drill
       go-mode go-dlv go-errcheck go-eldoc
       rjsx-mode ;; for jsx
       livereload goto-chg simple-httpd impatient-mode
       achievements plantuml-mode flycheck-plantuml
+
       )
     (when is-mac '(wolfram-mode
 		   swbuff swbuff-x info+ bookmark+
