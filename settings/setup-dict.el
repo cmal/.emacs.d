@@ -14,8 +14,8 @@
   (mark-whole-buffer)
   (funcall 'org-capture nil "D")
   (save-buffer)
-  (quit-window)
-  (quit-window))
+  (quit-restore-window)
+  (quit-restore-window))
 
 ;; the following requires `setup-sdcv.el'
 (defun sdcv-capture-template ()

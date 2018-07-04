@@ -271,4 +271,8 @@ instead."
         (progn
           (user-error "No symbol found"))))))
 
+;; which-function-mode
+;; (which-func-mode nil)
+(which-function-mode t)
+
 (provide 'setup-editing)
