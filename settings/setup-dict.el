@@ -14,7 +14,7 @@
   (mark-whole-buffer)
   (funcall 'org-capture nil "D")
   (save-buffer)
-  (quit-restore-window)
+  (quit-window)
   (quit-restore-window))
 
 ;; the following requires `setup-sdcv.el'
