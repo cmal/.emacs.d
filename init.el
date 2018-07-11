@@ -96,9 +96,9 @@
 
 ;; Settings for currently logged in user
 (when is-mac
-  (progn
-    (setq user-settings-dir
-          (concat user-emacs-directory "users/" user-login-name))
+  (setq user-settings-dir
+        (concat user-emacs-directory "users/" user-login-name))
+  (when (file-exists-p user-settings-dir)
     (add-to-list 'load-path user-settings-dir)
     (require 'user-settings)))
 
@@ -172,13 +172,14 @@
        (when (not is-android)
          '(
            ;; eval-sexp-fu
-           clojure-mode align-cljlet
-                        clj-refactor cljr-helm clojure-mode-extra-font-locking
-                        cider
-                        ;; cider-eval-sexp-fu
-                        company ac-cider helm-cider
-                        clj-refactor 4clojure helm-clojuredocs helm-cider-history
-                        slack))))
+           clojure-mode
+           align-cljlet
+           clj-refactor cljr-helm clojure-mode-extra-font-locking
+           cider
+           ;; cider-eval-sexp-fu
+           company ac-cider helm-cider
+           clj-refactor 4clojure helm-clojuredocs helm-cider-history
+           slack))))
 
 (defun init--install-packages ()
   (packages-install init-packages))
@@ -238,13 +239,11 @@
   (require 'setup-clojure-mode)
   (require 'setup-cider)
   (require 'setup-python)
-  (require 'setup-scheme))
-(require 'setup-elisp)
-
-(when (not is-android)
+  (require 'setup-scheme)
   (require 'setup-fonts)
   (require 'setup-dict))
 
+(require 'setup-elisp)
 (require 'setup-locale)
 (require 'setup-editing)
 (require 'setup-diminish)
@@ -252,7 +251,6 @@
 (require 'setup-gui)
 (require 'setup-magit)
 (require 'setup-web)
-(when is-mac (require 'setup-help))
 ;; (require 'setup-slack)
 
 (require 'setup-mail)
@@ -417,7 +415,7 @@
 ;; (require 'ne2wm-plugin-org-clock)
 
 
-(setq debug-on-error t)
+(setq debug-on-error nil)
 
 ;; info+ ??
 (advice-remove 'kill-ring-save 'ad-Advice-kill-ring-save)
@@ -430,7 +428,7 @@
 (require 'move-text)
 
 (require 'setup-keymaps)
-;; (require 'setup-pdf)
+
 
 ;; seq.el 25.1 remove
 (defun seq-map-indexed (func sequence)
@@ -458,17 +456,13 @@ the sequence, and its index within the sequence."
 ;; (when is-mac
 ;;   (add-to-list 'Info-default-directory-list "/var/lib/dpkg/info"))
 
-(require 'goto-chg)
-(require 'livereload)
-
+;; (require 'livereload)
 (achievements-mode t)
-
-
 (require 'encourage-mode)
 (encourage-mode)
 
 (when is-mac
-  (require 'swbuff-x))
-
-(when is-mac
-  (require 'setup-3rd-party))
+  ;; (require 'setup-pdf)
+  (require 'swbuff-x)
+  (require 'setup-3rd-party)
+  (require 'setup-help))

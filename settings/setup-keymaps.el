@@ -28,7 +28,8 @@
 ;; or refer to http://www.troubleshooters.com/codecorn/littperl/perlreg.htm
 
 ;; wolfram
-(when is-mac (define-key wolfram-mode-map (kbd "C-x C-e") 'wolfram-send-last-mathexp))
+(when is-mac
+  (define-key wolfram-mode-map (kbd "C-x C-e") 'wolfram-send-last-mathexp))
 
 ;; swbuff-x
 (define-key global-map (kbd "C-S-u") 'swbuff-switch-to-next-buffer)
@@ -43,6 +44,7 @@
 (define-key global-map (kbd "C-c m") 'magit-status-fullscreen)
 
 ;; goto-chg
+(require 'goto-chg)
 (global-set-key (kbd "C-x C-.") 'goto-last-change)
 (global-set-key (kbd "C-x C-,") 'goto-last-change-reverse)
 
