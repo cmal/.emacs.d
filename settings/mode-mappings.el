@@ -181,7 +181,7 @@
 (dolist (x '(scheme emacs-lisp lisp racket clojure))
   (when-let (hook (intern-soft (concat (symbol-name x) "-mode-hook")))
     (add-hook hook 'enable-paredit-mode)
-    (add-hook hook 'rainbow-delimiters-mode)
+    ;; (add-hook hook 'rainbow-delimiters-mode)
     (add-hook hook 'subword-mode)
     ;; (add-hook hook 'aggressive-indent-mode) ;; use electric-indent-mode by default
     (add-hook hook 'electric-indent-mode)))

@@ -127,59 +127,61 @@
 
 ;; Install extensions if they're missing
 ;; NOTE: folder `jdee-sever/` has been added for jdee to work.
+(setq init-packages
+      (append
+       '(magit org
+               git-timemachine edn uuid dash diminish inflections spinner
+               move-text golden-ratio-scroll-screen yasnippet emmet-mode
+               json-mode helm helm-org-rifle helm-descbinds org-redmine
+               org-repo-todo helm-ack helm-ls-git helm-emmet
+               visual-regexp fill-column-indicator flycheck
+               flycheck-pos-tip flycheck-clojure undo-tree smartscan
+               smartparens guide-key sx highlight-escape-sequences
+               whitespace-cleanup-mode elisp-slime-nav rainbow-mode
+               rainbow-delimiters thingatpt paredit mic-paren
+               yesql-ghosts string-edit multiple-cursors fic-mode
+               smart-forward wgrep change-inner web-mode js2-mode
+               js2-refactor nodejs-repl restclient less-css-mode
+               yaml-mode sicp graphviz-dot-mode blog-admin edit-server
+               keyfreq expand-region web-server markdown-preview-mode
+               adoc-mode bug-hunter helm-chrome helm-github-stars
+               eredis visual-fill-column
+               ;;swbuff
+               ;;swbuff-x
+               ace-jump-mode pinyin-search atomic-chrome
+               vue-mode editorconfig sass-mode psysh php-mode jedi
+               jedi-direx
+               language-detection
+               ;; w3m helm-w3m
+               alert org-alert suggest
+               ledger-mode hledger-mode vlf racket-mode
+               exec-path-from-shell
+               pangu-spacing aggressive-indent
+               tree-mode geiser monokai-theme haskell-mode intero helm-ag
+               paredit-menu paredit-everywhere jdee log4j-mode log4e
+               buffer-flip doom-themes
+               go-mode go-dlv go-errcheck go-eldoc
+               rjsx-mode ;; for jsx
+               livereload goto-chg simple-httpd impatient-mode
+               achievements plantuml-mode flycheck-plantuml
+               )
+       (when is-mac '(wolfram-mode
+                      swbuff swbuff-x info+ bookmark+
+                      hyperbole help+ help-fns+
+                      help-mode+ org-wunderlist))
+       (when (not is-android)
+         '(
+           ;; eval-sexp-fu
+           clojure-mode align-cljlet
+                        clj-refactor cljr-helm clojure-mode-extra-font-locking
+                        cider
+                        ;; cider-eval-sexp-fu
+                        company ac-cider helm-cider
+                        clj-refactor 4clojure helm-clojuredocs helm-cider-history
+                        slack))))
+
 (defun init--install-packages ()
-  (packages-install
-   (append
-    '(magit org
-      git-timemachine edn uuid dash diminish inflections spinner
-      move-text golden-ratio-scroll-screen yasnippet emmet-mode
-      json-mode helm helm-org-rifle helm-descbinds org-redmine
-      org-repo-todo helm-ack helm-ls-git helm-emmet
-      visual-regexp fill-column-indicator flycheck
-      flycheck-pos-tip flycheck-clojure undo-tree smartscan
-      smartparens guide-key sx highlight-escape-sequences
-      whitespace-cleanup-mode elisp-slime-nav rainbow-mode
-      rainbow-delimiters thingatpt paredit mic-paren
-      yesql-ghosts string-edit multiple-cursors fic-mode
-      smart-forward wgrep change-inner web-mode js2-mode
-      js2-refactor nodejs-repl restclient less-css-mode
-      yaml-mode sicp graphviz-dot-mode blog-admin edit-server
-      keyfreq expand-region web-server markdown-preview-mode
-      adoc-mode bug-hunter helm-chrome helm-github-stars
-      eredis visual-fill-column
-      ;;swbuff
-      ;;swbuff-x
-      ace-jump-mode pinyin-search atomic-chrome
-      vue-mode editorconfig sass-mode psysh php-mode jedi
-      jedi-direx
-      language-detection
-      ;; w3m helm-w3m
-      alert org-alert suggest
-      ledger-mode hledger-mode vlf racket-mode
-      exec-path-from-shell
-      pangu-spacing aggressive-indent
-      tree-mode geiser monokai-theme haskell-mode intero helm-ag
-      paredit-menu paredit-everywhere jdee log4j-mode log4e
-      buffer-flip doom-themes
-      go-mode go-dlv go-errcheck go-eldoc
-      rjsx-mode ;; for jsx
-      livereload goto-chg simple-httpd impatient-mode
-      achievements plantuml-mode flycheck-plantuml
-      )
-    (when is-mac '(wolfram-mode
-		   swbuff swbuff-x info+ bookmark+
-		   hyperbole help+ help-fns+
-		   help-mode+ org-wunderlist))
-    (when (not is-android)
-      '(
-	;; eval-sexp-fu
-        clojure-mode align-cljlet
-        clj-refactor cljr-helm clojure-mode-extra-font-locking
-        cider
-	;; cider-eval-sexp-fu
-	company ac-cider helm-cider
-        clj-refactor 4clojure helm-clojuredocs helm-cider-history
-        slack)))))
+  (packages-install init-packages))
 ;; NOT USED:
 ;; use-package capture multi-term helm-mt
 ;; chinese-fonts-setup helm-projectile swiper-helm
@@ -383,14 +385,6 @@
 ;; (setq atomic-chrome-buffer-open-style 'frame)
 ;; (setq atomic-chrome-extension-type-list '(atomic-chrome ghost-text))
 
-;; blog-admin
-(require 'blog-admin)
-(setq blog-admin-backend-path "~/gits/learning_clojure")
-(setq blog-admin-backend-type 'hexo)
-(setq blog-admin-backend-new-post-in-drafts nil)
-(setq blog-admin-backend-new-post-with-same-name-dir nil)
-(setq blog-admin-backend-hexo-config-file "_config.yml")
-(add-hook 'blog-admin-backend-after-new-post-hook 'find-file)
 
 
 ;; M-x emms-add-netease-album RET
@@ -422,14 +416,6 @@
 ;; (require 'ne2wm-setup)
 ;; (require 'ne2wm-plugin-org-clock)
 
-(when is-mac (require 'swbuff-x))
-
-(when is-mac
-  (require 'wolfram-mode)
-  (autoload 'wolfram-mode "wolfram-mode" nil t)
-  (autoload 'run-wolfram "wolfram-mode" nil t)
-  (setq wolfram-program "/Applications/Mathematica.app/Contents/MacOS/MathKernel")
-  (add-to-list 'auto-mode-alist '("\\.m$" . wolfram-mode)))
 
 (setq debug-on-error t)
 
@@ -477,13 +463,12 @@ the sequence, and its index within the sequence."
 
 (achievements-mode t)
 
-(require 'taskwarrior)
-
-;; after brew install dunn/emacs/djvu-emacs on mac
-;; (when is-mac
-;;  (require 'djvu))
-(require 'plantuml-mode)
-(setq plantuml-jar-path "/usr/local/Cellar/plantuml/1.2018.8/libexec/plantuml.jar")
 
 (require 'encourage-mode)
 (encourage-mode)
+
+(when is-mac
+  (require 'swbuff-x))
+
+(when is-mac
+  (require 'setup-3rd-party))

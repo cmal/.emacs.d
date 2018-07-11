@@ -14,7 +14,6 @@
   (mark-whole-buffer)
   (funcall 'org-capture nil "D")
   (save-buffer)
-  (quit-window)
   (quit-restore-window))
 
 ;; the following requires `setup-sdcv.el'
@@ -37,8 +36,6 @@
   (let ((word (if mark-active
                   (buffer-substring-no-properties (region-beginning) (region-end))
                 (current-word nil t))))
-    (comment (setq word (read-string (format "Search the dictionary for (default %s): " word)
-                                     nil nil word)))
     (setq org-capture-sdcv-this-word word)
     (set-buffer (get-buffer-create "*sdcv*"))
     (buffer-disable-undo)
