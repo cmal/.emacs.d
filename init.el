@@ -33,6 +33,9 @@
 (setq settings-dir
       (expand-file-name "settings" user-emacs-directory))
 
+(setq my-gits-dir
+      (expand-file-name "gits" (getenv "HOME")))
+
 ;; (setq org-dir
 ;;       (expand-file-name "org" user-emacs-directory))
 
@@ -164,6 +167,7 @@
                rjsx-mode ;; for jsx
                livereload goto-chg simple-httpd impatient-mode
                achievements plantuml-mode flycheck-plantuml
+               powerthesaurus
                )
        (when is-mac '(wolfram-mode
                       swbuff swbuff-x info+ bookmark+

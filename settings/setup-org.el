@@ -352,4 +352,10 @@ same directory as the org-buffer and insert a link to this file."
 ;; (setq org-drill-spaced-repetition-algorithm 'simple8)
 (setq org-drill-add-random-noise-to-intervals-p t)
 
+(setq my-org-files-dir
+      (expand-file-name "org" my-gits-dir))
+
+(setq my-english-org-file-path
+      (expand-file-name "english.org" my-org-files-dir))
+
 (provide 'setup-org)
