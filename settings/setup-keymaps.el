@@ -29,7 +29,9 @@
 
 ;; wolfram
 (when is-mac
-  (define-key wolfram-mode-map (kbd "C-x C-e") 'wolfram-send-last-mathexp))
+  (eval-after-load 'woldfram-mode
+    (lambda ()
+      (define-key wolfram-mode-map (kbd "C-x C-e") 'wolfram-send-last-mathexp))))
 
 ;; swbuff-x
 (define-key global-map (kbd "C-S-u") 'swbuff-switch-to-next-buffer)
