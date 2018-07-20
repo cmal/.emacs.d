@@ -285,4 +285,8 @@ instead."
 
 (require 'my-thing-at-point)
 
+;; "C-\\" has already bound to delete-horizontal-whitespace
+;; bound "C-c \\" to fixup-whitespace
+(global-set-key (kbd "C-c \\") 'fixup-whitespace)
+
 (provide 'setup-editing)
