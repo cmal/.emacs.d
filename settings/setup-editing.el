@@ -275,6 +275,6 @@ instead."
 ;; (which-func-mode nil)
 (which-function-mode t)
 
-(require 'things-at-point)
+(require 'my-thing-at-point)
 
 (provide 'setup-editing)

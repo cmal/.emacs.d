@@ -1,4 +1,4 @@
-;;; things-at-point.el --- things at point -*- coding: utf-8 -*-
+;;; my-thing-at-point.el --- things at point -*- coding: utf-8 -*-
 
 (defun my-symbol-at-point ()
   (interactive)
@@ -44,4 +44,4 @@
   (interactive)
   (thing-at-point 'page))
 
-(provide 'things-at-point)
+(provide 'my-thing-at-point)
