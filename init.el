@@ -11,7 +11,8 @@
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
-(package-initialize)
+(when (string< emacs-version "27")
+    (package-initialize))
 
 ;; add el-get libs before loading custom.el
 
@@ -461,7 +462,7 @@ the sequence, and its index within the sequence."
 ;;   (add-to-list 'Info-default-directory-list "/var/lib/dpkg/info"))
 
 ;; (require 'livereload)
-(achievements-mode t)
+;; (achievements-mode t) ;; comment due to performance problem
 (require 'encourage-mode)
 (encourage-mode)
 
