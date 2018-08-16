@@ -260,9 +260,9 @@
 
 (require 'setup-mail)
 ;; (require 'keylogger) ;; BUG in helm minibuffer
-(require 'keyfreq)
-(keyfreq-mode 1)
-(keyfreq-autosave-mode 1)
+;; (require 'keyfreq)
+;; (keyfreq-mode 1)
+;; (keyfreq-autosave-mode 1)
 
 ;; (require 'prodigy)
 ;; (global-set-key (kbd "C-x M-m") 'prodigy)
