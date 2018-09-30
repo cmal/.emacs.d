@@ -60,12 +60,16 @@
     (add-to-list 'load-path base)
     (dolist (f (directory-files base))
       (let ((name (concat base "/" f)))
-        (when (and (file-directory-p name) 
+        (when (and (not (equal f "."))
                    (not (equal f ".."))
-                   (not (equal f ".")))
+                   (file-directory-p name))
           (add-to-list 'load-path name))))))
 
 (add-site-lisp-and-sub-dir)
+
+;; remove popup temporarily, for using predictive's older popup version
+(setq load-path (remove "/Users/yuzhao/.emacs.d/site-lisp/popup" load-path))
+
 
 (require 'my-utils)
 
@@ -420,7 +424,7 @@
 ;; (require 'ne2wm-plugin-org-clock)
 
 
-(setq debug-on-error nil)
+(setq debug-on-error t)
 
 ;; info+ ??
 (advice-remove 'kill-ring-save 'ad-Advice-kill-ring-save)
@@ -471,3 +475,31 @@ the sequence, and its index within the sequence."
   (require 'swbuff-x)
   (require 'setup-3rd-party)
   (require 'setup-help))
+
+
+;; predictive-mode
+(add-to-list 'load-path "~/.emacs.d/site-lisp/data-structures/predictive/")
+(add-to-list 'load-path "~/.emacs.d/site-lisp/data-structures/predictive/latex/")
+(add-to-list 'load-path "~/.emacs.d/site-lisp/data-structures/predictive/texinfo/")
+(add-to-list 'load-path "~/.emacs.d/site-lisp/data-structures/predictive/html/")
+(autoload 'predictive-mode "~/.emacs.d/site-lisp/data-structures/predictive/predictive"
+  "Turn on Predictive Completion Mode." t)
+(autoload 'popup "~/.emacs.d/site-lisp/data-structures/predictive/popup"
+  "popup")
+
+
+;; predictive initialize dict
+;; cd some path and then:
+;; (setq dict-english
+;;       (predictive-create-dict
+;;        'dict-english
+;;        "dict-english"
+;;        "dict-english.word-list"
+;;        nil
+;;        nil
+;;        t))
+
+;; (dictree-write dict-english "dict-english" t)
+
+(when is-mac
+  (require 'setup-eslpod))

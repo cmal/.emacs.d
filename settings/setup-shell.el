@@ -54,4 +54,7 @@
           (lambda ()
             (define-key shell-mode-map (kbd "C-d") 'comint-delchar-or-eof-or-kill-buffer)))
 
+;; https://github.com/manateelazycat/aweshell
+(require 'aweshell)
+
 (provide 'setup-shell)
