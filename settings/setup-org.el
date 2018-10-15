@@ -1,12 +1,19 @@
-(defun remove-org-dir-from-list (list)
-  "Remove original org path from load-path"
-  (if (string-match-p (regexp-quote "/lisp/org") (car list))
-      (cdr list)
-    (cons (car list)
-          (remove-org-dir-from-list (cdr list)))))
+(require 'seq)
+
+;; (defun remove-org-dir-from-list (list)
+;;   "Remove original org path from load-path"
+;;   (if (string-match-p (regexp-quote "/lisp/org") (car list))
+;;       (cdr list)
+;;     (cons (car list)
+;;           (remove-org-dir-from-list (cdr list)))))
 
 (defun remove-org-dir-from-load-path ()
-  (setq load-path (remove-org-dir-from-list load-path)))
+  "Remove original org path from load-path"
+  (setq load-path
+        (seq-remove
+         (lambda (p)
+           (string-match-p (regexp-quote "/lisp/org") p))
+         load-path)))
 
 (remove-org-dir-from-load-path)
 

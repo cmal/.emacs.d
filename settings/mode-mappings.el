@@ -165,7 +165,7 @@
 ;; haskell mode
 (autoload 'haskell-mode "haskell-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.hs$" . haskell-mode))
-(add-hook 'haskell-mode-hook 'intero-mode)
+(add-hook 'haskell-mode-hook 'intero-mode-whitelist)
 (add-hook 'haskell-mode-hook 'smartparens-mode)
 
 ;; conf mode
