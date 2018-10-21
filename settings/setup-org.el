@@ -1,12 +1,19 @@
-(defun remove-org-dir-from-list (list)
-  "Remove original org path from load-path"
-  (if (string-match-p (regexp-quote "/lisp/org") (car list))
-      (cdr list)
-    (cons (car list)
-          (remove-org-dir-from-list (cdr list)))))
+(require 'seq)
+
+;; (defun remove-org-dir-from-list (list)
+;;   "Remove original org path from load-path"
+;;   (if (string-match-p (regexp-quote "/lisp/org") (car list))
+;;       (cdr list)
+;;     (cons (car list)
+;;           (remove-org-dir-from-list (cdr list)))))
 
 (defun remove-org-dir-from-load-path ()
-  (setq load-path (remove-org-dir-from-list load-path)))
+  "Remove original org path from load-path"
+  (setq load-path
+        (seq-remove
+         (lambda (p)
+           (string-match-p (regexp-quote "/lisp/org") p))
+         load-path)))
 
 (remove-org-dir-from-load-path)
 
@@ -357,5 +364,115 @@ same directory as the org-buffer and insert a link to this file."
 
 (setq my-english-org-file-path
       (expand-file-name "english.org" my-org-files-dir))
+
+
+;; deal with org export to pdf errors
+;; https://stackoverflow.com/questions/19936200/org-mode-not-exporting-to-pdf
+;; (defun set-exec-path-from-shell-PATH ()
+;;   "Sets the exec-path to the same value used by the user shell"
+;;   (let ((path-from-shell
+;;          (replace-regexp-in-string
+;;           "[[:space:]\n]*$" ""
+;;           (shell-command-to-string "$SHELL -l -c 'echo $PATH'"))))
+;;     (setenv "PATH" path-from-shell)
+;;     (setq exec-path (split-string path-from-shell path-separator))))
+
+;; (set-exec-path-from-shell-PATH)
+
+
+;; install this package
+;; https://github.com/purcell/exec-path-from-shell
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
+
+;; latex 中文
+;; https://kuanyui.github.io/2014/05/10/emacs-org-mode-xelatex-output-chinese-pdf/
+(setq org-latex-classes
+      '(("article"
+         "
+\\documentclass[10.5pt,a4paper]{article}
+\\usepackage[margin=2cm]{geometry}
+\\usepackage{fontspec}
+\\usepackage{indentfirst}
+\\usepackage{xeCJK}
+\\setCJKmainfont{STSongti-SC-Regular}
+\\setmainfont{TimesNewRomanPSMT}
+
+% reduce spacing
+\\setlength{\\parskip}{0.1em}
+\\usepackage[compact]{titlesec}
+\\titlespacing{\\section}{0.2em}{0.1em}{0em}
+
+\\renewcommand{\\contentsname}{目录} % make TOC show \"目录\" instead of \"Contents\"
+
+\\title{赵宇简历}
+
+% enumerate 间距
+\\usepackage{enumitem}
+\\setlist[enumerate]{itemsep=1pt,parsep=0pt,before={\\parskip=0pt}}
+
+% tabular 首尾加 \\hline
+
+\\usepackage{picinpar}               % 图表和文字混排宏包
+\\usepackage[verbose]{wrapfig}       % 图表和文字混排宏包
+
+\\usepackage{etoolbox}  % Quote 部份的字型設定
+\\AtBeginEnvironment{quote}{\\quotefont\\small}
+
+\\setmonofont[Scale=0.9]{Menlo} % 等寬字型 [FIXME] Courier 中文會爛掉！
+%\\font\\pingFang=''PingFangSC'' at 10pt
+\\XeTeXlinebreaklocale ``zh''
+\\XeTeXlinebreakskip = 0pt plus 1pt
+\\linespread{1.36}
+
+% [FIXME] ox-latex 的設計不良導致 hypersetup 必須在這裡插入
+\\usepackage{hyperref}
+\\hypersetup{
+  colorlinks=true, %把紅框框移掉改用字體顏色不同來顯示連結
+  linkcolor=[rgb]{0,0.37,0.53},
+  citecolor=[rgb]{0,0.47,0.68},
+  filecolor=[rgb]{0,0.37,0.53},
+  urlcolor=[rgb]{0,0.37,0.53},
+  pagebackref=true,
+  linktoc=all,}
+"
+         ("\\section{%s}" . "\\section*{%s}")
+         ("\\subsection{%s}" . "\\subsection*{%s}")
+         ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+         ("\\paragraph{%s}" . "\\paragraph*{%s}")
+         ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
+        ))
+;; [FIXME]
+;; 原本是不要讓 org 插入 hypersetup（因為 org-mode 這部份設計成沒辦法自訂，或許可以去 report 一下？）
+;; 改成自行插入，但這樣 pdfcreator 沒辦法根據 Emacs 版本插入，pdfkeyword 也會無效...幹。
+(setq org-latex-with-hyperref t)
+
+;; 把預設的 fontenc 拿掉
+;; 經過測試 XeLaTeX 輸出 PDF 時有 fontenc[T1]的話中文會無法顯示。
+;; hyperref 也拿掉，改從 classes 處就插入，原因見上面 org-latex-with-hyperref 的說明。
+(setq org-latex-default-packages-alist
+      '(("" "hyperref" nil)
+        ("AUTO" "inputenc" t)
+        ("" "fixltx2e" nil)
+        ("" "graphicx" t)
+        ("" "longtable" nil)
+        ("" "float" nil)
+        ("" "wrapfig" nil)
+        ("" "rotating" nil)
+        ("normalem" "ulem" t)
+        ("" "amsmath" t)
+        ("" "textcomp" t)
+        ("" "marvosym" t)
+        ("" "wasysym" t)
+        ("" "multicol" t)  ; 這是我另外加的，因為常需要多欄位文件版面。
+        ("" "amssymb" t)
+        "\\tolerance=1000"))
+
+;; Use XeLaTeX to export PDF in Org-mode
+(setq org-latex-pdf-process
+      '("xelatex -interaction nonstopmode -output-directory %o %f"
+        "xelatex -interaction nonstopmode -output-directory %o %f"
+        "xelatex -interaction nonstopmode -output-directory %o %f"))
+
 
 (provide 'setup-org)

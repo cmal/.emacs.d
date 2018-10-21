@@ -65,7 +65,7 @@
 
 ;;Support for JSX is available via the derived mode `js2-jsx-mode'.  If you
 ;;also want JSX support, use that mode instead:
-(add-to-list 'auto-mode-alist '("\\.jsx\\'" . js-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
 (add-to-list 'interpreter-mode-alist '("node" . js2-mode))
 
 
@@ -165,7 +165,7 @@
 ;; haskell mode
 (autoload 'haskell-mode "haskell-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.hs$" . haskell-mode))
-(add-hook 'haskell-mode-hook 'intero-mode)
+(add-hook 'haskell-mode-hook 'intero-mode-whitelist)
 (add-hook 'haskell-mode-hook 'smartparens-mode)
 
 ;; conf mode

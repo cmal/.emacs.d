@@ -14,6 +14,14 @@
 (if (display-graphic-p) (set-fringe-mode '(0 . 0)))
 (global-set-key (kbd "s-p") 'scroll-down-line)
 (global-set-key (kbd "s-n") 'scroll-up-line)
+(when is-mac
+  (progn
+    (global-set-key (kbd "M-s-~") (lambda ()
+                                    (interactive)
+                                    (scroll-other-window -1)))
+    (global-set-key (kbd "M-s-π") (lambda ()
+                                     (interactive)
+                                     (scroll-other-window 1)))))
 (global-set-key (kbd "C-c s") 'replace-string)
 
 (require 'multiple-cursors)
@@ -274,5 +282,11 @@ instead."
 ;; which-function-mode
 ;; (which-func-mode nil)
 (which-function-mode t)
+
+(require 'my-thing-at-point)
+
+;; "C-\\" has already bound to delete-horizontal-whitespace
+;; bound "C-c \\" to fixup-whitespace
+(global-set-key (kbd "C-c \\") 'fixup-whitespace)
 
 (provide 'setup-editing)

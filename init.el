@@ -11,7 +11,8 @@
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
-(package-initialize)
+(when (string< emacs-version "27")
+    (package-initialize))
 
 ;; add el-get libs before loading custom.el
 
@@ -59,12 +60,16 @@
     (add-to-list 'load-path base)
     (dolist (f (directory-files base))
       (let ((name (concat base "/" f)))
-        (when (and (file-directory-p name) 
+        (when (and (not (equal f "."))
                    (not (equal f ".."))
-                   (not (equal f ".")))
+                   (file-directory-p name))
           (add-to-list 'load-path name))))))
 
 (add-site-lisp-and-sub-dir)
+
+;; remove popup temporarily, for using predictive's older popup version
+(setq load-path (remove "/Users/yuzhao/.emacs.d/site-lisp/popup" load-path))
+
 
 (require 'my-utils)
 
@@ -259,9 +264,9 @@
 
 (require 'setup-mail)
 ;; (require 'keylogger) ;; BUG in helm minibuffer
-(require 'keyfreq)
-(keyfreq-mode 1)
-(keyfreq-autosave-mode 1)
+;; (require 'keyfreq)
+;; (keyfreq-mode 1)
+;; (keyfreq-autosave-mode 1)
 
 ;; (require 'prodigy)
 ;; (global-set-key (kbd "C-x M-m") 'prodigy)
@@ -419,7 +424,7 @@
 ;; (require 'ne2wm-plugin-org-clock)
 
 
-(setq debug-on-error nil)
+(setq debug-on-error t)
 
 ;; info+ ??
 (advice-remove 'kill-ring-save 'ad-Advice-kill-ring-save)
@@ -461,7 +466,7 @@ the sequence, and its index within the sequence."
 ;;   (add-to-list 'Info-default-directory-list "/var/lib/dpkg/info"))
 
 ;; (require 'livereload)
-(achievements-mode t)
+;; (achievements-mode t) ;; comment due to performance problem
 (require 'encourage-mode)
 (encourage-mode)
 
@@ -470,3 +475,31 @@ the sequence, and its index within the sequence."
   (require 'swbuff-x)
   (require 'setup-3rd-party)
   (require 'setup-help))
+
+
+;; predictive-mode
+(add-to-list 'load-path "~/.emacs.d/site-lisp/data-structures/predictive/")
+(add-to-list 'load-path "~/.emacs.d/site-lisp/data-structures/predictive/latex/")
+(add-to-list 'load-path "~/.emacs.d/site-lisp/data-structures/predictive/texinfo/")
+(add-to-list 'load-path "~/.emacs.d/site-lisp/data-structures/predictive/html/")
+(autoload 'predictive-mode "~/.emacs.d/site-lisp/data-structures/predictive/predictive"
+  "Turn on Predictive Completion Mode." t)
+(autoload 'popup "~/.emacs.d/site-lisp/data-structures/predictive/popup"
+  "popup")
+
+
+;; predictive initialize dict
+;; cd some path and then:
+;; (setq dict-english
+;;       (predictive-create-dict
+;;        'dict-english
+;;        "dict-english"
+;;        "dict-english.word-list"
+;;        nil
+;;        nil
+;;        t))
+
+;; (dictree-write dict-english "dict-english" t)
+
+(when is-mac
+  (require 'setup-eslpod))

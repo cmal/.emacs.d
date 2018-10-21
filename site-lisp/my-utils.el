@@ -39,4 +39,9 @@
             file
           (first-existing-file-in-list (cdr files-list))))))
 
+(defun apply-macro (macro arg-list)
+  (eval
+   `(,macro ,@(loop for arg in arg-list
+                 collect `(quote ,arg)))))
+
 (provide 'my-utils)
