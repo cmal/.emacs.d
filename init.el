@@ -172,10 +172,11 @@
                rjsx-mode ;; for jsx
                livereload goto-chg simple-httpd impatient-mode
                achievements plantuml-mode flycheck-plantuml
-               powerthesaurus
-               )
+               powerthesaurus emms)
        (when is-mac '(wolfram-mode
-                      swbuff swbuff-x info+ bookmark+
+                      swbuff swbuff-x info+
+		      ;; bookmark+
+                      ;; org-drill
                       hyperbole help+ help-fns+
                       help-mode+ org-wunderlist))
        (when (not is-android)
@@ -453,7 +454,7 @@ the sequence, and its index within the sequence."
 
 (require 'reddit)
 
-(when is-mac (require 'bookmark+))
+;; (when is-mac (require 'bookmark+))
 
 ;; (require 'randomize)
 

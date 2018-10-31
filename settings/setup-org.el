@@ -353,17 +353,19 @@ same directory as the org-buffer and insert a link to this file."
 
 ;; https://orgmode.org/worg/org-contrib/org-drill.html SRS
 ;; I am using it for vocabulary building
-(require 'org-drill)
-(setq org-drill-maximum-items-per-session 20)
-(setq org-drill-maximum-duration 15)   ; 15 minutes
-;; (setq org-drill-spaced-repetition-algorithm 'simple8)
-(setq org-drill-add-random-noise-to-intervals-p t)
 
-(setq my-org-files-dir
-      (expand-file-name "org" my-gits-dir))
+(defun setup-org-drill ()
+  (require 'org-drill)
+  (setq org-drill-maximum-items-per-session 20)
+  (setq org-drill-maximum-duration 15)   ; 15 minutes
+  ;; (setq org-drill-spaced-repetition-algorithm 'simple8)
+  (setq org-drill-add-random-noise-to-intervals-p t)
 
-(setq my-english-org-file-path
-      (expand-file-name "english.org" my-org-files-dir))
+  (setq my-org-files-dir
+        (expand-file-name "org" my-gits-dir))
+
+  (setq my-english-org-file-path
+        (expand-file-name "english.org" my-org-files-dir)))
 
 
 ;; deal with org export to pdf errors
