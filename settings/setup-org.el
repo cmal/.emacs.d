@@ -389,9 +389,10 @@ same directory as the org-buffer and insert a link to this file."
 
 ;; latex 中文
 ;; https://kuanyui.github.io/2014/05/10/emacs-org-mode-xelatex-output-chinese-pdf/
-(setq org-latex-classes
-      '(("article"
-         "
+(comment
+ (setq org-latex-classes
+       '(("article"
+          "
 \\documentclass[10.5pt,a4paper]{article}
 \\usepackage[margin=2cm]{geometry}
 \\usepackage{fontspec}
@@ -438,12 +439,72 @@ same directory as the org-buffer and insert a link to this file."
   pagebackref=true,
   linktoc=all,}
 "
+          ("\\section{%s}" . "\\section*{%s}")
+          ("\\subsection{%s}" . "\\subsection*{%s}")
+          ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+          ("\\paragraph{%s}" . "\\paragraph*{%s}")
+          ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
+         )))
+
+(setq org-latex-classes
+      '(("article"
+         "
+\\documentclass[10.5pt,a4paper]{mordencv}
+\\moderncvstyle{classic}
+\\moderncvcolor{blue}
+\\usepackage[margin=2cm]{geometry}
+\\usepackage{fontspec}
+\\usepackage{indentfirst}
+\\usepackage{xeCJK}
+\\setCJKmainfont{STSongti-SC-Regular}
+\\setmainfont{TimesNewRomanPSMT}
+
+% reduce spacing
+\\setlength{\\parskip}{0.1em}
+\\usepackage[compact]{titlesec}
+\\titlespacing{\\section}{0.2em}{0.1em}{0em}
+
+\\renewcommand{\\contentsname}{目录} % make TOC show \"目录\" instead of \"Contents\"
+
+\\title{赵宇简历}
+
+% enumerate 间距
+\\usepackage{enumitem}
+\\setlist[enumerate]{itemsep=1pt,parsep=0pt,before={\\parskip=0pt}}
+
+% tabular 首尾加 \\hline
+
+\\usepackage{picinpar}               % 图表和文字混排宏包
+\\usepackage[verbose]{wrapfig}       % 图表和文字混排宏包
+
+\\usepackage{etoolbox}  % Quote 部份的字型設定
+\\AtBeginEnvironment{quote}{\\quotefont\\small}
+
+\\setmonofont[Scale=0.9]{Menlo} % 等寬字型 [FIXME] Courier 中文會爛掉！
+%\\font\\pingFang=''PingFangSC'' at 10pt
+\\XeTeXlinebreaklocale ``zh''
+\\XeTeXlinebreakskip = 0pt plus 1pt
+\\linespread{1.36}
+
+% [FIXME] ox-latex 的設計不良導致 hypersetup 必須在這裡插入
+\\usepackage{hyperref}
+\\hypersetup{
+  colorlinks=true, %把紅框框移掉改用字體顏色不同來顯示連結
+  linkcolor=[rgb]{0,0.37,0.53},
+  citecolor=[rgb]{0,0.47,0.68},
+  filecolor=[rgb]{0,0.37,0.53},
+  urlcolor=[rgb]{0,0.37,0.53},
+  pagebackref=true,
+  linktoc=all,}
+"
          ("\\section{%s}" . "\\section*{%s}")
-         ("\\subsection{%s}" . "\\subsection*{%s}")
+;;         ("\\subsection{%s}" . "\\subsection*{%s}")
          ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
          ("\\paragraph{%s}" . "\\paragraph*{%s}")
          ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
         ))
+
+
 ;; [FIXME]
 ;; 原本是不要讓 org 插入 hypersetup（因為 org-mode 這部份設計成沒辦法自訂，或許可以去 report 一下？）
 ;; 改成自行插入，但這樣 pdfcreator 沒辦法根據 Emacs 版本插入，pdfkeyword 也會無效...幹。
