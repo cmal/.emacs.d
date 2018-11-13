@@ -498,10 +498,11 @@ same directory as the org-buffer and insert a link to this file."
   linktoc=all,}
 "
          ("\\section{%s}" . "\\section*{%s}")
-;;         ("\\subsection{%s}" . "\\subsection*{%s}")
-         ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+         ("\\subsection{%s}" . "\\subsection*{%s}")
+;;         ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
          ("\\paragraph{%s}" . "\\paragraph*{%s}")
-         ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
+         ("\\subparagraph{%s}" . "\\subparagraph*{%s}")
+         )
         ))
 
 
