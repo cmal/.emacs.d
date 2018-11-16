@@ -504,3 +504,6 @@ the sequence, and its index within the sequence."
 
 (when is-mac
   (require 'setup-eslpod))
+
+
+(require 'setup-nix)
