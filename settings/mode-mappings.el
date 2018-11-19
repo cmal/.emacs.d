@@ -224,4 +224,7 @@
 (autoload 'nix-mode "nix-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.nix$" . nix-mode))
 
+(autoload 'solidity-mode "solidity-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.sol$" . solidity-mode))
+
 (provide 'mode-mappings)
