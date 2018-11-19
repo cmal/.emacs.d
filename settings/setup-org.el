@@ -382,11 +382,6 @@ same directory as the org-buffer and insert a link to this file."
 ;; (set-exec-path-from-shell-PATH)
 
 
-;; install this package
-;; https://github.com/purcell/exec-path-from-shell
-(when (memq window-system '(mac ns x))
-  (exec-path-from-shell-initialize))
-
 ;; latex 中文
 ;; https://kuanyui.github.io/2014/05/10/emacs-org-mode-xelatex-output-chinese-pdf/
 (comment

@@ -5,12 +5,6 @@
 (if (eq system-type 'gnu/linux)
     (setenv "TZ" "Asia/Shanghai"))
 
-;; use exec-path-from-shell package
-(when (memq window-system '(mac ns))
-  (exec-path-from-shell-initialize))
-
-
-
 (add-to-list 'exec-path "/usr/local/bin")
 
 ;; 解决Emacs执行shell命令command not found的问题, 原因是.bashrc修改的path变量未起作用

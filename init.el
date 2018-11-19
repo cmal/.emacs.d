@@ -11,8 +11,9 @@
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
-(when (string< emacs-version "27")
-    (package-initialize))
+;; (when (string< emacs-version "27")
+;;     (package-initialize))
+(package-initialize)
 
 ;; add el-get libs before loading custom.el
 
@@ -70,6 +71,10 @@
 ;; remove popup temporarily, for using predictive's older popup version
 (setq load-path (remove "/Users/yuzhao/.emacs.d/site-lisp/popup" load-path))
 
+;; Setup environment variables from the user's shell.
+(when (memq window-system '(ns x))
+  (require 'exec-path-from-shell)
+  (exec-path-from-shell-initialize))
 
 (require 'my-utils)
 
@@ -137,7 +142,7 @@
 ;; NOTE: folder `jdee-sever/` has been added for jdee to work.
 (setq init-packages
       (append
-       '(magit org
+       '(magit org cnfonts
                git-timemachine edn uuid dash diminish inflections spinner
                move-text golden-ratio-scroll-screen yasnippet emmet-mode
                json-mode helm helm-org-rifle helm-descbinds org-redmine
@@ -153,7 +158,7 @@
                yaml-mode sicp graphviz-dot-mode blog-admin edit-server
                keyfreq expand-region web-server markdown-preview-mode
                adoc-mode bug-hunter helm-chrome helm-github-stars
-               eredis visual-fill-column
+               eredis visual-fill-column nix-mode
                ;;swbuff
                ;;swbuff-x
                ace-jump-mode pinyin-search atomic-chrome
@@ -174,11 +179,16 @@
                achievements plantuml-mode flycheck-plantuml
                powerthesaurus emms)
        (when is-mac '(wolfram-mode
-                      swbuff swbuff-x info+
+                      ;; swbuff swbuff-x
+		      ;; info+
 		      ;; bookmark+
                       ;; org-drill
-                      hyperbole help+ help-fns+
-                      help-mode+ org-wunderlist))
+                      hyperbole
+		      ;; help+
+		      ;; help-fns+
+                      ;; help-mode+
+		      ;; org-wunderlist
+		      ))
        (when (not is-android)
          '(
            ;; eval-sexp-fu
@@ -211,11 +221,6 @@
 
 ;; Lets start with a smattering of sanity
 (require 'sane-defaults)
-
-;; Setup environment variables from the user's shell.
-(when is-mac
-  (require-package 'exec-path-from-shell)
-  (exec-path-from-shell-initialize))
 
 ;; guide-key
 (require 'guide-key)
@@ -428,7 +433,7 @@
 (setq debug-on-error t)
 
 ;; info+ ??
-(advice-remove 'kill-ring-save 'ad-Advice-kill-ring-save)
+;; (advice-remove 'kill-ring-save 'ad-Advice-kill-ring-save)
 
 ;; javascript indent
 ;; you should use set-variable for js-indent-level to 2 or 4 to switch.
@@ -473,9 +478,10 @@ the sequence, and its index within the sequence."
 
 (when is-mac
   ;; (require 'setup-pdf)
-  (require 'swbuff-x)
+  ;; (require 'swbuff-x)
   (require 'setup-3rd-party)
-  (require 'setup-help))
+  ;;(require 'setup-help)
+  )
 
 
 ;; predictive-mode
