@@ -177,7 +177,7 @@
                rjsx-mode ;; for jsx
                livereload goto-chg simple-httpd impatient-mode
                achievements plantuml-mode flycheck-plantuml
-               powerthesaurus emms)
+               powerthesaurus emms pact-mode)
        (when is-mac '(wolfram-mode
                       ;; swbuff swbuff-x
 		      ;; info+
@@ -510,3 +510,6 @@ the sequence, and its index within the sequence."
 
 (when is-mac
   (require 'setup-eslpod))
+
+
+(require 'setup-nix)
