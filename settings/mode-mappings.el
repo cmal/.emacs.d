@@ -99,6 +99,10 @@
 ;; Clojure
 (autoload 'clojure-mode "clojure-mode")
 (add-to-list 'auto-mode-alist '("\\.clj$" . clojure-mode))
+;; for temporary usage in seal
+(add-to-list 'auto-mode-alist '("\\.repl$" . clojure-mode))
+(add-to-list 'auto-mode-alist '("\\.seal$" . clojure-mode))
+
 (add-to-list 'auto-mode-alist '("\\.cljs$" . clojurescript-mode))
 (add-to-list 'auto-mode-alist '("\\.cljc$" . clojurec-mode))
 (add-hook 'clojure-mode-hook 'hs-minor-mode)
