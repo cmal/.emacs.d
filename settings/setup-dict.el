@@ -44,7 +44,7 @@
     (set-buffer (get-buffer-create "*sdcv*"))
     (buffer-disable-undo)
     (erase-buffer)
-    (let ((process (start-process-shell-command "sdcv" "*sdcv*" (concat "sdcv -n0 " word))))
+    (let ((process (start-process-shell-command "sdcv" "*sdcv*" (concat "sdcv -n0 '" word "'"))))
       (set-process-sentinel
        process
        (lambda (process signal)
