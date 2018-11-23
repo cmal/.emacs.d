@@ -533,5 +533,6 @@ same directory as the org-buffer and insert a link to this file."
         "xelatex -interaction nonstopmode -output-directory %o %f"
         "xelatex -interaction nonstopmode -output-directory %o %f"))
 
+(require 'org-tempo)
 
 (provide 'setup-org)
