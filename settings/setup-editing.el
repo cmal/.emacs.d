@@ -82,6 +82,7 @@
 (global-whitespace-cleanup-mode)
 
 (set-default 'truncate-lines t)
+
 (require 'smartscan)
 (global-smartscan-mode)
 
@@ -147,16 +148,16 @@
 ;; (register-input-method "chinese-wubi" "Chinese-GB" 'quail-use-package "WB" "汉字输入∷五笔输入法∷")
 ;; (setq default-input-method "chinese-wubi")
 
-(when is-mac
- ;; setup swbuff-mode
- ;; requiring swbuff-x
- (setq swbuff-exclude-mode-regexp
-       "helm\\|magit\\|fundamental\\|diff\\|nodejs\\|help\\|message\\|org\\|text")
- (setq swbuff-start-with-current-centered t)
- (setq swbuff-display-intermediate-buffers t)
- (setq swbuff-clear-delay 2)
- ;;(setq swbuff-window-min-text-height 2)
- )
+;; (when is-mac
+;;  ;; setup swbuff-mode
+;;  ;; requiring swbuff-x
+;;  (setq swbuff-exclude-mode-regexp
+;;        "helm\\|magit\\|fundamental\\|diff\\|nodejs\\|help\\|message\\|org\\|text")
+;;  (setq swbuff-start-with-current-centered t)
+;;  (setq swbuff-display-intermediate-buffers t)
+;;  (setq swbuff-clear-delay 2)
+;;  ;;(setq swbuff-window-min-text-height 2)
+;;  )
 
 ;; paredit
 (add-hook 'prog-mode-hook 'paredit-everywhere-mode)

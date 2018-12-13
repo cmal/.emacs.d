@@ -99,6 +99,7 @@
 ;; Clojure
 (autoload 'clojure-mode "clojure-mode")
 (add-to-list 'auto-mode-alist '("\\.clj$" . clojure-mode))
+(add-to-list 'auto-mode-alist '("\\.cljx$" . clojure-mode))
 ;; for temporary usage in seal
 (add-to-list 'auto-mode-alist '("\\.repl$" . clojure-mode))
 (add-to-list 'auto-mode-alist '("\\.seal$" . clojure-mode))
@@ -122,6 +123,12 @@
 (add-to-list 'auto-mode-alist '("\\.json$" . json-mode))
 (add-to-list 'auto-mode-alist '("\\.jshintrc$" . javascript-mode))
 (add-to-list 'magic-mode-alist '("#!/usr/bin/env node" . js2-mode))
+
+(add-hook 'js-mode
+          (lambda ()
+            (define-key js-mode-map (kbd "C-c C-z") 'nodejs-repl-switch-to-repl)
+            (define-key js-mode-map (kbd "C-c C-e") 'nodejs-repl-send-last-expression)
+            (define-key js-mode-map (kbd "C-c C-c") 'nodejs-repl-send-region)))
 
 ;; Java
 (add-to-list 'auto-mode-alist '("\\.java$" . java-mode))
@@ -226,5 +233,9 @@
 
 (autoload 'solidity-mode "solidity-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.sol$" . solidity-mode))
+
+(autoload 'racket-mode "racket-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.rkt$" . racket-mode))
+;; (add-to-list 'auto-mode-alist '("\\.scm$" . racket-mode))
 
 (provide 'mode-mappings)
