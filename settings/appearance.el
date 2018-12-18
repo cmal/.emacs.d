@@ -54,7 +54,7 @@
 ;; (load-theme 'leuven)
 ;; (load-theme 'desert)
 ;; (load-theme 'afternoon)
-(load-theme 'doom-challenger-deep)
+;; (load-theme 'doom-challenger-deep)
 ;; (load-theme 'doom-nord-light)
 ;; Don't defer screen updates when performing operations
 ;; (setq redisplay-dont-pause t)
