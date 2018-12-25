@@ -66,14 +66,14 @@
 
 (defun eslpod-forward-track ()
   (interactive)
-  (setq elspod-index (1+ eslpod-index))
-  (eslpod-set-current-file elspod-index)
+  (setq eslpod-index (1+ eslpod-index))
+  (eslpod-set-current-file eslpod-index)
   (eslpod-play-current-file))
 
 (defun eslpod-backward-track ()
   (interactive)
-  (setq elspod-index (1- eslpod-index))
-  (eslpod-set-current-file elspod-index)
+  (setq eslpod-index (1- eslpod-index))
+  (eslpod-set-current-file eslpod-index)
   (eslpod-play-current-file))
 
 
