@@ -55,6 +55,7 @@
 ;; (load-theme 'desert)
 ;; (load-theme 'afternoon)
 ;; (load-theme 'doom-challenger-deep)
+(load-theme 'doom-tomorrow-day)
 ;; (load-theme 'doom-nord-light)
 ;; Don't defer screen updates when performing operations
 ;; (setq redisplay-dont-pause t)
@@ -94,4 +95,5 @@
 ;; (setq tabbar-buffer-groups-function
 ;;       'my-tabbar-buffer-groups)
 
-(provide 'appearance)
+(provide 'setup-appearance)
+;;; setup-appearance.el ends here

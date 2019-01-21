@@ -19,6 +19,6 @@
       (select-window window)
       (find-file (file-name-sans-versions file t)))))
 
-(define-key dired-mode-map [mouse-2] 'dired-mouse-find-file)
+;; (define-key dired-mode-map [mouse-2] 'dired-mouse-find-file)
 
 (provide 'setup-dired)
