@@ -119,16 +119,11 @@
 (autoload 'js2-mode "js2-mode" nil t)
 (autoload 'javascript-mode "javascript-mode" nil t)
 ;;(add-to-list 'auto-mode-alist '("\\.js$" . javascript-mode))
-(add-to-list 'auto-mode-alist '("\\.js$" . js-mode))
+;;(add-to-list 'auto-mode-alist '("\\.js$" . js-mode))
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.json$" . json-mode))
 (add-to-list 'auto-mode-alist '("\\.jshintrc$" . javascript-mode))
 (add-to-list 'magic-mode-alist '("#!/usr/bin/env node" . js2-mode))
-
-(add-hook 'js-mode
-          (lambda ()
-            (define-key js-mode-map (kbd "C-c C-z") 'nodejs-repl-switch-to-repl)
-            (define-key js-mode-map (kbd "C-c C-e") 'nodejs-repl-send-last-expression)
-            (define-key js-mode-map (kbd "C-c C-c") 'nodejs-repl-send-region)))
 
 ;; Java
 (add-to-list 'auto-mode-alist '("\\.java$" . java-mode))

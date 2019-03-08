@@ -148,11 +148,12 @@ BODY will be ignored."
                smart-forward wgrep change-inner web-mode js2-mode
                js2-refactor nodejs-repl restclient less-css-mode
                yaml-mode sicp graphviz-dot-mode blog-admin edit-server
-               keyfreq expand-region web-server markdown-preview-mode
+               keyfreq expand-region web-server 
                adoc-mode bug-hunter helm-chrome helm-github-stars
                eredis visual-fill-column nix-mode solidity-mode
-               ;;swbuff
-               ;;swbuff-x
+               ;; markdown-preview-mode
+               ;; swbuff
+               ;; swbuff-x
                ace-jump-mode pinyin-search atomic-chrome
                vue-mode editorconfig sass-mode psysh php-mode
                ;; jedi jedi-direx
@@ -170,6 +171,7 @@ BODY will be ignored."
                buffer-flip doom-themes
                go-mode go-dlv go-errcheck go-eldoc
                rjsx-mode ;; for jsx
+               js-comint nvm ;; for js repl
                livereload goto-chg simple-httpd impatient-mode
                achievements plantuml-mode flycheck-plantuml
                powerthesaurus emms pact-mode)
@@ -305,12 +307,14 @@ BODY will be ignored."
   (add-hook it 'turn-on-smartparens-mode))
 
 ;; Language specific setup files
-;; (eval-after-load 'js2-mode '(require 'setup-js2-mode))
+(eval-after-load 'js2-mode '(require 'setup-js2-mode))
+(eval-after-load 'js2-mode '(require 'setup-js))
 ;; (eval-after-load 'ruby-mode '(require 'setup-ruby-mode))
 (eval-after-load 'clojure-mode '(require 'setup-clojure-mode))
-(when is-mac
-  (eval-after-load 'markdown-mode '(require 'setup-markdown-mode)))
+;; (when is-mac
+;;   (eval-after-load 'markdown-mode '(require 'setup-markdown-mode)))
 (eval-after-load 'js-mode '(require 'setup-js-mode))
+(eval-after-load 'js-mode '(require 'setup-js))
 
 ;; Load stuff on demand
 (autoload 'skewer-start "setup-skewer" nil t)
@@ -480,14 +484,14 @@ the sequence, and its index within the sequence."
 
 
 ;; predictive-mode
-(add-to-list 'load-path "~/.emacs.d/site-lisp/data-structures/predictive/")
-(add-to-list 'load-path "~/.emacs.d/site-lisp/data-structures/predictive/latex/")
-(add-to-list 'load-path "~/.emacs.d/site-lisp/data-structures/predictive/texinfo/")
-(add-to-list 'load-path "~/.emacs.d/site-lisp/data-structures/predictive/html/")
-(autoload 'predictive-mode "~/.emacs.d/site-lisp/data-structures/predictive/predictive"
-  "Turn on Predictive Completion Mode." t)
-(autoload 'popup "~/.emacs.d/site-lisp/data-structures/predictive/popup"
-  "popup")
+;; (add-to-list 'load-path "~/.emacs.d/site-lisp/data-structures/predictive/")
+;; (add-to-list 'load-path "~/.emacs.d/site-lisp/data-structures/predictive/latex/")
+;; (add-to-list 'load-path "~/.emacs.d/site-lisp/data-structures/predictive/texinfo/")
+;; (add-to-list 'load-path "~/.emacs.d/site-lisp/data-structures/predictive/html/")
+;; (autoload 'predictive-mode "~/.emacs.d/site-lisp/data-structures/predictive/predictive"
+;;   "Turn on Predictive Completion Mode." t)
+;; (autoload 'popup "~/.emacs.d/site-lisp/data-structures/predictive/popup"
+;;   "popup")
 
 
 ;; predictive initialize dict
