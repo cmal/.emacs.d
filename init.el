@@ -171,7 +171,7 @@ BODY will be ignored."
                buffer-flip doom-themes
                go-mode go-dlv go-errcheck go-eldoc
                rjsx-mode ;; for jsx
-               js-comint nvm ;; for js repl
+               graphql-mode js-comint nvm ;; for js repl
                livereload goto-chg simple-httpd impatient-mode
                achievements plantuml-mode flycheck-plantuml
                powerthesaurus emms pact-mode)
