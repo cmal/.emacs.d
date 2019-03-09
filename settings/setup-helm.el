@@ -74,5 +74,5 @@
 ;; Setup your github username:
 (setq helm-github-stars-username "cmal")
 
-
 (provide 'setup-helm)
+;;; setup-helm.el ends here

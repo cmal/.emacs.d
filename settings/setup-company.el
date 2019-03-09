@@ -1,5 +1,11 @@
+;;; setup-company.el --- tweak company settings -*- lexical-binding: t; -*-
+;;; Commentary:
+
+;;; Code:
+
 ;; If you'd prefer to trigger completions manually:
-(setq company-idle-delay nil) ; never start completions automatically
+;; (setq company-idle-delay nil) ;; nil: never start completions automatically
+(setq company-idle-delay 0)
 
 (with-eval-after-load 'company
   (define-key company-active-map (kbd "M-n") nil)
@@ -15,3 +21,4 @@
                     (call-interactively 'hippie-expand))))
 
 (provide 'setup-company)
+;;; setup-company.el ends here

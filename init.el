@@ -158,7 +158,7 @@ BODY will be ignored."
                vue-mode editorconfig sass-mode psysh php-mode
                ;; jedi jedi-direx
                ;; python:
-               lsp-mode lsp-python lsp-ui
+               lsp-mode lsp-python lsp-ui helm-lsp
                rust-mode lsp-rust
                language-detection
                ;; w3m helm-w3m

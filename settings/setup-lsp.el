@@ -9,6 +9,7 @@
 (require 'company)
 (require 'company-lsp)
 (require 'lsp-ui)
+(require 'helm-lsp)
 
 (add-hook 'lsp-mode-hook 'lsp-ui-mode)
 ;; (add-hook 'python-mode-hook 'flycheck-mode)
