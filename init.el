@@ -510,5 +510,7 @@ the sequence, and its index within the sequence."
 (when is-mac
   (require 'setup-eslpod))
 
+(flymake-mode -1)
+(flymake-mode-off)
 
 (require 'setup-nix)
