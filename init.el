@@ -159,7 +159,7 @@ BODY will be ignored."
                ;; jedi jedi-direx
                ;; python:
                lsp-mode lsp-python lsp-ui helm-lsp
-               rust-mode lsp-rust
+               rust-mode
                language-detection
                ;; w3m helm-w3m
                alert org-alert suggest

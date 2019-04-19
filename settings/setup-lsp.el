@@ -16,7 +16,7 @@
 
 (add-hook 'python-mode-hook #'lsp)
 (add-hook 'rust-mode-hook #'lsp)
-(add-hook 'javascript-mode-hook #'lsp)
+(add-hook 'js-mode-hook #'lsp)
 (add-hook 'js2-mode-hook #'lsp)
 (add-hook 'typescript-mode-hook #'lsp)
 
