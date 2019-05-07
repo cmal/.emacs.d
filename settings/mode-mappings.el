@@ -236,4 +236,8 @@
 (autoload 'rust-mode "rust-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.rs$" . rust-mode))
 
+;; elm-mode
+(autoload 'elm-mode "elm-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.elm$" . elm-mode))
+
 (provide 'mode-mappings)

@@ -174,7 +174,7 @@ BODY will be ignored."
                graphql-mode js-comint nvm ;; for js repl
                livereload goto-chg simple-httpd impatient-mode
                achievements plantuml-mode flycheck-plantuml
-               powerthesaurus emms pact-mode)
+               powerthesaurus emms pact-mode elm-mode)
        (when is-mac '(wolfram-mode
                       ;; swbuff swbuff-x
 		      ;; info+
@@ -251,7 +251,7 @@ BODY will be ignored."
   (require 'setup-clojure-mode)
   (require 'setup-cider)
   (require 'setup-scheme)
-  (require 'setup-lsp)
+;;  (require 'setup-lsp)
   (require 'setup-fonts)
   (require 'setup-dict))
 
