@@ -120,7 +120,7 @@
 (autoload 'javascript-mode "javascript-mode" nil t)
 ;;(add-to-list 'auto-mode-alist '("\\.js$" . javascript-mode))
 ;;(add-to-list 'auto-mode-alist '("\\.js$" . js-mode))
-(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.js$" . js-mode))
 (add-to-list 'auto-mode-alist '("\\.json$" . json-mode))
 (add-to-list 'auto-mode-alist '("\\.jshintrc$" . javascript-mode))
 (add-to-list 'magic-mode-alist '("#!/usr/bin/env node" . js2-mode))
@@ -239,5 +239,10 @@
 ;; elm-mode
 (autoload 'elm-mode "elm-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.elm$" . elm-mode))
+
+;; shell-script-mode
+(autoload 'shell-script-mode "shell-script-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.sh$" . shell-script-mode))
+(add-to-list 'auto-mode-alist '("\\.sh.ftpl$" . shell-script-mode))
 
 (provide 'mode-mappings)

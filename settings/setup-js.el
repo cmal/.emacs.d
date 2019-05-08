@@ -32,11 +32,11 @@
 
 
 ;; eslint
-(flycheck-add-mode 'javascript-eslint 'web-mode)
-(flycheck-add-mode 'javascript-eslint 'js-mode)
-(flycheck-add-mode 'javascript-eslint 'js2-mode)
-(flycheck-add-mode 'javascript-eslint 'graphql-mode)
-(flycheck-add-mode 'javascript-eslint 'rjsx-mode)
+;; (flycheck-add-mode 'javascript-eslint 'web-mode)
+;; (flycheck-add-mode 'javascript-eslint 'js-mode)
+;; (flycheck-add-mode 'javascript-eslint 'js2-mode)
+;; (flycheck-add-mode 'javascript-eslint 'graphql-mode)
+;; (flycheck-add-mode 'javascript-eslint 'rjsx-mode)
 
 (provide 'setup-js)
 ;;; setup-js.el ends here
