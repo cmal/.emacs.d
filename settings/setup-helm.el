@@ -74,5 +74,12 @@
 ;; Setup your github username:
 (setq helm-github-stars-username "cmal")
 
+;; https://emacs.stackexchange.com/questions/50416/can-helm-ag-commands-ignore-git-submodules/50426#50426
+(require 'helm-ag)
+(setq helm-ag-use-grep-ignore-list t)
+;; adding a .agignore (or .ignore if you use ag 2.0.0) to the root of
+;; your project with a list of folders that you want to ignore.
+(global-set-key (kbd "C-x a g") 'helm-ag)
+
 (provide 'setup-helm)
 ;;; setup-helm.el ends here
