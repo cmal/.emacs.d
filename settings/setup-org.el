@@ -535,4 +535,8 @@ same directory as the org-buffer and insert a link to this file."
 
 (require 'org-tempo)
 
+;; poporg
+(autoload 'poporg-dwim "poporg" nil t)
+(global-set-key (kbd "C-c /") 'poporg-dwim)
+
 (provide 'setup-org)
