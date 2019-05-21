@@ -200,8 +200,9 @@
 ;; (remove-hook 'clojure-mode-hook 'aggressive-indent-mode)
 
 ;; vue mode
-(autoload 'vue-mode "vue-mode" nil t)
-(add-to-list 'auto-mode-alist '("\\.vue$" . vue-mode))
+;; (autoload 'vue-mode "vue-mode" nil t)
+;; (add-to-list 'auto-mode-alist '("\\.vue$" . vue-mode))
+(add-to-list 'auto-mode-alist '("\\.vue$" . web-mode))
 
 ;; go mode
 (autoload 'go-mode "go-mode" nil t)
