@@ -93,5 +93,9 @@
   (use-local-map taskwarrior-map)
   )
 
+(defun task-sync ()
+  (interactive)
+  (shell-command "task sync"))
+
 (provide 'taskwarrior)
 ;;; taskwarrior.el ends here
