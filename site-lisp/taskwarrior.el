@@ -90,7 +90,8 @@
 (defun taskwarrior-delete-task ()
   (interactive)
   (let* ((task-id (get-current-line-task-id)))
-      (message (format "task %i delete" (string-to-number task-id)))))
+    (when (y-or-n-p (format "Are you sure you want to delete task %d? " task-id))
+      (message (format "task %i delete" (string-to-number task-id))))))
 
 (defun taskwarrior-done-task ()
   "Mark taskwarrior task as done."
@@ -136,7 +137,7 @@ focusing on the tasks that block everything else."
   (display-tasks "BLOCKING -BLOCKED"))
 
 (defun taskwarrior-start ()
-  "Modify current task to depends on another task by id"
+  "Start a task"
   (interactive)
   (let ((task-id (get-current-line-task-id)))
     (shell-command (format "task %d start" task-id))
