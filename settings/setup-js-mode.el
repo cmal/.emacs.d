@@ -69,5 +69,6 @@
               (+ js-indent-level js-expr-indent-offset))
              (t 0)))))
 
+(setq typescript-indent-level 2)
 
 (provide 'setup-js-mode)

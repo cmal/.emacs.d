@@ -174,14 +174,16 @@ BODY will be ignored."
                graphql-mode js-comint nvm ;; for js repl
                livereload goto-chg simple-httpd impatient-mode
                achievements plantuml-mode flycheck-plantuml
-               powerthesaurus emms pact-mode elm-mode)
+               powerthesaurus emms pact-mode elm-mode
+               dart-mode flutter elisp-demos
+               )
        (when is-mac '(wolfram-mode
                       ;; swbuff swbuff-x
 		      ;; info+
 		      ;; bookmark+
                       ;; org-drill
                       hyperbole
-		      ;; help+
+		      ;; helisp-moelp+
 		      ;; help-fns+
                       ;; help-mode+
 		      ;; org-wunderlist
@@ -514,3 +516,5 @@ the sequence, and its index within the sequence."
 (flymake-mode-off)
 
 (require 'setup-nix)
+
+(require 'doxygen)

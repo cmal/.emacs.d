@@ -121,6 +121,7 @@
 ;;(add-to-list 'auto-mode-alist '("\\.js$" . javascript-mode))
 ;;(add-to-list 'auto-mode-alist '("\\.js$" . js-mode))
 (add-to-list 'auto-mode-alist '("\\.js$" . js-mode))
+(add-to-list 'auto-mode-alist '("\\.tsx$" . typescript-mode))
 (add-to-list 'auto-mode-alist '("\\.json$" . json-mode))
 (add-to-list 'auto-mode-alist '("\\.jshintrc$" . javascript-mode))
 (add-to-list 'magic-mode-alist '("#!/usr/bin/env node" . js2-mode))
@@ -171,8 +172,24 @@
 ;; haskell mode
 (autoload 'haskell-mode "haskell-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.hs$" . haskell-mode))
-(add-hook 'haskell-mode-hook 'intero-mode-whitelist)
+;; (add-hook 'haskell-mode-hook 'intero-mode-whitelist)
 (add-hook 'haskell-mode-hook 'smartparens-mode)
+(add-hook 'haskell-mode-hook (lambda () (haskell-indentation-mode nil)))
+;;(add-hook 'haskell-mode-hook 'structured-haskell-mode)
+(add-hook ’haskell-mode-hook 'interactive-haskell-mode)
+;; ;; haskell mode browsing haddocks
+;; ;; http://haskell.github.io/haskell-mode/manual/latest/Browsing-Haddocks.html#Browsing-Haddocks
+;; (add-hook 'haskell-mode-hook
+;;           (lambda ()
+;;             (require 'w3m-haddock)
+;;             (add-hook 'w3m-display-hook 'w3m-haddock-display)
+;;             (define-key haskell-mode-map (kbd "C-c C-d") 'haskell-w3m-open-haddock)))
+
+;; hoogle
+(add-hook 'haskell-mode-hook
+          (lambda ()
+            (define-key haskell-mode-map "\C-ch" 'haskell-hoogle)
+            (setq haskell-hoogle-command "hoogle")))
 
 ;; conf mode
 (autoload 'conf-mode "conf-mode" nil t)
