@@ -176,7 +176,7 @@
 (add-hook 'haskell-mode-hook 'smartparens-mode)
 (add-hook 'haskell-mode-hook (lambda () (haskell-indentation-mode nil)))
 ;;(add-hook 'haskell-mode-hook 'structured-haskell-mode)
-(add-hook ’haskell-mode-hook 'interactive-haskell-mode)
+(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
 ;; ;; haskell mode browsing haddocks
 ;; ;; http://haskell.github.io/haskell-mode/manual/latest/Browsing-Haddocks.html#Browsing-Haddocks
 ;; (add-hook 'haskell-mode-hook
