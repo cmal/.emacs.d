@@ -176,6 +176,7 @@ BODY will be ignored."
                achievements plantuml-mode flycheck-plantuml
                powerthesaurus emms pact-mode elm-mode
                dart-mode flutter elisp-demos
+               ace-window
                )
        (when is-mac '(wolfram-mode
                       ;; swbuff swbuff-x

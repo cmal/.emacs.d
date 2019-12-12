@@ -8,10 +8,10 @@
 ;; stack
 
 ;; executable path
-(setq exec-path (append exec-path '("~/.local/bin")))
+;; (setq exec-path (append exec-path '("~/.local/bin")))
 
-(add-to-list 'load-path "/Users/yuzhao/gits/structured-haskell-mode/elisp")
-(add-hook 'haskell-mode-hook 'structured-haskell-mode)
+;; (add-to-list 'load-path "/Users/yuzhao/gits/structured-haskell-mode/elisp")
+;; (add-hook 'haskell-mode-hook 'structured-haskell-mode)
 
 
 (provide 'setup-haskell)

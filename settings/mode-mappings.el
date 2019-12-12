@@ -175,7 +175,14 @@
 ;; (add-hook 'haskell-mode-hook 'intero-mode-whitelist)
 (add-hook 'haskell-mode-hook 'smartparens-mode)
 (add-hook 'haskell-mode-hook (lambda () (haskell-indentation-mode nil)))
-;;(add-hook 'haskell-mode-hook 'structured-haskell-mode)
+
+(defun setup-structured-haskell-mode ()
+  (setq exec-path (append exec-path '("~/.cabal/bin" "~/.local/bin")))
+  (add-to-list 'load-path "/Users/yuzhao/gits/structured-haskell-mode/elisp")
+  (require 'shm)
+  (add-hook 'haskell-mode-hook 'structured-haskell-mode))
+(setup-structured-haskell-mode)
+
 (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
 ;; ;; haskell mode browsing haddocks
 ;; ;; http://haskell.github.io/haskell-mode/manual/latest/Browsing-Haddocks.html#Browsing-Haddocks
