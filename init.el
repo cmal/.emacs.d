@@ -519,3 +519,6 @@ the sequence, and its index within the sequence."
 (require 'setup-nix)
 
 (require 'doxygen)
+
+(require 'ace-window)
+(global-set-key (kbd "M-o") 'ace-window)
