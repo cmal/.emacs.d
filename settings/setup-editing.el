@@ -111,7 +111,7 @@
   t)
 (eval-after-load "ace-jump-mode"
   '(ace-jump-mode-enable-mark-sync))
-(define-key global-map (kbd "C-c C-\\") 'ace-jump-mode)
+(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 (define-key global-map (kbd "C-c C-/") 'ace-jump-mode-pop-mark)
 
 (require 'markdown-mode)
@@ -289,5 +289,26 @@ instead."
 ;; "C-\\" has already bound to delete-horizontal-whitespace
 ;; bound "C-c \\" to fixup-whitespace
 (global-set-key (kbd "C-c \\") 'fixup-whitespace)
+
+;; ============ ace-window ===============
+
+(require 'ace-window)
+(setq aw-keys '(?s ?d ?f ?j ?k ?l ?g ?h ?n))
+(ace-window-display-mode t)
+(setq aw-dispatch-always t)
+(global-set-key (kbd "C-x o") 'ace-window)
+(global-set-key (kbd "C-\\") 'ace-window)
+(global-set-key (kbd "C-x 1") 'ace-maximize-window)
+(global-set-key (kbd "C-x w") 'ace-swap-window)
+(global-set-key (kbd "C->") 'ace-swap-window)
+(global-set-key (kbd "C-<") 'aw-flip-window)
+
+;; ============ ace-window ===============
+
+;; https://emacs.stackexchange.com/questions/964/show-unbound-keys
+(require 'bind-key) ;; TODO: make me working
+(require 'free-keys)
+;; (require 'guide-key)
+;; M-x describe-personal-keybindings
 
 (provide 'setup-editing)

@@ -4,6 +4,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ac-use-fuzzy nil)
+ '(ace-window-display-mode t)
  '(achievements-mode t)
  '(ansi-color-faces-vector
    [default bold shadow italic underline bold bold-italic bold])
@@ -72,7 +73,7 @@
  '(org-modules
    '(org-bbdb org-bibtex org-docview org-gnus org-habit org-info org-irc org-mhe org-protocol org-rmail org-w3m org-drill))
  '(package-selected-packages
-   '(elisp-demos flutter dart-mode flymd poporg elm-mode livereload sicp lsp-rust lsp-python helm-lsp graphql-mode nvm company-lsp lsp-ui lsp-mode pact-mode js-comint nix-mode org-drill-table org-drill bookmark+ impatient-mode rust-mode stream trie visual-fill-column achievements flycheck-plantuml plantuml-mode djvu apples-mode powerthesaurus goto-chg debug-print rjsx-mode cnfonts go-errcheck go-eldoc go-dlv go-mode typescript-mode eredis solidity-mode pdf-tools markdown-preview-mode markdown-preview-eww buffer-flip slack org-wunderlist log4e log4j-mode helpful help-mode+ help-fns+ help+ markdown-mode+ paredit-everywhere paredit-menu jdee helm-ag csharp-mode helm-cljr cljr-helm zpresent org-bookmark-heading org-beautify-theme intero haskell-mode web-mode geiser tree-mode npm-mode doom-themes aggressive-indent pangu-spacing nrepl-eval-sexp-fu nrepl-sync monokai-theme darkokai-theme slim-mode coffee-mode racket-mode vlf magit niceify-info hledger-mode suggest hyperbole info+ org-alert alert helm-w3m w3m language-detection pinyin-search wolfram-mode php-mode psysh sass-mode editorconfig vue-mode ace-jump-mode atomic-chrome adoc-mode swbuff-x el-get e2wm e2wm-bookmark helm-github-stars bug-hunter emms-player-mpv emms-soundcloud helm-emms emms helm-mt multi-term poker beacon helm-chrome helm-cider-history helm-clojuredocs use-package keyfreq smooth-scrolling git-timemachine company key-chord json-mode paper-theme yaml-mode blog-admin graphviz-dot-mode mic-paren rainbow-delimiters ac-cider auto-complete cider-eval-sexp-fu eval-sexp-fu align-cljlet uuid 4clojure helm-emmet emmet-mode smartscan helm-descbinds edit-server yesql-ghosts helm-cider core-async-mode clj-refactor js2-refactor js-mode fill-column-indicator change-inner wgrep visual-regexp swiper-helm elisp-slime-nav whitespace-cleanup-mode highlight-escape-sequences smartparens smart-forward encourage-mode encourange-mode fic-mode multiple-cursors ledger-mode string-edit less-css-mode rainbow-mode clojure-mode-extra-font-locking sx flycheck-clojure flycheck-pos-tip helm-swoop helm-ls-git org-repo-todo helm-projectile helm-ack org-redmine helm-org-rifle golden-ratio-scroll-screen chinese-font-setup undo-tree diminish exec-path-from-shell restclient nodejs-repl guide-key flycheck move-text paredit dash helm))
+   '(ghc ace-window elisp-demos flutter dart-mode flymd poporg elm-mode livereload sicp lsp-rust lsp-python helm-lsp graphql-mode nvm company-lsp lsp-ui lsp-mode pact-mode js-comint nix-mode org-drill-table org-drill bookmark+ impatient-mode rust-mode stream trie visual-fill-column achievements flycheck-plantuml plantuml-mode djvu apples-mode powerthesaurus goto-chg debug-print rjsx-mode cnfonts go-errcheck go-eldoc go-dlv go-mode typescript-mode eredis solidity-mode pdf-tools markdown-preview-mode markdown-preview-eww buffer-flip slack org-wunderlist log4e log4j-mode helpful help-mode+ help-fns+ help+ markdown-mode+ paredit-everywhere paredit-menu jdee helm-ag csharp-mode helm-cljr cljr-helm zpresent org-bookmark-heading org-beautify-theme intero haskell-mode web-mode geiser tree-mode npm-mode doom-themes aggressive-indent pangu-spacing nrepl-eval-sexp-fu nrepl-sync monokai-theme darkokai-theme slim-mode coffee-mode racket-mode vlf magit niceify-info hledger-mode suggest hyperbole info+ org-alert alert helm-w3m w3m language-detection pinyin-search wolfram-mode php-mode psysh sass-mode editorconfig vue-mode ace-jump-mode atomic-chrome adoc-mode swbuff-x el-get e2wm e2wm-bookmark helm-github-stars bug-hunter emms-player-mpv emms-soundcloud helm-emms emms helm-mt multi-term poker beacon helm-chrome helm-cider-history helm-clojuredocs use-package keyfreq smooth-scrolling git-timemachine company key-chord json-mode paper-theme yaml-mode blog-admin graphviz-dot-mode mic-paren rainbow-delimiters ac-cider auto-complete cider-eval-sexp-fu eval-sexp-fu align-cljlet uuid 4clojure helm-emmet emmet-mode smartscan helm-descbinds edit-server yesql-ghosts helm-cider core-async-mode clj-refactor js2-refactor js-mode fill-column-indicator change-inner wgrep visual-regexp swiper-helm elisp-slime-nav whitespace-cleanup-mode highlight-escape-sequences smartparens smart-forward encourage-mode encourange-mode fic-mode multiple-cursors ledger-mode string-edit less-css-mode rainbow-mode clojure-mode-extra-font-locking sx flycheck-clojure flycheck-pos-tip helm-swoop helm-ls-git org-repo-todo helm-projectile helm-ack org-redmine helm-org-rifle golden-ratio-scroll-screen chinese-font-setup undo-tree diminish exec-path-from-shell restclient nodejs-repl guide-key flycheck move-text paredit dash helm))
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
  '(send-mail-function 'smtpmail-send-it)
@@ -114,12 +115,16 @@
  '(web-mode-sql-indent-offset 2)
  '(web-mode-style-padding 0)
  '(weechat-color-list
-   (unspecified "#272822" "#3C3D37" "#F70057" "#F92672" "#86C30D" "#A6E22E" "#BEB244" "#E6DB74" "#40CAE4" "#66D9EF" "#FB35EA" "#FD5FF0" "#74DBCD" "#A1EFE4" "#F8F8F2" "#F8F8F0")))
+   (unspecified "#272822" "#3C3D37" "#F70057" "#F92672" "#86C30D" "#A6E22E" "#BEB244" "#E6DB74" "#40CAE4" "#66D9EF" "#FB35EA" "#FD5FF0" "#74DBCD" "#A1EFE4" "#F8F8F2" "#F8F8F0"))
+ '(winner-dont-bind-my-keys t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ace-jump-face-foreground ((t (:foreground "DarkSlateGray2" :inverse-video t :underline t))))
+ '(aw-leading-char-face ((t (:foreground "red" :height 8.0 :width normal))))
+ '(aw-mode-line-face ((t (:inherit mode-line-buffer-id :foreground "MediumPurple2" :height 1.05))))
  '(diff-added ((t (:foreground "Green"))))
  '(diff-removed ((t (:foreground "Red"))))
  '(ediff-even-diff-A ((((class color) (background dark)) (:background "dark green"))))

@@ -225,7 +225,7 @@ BODY will be ignored."
 ;; guide-key
 (require 'guide-key)
 (setq guide-key/guide-key-sequence
-      '("C-x r" "C-x 4" "C-x v" "C-x 8" "C-x +" "C-c @" "C-c RET"))
+      '("C-x r" "C-x 4" "C-x v" "C-x 8" "C-x +" "C-c @" "C-c RET" "C-c" "C-x"))
 (guide-key-mode 1)
 (setq guide-key/recursive-key-sequence-flag t)
 (setq guide-key/popup-window-position 'bottom)
@@ -319,6 +319,7 @@ BODY will be ignored."
 (eval-after-load 'js-mode '(require 'setup-js-mode))
 (eval-after-load 'js-mode '(require 'setup-js))
 
+(eval-after-load 'haskell-mode '(require 'setup-haskell))
 ;; Load stuff on demand
 (autoload 'skewer-start "setup-skewer" nil t)
 (autoload 'skewer-demo "setup-skewer" nil t)
@@ -519,6 +520,3 @@ the sequence, and its index within the sequence."
 (require 'setup-nix)
 
 (require 'doxygen)
-
-(require 'ace-window)
-(global-set-key (kbd "M-o") 'ace-window)
