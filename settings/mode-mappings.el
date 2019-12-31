@@ -181,7 +181,8 @@
   (require 'shm)
   (add-hook 'haskell-mode-hook (lambda ()
                                  (structured-haskell-mode)
-                                 (setq haskell-indentation-mode nil))))
+                                 (setq haskell-indentation-mode nil)
+                                 (flycheck-mode))))
 (setup-structured-haskell-mode)
 
 (add-hook 'haskell-mode-hook 'interactive-haskell-mode)

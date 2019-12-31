@@ -26,7 +26,23 @@ clean buffer we're an order of magnitude laxer about checking."
 
 (eval-after-load 'flycheck
   '(custom-set-variables
-    '(flycheck-display-errors-function #'flycheck-pos-tip-error-messages)))
+    '(flycheck-display-errors-function #'flycheck-tooltip-error-messages)))
+
+(setq tooltip-frame-parameters
+  '((alpha . 20)
+;;    (name . "tooltip")
+  ;;  (internal-border-width . 2)
+    ;;(border-width . 1)
+;;    (no-special-glyphs . t)
+    ))
+
+(defun flycheck-tooltip-error-messages (errors)
+  "Display ERRORS, using a graphical tooltip on GUI frames."
+  (when errors
+    (let ((message (mapconcat #'flycheck-error-format-message-and-id
+                              errors "\n\n")))
+      (tooltip-show message (not (display-graphic-p))))))
+
 
 (defun flycheck-handle-idle-change ()
   "Handle an expired idle time since the last change.

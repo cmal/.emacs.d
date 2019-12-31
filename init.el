@@ -177,6 +177,7 @@ BODY will be ignored."
                powerthesaurus emms pact-mode elm-mode
                dart-mode flutter elisp-demos
                ace-window
+               search-web ;; for xwidgets to work
                )
        (when is-mac '(wolfram-mode
                       ;; swbuff swbuff-x
@@ -520,3 +521,4 @@ the sequence, and its index within the sequence."
 (require 'setup-nix)
 
 (require 'doxygen)
+(require 'setup-xwidgets)
