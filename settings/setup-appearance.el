@@ -95,5 +95,28 @@
 ;; (setq tabbar-buffer-groups-function
 ;;       'my-tabbar-buffer-groups)
 
+
+;; Use special font for w3m, info ... for reading
+
+;; Use variable width font faces in current buffer
+ (defun reading-face-mode-variable ()
+   "Set font to non-monospace, for reading"
+   (interactive)
+   (setq buffer-face-mode-face '(:family "Monaco" :width semi-condensed))
+   (buffer-face-mode))
+
+ ;; Use monospaced font faces in current buffer
+ ;; (defun my-buffer-face-mode-fixed ()
+ ;;   "Sets a fixed width (monospace) font in current buffer"
+ ;;   (interactive)
+ ;;   (setq buffer-face-mode-face '(:family "Inconsolata" :height 100))
+ ;;   (buffer-face-mode))
+
+ ;; Set default font faces for Info and ERC modes
+ ;; (add-hook 'erc-mode-hook 'my-buffer-face-mode-variable)
+ ;; (add-hook 'Info-mode-hook 'my-buffer-face-mode-variable)
+ (add-hook 'w3m-mode-hook 'reading-face-mode-variable)
+
+
 (provide 'setup-appearance)
 ;;; setup-appearance.el ends here

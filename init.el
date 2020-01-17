@@ -178,6 +178,7 @@ BODY will be ignored."
                dart-mode flutter elisp-demos
                ace-window
                search-web ;; for xwidgets to work
+               ediprolog
                )
        (when is-mac '(wolfram-mode
                       ;; swbuff swbuff-x
@@ -255,8 +256,9 @@ BODY will be ignored."
   (require 'setup-clojure-mode)
   (require 'setup-cider)
   (require 'setup-scheme)
-;;  (require 'setup-lsp)
-  (require 'setup-fonts)
+  ;;  (require 'setup-lsp)
+  (when window-system
+    (require 'setup-fonts))
   (require 'setup-dict))
 
 (require 'setup-elisp)
@@ -521,4 +523,5 @@ the sequence, and its index within the sequence."
 (require 'setup-nix)
 
 (require 'doxygen)
-(require 'setup-xwidgets)
+;; (require 'setup-xwidgets) ;; buggy
+;; (require 'setup-prolog)

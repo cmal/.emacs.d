@@ -272,4 +272,7 @@
 (add-to-list 'auto-mode-alist '("\\.sh$" . shell-script-mode))
 (add-to-list 'auto-mode-alist '("\\.sh.ftpl$" . shell-script-mode))
 
+;; prolog-mode
+;; in setup-prolog.el
+
 (provide 'mode-mappings)
