@@ -80,7 +80,6 @@ BODY will be ignored."
 
 ;; Set up appearance early
 (require 'setup-appearance)
-
 ;; Are we on a mac?
 (setq is-mac (equal system-type 'darwin))
 ;; Are we on a GNU/Linux?
@@ -98,6 +97,10 @@ BODY will be ignored."
 ;; Are we on a Windows?
 (setq is-windows
       (equal system-type 'windows-nt))
+
+(require 'setup-keymaps)
+(unless window-system
+  (require 'setup-iterm2))
 
 ;; Settings for currently logged in user
 (when is-mac
@@ -191,7 +194,7 @@ BODY will be ignored."
                       ;; help-mode+
 		      ;; org-wunderlist
 		      ))
-       (when (not is-android)
+       (unless is-android
          '(
            ;; eval-sexp-fu
            clojure-mode
@@ -252,7 +255,7 @@ BODY will be ignored."
 ;; (require 'setup-auto-complete)
 (require 'setup-company)
 
-(when (not is-android)
+(unless is-android
   (require 'setup-clojure-mode)
   (require 'setup-cider)
   (require 'setup-scheme)
@@ -448,8 +451,6 @@ BODY will be ignored."
 
 (require 'move-text)
 
-(require 'setup-keymaps)
-
 
 ;; seq.el 25.1 remove
 (defun seq-map-indexed (func sequence)
@@ -525,3 +526,5 @@ the sequence, and its index within the sequence."
 (require 'doxygen)
 ;; (require 'setup-xwidgets) ;; buggy
 ;; (require 'setup-prolog)
+
+(require 'setup-iterm2)

@@ -13,7 +13,10 @@
 (define-key global-map (kbd "C-x C-b") 'switch-to-prev-buffer)
 (define-key global-map (kbd "C-x C-n") 'switch-to-next-buffer)
 
-(define-key paredit-mode-map (kbd "M-)") 'paredit-forward-slurp-sexp)
+(eval-after-load 'paredit-mode
+  (lambda()
+    (define-key paredit-mode-map (kbd "M-)") 'paredit-forward-slurp-sexp)))
+
 
 ;; move-text
 ;; (global-set-key (kbd "s-<up>") 'move-text-up)
@@ -22,7 +25,10 @@
 (define-key global-map (kbd "s-<down>") 'move-text-down)
 
 ;; helm-ls-git
-(define-key helm-find-files-map (kbd "M-f") 'helm-ff-run-grep-ag)
+(eval-after-load 'helm-ls-git
+  (lambda ()
+    (define-key helm-find-files-map (kbd "M-f") 'helm-ff-run-grep-ag)))
+
 ;; NOTE: ag may use http://sljit.sourceforge.net/pcre.html as regexp compiler
 ;; PCRE: http://www.pcre.org/ is Perl Compatible Regular Expressions
 ;; or refer to http://www.troubleshooters.com/codecorn/littperl/perlreg.htm
@@ -49,5 +55,12 @@
 (require 'goto-chg)
 (global-set-key (kbd "C-x C-.") 'goto-last-change)
 (global-set-key (kbd "C-x C-,") 'goto-last-change-reverse)
+
+
+
+;;; for iterm2
+(when (not window-system)
+  (require 'init-keymap))
+
 
 (provide 'setup-keymaps)

@@ -17,7 +17,9 @@
 
 (add-hook 'cider-repl-mode-hook
           (lambda ()
-            (paredit-mode 1)))
+            (paredit-mode 1)
+            (setq cider-repl-use-pretty-printing nil)
+            (setq cider-repl-use-clojure-font-lock nil)))
 
 (add-hook 'cider-mode-hook
            (lambda ()
