@@ -182,6 +182,9 @@ BODY will be ignored."
                ace-window
                search-web ;; for xwidgets to work
                ediprolog
+               tuareg utop ;; ocaml
+               lsp-java scala-mode sbt-mode ;; scala
+               posframe dap-mode lsp-treemacs
                )
        (when is-mac '(wolfram-mode
                       ;; swbuff swbuff-x
@@ -203,7 +206,7 @@ BODY will be ignored."
            cider
            ;; cider-eval-sexp-fu
            company company-lsp ac-cider helm-cider
-           clj-refactor 4clojure helm-clojuredocs helm-cider-history
+           clj-refactor 4clojure helm-cljouredocs helm-cider-history
            slack))))
 
 (defun init--install-packages ()
@@ -223,6 +226,16 @@ BODY will be ignored."
   (error
    (package-refresh-contents)
    (init--install-packages)))
+
+;; use-package
+(require 'use-package)
+;; Enable defer and ensure by default for use-package
+;; Keep auto-save/backup files separate from source code:  https://github.com/scalameta/metals/issues/1027
+(setq use-package-always-defer t
+      use-package-always-ensure t
+      backup-directory-alist `((".*" . ,temporary-file-directory))
+      auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
+
 
 ;; Lets start with a smattering of sanity
 (require 'sane-defaults)
@@ -528,3 +541,5 @@ the sequence, and its index within the sequence."
 ;; (require 'setup-prolog)
 
 (require 'setup-iterm2)
+
+(require 'setup-ocaml)

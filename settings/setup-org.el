@@ -539,4 +539,11 @@ same directory as the org-buffer and insert a link to this file."
 (autoload 'poporg-dwim "poporg" nil t)
 (global-set-key (kbd "C-c /") 'poporg-dwim)
 
+(autoload 'ox-reveal "ox-reveal" nil t)
+
+(setq org-reveal-root "file:///Users/yuzhao/Downloads/reveal.js-3.9.2/")
+
+(setq org-reveal-hlevel 1)
+
+
 (provide 'setup-org)
