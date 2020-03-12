@@ -20,7 +20,7 @@
 
 ;; (setq package-pinned-packages '())
 
-(package-initialize)
+;; (package-initialize)
 ;; (when (string< emacs-version "27")
 ;;  (package-initialize))
 
