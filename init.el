@@ -206,7 +206,7 @@ BODY will be ignored."
            cider
            ;; cider-eval-sexp-fu
            company company-lsp ac-cider helm-cider
-           clj-refactor 4clojure helm-cljouredocs helm-cider-history
+           clj-refactor 4clojure helm-clojuredocs helm-cider-history
            slack))))
 
 (defun init--install-packages ()
