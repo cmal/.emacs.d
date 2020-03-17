@@ -1,7 +1,7 @@
 (require 'flycheck)
 (require 'flycheck-pos-tip)
 
-(add-hook 'prog-mode-hook 'flycheck-mode)
+;; (add-hook 'prog-mode-hook 'flycheck-mode)
 
 (defun magnars/adjust-flycheck-automatic-syntax-eagerness ()
   "Adjust how often we check for errors based on if there are any.
@@ -14,19 +14,6 @@ clean buffer we're an order of magnitude laxer about checking."
 ;; Each buffer gets its own idle-change-delay because of the
 ;; buffer-sensitive adjustment above.
 (make-variable-buffer-local 'flycheck-idle-change-delay)
-
-(add-hook 'flycheck-after-syntax-check-hook
-          'magnars/adjust-flycheck-automatic-syntax-eagerness)
-
-;; Remove newline checks, since they would trigger an immediate check
-;; when we want the idle-change-delay to be in effect while editing.
-(setq flycheck-check-syntax-automatically '(save
-                                            idle-change
-                                            mode-enabled))
-
-(eval-after-load 'flycheck
-  '(custom-set-variables
-    '(flycheck-display-errors-function #'flycheck-tooltip-error-messages)))
 
 (setq tooltip-frame-parameters
   '((alpha . 20)
@@ -43,16 +30,34 @@ clean buffer we're an order of magnitude laxer about checking."
                               errors "\n\n")))
       (tooltip-show message (not (display-graphic-p))))))
 
-
-(defun flycheck-handle-idle-change ()
-  "Handle an expired idle time since the last change.
+(comment
+ (defun flycheck-handle-idle-change ()
+   "Handle an expired idle time since the last change.
 
 This is an overwritten version of the original
 flycheck-handle-idle-change, which removes the forced deferred.
 Timers should only trigger inbetween commands in a single
 threaded system and the forced deferred makes errors never show
 up before you execute another command."
-  (flycheck-clear-idle-change-timer)
-  (flycheck-buffer-automatically 'idle-change))
+   (flycheck-clear-idle-change-timer)
+   (flycheck-buffer-automatically 'idle-change)))
+
+(use-package flycheck
+  :init (global-flycheck-mode)
+  :hook
+  (prog-mode . flycheck-mode)
+  (flycheck-after-syntax-check . magnars/adjust-flycheck-automatic-syntax-eagerness)
+  :config
+  (custom-set-variables
+   '(flycheck-display-errors-function #'flycheck-tooltip-error-messages))
+
+  ;; Remove newline checks, since they would trigger an immediate check
+  ;; when we want the idle-change-delay to be in effect while editing.
+  (setq flycheck-check-syntax-automatically '(save
+                                              idle-change
+                                              mode-enabled))
+
+  
+  )
 
 (provide 'setup-flycheck)

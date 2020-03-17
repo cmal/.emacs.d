@@ -21,17 +21,15 @@
 ;; (advice-add 'global-set-key :around #'iterm2/wrap-keys)
 
 ;;; makes shell commands work
-(exec-path-from-shell-initialize)
+;; (exec-path-from-shell-initialize) ;; already did this in init.el
 
 
 ;; enable mouse selection
-(require 'mouse)
+;; (require 'mouse)
 (xterm-mouse-mode t)
-(defun track-mouse (e))
-(setq mouse-sel-mode t)
+;; (defun track-mouse (e))
+;; (setq mouse-sel-mode t)
 (global-set-key [mouse-4] 'scroll-down-line)
 (global-set-key [mouse-5] 'scroll-up-line)
-
-
 
 (provide 'setup-iterm2)

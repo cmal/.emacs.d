@@ -16,8 +16,9 @@
 ;; and this one find those git registered files
 (global-set-key (kbd "C-x f") 'helm-ls-git-ls)
 
-;; (require 'swiper-helm)
-;; (global-set-key (kbd "C-s") 'swiper)
+(require 'swiper-helm)
+(global-set-key (kbd "C-c w") 'swiper)
+(require 'wgrep-helm)
 
 ;; ;; below this are all helm-swoop settings ...
 ;; (require 'helm-swoop)

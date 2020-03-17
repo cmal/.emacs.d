@@ -9,10 +9,10 @@
 ;; (require 'racket-mode)
 
 (setq racket-racket-program
-      (first-existing-file-in-list
+      (first-existing-file
        '("/usr/bin/racket" "/usr/local/bin/racket")))
 (setq racket-raco-program
-      (first-existing-file-in-list
+      (first-existing-file
        '("/usr/bin/raco" "/usr/local/bin/raco")))
 
 ;; An optional Emacs input method, racket-unicode,

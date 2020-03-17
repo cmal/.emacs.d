@@ -5,16 +5,16 @@
 (global-set-key (kbd "C-M-=") 'fill-region)
 
 ;; Move to trash when deleting stuff
-(when is-mac 
+(when mac-p 
   (setq delete-by-moving-to-trash t
       trash-directory "~/.Trash/emacs"))
 
 ;; (add-hook 'view-mode-hook
 ;;     (lambda() (set-fringe-mode '(0 . 0))))
-(if (display-graphic-p) (set-fringe-mode '(0 . 0)))
+;; (if (display-graphic-p) (set-fringe-mode '(0 . 0)))
 (global-set-key (kbd "s-p") 'scroll-down-line)
 (global-set-key (kbd "s-n") 'scroll-up-line)
-(when is-mac
+(when mac-p
   (progn
     (global-set-key (kbd "M-s-~") (lambda ()
                                     (interactive)
@@ -22,20 +22,38 @@
     (global-set-key (kbd "M-s-π") (lambda ()
                                      (interactive)
                                      (scroll-other-window 1)))))
-(global-set-key (kbd "C-c s") 'replace-string)
 
-(require 'multiple-cursors)
-(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
-(global-set-key (kbd "C-s-.") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-s-,") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
-(global-set-key (kbd "<s-mouse-1>") 'mc/add-cursor-on-click)
+;; mouse scroll one line at a time
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
+
+(setq-default scroll-margin 2)
+
+(setq large-file-warning-threshold 2000000)
+
+;; (global-set-key (kbd "C-c s") 'replace-string)
+;; visual-regexp
+;; (require 'visual-regexp)
+;; (define-key global-map (kbd "M-&") 'vr/query-replace)
+;; (define-key global-map (kbd "C-c s") 'vr/query-replace)
+(use-package visual-regexp
+  :config
+  (define-key global-map (kbd "M-%") 'vr/query-replace)
+  (define-key global-map (kbd "C-c s") 'vr/replace))
+;; (define-key global-map (kbd "M-/") 'vr/replace)
+
+(use-package multiple-cursors
+  :config
+  (define-key global-map (kbd "C-S-c C-S-c") 'mc/edit-lines)
+  (define-key global-map (kbd "C-s-.") 'mc/mark-next-like-this)
+  (define-key global-map (kbd "C-s-,") 'mc/mark-previous-like-this)
+  (define-key global-map (kbd "C-c C-<") 'mc/mark-all-like-this)
+  (define-key global-map (kbd "<s-mouse-1>") 'mc/add-cursor-on-click))
 
 (require 'smart-forward)
 
 ;; (require 'golden-ratio-scroll-screen)
-;; (global-set-key [remap scroll-down-command] 'golden-ratio-scroll-screen-down)
-;; (global-set-key [remap scroll-up-command] 'golden-ratio-scroll-screen-up)
+;; (define-key global-map [remap scroll-down-command] 'golden-ratio-scroll-screen-down)
+;; (define-key global-map [remap scroll-up-command] 'golden-ratio-scroll-screen-up)
 
  ;; highlight: FIXME TODO BUG (...)
 (require 'fic-mode)
@@ -68,7 +86,7 @@
 
 
 ;; comment code
-(defun comment-or-uncomment-region-or-line ()
+(defun toggle-comment ()
   "Comments or uncomments the region or the current line if there's no active region."
   (interactive "*")
   (let (beg end)
@@ -77,78 +95,72 @@
       (setq beg (line-beginning-position) end (line-end-position)))
     (comment-or-uncomment-region beg end)))
 
-(global-set-key (kbd "M-;") 'comment-or-uncomment-region-or-line)
+(define-key global-map (kbd "M-;") 'toggle-comment)
 
 (global-whitespace-cleanup-mode)
 
 (set-default 'truncate-lines t)
 
-(require 'smartscan)
-(global-smartscan-mode)
+(use-package smartscan
+  :config
+  (global-smartscan-mode))
 
 ;; mic-paren
 ;; (paren-activate)
 
-;; mouse scroll one line at a time
-(setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
+(use-package expand-region
+  :config
+  (define-key global-map (kbd "C-=") 'er/expand-region)
+  (define-key global-map (kbd "M-j") 'join-line)
+  (define-key global-map (kbd "s-t") 'transpose-paragraphs)
+  (define-key global-map (kbd "s-[") 'backward-paragraph)
+  (define-key global-map (kbd "s-]") 'forward-paragraph))
 
-(require 'expand-region)
-(global-set-key (kbd "C-=") 'er/expand-region)
+;; ;; auto-jump-mode
+;; (autoload
+;;   'ace-jump-mode-pop-mark
+;;   "ace-jump-mode"
+;;   "Ace jump back:-)"
+;;   t)
+;; (eval-after-load "ace-jump-mode"
+;;   '(ace-jump-mode-enable-mark-sync))
+;; (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+;; (define-key global-map (kbd "C-c C-/") 'ace-jump-mode-pop-mark)
 
-(global-set-key (kbd "M-j") 'join-line)
-
-(global-set-key (kbd "s-t") 'transpose-paragraphs)
-(global-set-key (kbd "s-[") 'backward-paragraph)
-(global-set-key (kbd "s-]") 'forward-paragraph)
-
-(setq-default scroll-margin 2)
-
-;; auto-jump-mode
-(autoload
-  'ace-jump-mode-pop-mark
-  "ace-jump-mode"
-  "Ace jump back:-)"
-  t)
-(eval-after-load "ace-jump-mode"
-  '(ace-jump-mode-enable-mark-sync))
-(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
-(define-key global-map (kbd "C-c C-/") 'ace-jump-mode-pop-mark)
-
-(require 'markdown-mode)
-(define-key markdown-mode-map (kbd "C-c C-s") 'pinyin-search)
+(use-package pinyin-search)
 
 ;;If you use viper mode :
 ;; (define-key viper-vi-global-user-map (kbd "SPC") 'ace-jump-mode)
 ;;If you use evil
 ;; (define-key evil-normal-state-map (kbd "SPC") 'ace-jump-mode)
 
-(require 'editorconfig)
-(editorconfig-mode 1)
+(use-package editorconfig
+  :config
+  (editorconfig-mode 1))
 
 ;; abbrev-mode
-(setq abbrev-file-name "~/.emacs.d/abbrev-defs.el")
-(setq save-abbrevs t)
-(setq-default abbrev-mode t)
-(if (file-exists-p abbrev-file-name)
-    (quietly-read-abbrev-file))
-(setq default-abbrev-mode t)
-;; (add-hook 'ledger-mode-hook (lambda () (abbrev-mode 1)))
+(use-package abbrev
+  :config
+  (setq abbrev-file-name "~/.emacs.d/abbrev-defs.el")
+  (setq save-abbrevs t)
+  (setq-default abbrev-mode t)
+  (if (file-exists-p abbrev-file-name)
+      (quietly-read-abbrev-file))
+  (setq default-abbrev-mode t))
 
-(setq large-file-warning-threshold 2000000)
+;; (add-hook 'ledger-mode-hook (lambda () (abbrev-mode 1)))
 
 ;; a defined kbd macro
 ;; use for change clojure hashmap to a 2 column csv format
 (fset 'hashmap-to-csv
       (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([4 134217790 backspace 134217788 134217848 114 101 112 108 97 99 101 45 115 116 114 105 110 103 return 44 32 return 17 10 return 134217788 134217848 114 101 112 108 97 99 101 45 115 116 114 105 110 103 return 58 return 39 return 134217788 134217848 114 101 112 108 97 99 101 45 115 116 114 105 110 103 return 32 return 44 return] 0 "%d")) arg)))
 
-(define-key lisp-interaction-mode-map (kbd "C-M-j") 'eval-print-last-sexp)
-
 ;; input method
 ;; (require 'chinese-wubi)
 ;; (register-input-method "chinese-wubi" "Chinese-GB" 'quail-use-package "WB" "汉字输入∷五笔输入法∷")
 ;; (setq default-input-method "chinese-wubi")
 
-;; (when is-mac
+;; (when mac-p
 ;;  ;; setup swbuff-mode
 ;;  ;; requiring swbuff-x
 ;;  (setq swbuff-exclude-mode-regexp
@@ -159,10 +171,6 @@
 ;;  ;;(setq swbuff-window-min-text-height 2)
 ;;  )
 
-;; paredit
-(add-hook 'prog-mode-hook 'paredit-everywhere-mode)
-(eval-after-load 'paredit-mode
-  (require 'paredit-menu))
 
 ;; integrating iTerm2
 (defun get-file-dir-or-home ()
@@ -234,7 +242,7 @@
 
 ;; buffer-flip
 (require 'buffer-flip)
-(global-set-key (kbd "M-<tab>") 'buffer-flip)
+(define-key global-map (kbd "M-<tab>") 'buffer-flip)
 (setq buffer-flip-map
       (let ((map (make-sparse-keymap)))
         (define-key map (kbd "M-<tab>")   'buffer-flip-forward) 
@@ -288,27 +296,33 @@ instead."
 
 ;; "C-\\" has already bound to delete-horizontal-whitespace
 ;; bound "C-c \\" to fixup-whitespace
-(global-set-key (kbd "C-c \\") 'fixup-whitespace)
+(define-key global-map (kbd "C-c \\") 'fixup-whitespace)
 
 ;; ============ ace-window ===============
 
-(require 'ace-window)
-(setq aw-keys '(?s ?d ?f ?j ?k ?l ?g ?h ?n))
-(ace-window-display-mode t)
-(setq aw-dispatch-always t)
-(global-set-key (kbd "C-x o") 'ace-window)
-(global-set-key (kbd "C-\\") 'ace-window)
-(global-set-key (kbd "C-x 1") 'ace-maximize-window)
-(global-set-key (kbd "C-x w") 'ace-swap-window)
-(global-set-key (kbd "C->") 'ace-swap-window)
-(global-set-key (kbd "C-<") 'aw-flip-window)
+(use-package ace-window
+  :bind
+  (:map global-map
+   ("C-x o" . ace-window)
+   ("C-\\" . ace-window)
+   ("C-x 1" . ace-maximize-window)
+   ("C-x w" . ace-swap-window)
+   ("C->" . ace-swap-window)
+   ("C-<" . aw-flip-window))
+  :config
+  (setq aw-keys '(?s ?d ?f ?j ?k ?l ?g ?h ?n))
+  (ace-window-display-mode t)
+  (setq aw-dispatch-always t)
+)
 
 ;; ============ ace-window ===============
 
 ;; https://emacs.stackexchange.com/questions/964/show-unbound-keys
-(require 'bind-key) ;; TODO: make me working
-(require 'free-keys)
+;; (require 'bind-key) ;; TODO: make me working
+;; (require 'free-keys)
 ;; (require 'guide-key)
 ;; M-x describe-personal-keybindings
+
+(require 'wgrep)
 
 (provide 'setup-editing)

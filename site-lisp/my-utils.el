@@ -32,12 +32,12 @@
   (set-window-start nil unscroll-window-start)
   (set-window-hscroll nil unscroll-hscroll))
 
-(defun first-existing-file-in-list (files-list)
+(defun first-existing-file (files-list)
   (when (not (null files-list))
       (let ((file (car files-list)))
         (if (file-exists-p file)
             file
-          (first-existing-file-in-list (cdr files-list))))))
+          (first-existing-file (cdr files-list))))))
 
 (defun apply-macro (macro arg-list)
   (eval

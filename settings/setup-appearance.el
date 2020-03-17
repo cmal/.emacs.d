@@ -99,23 +99,35 @@
 ;; Use special font for w3m, info ... for reading
 
 ;; Use variable width font faces in current buffer
- (defun reading-face-mode-variable ()
-   "Set font to non-monospace, for reading"
-   (interactive)
-   (setq buffer-face-mode-face '(:family "Monaco" :width semi-condensed))
-   (buffer-face-mode))
+(defun reading-face-mode-variable ()
+  "Set font to non-monospace, for reading"
+  (interactive)
+  (setq buffer-face-mode-face '(:family "Big Caslon" :width semi-condensed))
+  (buffer-face-mode))
 
- ;; Use monospaced font faces in current buffer
- ;; (defun my-buffer-face-mode-fixed ()
- ;;   "Sets a fixed width (monospace) font in current buffer"
- ;;   (interactive)
- ;;   (setq buffer-face-mode-face '(:family "Inconsolata" :height 100))
- ;;   (buffer-face-mode))
+;; "Baskerville" "Didot" "Monaco" "Cochin" "Big Caslon"
+;;  :width semi-condensed
 
- ;; Set default font faces for Info and ERC modes
- ;; (add-hook 'erc-mode-hook 'my-buffer-face-mode-variable)
- ;; (add-hook 'Info-mode-hook 'my-buffer-face-mode-variable)
- (add-hook 'w3m-mode-hook 'reading-face-mode-variable)
+;; Use monospaced font faces in current buffer
+;; (defun my-buffer-face-mode-fixed ()
+;;   "Sets a fixed width (monospace) font in current buffer"
+;;   (interactive)
+;;   (setq buffer-face-mode-face '(:family "Inconsolata" :height 100))
+;;   (buffer-face-mode))
+
+;; Set default font faces for Info and ERC modes
+;; (add-hook 'erc-mode-hook 'my-buffer-face-mode-variable)
+;; (add-hook 'Info-mode-hook 'my-buffer-face-mode-variable)
+(add-hook 'w3m-mode-hook 'reading-face-mode-variable)
+
+
+;; mode-line, diminish
+(diminish 'editorconfig-mode "EC")
+(diminish 'helm-mode)
+(diminish 'encourage-mode)
+(diminish 'undo-tree-mode "UT")
+(diminish 'abbrev-mode "Ab")
+(diminish 'visual-line-mode "VL")
 
 
 (provide 'setup-appearance)

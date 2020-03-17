@@ -13,11 +13,6 @@
 (define-key global-map (kbd "C-x C-b") 'switch-to-prev-buffer)
 (define-key global-map (kbd "C-x C-n") 'switch-to-next-buffer)
 
-(eval-after-load 'paredit-mode
-  (lambda()
-    (define-key paredit-mode-map (kbd "M-)") 'paredit-forward-slurp-sexp)))
-
-
 ;; move-text
 ;; (global-set-key (kbd "s-<up>") 'move-text-up)
 ;; (global-set-key (kbd "s-<down>") 'move-text-down)
@@ -34,33 +29,28 @@
 ;; or refer to http://www.troubleshooters.com/codecorn/littperl/perlreg.htm
 
 ;; wolfram
-(when is-mac
+(when mac-p
   (eval-after-load 'woldfram-mode
     (lambda ()
       (define-key wolfram-mode-map (kbd "C-x C-e") 'wolfram-send-last-mathexp))))
 
 ;; swbuff-x
-(define-key global-map (kbd "C-S-u") 'swbuff-switch-to-next-buffer)
-(define-key global-map (kbd "C-S-i") 'swbuff-switch-to-previous-buffer)
-(define-key global-map (kbd "C-S-k") 'swbuff-kill-this-buffer)
+;; (define-key global-map (kbd "C-S-u") 'swbuff-switch-to-next-buffer)
+;; (define-key global-map (kbd "C-S-i") 'swbuff-switch-to-previous-buffer)
+;; (define-key global-map (kbd "C-S-k") 'swbuff-kill-this-buffer)
 
-;; visual-regexp
-(define-key global-map (kbd "M-&") 'vr/query-replace)
-;; (define-key global-map (kbd "M-/") 'vr/replace)
-
-;; magit
-(define-key global-map (kbd "C-c m") 'magit-status-fullscreen)
 
 ;; goto-chg
-(require 'goto-chg)
-(global-set-key (kbd "C-x C-.") 'goto-last-change)
-(global-set-key (kbd "C-x C-,") 'goto-last-change-reverse)
+(use-package goto-chg
+  :config
+  (global-set-key (kbd "C-x C-.") 'goto-last-change)
+  (global-set-key (kbd "C-x C-,") 'goto-last-change-reverse))
 
 
 
 ;;; for iterm2
 (when (not window-system)
-  (require 'init-keymap))
+  (require 'iterm2-keymap))
 
 
 (provide 'setup-keymaps)

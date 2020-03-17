@@ -108,9 +108,9 @@
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 
 ;; A saner ediff
-(setq ediff-diff-options "-w")
-(setq ediff-split-window-function 'split-window-horizontally)
-(setq ediff-window-setup-function 'ediff-setup-windows-plain)
+;; (setq ediff-diff-options "-w")
+;; (setq ediff-split-window-function 'split-window-horizontally)
+;; (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 
 ;; No electric indent
 (setq electric-indent-mode nil)
@@ -134,13 +134,13 @@
 
 ;; Offer to create parent directories if they do not exist
 ;; http://iqbalansari.github.io/blog/2014/12/07/automatically-create-parent-directories-on-visiting-a-new-file-in-emacs/
-(defun my-create-non-existent-directory ()
+(defun mkdir-on-not-found ()
   (let ((parent-directory (file-name-directory buffer-file-name)))
     (when (and (not (file-exists-p parent-directory))
                (y-or-n-p (format "Directory `%s' does not exist! Create it?" parent-directory)))
       (make-directory parent-directory t))))
 
-(add-to-list 'find-file-not-found-functions 'my-create-non-existent-directory)
+(add-to-list 'find-file-not-found-functions 'mkdir-on-not-found)
 
 (put 'narrow-to-region 'disabled nil)
 

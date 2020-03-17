@@ -1,7 +1,7 @@
 (require 'taskwarrior)
 
 ;; after brew install dunn/emacs/djvu-emacs on mac
-;; (when is-mac
+;; (when mac-p
 ;;  (require 'djvu))
 (require 'plantuml-mode)
 (setq plantuml-jar-path "/usr/local/Cellar/plantuml/1.2018.8/libexec/plantuml.jar")

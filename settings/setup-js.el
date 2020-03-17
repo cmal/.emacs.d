@@ -10,17 +10,17 @@
 
 (js-do-use-nvm)
 
-;; for js-comint-repl
-(add-hook 'js-mode-hook
-          (lambda ()
-            (local-set-key (kbd "C-x C-e") 'js-send-last-sexp)
-            (local-set-key (kbd "C-c b") 'js-send-buffer)))
+;; ;; for js-comint-repl
+;; (add-hook 'js-mode-hook
+;;           (lambda ()
+;;             (local-set-key (kbd "C-x C-e") 'js-send-last-sexp)
+;;             (local-set-key (kbd "C-c b") 'js-send-buffer)))
 
-;; for js-comint-repl
-(add-hook 'js2-mode-hook
-          (lambda ()
-            (local-set-key (kbd "C-x C-e") 'js-send-last-sexp)
-            (local-set-key (kbd "C-c b") 'js-send-buffer)))
+;; ;; for js-comint-repl
+;; (add-hook 'js2-mode-hook
+;;           (lambda ()
+;;             (local-set-key (kbd "C-x C-e") 'js-send-last-sexp)
+;;             (local-set-key (kbd "C-c b") 'js-send-buffer)))
 
 
 ;; for node.js repl
@@ -37,6 +37,9 @@
 ;; (flycheck-add-mode 'javascript-eslint 'js2-mode)
 ;; (flycheck-add-mode 'javascript-eslint 'graphql-mode)
 ;; (flycheck-add-mode 'javascript-eslint 'rjsx-mode)
+
+(use-package rjsx-mode
+  :init (add-to-list 'auto-mode-alist '("\\.jsx?$" . rjsx-mode)))
 
 (provide 'setup-js)
 ;;; setup-js.el ends here

@@ -86,7 +86,7 @@
 ;; w3m
 
 (defun load-w3m ()
-  (when is-mac
+  (when mac-p
     (require 'w3m)
     ;; (add-hook 'w3m-mode-hook
     ;;           (lambda ()

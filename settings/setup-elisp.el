@@ -5,4 +5,6 @@
     (kill-sexp -1)
     (insert (format "%S" value))))
 
+(define-key lisp-interaction-mode-map (kbd "C-M-j") 'eval-print-last-sexp)
+
 (provide 'setup-elisp)

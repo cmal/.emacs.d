@@ -1,7 +1,7 @@
 ;;; package -- Summary
 
 ;; My Emacs init file
-
+(setq debug-on-error t)
 ;;; Commentary:
 
 ;;; Code:
@@ -23,6 +23,9 @@ BODY will be ignored."
 ;;     (package-initialize))
 (package-initialize)
 
+(eval-when-compile
+  (require 'use-package))
+
 ;; add el-get libs before loading custom.el
 
 ;; tabbar
@@ -37,7 +40,7 @@ BODY will be ignored."
 (setq inhibit-startup-message t)
 
 ;; Set path to dependencies
-(setq site-lisp-dir (expand-file-name "site-lisp" user-emacs-directory))
+(defvar site-lisp-dir (expand-file-name "site-lisp" user-emacs-directory))
 (let ((settings-dir (expand-file-name "settings" user-emacs-directory)))
 
   ;; Set up load path
@@ -48,25 +51,25 @@ BODY will be ignored."
 
   ;; add site-lisp-dir and all of its first child dir
   ;; to 'load-path
-  (defun add-site-lisp-and-sub-dir ()
-    (let ((base site-lisp-dir))
-      (add-to-list 'load-path base)
-      (dolist (f (directory-files base))
-        (let ((name (concat base "/" f)))
-          (when (and (not (equal f "."))
-                     (not (equal f ".."))
-                     (file-directory-p name))
-            (add-to-list 'load-path name)))))))
+  (defun recursively-add-dir (from to)
+    (add-to-list to from)
+    (dolist (f (directory-files from))
+      (let ((name (concat from "/" f)))
+        (when (and (not (equal f "."))
+                   (not (equal f ".."))
+                   (file-directory-p name))
+          (add-to-list to name)))))
 
-(add-site-lisp-and-sub-dir)
+  (recursively-add-dir site-lisp-dir 'load-path))
 
 ;; remove popup temporarily, for using predictive's older popup version
 (setq load-path (remove "/Users/yuzhao/.emacs.d/site-lisp/popup" load-path))
 
 ;; Setup environment variables from the user's shell.
-(when (memq window-system '(ns x))
-  (require 'exec-path-from-shell)
-  (exec-path-from-shell-initialize))
+(use-package exec-path-from-shell
+  :if (memq window-system '(ns x)) ;; before mac-p/gnu-p definition
+  :ensure t
+  :config (exec-path-from-shell-initialize))
 
 (require 'my-utils)
 
@@ -80,30 +83,15 @@ BODY will be ignored."
 
 ;; Set up appearance early
 (require 'setup-appearance)
-;; Are we on a mac?
-(setq is-mac (equal system-type 'darwin))
-;; Are we on a GNU/Linux?
-(setq is-gnu
-      (when (string-match-p
-             ".*GNU.*"
-             (shell-command-to-string "uname -a"))
-        t))
-;; Are we on an Android?
-(setq is-android
-      (when (string-match-p
-             ".*Android.*"
-             (shell-command-to-string "uname -a"))
-        t))
-;; Are we on a Windows?
-(setq is-windows
-      (equal system-type 'windows-nt))
+
+(require 'setup-os)
 
 (require 'setup-keymaps)
 (unless window-system
   (require 'setup-iterm2))
 
 ;; Settings for currently logged in user
-(when is-mac
+(when mac-p
   (setq user-settings-dir
         (concat user-emacs-directory "users/" user-login-name))
   (when (file-exists-p user-settings-dir)
@@ -185,8 +173,11 @@ BODY will be ignored."
                tuareg utop ;; ocaml
                lsp-java scala-mode sbt-mode ;; scala
                posframe dap-mode lsp-treemacs
+               ;; swiper ivy councel
+               wgrep ;; write grep
+               swiper-helm
                )
-       (when is-mac '(wolfram-mode
+       (when mac-p '(wolfram-mode
                       ;; swbuff swbuff-x
 		      ;; info+
 		      ;; bookmark+
@@ -197,7 +188,7 @@ BODY will be ignored."
                       ;; help-mode+
 		      ;; org-wunderlist
 		      ))
-       (unless is-android
+       (unless android-p
          '(
            ;; eval-sexp-fu
            clojure-mode
@@ -227,16 +218,6 @@ BODY will be ignored."
    (package-refresh-contents)
    (init--install-packages)))
 
-;; use-package
-(require 'use-package)
-;; Enable defer and ensure by default for use-package
-;; Keep auto-save/backup files separate from source code:  https://github.com/scalameta/metals/issues/1027
-(setq use-package-always-defer t
-      use-package-always-ensure t
-      backup-directory-alist `((".*" . ,temporary-file-directory))
-      auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
-
-
 ;; Lets start with a smattering of sanity
 (require 'sane-defaults)
 
@@ -250,8 +231,10 @@ BODY will be ignored."
 
 ;; Setup extensions
 
-(require 'helm)
-(eval-after-load 'helm '(require 'setup-helm))
+(use-package helm
+  :config
+  (require 'setup-helm))
+
 ;; (eval-after-load 'ido '(require 'setup-ido))
 (require 'setup-org)
 ;; (eval-after-load 'org '(require 'setup-org))
@@ -264,11 +247,63 @@ BODY will be ignored."
 ;; (require 'setup-perspective)
 ;; (require 'setup-ffip)
 ;; (require 'setup-html-mode)
-(require 'setup-paredit)
-;; (require 'setup-auto-complete)
-(require 'setup-company)
 
-(unless is-android
+(use-package paredit
+  :bind
+  (:map paredit-mode-map
+        ("M-)" . paredit-forward-slurp-sexp))
+  :hook
+  (prog-mode . paredit-everywhere-mode)
+  :config
+  (require 'paredit-everywhere)
+  (require 'paredit-menu) ;; 在菜单栏显示 Paredit 项，列出所有 paredit 命令
+  )
+
+;; (require 'setup-company)
+(use-package auto-complete
+  :config
+  (require 'auto-complete-config)
+  (ac-config-default)
+  (ac-flyspell-workaround)
+  (add-to-list 'ac-dictionary-directories (concat user-emacs-directory "auto-complete/dict"))
+  (setq ac-comphist-file (concat user-emacs-directory "tmp/ac-comphist.dat"))
+
+  (global-auto-complete-mode nil)
+  (setq ac-auto-show-menu t)
+  (setq ac-dwim t)
+  (setq ac-use-menu-map t)
+  (setq ac-quick-help-delay 1)
+  (setq ac-delay 0.3)
+  (setq ac-quick-help-height 60)
+  (setq ac-disable-inline t)
+  (setq ac-show-menu-immediately-on-auto-complete t)
+  (setq ac-auto-start 2)
+  (setq ac-candidate-menu-min 0)
+
+  (set-default 'ac-sources
+               '(ac-source-dictionary
+                 ac-source-words-in-buffer
+                 ac-source-words-in-same-mode-buffers
+                 ac-source-semantic
+                 ac-source-yasnippet))
+
+  (dolist (mode '(magit-log-edit-mode log-edit-mode org-mode text-mode haml-mode
+                                      sass-mode yaml-mode csv-mode espresso-mode haskell-mode
+                                      html-mode nxml-mode sh-mode smarty-mode clojure-mode
+                                      lisp-mode textile-mode markdown-mode tuareg-mode))
+    (add-to-list 'ac-modes mode))
+
+
+  ;; Key triggers
+  ;; (define-key ac-completing-map (kbd "C-M-n") 'ac-next)
+  ;; (define-key ac-completing-map (kbd "C-M-p") 'ac-previous)
+  (define-key ac-completing-map "\t" 'ac-complete)
+  (define-key ac-completing-map (kbd "M-RET") 'ac-help)
+  (define-key ac-completing-map "\r" 'nil)
+
+  (add-hook 'clojure-mode-hook 'auto-complete-mode))
+
+(unless android-p
   (require 'setup-clojure-mode)
   (require 'setup-cider)
   (require 'setup-scheme)
@@ -306,8 +341,8 @@ BODY will be ignored."
 ;;       (use-font-mononoki)))
 
 ;; call func defined in user-settings.el
-;; (when (and is-mac (display-graphic-p))
-;;   (user/this-mac-font-settings))
+;; (when (and mac-p (display-graphic-p))
+;;   (user/thmac-p-font-settings))
 
 ;; Font lock dash.el
 (eval-after-load "dash" '(dash-enable-font-lock))
@@ -333,7 +368,7 @@ BODY will be ignored."
 (eval-after-load 'js2-mode '(require 'setup-js))
 ;; (eval-after-load 'ruby-mode '(require 'setup-ruby-mode))
 (eval-after-load 'clojure-mode '(require 'setup-clojure-mode))
-;; (when is-mac
+;; (when mac-p
 ;;   (eval-after-load 'markdown-mode '(require 'setup-markdown-mode)))
 (eval-after-load 'js-mode '(require 'setup-js-mode))
 (eval-after-load 'js-mode '(require 'setup-js))
@@ -342,7 +377,6 @@ BODY will be ignored."
 ;; Load stuff on demand
 (autoload 'skewer-start "setup-skewer" nil t)
 (autoload 'skewer-demo "setup-skewer" nil t)
-;; (autoload 'auto-complete-mode "auto-complete" nil t)
 (eval-after-load 'flycheck '(require 'setup-flycheck))
 
 ;; (require 'setup-jdee)
@@ -379,7 +413,7 @@ BODY will be ignored."
 ;; (setq er--show-expansion-message t)
 
 ;; Fill column indicator
-(when is-mac (require 'fill-column-indicator))
+(when mac-p (require 'fill-column-indicator))
 ;; (setq fci-rule-color "#111122")
 (setq fci-rule-color "#ffffff")
 
@@ -387,17 +421,10 @@ BODY will be ignored."
 ;; (require 'browse-kill-ring)
 ;; (setq browse-kill-ring-quit-action 'save-and-restore)
 
-;; ;; Smart M-x is smart
-;; ;; (require 'smex)
-;; ;; (smex-initialize)
-
-;; ;; Setup key bindings
-;; ;; (require 'key-bindings)
-
 ;; ;; Misc
 ;; (require 'project-archetypes)
 ;; (require 'my-misc)
-;; (when is-mac (require 'mac))
+;; (when mac-p (require 'mac))
 
 ;; Elisp go-to-definition with M-. and back again with M-,
 (autoload 'elisp-slime-nav-mode "elisp-slime-nav")
@@ -419,8 +446,6 @@ BODY will be ignored."
 ;; (atomic-chrome-start-server)
 ;; (setq atomic-chrome-buffer-open-style 'frame)
 ;; (setq atomic-chrome-extension-type-list '(atomic-chrome ghost-text))
-
-
 
 ;; M-x emms-add-netease-album RET
 ;; Enter ALBUM_ID RET
@@ -451,9 +476,6 @@ BODY will be ignored."
 ;; (require 'ne2wm-setup)
 ;; (require 'ne2wm-plugin-org-clock)
 
-
-(setq debug-on-error t)
-
 ;; info+ ??
 ;; (advice-remove 'kill-ring-save 'ad-Advice-kill-ring-save)
 
@@ -479,7 +501,7 @@ the sequence, and its index within the sequence."
 
 (require 'reddit)
 
-;; (when is-mac (require 'bookmark+))
+;; (when mac-p (require 'bookmark+))
 
 ;; (require 'randomize)
 
@@ -488,7 +510,7 @@ the sequence, and its index within the sequence."
 
 ;; seems wrong
 ;; add info file path in Mac
-;; (when is-mac
+;; (when mac-p
 ;;   (add-to-list 'Info-default-directory-list "/var/lib/dpkg/info"))
 
 ;; (require 'livereload)
@@ -496,7 +518,7 @@ the sequence, and its index within the sequence."
 (require 'encourage-mode)
 (encourage-mode)
 
-(when is-mac
+(when mac-p
   ;; (require 'setup-pdf)
   ;; (require 'swbuff-x)
   (require 'setup-3rd-party)
@@ -528,13 +550,13 @@ the sequence, and its index within the sequence."
 
 ;; (dictree-write dict-english "dict-english" t)
 
-(when is-mac
+(when mac-p
   (require 'setup-eslpod))
 
 (flymake-mode -1)
 (flymake-mode-off)
 
-(require 'setup-nix)
+;; (use-package nix-mode)
 
 (require 'doxygen)
 ;; (require 'setup-xwidgets) ;; buggy
