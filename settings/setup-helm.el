@@ -2,7 +2,7 @@
 
 (use-package helm
   :ensure t
-  :after (helm)
+  :demand t
   :bind
   (:map global-map
   ("M-x" . helm-M-x)
