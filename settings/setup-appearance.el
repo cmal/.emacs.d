@@ -20,7 +20,11 @@
   (when (file-directory-p path)
     (add-to-list 'custom-theme-load-path path)))
 
-(display-time)                   ;; activate time display
+(set-fringe-mode '(0 . 4)) ;; half-width, right-only
+;; (add-hook 'view-mode-hook
+;;     (lambda() (set-fringe-mode '(0 . 0))))
+;; (if (display-graphic-p) (set-fringe-mode '(0 . 0)))
+
 
 ;; Default theme
 ;; (defun use-presentation-theme ()
@@ -128,7 +132,6 @@
 (diminish 'undo-tree-mode "UT")
 (diminish 'abbrev-mode "Ab")
 (diminish 'visual-line-mode "VL")
-
 
 (provide 'setup-appearance)
 ;;; setup-appearance.el ends here

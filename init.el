@@ -127,7 +127,9 @@ BODY will be ignored."
       (append
        '(magit org cnfonts
                git-timemachine edn uuid dash diminish inflections spinner
-               move-text golden-ratio-scroll-screen yasnippet emmet-mode
+               ;; golden-ratio-scroll-screen
+               ;; move-text
+               yasnippet emmet-mode
                json-mode helm helm-org-rifle helm-descbinds org-redmine
                org-repo-todo helm-ack helm-ls-git helm-emmet
                visual-regexp fill-column-indicator flycheck
@@ -550,8 +552,8 @@ the sequence, and its index within the sequence."
 
 ;; (dictree-write dict-english "dict-english" t)
 
-(when mac-p
-  (require 'setup-eslpod))
+;; (when mac-p
+;;   (require 'setup-eslpod))
 
 (flymake-mode -1)
 (flymake-mode-off)

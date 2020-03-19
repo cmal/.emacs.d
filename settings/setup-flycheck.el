@@ -44,9 +44,11 @@ up before you execute another command."
 
 (use-package flycheck
   :init (global-flycheck-mode)
-  :hook
+
+  :hook ;; 不能加括号
   (prog-mode . flycheck-mode)
   (flycheck-after-syntax-check . magnars/adjust-flycheck-automatic-syntax-eagerness)
+  
   :config
   (custom-set-variables
    '(flycheck-display-errors-function #'flycheck-tooltip-error-messages))
@@ -57,7 +59,6 @@ up before you execute another command."
                                               idle-change
                                               mode-enabled))
 
-  
   )
 
 (provide 'setup-flycheck)

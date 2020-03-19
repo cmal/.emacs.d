@@ -26,7 +26,7 @@
 
 (require 'f)
 (require 's)
-(setq eslpod-path "~/Music/eslpod/ESLPod Courses/")
+(defvar eslpod-path "~/Music/eslpod/ESLPod Courses/")
 (setq emms-source-file-default-directory eslpod-path)
 ;; (emms-add-directory-tree eslpod-path)
 ;;(emms-playlist-mode-go)

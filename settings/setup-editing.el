@@ -9,19 +9,15 @@
   (setq delete-by-moving-to-trash t
       trash-directory "~/.Trash/emacs"))
 
-;; (add-hook 'view-mode-hook
-;;     (lambda() (set-fringe-mode '(0 . 0))))
-;; (if (display-graphic-p) (set-fringe-mode '(0 . 0)))
 (global-set-key (kbd "s-p") 'scroll-down-line)
 (global-set-key (kbd "s-n") 'scroll-up-line)
 (when mac-p
-  (progn
-    (global-set-key (kbd "M-s-~") (lambda ()
-                                    (interactive)
-                                    (scroll-other-window -1)))
-    (global-set-key (kbd "M-s-π") (lambda ()
-                                     (interactive)
-                                     (scroll-other-window 1)))))
+  (global-set-key (kbd "M-s-~") (lambda ()
+                                  (interactive)
+                                  (scroll-other-window -1)))
+  (global-set-key (kbd "M-s-π") (lambda ()
+                                  (interactive)
+                                  (scroll-other-window 1))))
 
 ;; mouse scroll one line at a time
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
@@ -56,8 +52,9 @@
 ;; (define-key global-map [remap scroll-up-command] 'golden-ratio-scroll-screen-up)
 
  ;; highlight: FIXME TODO BUG (...)
-(require 'fic-mode)
-(add-hook 'prog-mode-hook 'fic-mode)
+(use-package fic-mode
+  :hook
+  (prog-mode . fic-mode))
 
 ;; auto indent
 (defun set-newline-and-indent ()
@@ -71,19 +68,28 @@
 (add-hook 'prog-mode-hook 'linum-mode)
 
 ;; %H -> %I to make it display 12hr hours
-(setq-default display-time-format "%H:%M:%S %Y/%m/%d")
+;; (setq-default display-time-format "%H:%M:%S %Y/%m/%d")
 ;; caution: maybe the next line will slow down your Emacs,
 ;; set it to 60 or more if this happens.
-(setq-default display-time-interval 1)
+;; (setq-default display-time-interval 1)
 ;; (display-time-mode 1)
+;; (display-time)                   ;; activate time display
 
-(require 'visual-fill-column)
-;; (add-hook 'visual-line-mode-hook #'visual-fill-column-mode)
-(add-hook 'visual-fill-column-mode-hook #'visual-line-mode)
-(global-visual-line-mode 1)
+
+(use-package visual-fill-column
+  :hook
+  ;; (add-hook 'visual-line-mode-hook #'visual-fill-column-mode)
+  (visual-fill-column-mode . visual-line-mode)
+  :config
+  (global-visual-line-mode 1))
+
 ;; move-text
-;; (move-text-default-bindings)
-
+;; (move-text-default-bindings) ;; this is in move-text package
+(use-package move-text ;; this uses site-lisp/move-text.el
+  :bind
+  (:map global-map
+        ("s-<up>" . move-text-up)
+        ("s-<down>" . move-text-down)))
 
 ;; comment code
 (defun toggle-comment ()
@@ -156,9 +162,11 @@
       (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([4 134217790 backspace 134217788 134217848 114 101 112 108 97 99 101 45 115 116 114 105 110 103 return 44 32 return 17 10 return 134217788 134217848 114 101 112 108 97 99 101 45 115 116 114 105 110 103 return 58 return 39 return 134217788 134217848 114 101 112 108 97 99 101 45 115 116 114 105 110 103 return 32 return 44 return] 0 "%d")) arg)))
 
 ;; input method
-;; (require 'chinese-wubi)
-;; (register-input-method "chinese-wubi" "Chinese-GB" 'quail-use-package "WB" "汉字输入∷五笔输入法∷")
-;; (setq default-input-method "chinese-wubi")
+(use-package chinese-wubi
+  :config
+  (register-input-method "chinese-wubi" "Chinese-GB" 'quail-use-package "WB" "汉字输入∷五笔输入法∷")
+  (setq default-input-method "chinese-wubi"))
+;; (toggle-input-method)
 
 ;; (when mac-p
 ;;  ;; setup swbuff-mode
@@ -181,8 +189,9 @@
 	"~/"
       (file-name-directory filename))))
 
-(defun sam--iterm-goto-filedir-or-home ()
-  "Go to present working dir and focus iterm"
+(defun iterm2-goto-filedir ()
+  "Go to present working dir and focus iterm,
+if not on a file, goto HOME dir."
   (interactive)
   (do-applescript
    (concat
@@ -195,14 +204,14 @@
     "   end tell\n"
     " end tell\n"
     " do shell script \"open -a iTerm\"\n")))
+(define-key global-map (kbd "s-G") 'iterm2-goto-filedir)
 
-(defun iterm-focus ()
-  (interactive)
-  (do-applescript
-   " do shell script \"open -a iTerm\"\n"))
+;; (defun iterm-focus ()
+;;   (interactive)
+;;   (do-applescript
+;;    " do shell script \"open -a iTerm\"\n"))
+;; (define-key global-map (kbd "s-<escape>") 'iterm-focus)
 
-(define-key global-map (kbd "s-G") 'sam--iterm-goto-filedir-or-home)
-(define-key global-map (kbd "s-<escape>") 'iterm-focus)
 
 ;; add time to function `message`
 
@@ -238,7 +247,8 @@
 ;; ;; (advice-remove 'message #'my-ad-timestamp-message)
 
 
-(require 'log4j-mode)
+(use-package log4j-mode
+  :mode "\\.log$")
 
 ;; buffer-flip
 (require 'buffer-flip)
@@ -304,7 +314,6 @@ instead."
   :bind
   (:map global-map
    ("C-x o" . ace-window)
-   ("C-\\" . ace-window)
    ("C-x 1" . ace-maximize-window)
    ("C-x w" . ace-swap-window)
    ("C->" . ace-swap-window)
@@ -319,10 +328,15 @@ instead."
 
 ;; https://emacs.stackexchange.com/questions/964/show-unbound-keys
 ;; (require 'bind-key) ;; TODO: make me working
-;; (require 'free-keys)
+(use-package free-keys)
 ;; (require 'guide-key)
 ;; M-x describe-personal-keybindings
 
-(require 'wgrep)
+(use-package wgrep)
+
+(use-package git-timemachine
+  :ensure t
+  :config
+  (global-set-key (kbd "C-M-m") 'git-timemachine))
 
 (provide 'setup-editing)

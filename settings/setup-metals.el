@@ -7,7 +7,8 @@
 (use-package scala-mode
   :ensure t
   :defer t
-  :mode "\\.s\\(cala\\|bt\\)$")
+  :mode "\\.s\\(cala\\|bt\\)$"
+  )
 
 ;; Enable sbt mode for executing sbt commands
 (use-package sbt-mode

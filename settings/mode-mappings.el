@@ -90,27 +90,16 @@
 ;; (add-to-list 'auto-mode-alist '("\\.groovy$" . groovy-mode))
 ;; (add-to-list 'auto-mode-alist '("\\.gradle$" . groovy-mode))
 
-;; Scala
-;; (autoload 'scala-mode "scala-mode2")
-;; (add-to-list 'auto-mode-alist '("\\.scala$" . scala-mode))
-;; (autoload 'ensime-scala-mode-hook "ensime")
-;; (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
-
 ;; Clojure
-(autoload 'clojure-mode "clojure-mode")
-(add-to-list 'auto-mode-alist '("\\.clj$" . clojure-mode))
-(add-to-list 'auto-mode-alist '("\\.cljx$" . clojure-mode))
-;; for temporary usage in seal
-(add-to-list 'auto-mode-alist '("\\.repl$" . clojure-mode))
-(add-to-list 'auto-mode-alist '("\\.seal$" . clojure-mode))
+(use-package clojure-mode
+  :mode (("\\.clj[xc]?" . clojure-mode)
+         ("\\.cljs" . clojurescript-mode))
+  :hook
+  (clojure-mode . hs-minor-mode))
 
-(add-to-list 'auto-mode-alist '("\\.cljs$" . clojurescript-mode))
-(add-to-list 'auto-mode-alist '("\\.cljc$" . clojurec-mode))
-(add-hook 'clojure-mode-hook 'hs-minor-mode)
-(add-hook 'clojurescript-mode-hook 'hs-minor-mode)
+(use-package adoc-mode
+  :mode ("\\.asciidoc$" . adoc-mode))
 
-(add-to-list 'auto-mode-alist '("\\.asciidoc$" . adoc-mode))
-;; (add-hook 'adoc-mode-hook 'cider-mode) ;; added in setup-cider.el
 
 ;; SVG
 (add-to-list 'auto-mode-alist '("\\.svg$" . image-mode))
@@ -149,8 +138,8 @@
 ;; (add-to-list 'auto-mode-alist '("sites-\\(available\\|enabled\\)/" . apache-mode))
 
 ;; ledger mode
-(autoload 'ledger-mode "ledger-mode" nil t)
-(add-to-list 'auto-mode-alist '("\\.ledger$" . ledger-mode))
+(use-package ledger-mode
+  :mode "\\.ledger$")
 
 ;; php mode
 (setq auto-mode-alist
@@ -159,10 +148,6 @@
 ;; python mode
 (setq auto-mode-alist
       (append '(("\\.py$" . python-mode)) auto-mode-alist))
-
-;; ledger mode
-(autoload 'ledger-mode "ledger-mode" "A major mode for Ledger" t)
-(add-to-list 'auto-mode-alist '("\\.ledger$" . ledger-mode))
 
 ;; wolfram mode
 (autoload 'wolfram-mode "wolfram-mode" nil t)
@@ -226,16 +211,17 @@
 ;; (remove-hook 'clojure-mode-hook 'aggressive-indent-mode)
 
 ;; vue mode
-;; (autoload 'vue-mode "vue-mode" nil t)
-;; (add-to-list 'auto-mode-alist '("\\.vue$" . vue-mode))
-(add-to-list 'auto-mode-alist '("\\.vue$" . web-mode))
+(use-package vue-mode
+  :mode "\\.vue$")
+
 
 ;; go mode
-(autoload 'go-mode "go-mode" nil t)
-(add-to-list 'auto-mode-alist '("\\.go$" . go-mode))
-(add-hook 'go-mode
-          (lambda ()
-            (define-key go-mode-map (kbd "C-c C-c") 'godoc-at-point)))
+(use-package go-mode
+  :mode "\\.go$"
+  :bind
+  (:map go-mode-map
+        ("C-c C-c" 'godoc-at-point)))
+
 
 ;; makefile-bsdmake-mode
 (add-hook 'makefile-bsdmake-mode 'whitespace-mode)
@@ -246,7 +232,7 @@
 
 ;; Info-mode : NOTE this is for `info+', not the default
 ;; info-mode-hook
-(add-hook 'Info-mode-hook 'rainbow-delimiters-mode)
+;; (add-hook 'Info-mode-hook 'rainbow-delimiters-mode)
 
 (autoload 'apples-mode "apples-mode" nil t)
 
