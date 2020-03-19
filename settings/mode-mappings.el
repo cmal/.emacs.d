@@ -10,26 +10,34 @@
 (add-to-list 'auto-mode-alist '("Cask$" . emacs-lisp-mode))
 
 ;; Emmet mode
-(autoload 'emmet-mode "emmet-mode")
+(use-package emmet-mode
+  :defer t
+  :hook
+  (sgml-mode . emmet-mode)
+  (html-mode . emmet-mode)
+  (css-mode . emmet-mode)
+  (scss-mode . emmet-mode))
 
 ;; CSS
 (add-to-list 'auto-mode-alist '("\\.scss$" . scss-mode))
 (add-to-list 'auto-mode-alist '("\\.sass$" . sass-mode))
 (add-to-list 'auto-mode-alist '("\\.css$" . css-mode))
+
 (add-to-list 'auto-mode-alist '("\\.less$" . less-css-mode))
+(add-hook 'less-css-mode-hook (lambda() (rainbow-mode)))
+(add-hook 'less-css-mode-hook (lambda() (emmet-mode)))
 
-(add-hook 'css-mode-hook (lambda() (rainbow-mode)))
-(add-hook 'css-mode-hook (lambda() (emmet-mode)))
+(use-package rainbow-mode
+  :defer t
+  :hook
+  (css-mode . rainbow-mode)
+  (scss-mode . rainbow-mode))
 
-(add-hook 'scss-mode-hook (lambda () (rainbow-mode)))
-(add-hook 'scss-mode-hook (lambda () (emmet-mode)))
 (add-hook 'scss-mode-hook (lambda () (rainbow-delimiters-mode)))
 (add-hook 'scss-mode-hook (lambda () (subword-mode)))
 (add-to-list 'rainbow-html-colors-major-mode-list 'scss-mode)
 
 ;;(add-hook 'scss-mode-hook (lambda () (aggressive-indent-mode)))
-(add-hook 'less-css-mode-hook (lambda() (rainbow-mode)))
-(add-hook 'less-css-mode-hook (lambda() (emmet-mode)))
 (add-to-list 'rainbow-html-colors-major-mode-list 'less-css-mode)
 
 ;; Restclient
@@ -50,12 +58,14 @@
 ;; (add-to-list 'auto-mode-alist '("\\.jade$" . jade-mode))
 
 ;; HTML
-(autoload 'web-mode "web-mode")
-;; (add-to-list 'auto-mode-alist '("\\.html\\'" . crappy-jsp-mode))
-(add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.tag$" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.vm$" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.ejs$" . web-mode))
+
+(use-package web
+  :mode
+  ("\\.html\\'" . web-mode)
+  ("\\.tag$" . web-mode)
+  ("\\.vm$" . web-mode)
+  ("\\.ejs$" . web-mode)
+  ("\\.wxml$" . web-mode))
 
 ;; JSP
 ;; (autoload 'crappy-jsp-mode "crappy-jsp-mode")
@@ -65,21 +75,21 @@
 
 ;;Support for JSX is available via the derived mode `js2-jsx-mode'.  If you
 ;;also want JSX support, use that mode instead:
-(add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
+;; (add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode)) ;; use rjsx instead
 (add-to-list 'interpreter-mode-alist '("node" . js2-mode))
 
 
 ;; Ruby
-(autoload 'rhtml-mode "rhtml-mode")
-(add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("\\.watchr$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("Rakefile$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("\\.gemspec$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("\\.ru$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("Gemfile" . ruby-mode))
-(add-to-list 'auto-mode-alist '("Vagrantfile" . ruby-mode))
-(add-to-list 'auto-mode-alist '("capfile" . ruby-mode))
-(add-to-list 'auto-mode-alist '("\\.erb$" . rhtml-mode))
+;; (autoload 'rhtml-mode "rhtml-mode")
+;; (add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
+;; (add-to-list 'auto-mode-alist '("\\.watchr$" . ruby-mode))
+;; (add-to-list 'auto-mode-alist '("Rakefile$" . ruby-mode))
+;; (add-to-list 'auto-mode-alist '("\\.gemspec$" . ruby-mode))
+;; (add-to-list 'auto-mode-alist '("\\.ru$" . ruby-mode))
+;; (add-to-list 'auto-mode-alist '("Gemfile" . ruby-mode))
+;; (add-to-list 'auto-mode-alist '("Vagrantfile" . ruby-mode))
+;; (add-to-list 'auto-mode-alist '("capfile" . ruby-mode))
+;; (add-to-list 'auto-mode-alist '("\\.erb$" . rhtml-mode))
 
 ;; ;; Puppet
 ;; (autoload 'puppet-mode "puppet-mode")
@@ -150,27 +160,35 @@
       (append '(("\\.py$" . python-mode)) auto-mode-alist))
 
 ;; wolfram mode
-(autoload 'wolfram-mode "wolfram-mode" nil t)
-(add-to-list 'auto-mode-alist '("\\.wl$" . wolfram-mode))
-(add-to-list 'auto-mode-alist '("\\.m$" . wolfram-mode))
+(use-package wolfram-mode
+  :mode
+  ("\\.wl$" . wolfram-mode)
+  ("\\.m$" . wolfram-mode))
 
 ;; haskell mode
-(autoload 'haskell-mode "haskell-mode" nil t)
-(add-to-list 'auto-mode-alist '("\\.hs$" . haskell-mode))
-;; (add-hook 'haskell-mode-hook 'intero-mode-whitelist)
-(add-hook 'haskell-mode-hook 'smartparens-mode)
+(use-package haskell-mode
+  :mode "\\.hs$"
+  :bind
+  (:map haskell-mode-map
+        ("C-c h" . haskell-hoogle))
 
-(defun setup-structured-haskell-mode ()
+  ;; :hook
+  ;; (haskell-mode . intero-mode-whitelist)
+
+  :config
+  (smartparens-mode 1)
+  (interactive-haskell-mode 1)
+  (flycheck-mode 1)
+
+  ;; hoogle
+  (setq haskell-hoogle-command "hoogle")
   (setq exec-path (append exec-path '("~/.cabal/bin" "~/.local/bin")))
+  ;; shm
   (add-to-list 'load-path "/Users/yuzhao/gits/structured-haskell-mode/elisp")
   (require 'shm)
-  (add-hook 'haskell-mode-hook (lambda ()
-                                 (structured-haskell-mode)
-                                 (setq haskell-indentation-mode nil)
-                                 (flycheck-mode))))
-(setup-structured-haskell-mode)
+  (structured-haskell-mode)
+  (setq haskell-indentation-mode nil))
 
-(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
 ;; ;; haskell mode browsing haddocks
 ;; ;; http://haskell.github.io/haskell-mode/manual/latest/Browsing-Haddocks.html#Browsing-Haddocks
 ;; (add-hook 'haskell-mode-hook
@@ -179,20 +197,14 @@
 ;;             (add-hook 'w3m-display-hook 'w3m-haddock-display)
 ;;             (define-key haskell-mode-map (kbd "C-c C-d") 'haskell-w3m-open-haddock)))
 
-;; hoogle
-(add-hook 'haskell-mode-hook
-          (lambda ()
-            (define-key haskell-mode-map "\C-ch" 'haskell-hoogle)
-            (setq haskell-hoogle-command "hoogle")))
-
 ;; conf mode
 (autoload 'conf-mode "conf-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.conf$" . conf-mode))
 
 ;; csharp mode
-(autoload 'csharp-mode "csharp-mode" nil t)
-(add-to-list 'auto-mode-alist '("\\.cs$" . csharp-mode))
-(add-hook 'csharp-mode-hook 'smartparens-mode)
+;; (autoload 'csharp-mode "csharp-mode" nil t)
+;; (add-to-list 'auto-mode-alist '("\\.cs$" . csharp-mode))
+;; (add-hook 'csharp-mode-hook 'smartparens-mode)
 
 ;; Lisp modes
 (dolist (x '(scheme emacs-lisp lisp racket clojure))
@@ -214,7 +226,6 @@
 (use-package vue-mode
   :mode "\\.vue$")
 
-
 ;; go mode
 (use-package go-mode
   :mode "\\.go$"
@@ -228,7 +239,7 @@
 
 ;; wechat miniprogram
 (add-to-list 'auto-mode-alist '("\\.wxss$" . css-mode))
-(add-to-list 'auto-mode-alist '("\\.wxml$" . web-mode))
+;; (add-to-list 'auto-mode-alist '("\\.wxml$" . web-mode))
 
 ;; Info-mode : NOTE this is for `info+', not the default
 ;; info-mode-hook
@@ -246,12 +257,12 @@
 (add-to-list 'auto-mode-alist '("\\.rkt$" . racket-mode))
 ;; (add-to-list 'auto-mode-alist '("\\.scm$" . racket-mode))
 
-(autoload 'rust-mode "rust-mode" nil t)
-(add-to-list 'auto-mode-alist '("\\.rs$" . rust-mode))
+(use-package rust-mode
+  :mode "\\.rs$")
 
 ;; elm-mode
-(autoload 'elm-mode "elm-mode" nil t)
-(add-to-list 'auto-mode-alist '("\\.elm$" . elm-mode))
+(use-package elm-mode
+  :mode "\\.elm$")
 
 ;; shell-script-mode
 (autoload 'shell-script-mode "shell-script-mode" nil t)
