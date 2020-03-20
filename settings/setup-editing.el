@@ -80,6 +80,7 @@
   :hook
   ;; (add-hook 'visual-line-mode-hook #'visual-fill-column-mode)
   (visual-fill-column-mode . visual-line-mode)
+  :demand t
   :config
   (global-visual-line-mode 1))
 

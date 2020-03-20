@@ -44,18 +44,6 @@
                 :slant 'normal
                 :size 14.0)))) ;; 20.0
 
-(defun use-font-set-inziu ()
-  (interactive)
-  (set-default-font "Inziu IosevkaCC CL-16"))
-
-(defun use-font-iosevka-slab ()
-  (interactive)
-  (set-default-font "Iosevka Slab-16"))
-
-(defun use-font-fira-code ()
-  (interactive)
-  (set-default-font "Fira Code-12"))
-
 (defun use-font-mononoki ()
   (interactive)
   (set-face-attribute
@@ -96,25 +84,31 @@
                 :size 14.0))))
 
 
-(defun use-font-monoid ()
+(defun choose-font ()
   (interactive)
-  (set-default-font "Monoid-12"))
+  (set-default-font
+   (completing-read "Font: "
+                    '("Monoid-12"
+                      "Monoisome-12"
+                      "Inziu IosevkaCC CL-16"
+                      "Iosevka Slab-16"
+                      "Fira Code-12"))))
 
-(defun use-font-monoisome ()
+(defun choose-buffer-face ()
+  "Sets a buffer-face-mode font to current buffer"
   (interactive)
-  (set-default-font "Monoisome-12"))
-
-(defun my-buffer-face-mode-serif ()
-  "Sets a fixed width (monospace) font in current buffer"
-  (interactive)
-  (setq buffer-face-mode-face '(:family "Times New Roman"))
+  (setq buffer-face-mode-face
+        '(:family
+          (completing-read "Font: "
+                           '("Times New Roman"
+                             "Caecilia LT Std"))))
   (buffer-face-mode))
 
-(defun my-buffer-face-mode-caecilia ()
-  "Sets a not fixed width font in current buffer(for read)"
-  (interactive)
-  (setq buffer-face-mode-face '(:family "Caecilia LT Std"))
-  (buffer-face-mode))
+;; (set-default-font "Fixedsys Excelsior 3.01" t) ;; not good on gui
+
+;; minibuffer-completion-help
+;; minibuffer-with-setup-hook
+;; completion-read
 
 ;; (cl-prettyprint (font-family-list))
 
@@ -141,7 +135,8 @@
                 :slant 'normal
                 :size 14.0))))
 
-(use-font-firacode)
-
-
+;; (use-font-firacode)
+(cnfonts-enable)
+;;(use-font-set-pragmata)
+(use-font-set-ptmono)
 (provide 'setup-fonts)
