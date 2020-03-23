@@ -340,4 +340,5 @@ instead."
   :config
   (global-set-key (kbd "C-M-m") 'git-timemachine))
 
+
 (provide 'setup-editing)

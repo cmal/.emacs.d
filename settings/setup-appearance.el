@@ -61,6 +61,7 @@
 ;; (load-theme 'doom-challenger-deep)
 ;; (load-theme 'doom-tomorrow-day)
 ;; (load-theme 'doom-nord-light)
+(load-theme 'doom-dracula)
 ;; Don't defer screen updates when performing operations
 ;; (setq redisplay-dont-pause t)
 
@@ -73,7 +74,12 @@
 ;;         ))
 
 ;; Highlight matching parentheses when the point is on them.
+
+;; show-paren-mode
 (show-paren-mode 1)
+(custom-set-variables
+ '(show-paren-match ((t (:background "#373E4C" :foreground "#BF616A" :weight normal))))
+ '(show-paren-mismatch ((t (:background "#BF616A" :foreground "#373E4C" :weight normal)))))
 
 (when window-system
   (setq frame-title-format '(buffer-file-name "%f" ("%b")))

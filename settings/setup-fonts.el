@@ -33,16 +33,27 @@
    'default nil
    :font (font-spec :name "-*-PragmataPro-normal-normal-normal-*-*-*-*-*-m-0-iso10646-1"
                     :weight 'normal
+                    :height 1.1
                     :slant 'normal
                     :size 14.0)) ;; 20.0
   (dolist (charset '(kana han symbol cjk-misc bopomofo))
     (set-fontset-font
      (frame-parameter nil 'font)
      charset
-     (font-spec :name "ZoomlaXige-A002"
-                :weight 'normal
+     (font-spec :name "-*-STFangsong-normal-normal-normal-*-*-*-*-*-p-0-iso10646-1"
+                :weight 'ultra-bold
+                :height 0.8
                 :slant 'normal
-                :size 14.0)))) ;; 20.0
+                :size 14)))
+  (comment
+   (dolist (charset '(kana han symbol cjk-misc bopomofo))
+     (set-fontset-font
+      (frame-parameter nil 'font)
+      charset
+      (font-spec :name "ZoomlaXige-A002"
+                 :weight 'ultra-bold
+                 :slant 'normal
+                 :size 20.0))))) ;; 20.0
 
 (defun use-font-mononoki ()
   (interactive)
@@ -136,7 +147,24 @@
                 :size 14.0))))
 
 ;; (use-font-firacode)
-(cnfonts-enable)
-;;(use-font-set-pragmata)
-(use-font-set-ptmono)
+;; (cnfonts-enable)
+;; (use-font-set-pragmata)
+;; (use-font-set-ptmono)
 (provide 'setup-fonts)
+
+
+(comment
+ (set-face-attribute
+  'default nil
+  :font (font-spec :name "-*-PragmataPro-normal-normal-normal-*-*-*-*-*-m-0-iso10646-1"
+                   :weight 'normal
+                   :slant 'normal
+                   :size 14.0))
+ (dolist (charset '(kana han symbol cjk-misc bopomofo))
+   (set-fontset-font
+    (frame-parameter nil 'font)
+    charset
+    (font-spec :name "-*-SJzhuzhi-normal-normal-normal-*-*-*-*-*-p-0-iso10646-1"
+               :weight 'normal
+               :slant 'normal
+               :size 17.5))))

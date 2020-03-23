@@ -62,9 +62,6 @@ BODY will be ignored."
 
   (recursively-add-dir site-lisp-dir 'load-path))
 
-;; remove popup temporarily, for using predictive's older popup version
-(setq load-path (remove "/Users/yuzhao/.emacs.d/site-lisp/popup" load-path))
-
 ;; Setup environment variables from the user's shell.
 (use-package exec-path-from-shell
   :if (memq window-system '(ns x)) ;; before mac-p/gnu-p definition
@@ -311,7 +308,9 @@ BODY will be ignored."
   (require 'setup-scheme)
   ;;  (require 'setup-lsp)
   (when window-system
-    (require 'setup-fonts))
+    (require 'setup-fonts)
+    (when (display-graphic-p)
+      (use-font-set-pragmata)))
   (require 'setup-dict))
 
 (require 'setup-elisp)
@@ -333,18 +332,6 @@ BODY will be ignored."
 ;; (require 'prodigy)
 ;; (global-set-key (kbd "C-x M-m") 'prodigy)
 
-;; after require setup-fonts
-;; (if (display-graphic-p)
-;;     (progn
-;;       ;; (use-font-set-inziu)
-;;       ;; (use-font-set-ptmono)
-;;       ;; (use-font-iosevka-slab)
-;;       ;; (use-font-set-pragmata)
-;;       (use-font-mononoki)))
-
-;; call func defined in user-settings.el
-;; (when (and mac-p (display-graphic-p))
-;;   (user/thmac-p-font-settings))
 
 ;; Font lock dash.el
 (eval-after-load "dash" '(dash-enable-font-lock))
@@ -361,7 +348,7 @@ BODY will be ignored."
           ruby-mode
           ;; markdown-mode
           ;; groovy-mode
-          ;; scala-mode
+          scala-mode
           )
   (add-hook it 'turn-on-smartparens-mode))
 
@@ -527,6 +514,8 @@ the sequence, and its index within the sequence."
   ;;(require 'setup-help)
   )
 
+;; remove popup temporarily, for using predictive's older popup version
+;; (setq load-path (remove "/Users/yuzhao/.emacs.d/site-lisp/popup" load-path))
 
 ;; predictive-mode
 ;; (add-to-list 'load-path "~/.emacs.d/site-lisp/data-structures/predictive/")

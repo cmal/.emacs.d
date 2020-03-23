@@ -227,11 +227,12 @@
   :mode "\\.vue$")
 
 ;; go mode
-(use-package go-mode
-  :mode "\\.go$"
-  :bind
-  (:map go-mode-map
-        ("C-c C-c" 'godoc-at-point)))
+(comment
+ (use-package go-mode
+   :mode "\\.go$"
+   :bind
+   (:map go-mode-map
+         ("C-c C-c" 'godoc-at-point))))
 
 
 ;; makefile-bsdmake-mode
