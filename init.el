@@ -353,20 +353,12 @@ BODY will be ignored."
   (add-hook it 'turn-on-smartparens-mode))
 
 ;; Language specific setup files
-(eval-after-load 'js2-mode '(require 'setup-js2-mode))
-(eval-after-load 'js2-mode '(require 'setup-js))
-;; (eval-after-load 'ruby-mode '(require 'setup-ruby-mode))
 (eval-after-load 'clojure-mode '(require 'setup-clojure-mode))
-;; (when mac-p
-;;   (eval-after-load 'markdown-mode '(require 'setup-markdown-mode)))
-(eval-after-load 'js-mode '(require 'setup-js-mode))
-(eval-after-load 'js-mode '(require 'setup-js))
-
 (eval-after-load 'haskell-mode '(require 'setup-haskell))
+
 ;; Load stuff on demand
 (autoload 'skewer-start "setup-skewer" nil t)
 (autoload 'skewer-demo "setup-skewer" nil t)
-(eval-after-load 'flycheck '(require 'setup-flycheck))
 
 ;; (require 'setup-jdee)
 
