@@ -514,31 +514,6 @@ the sequence, and its index within the sequence."
   ;;(require 'setup-help)
   )
 
-;; remove popup temporarily, for using predictive's older popup version
-;; (setq load-path (remove "/Users/yuzhao/.emacs.d/site-lisp/popup" load-path))
-
-;; predictive-mode
-;; (add-to-list 'load-path "~/.emacs.d/site-lisp/data-structures/predictive/")
-;; (add-to-list 'load-path "~/.emacs.d/site-lisp/data-structures/predictive/latex/")
-;; (add-to-list 'load-path "~/.emacs.d/site-lisp/data-structures/predictive/texinfo/")
-;; (add-to-list 'load-path "~/.emacs.d/site-lisp/data-structures/predictive/html/")
-;; (autoload 'predictive-mode "~/.emacs.d/site-lisp/data-structures/predictive/predictive"
-;;   "Turn on Predictive Completion Mode." t)
-;; (autoload 'popup "~/.emacs.d/site-lisp/data-structures/predictive/popup"
-;;   "popup")
-
-
-;; predictive initialize dict
-;; cd some path and then:
-;; (setq dict-english
-;;       (predictive-create-dict
-;;        'dict-english
-;;        "dict-english"
-;;        "dict-english.word-list"
-;;        nil
-;;        nil
-;;        t))
-
 ;; (dictree-write dict-english "dict-english" t)
 
 ;; (when mac-p
