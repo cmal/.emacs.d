@@ -53,8 +53,11 @@
 
  ;; highlight: FIXME TODO BUG (...)
 (use-package fic-mode
+  :demand t
   :hook
-  (prog-mode . fic-mode))
+  (prog-mode . fic-mode)
+  :config
+  (add-to-list 'fic-highlighted-words "NOTE"))
 
 ;; auto indent
 (defun set-newline-and-indent ()
@@ -143,7 +146,8 @@
 
 (use-package editorconfig
   :config
-  (editorconfig-mode 1))
+  (editorconfig-mode 1)
+  (diminish 'editorconfig-mode "EC"))
 
 ;; abbrev-mode
 (use-package abbrev
@@ -299,9 +303,23 @@ instead."
         (progn
           (user-error "No symbol found"))))))
 
+;; show function name in mode line
 ;; which-function-mode
 ;; (which-func-mode nil)
 (which-function-mode t)
+
+(setq mode-line-format
+      (delete (assoc 'which-func-mode mode-line-format)
+              mode-line-format)
+      which-func-header-line-format
+      '(which-func-mode ("" which-func-format)))
+
+(defadvice which-func-ff-hook (after header-line activate)
+  (when which-func-mode
+    (setq mode-line-format (delete (assoc 'which-func-mode
+                                          mode-line-format) mode-line-format)
+          header-line-format which-func-header-line-format)))
+
 
 (require 'my-thing-at-point)
 
@@ -312,18 +330,18 @@ instead."
 ;; ============ ace-window ===============
 
 (use-package ace-window
+  :demand t
   :bind
   (:map global-map
    ("C-x o" . ace-window)
-   ("C-x 1" . ace-maximize-window)
+   ("C-x 1" . ace-delete-other-windows)
    ("C-x w" . ace-swap-window)
    ("C->" . ace-swap-window)
    ("C-<" . aw-flip-window))
   :config
   (setq aw-keys '(?s ?d ?f ?j ?k ?l ?g ?h ?n))
   (ace-window-display-mode t)
-  (setq aw-dispatch-always t)
-)
+  (setq aw-dispatch-always nil))
 
 ;; ============ ace-window ===============
 
@@ -337,8 +355,101 @@ instead."
 
 (use-package git-timemachine
   :ensure t
-  :config
-  (global-set-key (kbd "C-M-m") 'git-timemachine))
+  :bind (:map global-map
+              ("C-M-m" . git-timemachine)))
 
+(define-key global-map (kbd "C-x e") 'eval-replace-last-sexp)
+
+;; query-replace with textual transformation
+;; refer to this question:
+;; https://stackoverflow.com/questions/57751/emacs-query-replace-with-textual-transformation
+;; http://steve-yegge.blogspot.com/2006/06/shiny-and-new-emacs-22.html
+;; http://steve-yegge.blogspot.com/
+;; M-x replace-regexp
+;; Replace regexp:  \(\w+\)
+;; Replace regexp with:  \,(capitalize \1)
+
+(defun double-px (px)
+  ;; css mode always need to transform px in 375 to 750,
+  ;; so we often want to replace, say 12px, to 24px.
+  ;; If s is end with px
+  (number-to-string (* 2 (string-to-number px))))
+;; (double-px "33")
+(defun double-pxs (start end)
+  (interactive "r")
+  (goto-char start)
+  (let ((cnt 0))
+    (while (re-search-forward "\\([0-9]+\\)px" end t)
+      ;; (replace-regexp-in-string "\\(foo\\).*\\'" "bar" "1foofoo" nil nil 1)
+      (setq cnt (1+ cnt))
+      (replace-match
+       (concat (replace-regexp-in-string ".*" (lambda (x) (double-px x)) (match-string 1)) "px")))
+    (message (concat "replaced " (number-to-string cnt) " places."))))
+;; or manually:
+;; M-x replace-regexp
+;; \([0-9]+\)px
+;; \,(double-px \1)px
+
+(defun vc-git-grep2 (regexp dir)
+  (interactive  ;; interactive 后的内容的返回值被作为整个函数的参数传入
+   (progn
+     (grep-compute-defaults)
+     (cond
+      ((equal current-prefix-arg '(16))
+       (list (read-from-minibuffer "Run: " "git grep" nil nil 'grep-history)
+    nil))
+      (t (let* ((regexp (grep-read-regexp))
+    (dir (read-directory-name "In directory: " nil default-directory t)))
+     (list regexp dir))))))
+  (require 'grep)
+  (when (and (stringp regexp) (> (length regexp) 0))
+    (let ((command regexp))
+      (if (> 4 5)
+    (if (string= command "git grep")
+     (setq command nil))
+  (setq dir (file-name-as-directory (expand-file-name dir)))
+  (setq command
+     (grep-expand-template "git grep -n -i -e <R>" regexp))
+  (when command
+    (if (equal current-prefix-arg '(4))
+     (setq command
+     (read-from-minibuffer "Confirm: " command nil nil 'grep-history))
+   (add-to-history 'grep-history command))))
+      (when command
+  (let ((default-directory dir)
+     (compilation-environment '("PAGER=")))
+    ;; Setting process-setup-function makes exit-message-function work
+    ;; even when async processes aren't supported.
+    (compilation-start command 'grep-mode))
+  (if (eq next-error-last-buffer (current-buffer))
+      (setq default-directory dir))))))
+
+(defun vc-git-grep3 (regexp)
+  (interactive
+   (progn
+     (grep-compute-defaults)
+     (cond
+      ((equal current-prefix-arg '(16))
+       (list (read-from-minibuffer "Run: " "git grep" nil nil 'grep-history)))
+      (t (list (grep-read-regexp))))))
+  (require 'grep)
+  (when (and (stringp regexp) (> (length regexp) 0))
+    (let ((command regexp))
+      (setq command
+            (grep-expand-template "git grep -n -i -e <R>" regexp))
+      (when command
+        (if (equal current-prefix-arg '(4))
+            (setq command
+                  (read-from-minibuffer "Confirm: " command nil nil 'grep-history))
+          (add-to-history 'grep-history command)))
+      (when command
+        (let ((compilation-environment '("PAGER=")))
+          ;; Setting process-setup-function makes exit-message-function work
+          ;; even when async processes aren't supported.
+          (compilation-start command 'grep-mode))))))
+
+(use-package helm-git-grep
+  :ensure t
+  :demand t)
 
 (provide 'setup-editing)

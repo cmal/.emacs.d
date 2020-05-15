@@ -41,5 +41,24 @@
 (use-package rjsx-mode
   :init (add-to-list 'auto-mode-alist '("\\.jsx?$" . rjsx-mode)))
 
+;; js pretty-fier, pretty-print
+(use-package js-auto-format-mode
+  :config
+  (custom-set-variables
+  '(js-auto-format-command "prettier")
+  '(js-auto-format-command-args "--write --single-quote --no-semi")))
+
+;; or
+;; (use-package prettier-js
+;;   :demand t)
+;; prettier-js-mode
+;; or run prettier-js to format
+(defun pretty-print-js ()
+  (interactive)
+  (js-auto-format-execute)
+  ;; or
+  ;;(prettier-js)
+  )
+
 (provide 'setup-js)
 ;;; setup-js.el ends here

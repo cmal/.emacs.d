@@ -132,9 +132,6 @@
 
 
 ;; mode-line, diminish
-(diminish 'editorconfig-mode "EC")
-(diminish 'helm-mode)
-(diminish 'encourage-mode)
 (diminish 'undo-tree-mode "UT")
 (diminish 'abbrev-mode "Ab")
 (diminish 'visual-line-mode "VL")

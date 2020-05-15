@@ -123,7 +123,7 @@
 
 ;; (cl-prettyprint (font-family-list))
 
-(cnfonts-enable)
+;; (cnfonts-enable)
 ;; (cnfonts--select-profile "profile1")
 
 

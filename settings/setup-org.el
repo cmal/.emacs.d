@@ -58,21 +58,21 @@
 (setq-default org-clock-persist 'history)
 (org-clock-persistence-insinuate)
 
-;; 快速TODO标签
+;; 快速 TODO 标签
 (setq-default org-use-fast-todo-selection t)
-;;忽略scheduled和deadlined的todo项目
-;;使得todo列表更为紧凑，因为这些项目在agenda列表中显示了
+;;忽略 scheduled 和 deadlined 的 todo 项目
+;;使得 todo 列表更为紧凑，因为这些项目在 agenda 列表中显示了
 (setq-default org-agenda-todo-ignore-scheduled t)
 (setq-default org-agenda-todo-ignore-deadlines t)
-;;修改Agenda View显示时间
+;;修改 Agenda View 显示时间
 (setq-default org-agenda-span 'week)
 ;;加入日记的约会提醒项目
 (setq-default diary-file "~/.emacs.d/diary")
 ;; (appt-activate t)
-;; 更改org-clock-table时间显示
+;; 更改 org-clock-table 时间显示
 (setq org-time-clocksum-format
       '(:hours "%d" :require-hours t :minutes ":%02d" :require-minutes t))
-;; 将org mode的层级标识显示为utf-8字符
+;; 将 org mode 的层级标识显示为 utf-8 字符
 ;; (load-file "~/.emacs.d/site-lisp/org-bullets.el")
 ;; (require 'org-bullets)
 ;; (add-hook 'org-mode-hook (lambda() (org-bullets-mode)))
@@ -103,7 +103,7 @@
 
 (add-to-list 'org-modules 'org-habit)
 
-(defun org-add-current-file-to-agenda ()
+(defun org-add-this-file-to-agenda ()
   (interactive)
   (customize-save-variable
    'org-agenda-files
@@ -112,38 +112,60 @@
 ;; screenshot on Mac OS X, depends on screencapture on mac
 ;; Linux can use this instead, it depends on a linux software `scrot':
 ;; https://code.orgmode.org/bzg/org-mode/raw/master/contrib/lisp/org-screenshot.el
-(defun my-org-screenshot ()
+(defun get-png-filename ()
+  (concat
+   (make-temp-name
+    (concat (file-name-nondirectory (buffer-file-name))
+            "_imgs/"
+            (format-time-string "%Y%m%d_%H%M%S_"))) ".png"))
+
+(defun org-screenshot ()
   "Take a screenshot into a time stamped unique-named file in the
 same directory as the org-buffer and insert a link to this file."
   (interactive "*")
   (org-display-inline-images)
-  (setq filename
-        (concat
-         (make-temp-name
-          (concat (file-name-nondirectory (buffer-file-name))
-                  "_imgs/"
-                  (format-time-string "%Y%m%d_%H%M%S_")) ) ".png"))
-  (unless (file-exists-p (file-name-directory filename))
-    (make-directory (file-name-directory filename)))
-                                        ; take screenshot
-  (if (eq system-type 'darwin)
-      (call-process "screencapture" nil nil nil "-i" filename))
-  (if (eq system-type 'gnu/linux)
-      (call-process "import" nil nil nil filename))
-                                        ; insert into file if correctly taken
-  (if (file-exists-p filename)
-      (insert filename)))
+  (let (filename (get-png-filename))
+   (unless (file-exists-p (file-name-directory filename))
+     (make-directory (file-name-directory filename))) ; take screenshot
+   (if (eq system-type 'darwin)
+       (call-process "screencapture" nil nil nil "-i" filename))
+   (if (eq system-type 'gnu/linux)
+       (call-process "import" nil nil nil filename)) ; insert into file if correctly taken
+   (if (file-exists-p filename)
+       (insert filename))))
 
-
+;; pasting images into org-mode on Mac, first,
+;; $ brew install pngpaste
+(defun org-paste-clipboard (prefix)
+  (interactive "p")
+  (let ((filename (get-png-filename)))
+    (if (zerop (call-process-shell-command (concat "pngpaste " filename)))
+        (progn
+          (when (= prefix 4)
+            (insert (concat  "#+CAPTION: " (read-string "Caption: ") "\n")))
+          (insert (format "[[file:%s]]"  filename)))
+      (message "NO image file created."))))
+;;use (org-display-inline-images) to display images inline
 
 
 ;; key shortcuts
 (defun org-mode-custom-keys-config ()
   (local-set-key (kbd "C-c i") 'insert-image-from-url)
-  (local-set-key (kbd "C-c f a") 'org-add-current-file-to-agenda)
-  (local-set-key (kbd "C-c x") 'my-org-screenshot))
+  (local-set-key (kbd "C-c f a") 'org-add-this-file-to-agenda)
+  (local-set-key (kbd "C-c x") 'org-screenshot)
+  (local-set-key (kbd "s-S-v") 'org-paste-clipboard))
 
 (add-hook 'org-mode-hook 'org-mode-custom-keys-config)
+
+;; use the above instead
+(comment
+ (use-package org-attach-screenshot
+   :after (org)
+   :bind (:map org-mode-map ("C-c C-x t" . org-attach-screenshot))
+   :config
+   (setq org-attach-screenshot-command-line
+         "screencapture -i %f")))
+
 
 
 ;; alert
@@ -545,5 +567,12 @@ same directory as the org-buffer and insert a link to this file."
 
 (setq org-reveal-hlevel 1)
 
+;; enable imenu-mode,
+;; to make which-func-mode work in org mode
+(add-hook 'org-mode-hook
+          (lambda () (imenu-add-to-menubar "Imenu")
+            (require 'pangu-spacing)
+            (pangu-spacing-mode 1)
+            (setq pangu-spacing-real-insert-separtor t)))
 
 (provide 'setup-org)

@@ -5,15 +5,18 @@
   :demand t
   :bind
   (:map global-map
-  ("M-x" . helm-M-x)
-  ("C-x C-f" . helm-find-files)
-  ;; and this one find those git registered files
-  ("C-x f" . helm-ls-git-ls))
+        ("M-x" . helm-M-x)
+        ("C-x C-f" . helm-find-files)
+        ;; and this one find those git registered files
+        ("C-x f" . helm-ls-git-ls)
+        ("C-x b" . helm-buffers-list))
   :config
   (require 'helm-config)
   (setq helm-buffers-fuzzy-matching t)
   (helm-mode 1)
   (helm-autoresize-mode t)
+  (diminish 'helm-mode)
+  (setq helm-truncate-lines t)
   )
 
 (use-package helm-descbinds

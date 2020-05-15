@@ -174,7 +174,7 @@ BODY will be ignored."
                posframe dap-mode lsp-treemacs
                ;; swiper ivy councel
                wgrep ;; write grep
-               swiper-helm
+               swiper-helm helm-git-grep
                )
        (when mac-p '(wolfram-mode
                       ;; swbuff swbuff-x
@@ -258,49 +258,51 @@ BODY will be ignored."
   (require 'paredit-menu) ;; 在菜单栏显示 Paredit 项，列出所有 paredit 命令
   )
 
-;; (require 'setup-company)
-(use-package auto-complete
-  :config
-  (require 'auto-complete-config)
-  (ac-config-default)
-  (ac-flyspell-workaround)
-  (add-to-list 'ac-dictionary-directories (concat user-emacs-directory "auto-complete/dict"))
-  (setq ac-comphist-file (concat user-emacs-directory "tmp/ac-comphist.dat"))
+(require 'setup-company)
 
-  (global-auto-complete-mode nil)
-  (setq ac-auto-show-menu t)
-  (setq ac-dwim t)
-  (setq ac-use-menu-map t)
-  (setq ac-quick-help-delay 1)
-  (setq ac-delay 0.3)
-  (setq ac-quick-help-height 60)
-  (setq ac-disable-inline t)
-  (setq ac-show-menu-immediately-on-auto-complete t)
-  (setq ac-auto-start 2)
-  (setq ac-candidate-menu-min 0)
+(comment
+ (use-package auto-complete
+   :config
+   (require 'auto-complete-config)
+   (ac-config-default)
+   (ac-flyspell-workaround)
+   (add-to-list 'ac-dictionary-directories (concat user-emacs-directory "auto-complete/dict"))
+   (setq ac-comphist-file (concat user-emacs-directory "tmp/ac-comphist.dat"))
 
-  (set-default 'ac-sources
-               '(ac-source-dictionary
-                 ac-source-words-in-buffer
-                 ac-source-words-in-same-mode-buffers
-                 ac-source-semantic
-                 ac-source-yasnippet))
+   (global-auto-complete-mode nil)
+   (setq ac-auto-show-menu t)
+   (setq ac-dwim t)
+   (setq ac-use-menu-map t)
+   (setq ac-quick-help-delay 1)
+   (setq ac-delay 0.3)
+   (setq ac-quick-help-height 60)
+   (setq ac-disable-inline t)
+   (setq ac-show-menu-immediately-on-auto-complete t)
+   (setq ac-auto-start 2)
+   (setq ac-candidate-menu-min 0)
 
-  (dolist (mode '(magit-log-edit-mode log-edit-mode org-mode text-mode haml-mode
-                                      sass-mode yaml-mode csv-mode espresso-mode haskell-mode
-                                      html-mode nxml-mode sh-mode smarty-mode clojure-mode
-                                      lisp-mode textile-mode markdown-mode tuareg-mode))
-    (add-to-list 'ac-modes mode))
+   (set-default 'ac-sources
+                '(ac-source-dictionary
+                  ac-source-words-in-buffer
+                  ac-source-words-in-same-mode-buffers
+                  ac-source-semantic
+                  ac-source-yasnippet))
+
+   (dolist (mode '(magit-log-edit-mode log-edit-mode org-mode text-mode haml-mode
+                                       sass-mode yaml-mode csv-mode espresso-mode haskell-mode
+                                       html-mode nxml-mode sh-mode smarty-mode clojure-mode
+                                       lisp-mode textile-mode markdown-mode tuareg-mode))
+     (add-to-list 'ac-modes mode))
 
 
-  ;; Key triggers
-  ;; (define-key ac-completing-map (kbd "C-M-n") 'ac-next)
-  ;; (define-key ac-completing-map (kbd "C-M-p") 'ac-previous)
-  (define-key ac-completing-map "\t" 'ac-complete)
-  (define-key ac-completing-map (kbd "M-RET") 'ac-help)
-  (define-key ac-completing-map "\r" 'nil)
+   ;; Key triggers
+   ;; (define-key ac-completing-map (kbd "C-M-n") 'ac-next)
+   ;; (define-key ac-completing-map (kbd "C-M-p") 'ac-previous)
+   (define-key ac-completing-map "\t" 'ac-complete)
+   (define-key ac-completing-map (kbd "M-RET") 'ac-help)
+   (define-key ac-completing-map "\r" 'nil)
 
-  (add-hook 'clojure-mode-hook 'auto-complete-mode))
+   (add-hook 'clojure-mode-hook 'auto-complete-mode)))
 
 (unless android-p
   (require 'setup-clojure-mode)
@@ -496,8 +498,11 @@ the sequence, and its index within the sequence."
 
 ;; (require 'livereload)
 ;; (achievements-mode t) ;; comment due to performance problem
-(require 'encourage-mode)
-(encourage-mode)
+(use-package encourage-mode
+  :demand t
+  :config
+  (encourage-mode)
+  (diminish 'encourage-mode))
 
 (when mac-p
   ;; (require 'setup-pdf)
@@ -523,3 +528,13 @@ the sequence, and its index within the sequence."
 (require 'setup-iterm2)
 
 (require 'setup-ocaml)
+
+(use-package nov
+  :mode "\\.epub$") ;; epub reader mode
+
+;; clomacs: ELisp <-> Clojure
+(use-package clomacs
+  :ensure t)
+
+(global-eldoc-mode 1)
+

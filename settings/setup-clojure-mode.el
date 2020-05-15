@@ -132,4 +132,6 @@ the (^:fold ...) expressions."
 ;; (eval-after-load 'clojure-mode
 ;;   '(sayid-setup-package))
 
+;; see https://github.com/clojure-emacs/clomacs
+
 (provide 'setup-clojure-mode)

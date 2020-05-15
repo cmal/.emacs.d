@@ -15,7 +15,8 @@
   ;;   (just-one-space))
   ;; or setq-local in a mode hook, eg. for text-mode/org-mode or wherever you are
   ;; completing with dictionary words 
-  (setq company-completion-finished-hook (lambda (&rest _ignored) (just-one-space)))
+
+  ;; (setq company-completion-finished-hook (lambda (&rest _ignored) (just-one-space)))
   (setq company-idle-delay 0)
   (define-key company-active-map (kbd "M-n") nil)
   (define-key company-active-map (kbd "M-p") nil)
