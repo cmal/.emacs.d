@@ -538,3 +538,33 @@ the sequence, and its index within the sequence."
 
 (global-eldoc-mode 1)
 
+;; clomacs
+(add-to-list 'load-path "~/gits/dingtalk-clj/clomacs-demo/src/elisp/")
+(require 'clomacs-demo)
+
+
+;; https://github.com/xuchunyang/marionette.el
+;; https://firefox-source-docs.mozilla.org/testing/marionette/Protocol.html
+(require 'marionette)
+;; $ /Applications/Firefox.app/Contents/MacOS/firefox -marionette
+;; # For macOS (open(1) does not block your terminal)
+;; $ open -a Firefox --args -marionette
+
+;; Get Title of http://baidu.com
+
+;; (marionette-with-page
+;;  (lambda (proc)
+;;    (marionette-request proc 'Navigate :url "http://baidu.com")
+;;    (marionette-request proc 'GetTitle)))
+;; => ((value . "Example Domain"))
+
+;; Take Screenshot of http://example.com, save to example.com.png
+;; (marionette-with-page
+;;  (lambda (proc)
+;;    (marionette-request proc 'Navigate :url "http://baidu.com")
+;;    (let-alist (marionette-request proc 'TakeScreenshot :full t)
+;;      (let ((coding-system-for-write 'binary))
+;;        (write-region
+;;         (base64-decode-string .value)
+;;         nil
+;;         "baidu.com.png")))))

@@ -115,4 +115,8 @@
 (define-key global-map (kbd "C-c d v") 'sdcv-to-buffer)
 
 
+(use-package youdao-dictionary
+  :ensure t
+  :demand t)
+
 (provide 'setup-dict)
