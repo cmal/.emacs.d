@@ -1,4 +1,5 @@
 ;; Allow pasting selection outside of Emacs
+;; only works on GUI
 (setq x-select-enable-clipboard t)
 
 ;; Auto refresh buffers

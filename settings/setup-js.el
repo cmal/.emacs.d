@@ -38,9 +38,6 @@
 ;; (flycheck-add-mode 'javascript-eslint 'graphql-mode)
 ;; (flycheck-add-mode 'javascript-eslint 'rjsx-mode)
 
-(use-package rjsx-mode
-  :init (add-to-list 'auto-mode-alist '("\\.jsx?$" . rjsx-mode)))
-
 ;; js pretty-fier, pretty-print
 (use-package js-auto-format-mode
   :config
@@ -59,6 +56,24 @@
   ;; or
   ;;(prettier-js)
   )
+
+(defun js-insert-console-log (var)
+  "Add console.log of `var' to point."
+  (interactive "s请输入要打印的变量名: ")
+  (insert (format "console.log('#### %s: ', %s);" var var))
+  )
+
+(use-package rjsx-mode
+  :init (add-to-list 'auto-mode-alist '("\\.jsx?$" . rjsx-mode))
+  :bind
+  (:map rjsx-mode-map
+        ("C-c C-c" . js-insert-console-log)))
+
+(use-package web-mode
+  :init (add-to-list 'auto-mode-alist '("\\.vue$" . web-mode))
+  :bind
+  (:map web-mode-map
+        ("C-c C-c" . js-insert-console-log)))
 
 (provide 'setup-js)
 ;;; setup-js.el ends here

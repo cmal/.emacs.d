@@ -223,8 +223,8 @@
 ;; (remove-hook 'clojure-mode-hook 'aggressive-indent-mode)
 
 ;; vue mode
-(use-package vue-mode
-  :mode "\\.vue$")
+;; (use-package vue-mode
+;;   :mode "\\.vue$")
 
 ;; go mode
 (comment
@@ -258,8 +258,13 @@
 (add-to-list 'auto-mode-alist '("\\.rkt$" . racket-mode))
 ;; (add-to-list 'auto-mode-alist '("\\.scm$" . racket-mode))
 
-(use-package rust-mode
-  :mode "\\.rs$")
+;; (use-package rust-mode
+;;   :mode "\\.rs$"
+;;   :config
+;;   (use-package cargo
+;;     :ensure t)
+;;   (cargo-minor-mode)
+;; )
 
 ;; elm-mode
 (use-package elm-mode

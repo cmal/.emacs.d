@@ -49,6 +49,6 @@
             (define-key shell-mode-map (kbd "C-d") 'comint-delchar-or-eof-or-kill-buffer)))
 
 ;; https://github.com/manateelazycat/aweshell
-(require 'aweshell)
+;; (require 'aweshell) ;; in site-lisp/
 
 (provide 'setup-shell)

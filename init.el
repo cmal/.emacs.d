@@ -1,7 +1,7 @@
 ;;; package -- Summary
 
 ;; My Emacs init file
-(setq debug-on-error t)
+;; (setq debug-on-error t)
 ;;; Commentary:
 
 ;;; Code:
@@ -84,8 +84,7 @@ BODY will be ignored."
 (require 'setup-os)
 
 (require 'setup-keymaps)
-(unless window-system
-  (require 'setup-iterm2))
+(require 'setup-iterm2)
 
 ;; Settings for currently logged in user
 (when mac-p
@@ -219,6 +218,7 @@ BODY will be ignored."
 
 ;; Lets start with a smattering of sanity
 (require 'sane-defaults)
+(require 'setup-clipboard)
 
 ;; guide-key ;; try which-key instead
 ;; (require 'guide-key)
@@ -231,7 +231,28 @@ BODY will be ignored."
   :ensure t
   :demand t
   :config
-  (which-key-mode))
+  (setq which-key-sort-order 'which-key-prefix-then-key-order
+        ;; Let's go unicode :)
+        which-key-key-replacement-alist
+        '(("<\\([[:alnum:]-]+\\)>" . "\\1")
+          ("up"                    . "↑")
+          ("right"                 . "→")
+          ("down"                  . "↓")
+          ("left"                  . "←")
+          ("DEL"                   . "⌫")
+          ("deletechar"            . "⌦")
+          ("RET"                   . "⏎"))
+        which-key-description-replacement-alist
+        '(("Prefix Command" . "prefix")
+          ;; Lambdas
+          ("\\`\\?\\?\\'"   . "λ")
+          ;; Prettify hydra entry points
+          ("/body\\'"       . "|=")
+          ;; Drop/shorten package prefixes
+          ("magit-"         . "ma-")))
+
+  (which-key-mode)
+  )
 
 ;; Setup extensions
 
@@ -369,7 +390,7 @@ BODY will be ignored."
 
 ;; (require 'setup-jdee)
 
-;; Map files to modes
+;;; Map files to modes
 (require 'mode-mappings)
 
 ;; Highlight escape sequences
@@ -550,13 +571,13 @@ the sequence, and its index within the sequence."
 
 ;; https://github.com/xuchunyang/marionette.el
 ;; https://firefox-source-docs.mozilla.org/testing/marionette/Protocol.html
-(require 'marionette)
 ;; $ /Applications/Firefox.app/Contents/MacOS/firefox -marionette
 ;; # For macOS (open(1) does not block your terminal)
 ;; $ open -a Firefox --args -marionette
 
 ;; Get Title of http://baidu.com
 
+;; (require 'marionette)
 ;; (marionette-with-page
 ;;  (lambda (proc)
 ;;    (marionette-request proc 'Navigate :url "http://baidu.com")
@@ -573,3 +594,39 @@ the sequence, and its index within the sequence."
 ;;         (base64-decode-string .value)
 ;;         nil
 ;;         "baidu.com.png")))))
+
+(comment
+ (use-package shell-pop
+   ;; :ensure t
+   :demand t
+   :bind (("C-x p" . shell-pop))
+   :config
+   (setq shell-pop-shell-type (quote ("ansi-term" "*ansi-term*" (lambda nil (ansi-term shell-pop-term-shell)))))
+   (setq shell-pop-term-shell "/bin/bash")
+   ;; need to do this manually or not picked up by `shell-pop'
+   (shell-pop--set-shell-type 'shell-pop-shell-type shell-pop-shell-type)))
+
+
+;; (use-package demo-it
+;;   :ensure t
+;; ;;  :demand t
+;;   )
+
+
+;; (use-package deft
+;;   :ensure t
+;;   :config
+;;   (setq deft-directory "~/gits/org")
+;;   (setq deft-extensions '("org"))
+;;   (setq deft-default-extension "org")
+;;   (setq deft-text-mode 'org-mode)
+;;   (setq deft-use-filename-as-title t)
+;;   (setq deft-use-filter-string-for-filename t)
+;;   (setq deft-auto-save-interval 0)
+;;   ;;key to launch deft
+;;   ;;(global-set-key (kbd "C-c d") 'deft)
+;;;   )
+
+(require 'setup-js)
+(require 'setup-rust)
+
