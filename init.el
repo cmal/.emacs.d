@@ -125,7 +125,7 @@ BODY will be ignored."
                git-timemachine edn uuid dash diminish inflections spinner
                ;; golden-ratio-scroll-screen
                ;; move-text
-               yasnippet emmet-mode
+               yasnippet emmet-mode lua-mode
                json-mode helm helm-org-rifle helm-descbinds org-redmine
                org-repo-todo helm-ack helm-ls-git helm-emmet
                visual-regexp fill-column-indicator flycheck

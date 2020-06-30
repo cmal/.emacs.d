@@ -460,4 +460,31 @@ instead."
         ("M-n" . awesome-pair-jump-left)
         ("M-:" . awesome-pair-jump-out-pair-and-newline)))
 
+(use-package insert-translated-name
+  :bind
+  (:map global-map
+        ("C-M-i" . insert-translated-name-replace)))
+
+(defun open-newline-above (arg)
+  "Move to the previous line (like vi) and then opens a line."
+  (interactive "p")
+  (beginning-of-line)
+  (open-line arg)
+  (if (not (member major-mode '(haskell-mode org-mode literate-haskell-mode)))
+      (indent-according-to-mode)
+    (beginning-of-line)))
+
+(defun open-newline-below (arg)
+  "Move to the next line (like vi) and then opens a line."
+  (interactive "p")
+  (end-of-line)
+  (open-line arg)
+  (call-interactively 'next-line arg)
+  (if (not (member major-mode '(haskell-mode org-mode literate-haskell-mode)))
+      (indent-according-to-mode)
+    (beginning-of-line)))
+
+(global-set-key (kbd "C-M-o") 'open-newline-below)
+(global-set-key (kbd "C-s-<backspace>") 'kill-whole-line)
+
 (provide 'setup-editing)
