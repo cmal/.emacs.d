@@ -145,4 +145,9 @@
 
 (put 'narrow-to-region 'disabled nil)
 
+;; desktop-save-mode
+(setq desktop-dirname "~/emacs.d/desktop")
+(desktop-save-mode 1)
+(add-hook 'kill-emacs-hook desktop-save)
+
 (provide 'sane-defaults)

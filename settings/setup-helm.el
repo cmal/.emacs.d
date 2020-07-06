@@ -23,12 +23,15 @@
   :config
   (helm-descbinds-mode))
 
+;; wgrep-helm usage
+;; 1. Save the occur result to a separate buffer with C-x C-s (helm-moccur-run-save-buffer)
+;; 2. Change to wgrep mode with C-c C-p (wgrep-change-to-wgrep-mode)
+;; 3. Edit the buffer like a normal buffer
+;; 4. Apply the changes with C-x C-s (wgrep-finish-edit)
 (use-package wgrep-helm
   :after (helm))
 
-
 ;; NOTE: removed swiper swoop here
-
 
 (use-package helm-emmet
   :after (helm))
