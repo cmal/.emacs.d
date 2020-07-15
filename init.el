@@ -23,9 +23,6 @@ BODY will be ignored."
 ;;     (package-initialize))
 (package-initialize)
 
-(eval-when-compile
-  (require 'use-package))
-
 ;; add el-get libs before loading custom.el
 
 ;; tabbar
@@ -626,6 +623,11 @@ the sequence, and its index within the sequence."
 ;;   ;;key to launch deft
 ;;   ;;(global-set-key (kbd "C-c d") 'deft)
 ;;;   )
+
+
+;; if using emacs-plus built with --with-no-titlebar and see gaps
+;; between your emacs frames and other windows, try this:
+;; (setq frame-resize-pixelwise t)
 
 (require 'setup-js)
 (require 'setup-rust)
