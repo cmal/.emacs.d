@@ -508,7 +508,7 @@ the sequence, and its index within the sequence."
                  (setq index (1+ index))))
              sequence)))
 
-(require 'reddit)
+;; (require 'reddit)
 
 ;; (when mac-p (require 'bookmark+))
 
@@ -530,6 +530,7 @@ the sequence, and its index within the sequence."
   (encourage-mode)
   (require 'setup-diminish)
   (diminish 'encourage-mode))
+
 
 (when mac-p
   ;; (require 'setup-pdf)
@@ -559,7 +560,6 @@ the sequence, and its index within the sequence."
 (use-package nov
   :mode "\\.epub$") ;; epub reader mode
 
-
 (global-eldoc-mode 1)
 
 ;; https://github.com/xuchunyang/marionette.el
@@ -588,18 +588,18 @@ the sequence, and its index within the sequence."
 ;;         nil
 ;;         "baidu.com.png")))))
 
-(comment
- (use-package shell-pop
-   ;; :ensure t
-   :demand t
-   :bind (("C-x p" . shell-pop))
-   :config
-   (setq shell-pop-shell-type (quote ("ansi-term" "*ansi-term*" (lambda nil (ansi-term shell-pop-term-shell)))))
-   (setq shell-pop-term-shell "/bin/bash")
-   ;; need to do this manually or not picked up by `shell-pop'
-   (shell-pop--set-shell-type 'shell-pop-shell-type shell-pop-shell-type)))
-
-
+;;(comment
+;; (use-package shell-pop
+;;   ;; :ensure t
+;;   :demand t
+;;   :bind (("C-x p" . shell-pop))
+;;   :config
+;;   (setq shell-pop-shell-type (quote ("ansi-term" "*ansi-term*" (lambda nil (ansi-term shell-pop-term-shell)))))
+;;   (setq shell-pop-term-shell "/bin/bash")
+;;   ;; need to do this manually or not picked up by `shell-pop'
+;;   (shell-pop--set-shell-type 'shell-pop-shell-type shell-pop-shell-type)))
+;;
+;;
 ;; (use-package demo-it
 ;;   :ensure t
 ;; ;;  :demand t
@@ -625,6 +625,9 @@ the sequence, and its index within the sequence."
 ;; between your emacs frames and other windows, try this:
 ;; (setq frame-resize-pixelwise t)
 
-(require 'setup-js)
-(require 'setup-rust)
+;; (require 'setup-js)
+(message "after setup-js")
+;; (require 'setup-rust)
+
+(message "after setup-rust")
 
