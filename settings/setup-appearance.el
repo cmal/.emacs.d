@@ -61,7 +61,7 @@
 ;; (load-theme 'doom-challenger-deep)
 ;; (load-theme 'doom-tomorrow-day)
 ;; (load-theme 'doom-nord-light)
-(load-theme 'doom-dracula)
+;; (load-theme 'doom-dracula)
 ;; Don't defer screen updates when performing operations
 ;; (setq redisplay-dont-pause t)
 
@@ -129,12 +129,6 @@
 ;; (add-hook 'erc-mode-hook 'my-buffer-face-mode-variable)
 ;; (add-hook 'Info-mode-hook 'my-buffer-face-mode-variable)
 (add-hook 'w3m-mode-hook 'reading-face-mode-variable)
-
-
-;; mode-line, diminish
-(diminish 'undo-tree-mode "UT")
-(diminish 'abbrev-mode "Ab")
-(diminish 'visual-line-mode "VL")
 
 (provide 'setup-appearance)
 ;;; setup-appearance.el ends here

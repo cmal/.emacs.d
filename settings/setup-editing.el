@@ -147,6 +147,7 @@
 (use-package editorconfig
   :config
   (editorconfig-mode 1)
+  (require 'setup-diminish)
   (diminish 'editorconfig-mode "EC"))
 
 ;; abbrev-mode
@@ -334,7 +335,7 @@ instead."
   :bind
   (:map global-map
    ("C-x o" . ace-window)
-   ("C-x 1" . ace-delete-other-windows)
+;;   ("C-x 1" . ace-delete-other-windows)
    ("C-x w" . ace-swap-window)
    ("C->" . ace-swap-window)
    ("C-<" . aw-flip-window))

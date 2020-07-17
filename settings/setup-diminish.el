@@ -21,4 +21,11 @@
 (rename-modeline "js2-mode" js2-mode "JS2")
 (rename-modeline "clojure-mode" clojure-mode "Clj")
 
+;; mode-line, diminish
+(diminish 'undo-tree-mode "UT")
+(diminish 'abbrev-mode "Ab")
+(diminish 'visual-line-mode "VL")
+
+
+
 (provide 'setup-diminish)

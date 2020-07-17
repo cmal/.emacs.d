@@ -132,6 +132,12 @@ the (^:fold ...) expressions."
 ;; (eval-after-load 'clojure-mode
 ;;   '(sayid-setup-package))
 
+;; clomacs: ELisp <-> Clojure
 ;; see https://github.com/clojure-emacs/clomacs
+;;(use-package clomacs
+;;  :ensure t)
+;; (add-to-list 'load-path "~/gits/dingtalk-clj/clomacs-demo/src/elisp/")
+;; (require 'clomacs-demo)
+
 
 (provide 'setup-clojure-mode)

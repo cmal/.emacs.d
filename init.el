@@ -56,8 +56,12 @@ BODY will be ignored."
                    (not (equal f ".."))
                    (file-directory-p name))
           (add-to-list to name)))))
-
   (recursively-add-dir site-lisp-dir 'load-path))
+
+
+;; Setup packages
+(require 'setup-package)
+
 
 ;; Setup environment variables from the user's shell.
 (use-package exec-path-from-shell
@@ -111,9 +115,6 @@ BODY will be ignored."
 (setq save-place-file (expand-file-name ".places" user-emacs-directory))
 
 
-;; Setup packages
-(require 'setup-package)
-
 ;; Install extensions if they're missing
 ;; NOTE: folder `jdee-sever/` has been added for jdee to work.
 (setq init-packages
@@ -144,7 +145,7 @@ BODY will be ignored."
                vue-mode editorconfig sass-mode psysh php-mode
                ;; jedi jedi-direx
                ;; python:
-               lsp-mode lsp-python lsp-ui helm-lsp
+               ;; lsp-mode lsp-python lsp-ui helm-lsp
                rust-mode
                language-detection
                ;; w3m helm-w3m
@@ -153,7 +154,9 @@ BODY will be ignored."
                exec-path-from-shell
                pangu-spacing aggressive-indent
                tree-mode geiser monokai-theme haskell-mode intero helm-ag
-               paredit-menu paredit-everywhere jdee log4j-mode log4e
+               paredit-menu paredit-everywhere
+	       ;; jdee
+	       log4j-mode log4e
                buffer-flip doom-themes
                go-mode go-dlv go-errcheck go-eldoc
                rjsx-mode ;; for jsx
@@ -258,7 +261,7 @@ BODY will be ignored."
   (require 'setup-helm))
 
 ;; (eval-after-load 'ido '(require 'setup-ido))
-(require 'setup-org)
+;; (require 'setup-org)
 ;; (eval-after-load 'org '(require 'setup-org))
 ;; (eval-after-load 'dired '(require 'setup-dired))
 ;; (eval-after-load 'magit '(require 'setup-magit))
@@ -335,7 +338,7 @@ BODY will be ignored."
   (when window-system
     (require 'setup-fonts)
     (when (display-graphic-p)
-      (use-font-set-pragmata)))
+      (use-font-set-ptmono)))
   (require 'setup-dict))
 
 (require 'setup-elisp)
@@ -525,6 +528,7 @@ the sequence, and its index within the sequence."
   :demand t
   :config
   (encourage-mode)
+  (require 'setup-diminish)
   (diminish 'encourage-mode))
 
 (when mac-p
@@ -555,16 +559,8 @@ the sequence, and its index within the sequence."
 (use-package nov
   :mode "\\.epub$") ;; epub reader mode
 
-;; clomacs: ELisp <-> Clojure
-(use-package clomacs
-  :ensure t)
 
 (global-eldoc-mode 1)
-
-;; clomacs
-(add-to-list 'load-path "~/gits/dingtalk-clj/clomacs-demo/src/elisp/")
-(require 'clomacs-demo)
-
 
 ;; https://github.com/xuchunyang/marionette.el
 ;; https://firefox-source-docs.mozilla.org/testing/marionette/Protocol.html

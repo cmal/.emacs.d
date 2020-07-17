@@ -15,6 +15,7 @@
   (setq helm-buffers-fuzzy-matching t)
   (helm-mode 1)
   (helm-autoresize-mode t)
+  (require 'setup-diminish)
   (diminish 'helm-mode)
   (setq helm-truncate-lines t)
   )
@@ -29,6 +30,7 @@
 ;; 3. Edit the buffer like a normal buffer
 ;; 4. Apply the changes with C-x C-s (wgrep-finish-edit)
 (use-package wgrep-helm
+  :ensure t
   :after (helm))
 
 ;; NOTE: removed swiper swoop here

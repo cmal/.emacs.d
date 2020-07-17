@@ -146,8 +146,14 @@
 (put 'narrow-to-region 'disabled nil)
 
 ;; desktop-save-mode
-(setq desktop-dirname "~/emacs.d/desktop")
-(desktop-save-mode 1)
-(add-hook 'kill-emacs-hook desktop-save)
+;; (setq desktop-dirname "~/emacs.d")
+;; (unless (file-exists-p desktop-dirname)
+;;   (make-directory desktop-dirname))
+;; (let ((desktop-file (desktop-full-file-name)))
+;;  (unless (file-exists-p desktop-file)
+;;    (write-region "" nil desktop-file t)))
+;; (desktop-save-mode 1)
+;; (add-hook 'kill-emacs-hook desktop-kill)
+
 
 (provide 'sane-defaults)

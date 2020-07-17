@@ -94,6 +94,7 @@
 ;;   (add-hook 'rust-mode-hook #'lsp-rust-enable))
 
 (use-package flycheck-rust
+  :ensure t
   :config (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 
 (use-package company
