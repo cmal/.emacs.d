@@ -58,6 +58,7 @@
 ;; (load-theme 'leuven)
 ;; (load-theme 'desert)
 ;; (load-theme 'afternoon)
+(load-theme 'doom-material)
 ;; (load-theme 'doom-challenger-deep)
 ;; (load-theme 'doom-tomorrow-day)
 ;; (load-theme 'doom-nord-light)

@@ -176,16 +176,16 @@ BODY will be ignored."
                swiper-helm helm-git-grep
                )
        (when mac-p '(wolfram-mode
-                      ;; swbuff swbuff-x
-		      ;; info+
-		      ;; bookmark+
-                      ;; org-drill
-                      hyperbole
-		      ;; helisp-moelp+
-		      ;; help-fns+
-                      ;; help-mode+
-		      ;; org-wunderlist
-		      ))
+                     ;; swbuff swbuff-x
+		     ;; info+
+		     ;; bookmark+
+                     ;; org-drill
+                     hyperbole
+		     ;; helisp-moelp+
+		     ;; help-fns+
+                     ;; help-mode+
+		     ;; org-wunderlist
+		     ))
        (unless android-p
          '(
            ;; eval-sexp-fu
@@ -554,13 +554,14 @@ the sequence, and its index within the sequence."
 ;; (require 'setup-prolog)
 
 (require 'setup-iterm2)
-
-(require 'setup-ocaml)
-
+;;;  
+;;;  (require 'setup-ocaml)
+;;;  
 (use-package nov
   :mode "\\.epub$") ;; epub reader mode
 
 (global-eldoc-mode 1)
+
 
 ;; https://github.com/xuchunyang/marionette.el
 ;; https://firefox-source-docs.mozilla.org/testing/marionette/Protocol.html
@@ -626,8 +627,6 @@ the sequence, and its index within the sequence."
 ;; (setq frame-resize-pixelwise t)
 
 ;; (require 'setup-js)
-(message "after setup-js")
 ;; (require 'setup-rust)
 
-(message "after setup-rust")
 

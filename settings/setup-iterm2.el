@@ -38,12 +38,12 @@
 
 ;; gui + terminal
 
-(defun send-region-to-iterm2 (start end)
-  "Send the text of the current region to iTerm2."
-  (interactive "r")
-  (let ((python (expand-file-name "~/Library/ApplicationSupport/iTerm2/iterm2env/versions/3.7.5/bin/python"))
-        (script (expand-file-name "~/Library/ApplicationSupport/iTerm2/Scripts/iterm2.py")))
-    (call-process-region start end python nil nil nil script)))
+;; (defun send-region-to-iterm2 (start end)
+;;   "Send the text of the current region to iTerm2."
+;;   (interactive "r")
+;;   (let ((python (expand-file-name "~/Library/ApplicationSupport/iTerm2/iterm2env/versions/3.7.5/bin/python"))
+;;         (script (expand-file-name "~/Library/ApplicationSupport/iTerm2/Scripts/iterm2.py")))
+;;     (call-process-region start end python nil nil nil script)))
 
 (provide 'setup-iterm2)
   

@@ -155,5 +155,5 @@
 ;; (desktop-save-mode 1)
 ;; (add-hook 'kill-emacs-hook desktop-kill)
 
-
+(setq debug-on-error t)
 (provide 'sane-defaults)
