@@ -177,6 +177,7 @@ BODY will be ignored."
                swiper-helm helm-git-grep
                )
        (when mac-p '(wolfram-mode
+                     ;; octave-mode
                      ;; swbuff swbuff-x
 		     ;; info+
 		     ;; bookmark+

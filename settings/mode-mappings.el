@@ -138,6 +138,7 @@
 ;; org-mode
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 (add-hook 'org-mode-hook 'auto-fill-mode)
+(add-hook 'org-mode-hook (lambda () (setq fill-column 130)))
 
 ;; ;; Apache config
 ;; (autoload 'apache-mode "apache-mode" nil t)
@@ -161,9 +162,24 @@
 
 ;; wolfram mode
 (use-package wolfram-mode
-  :mode
-  ("\\.wl$" . wolfram-mode)
-  ("\\.m$" . wolfram-mode))
+  :ensure t
+  :demand t
+  :mode "\\.wl$"
+  ;; ("\\.m$" . wolfram-mode)
+  :config
+  ;; (autoload 'wolfram-mode "wolfram-mode" nil t)
+  (autoload 'run-wolfram "wolfram-mode" nil t)
+  (setq wolfram-program "/Applications/Mathematica.app/Contents/MacOS/MathKernel")
+  (setq wolfram-path "~/gits/quant/数学建模")
+  ;; ;; e.g. on Linux "~/.Mathematica/Applications"
+  )
+
+(comment
+(use-package octave-mode
+  :demand t
+  :ensure t
+  :mode "\\.m$"
+  ))
 
 ;; haskell mode
 (use-package haskell-mode
