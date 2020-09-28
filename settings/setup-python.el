@@ -64,4 +64,6 @@
 
 ;; (setq lsp-mode-hook nil)
 ;; (setq lsp-after-initialize-hook nil)
+
 (provide 'setup-python)
+

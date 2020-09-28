@@ -490,4 +490,6 @@ instead."
 
 (setq-default python-indent 2)
 
+(add-hook 'prog-mode 'annotate-mode)
+
 (provide 'setup-editing)
