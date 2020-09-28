@@ -161,18 +161,22 @@
       (append '(("\\.py$" . python-mode)) auto-mode-alist))
 
 ;; wolfram mode
-(use-package wolfram-mode
-  :ensure t
-  :demand t
-  :mode "\\.wl$"
-  ;; ("\\.m$" . wolfram-mode)
-  :config
-  ;; (autoload 'wolfram-mode "wolfram-mode" nil t)
-  (autoload 'run-wolfram "wolfram-mode" nil t)
-  (setq wolfram-program "/Applications/Mathematica.app/Contents/MacOS/MathKernel")
-  (setq wolfram-path "~/gits/quant/数学建模")
-  ;; ;; e.g. on Linux "~/.Mathematica/Applications"
-  )
+(autoload 'wolfram-mode "wolfram-mode" nil t)
+(autoload 'run-wolfram "wolfram-mode" nil t)
+(setq wolfram-program "/Applications/Mathematica.app/Contents/MacOS/MathKernel")
+(setq wolfram-path "~/gits/quant/数学建模")
+(setq auto-mode-alist
+      (append '(("\\.wl$". wolfram-mode)) auto-mode-alist))
+
+(comment
+ (use-package wolfram-mode
+   :ensure t
+   :demand t
+   :mode "\\.wl$"
+   ;; ("\\.m$" . wolfram-mode)
+   :config
+   ;; ;; e.g. on Linux "~/.Mathematica/Applications"
+   ))
 
 (comment
 (use-package octave-mode

@@ -488,4 +488,6 @@ instead."
 (global-set-key (kbd "C-M-o") 'open-newline-below)
 (global-set-key (kbd "C-s-<backspace>") 'kill-whole-line)
 
+(setq-default python-indent 2)
+
 (provide 'setup-editing)

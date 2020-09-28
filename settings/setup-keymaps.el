@@ -11,11 +11,11 @@
 (define-key global-map (kbd "C-x C-n") 'switch-to-next-buffer)
 
 ;; wolfram
-(use-package wolfram-mode
-  :if mac-p
-  :bind
-  (:map wolfram-mode
-        ("C-x C-e" . wolfram-send-last-mathexp)))
+;; (use-package wolfram-mode
+;;   :if mac-p
+;;   :bind
+;;   (:map wolfram-mode
+;;         ("C-x C-e" . wolfram-send-last-mathexp)))
 
 ;; swbuff-x
 ;; (define-key global-map (kbd "C-S-u") 'swbuff-switch-to-next-buffer)

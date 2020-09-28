@@ -630,4 +630,20 @@ the sequence, and its index within the sequence."
 (require 'setup-js)
 (require 'setup-rust)
 
+(setq pangu-spacing-include-regexp
+      ;; we didn't add korean because korean-hangul-two-byte is not implemented
+      (rx (or (and (or (group-n 3 (any "。，！？；：「」（）、"))
+                       (group-n 1 (or (category chinse-two-byte)
+                                      (category japanese-hiragana-two-byte)
+                                      (category japanese-katakana-two-byte))))
+                   (group-n 2 (in "a-zA-Z0-9$")))
+              (and (group-n 1 (in "a-zA-Z0-9$"))
+                   (or (group-n 3 (any "。，！？；：「」（）、"))
+                       (group-n 2 (or (category chinse-two-byte)
+                                      (category japanese-hiragana-two-byte)
+                                      (category japanese-katakana-two-byte))))))))
 
+(require 'setup-python)
+
+(require 'annotate)
+(require 'bookmark+)

@@ -75,5 +75,11 @@
   (:map web-mode-map
         ("C-c C-c" . js-insert-console-log)))
 
+
+(use-package typescript-mode
+  :ensure t
+  :config
+  (setq typescript-indent-level 2))
+
 (provide 'setup-js)
 ;;; setup-js.el ends here

@@ -575,4 +575,6 @@ same directory as the org-buffer and insert a link to this file."
             (pangu-spacing-mode 1)
             (setq pangu-spacing-real-insert-separtor t)))
 
+(setq org-format-latex-options '(:scale 1.3))
+
 (provide 'setup-org)
