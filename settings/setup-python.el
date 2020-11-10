@@ -9,7 +9,10 @@
                          (lsp)))
   :init
   (setq lsp-python-ms-executable
-        "/Users/yuzhao/py3btgym/bin/pyls"))
+        "/Users/yuzhao/py3btgym/bin/pyls")
+  :config
+  (setq company-mode nil)
+  )
 
 (comment
  (use-package lsp-mode
@@ -25,8 +28,11 @@
    ;;     or any other function that can be used to find the root directory of a project
    (when mac-p
 
-     (setq lsp-python-ms-executable "/Users/yuzhao/py3btgym/bin/pyls")
-     (setq lsp-pyls-server-command "/Users/yuzhao/py3btgym/bin/pyls"))
+     ;; (setq lsp-python-ms-executable "/Users/yuzhao/py3btgym/bin/pyls")
+     ;; (setq lsp-pyls-server-command "/Users/yuzhao/py3btgym/bin/pyls")
+     (setq lsp-python-ms-executable "/Users/yuzhao/py3tf2.3/bin/pyls")
+     (setq lsp-pyls-server-command "/Users/yuzhao/py3tf2.3/bin/pyls")
+     )
    (comment
     (lsp-define-stdio-client lsp-python "python"
                              #'projectile-project-root
@@ -45,9 +51,10 @@
      (setq lsp-ui-sideline-ignore-duplicate t)
      (add-hook 'lsp-mode-hook 'lsp-ui-mode))
 
-   (use-package company-lsp
-     :config
-     (push 'company-lsp company-backends))
+   (comment
+    (use-package company-lsp
+      :config
+      (push 'company-lsp company-backends)))
 
    ;; NB: only required if you prefer flake8 instead of the default
    ;; send pyls config via lsp-after-initialize-hook -- harmless for
@@ -64,6 +71,7 @@
 
 ;; (setq lsp-mode-hook nil)
 ;; (setq lsp-after-initialize-hook nil)
+;; (setq company-mode nil)
 
 (provide 'setup-python)
 
