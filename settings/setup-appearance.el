@@ -132,15 +132,19 @@
 (add-hook 'w3m-mode-hook 'reading-face-mode-variable)
 
 ;; after disable title bar, make the first line of frame draggable
-(setq default-frame-alist '((undecorated . t)))
 
 (when (eq system-type 'gnu/linux)
+  (setq default-frame-alist '((undecorated . t)))
   (add-to-list 'default-frame-alist '(drag-internal-border . 1))
   (add-to-list 'default-frame-alist '(internal-border-width . 5)))
 
 (when (eq system-type 'darwin)
+  (setq default-frame-alist '((undecorated . t)))
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
-  (add-to-list 'default-frame-alist '(ns-appearance . dark))) 
+  (add-to-list 'default-frame-alist '(ns-appearance . dark))
+  (add-to-list 'default-frame-alist '(width  . 200))
+  (add-to-list 'default-frame-alist '(height  . 65))
+  )
 
 (provide 'setup-appearance)
 ;;; setup-appearance.el ends here

@@ -14,6 +14,8 @@
   (setq company-mode nil)
   )
 
+(add-hook 'python-mode-hook (lambda () (setq company-mode nil)))
+
 (comment
  (use-package lsp-mode
    :ensure t

@@ -138,7 +138,7 @@
 ;; org-mode
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 (add-hook 'org-mode-hook 'auto-fill-mode)
-(add-hook 'org-mode-hook (lambda () (setq fill-column 130)))
+(add-hook 'org-mode-hook (lambda () (setq fill-column 100)))
 
 ;; ;; Apache config
 ;; (autoload 'apache-mode "apache-mode" nil t)

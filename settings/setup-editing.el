@@ -396,13 +396,14 @@ instead."
   :demand t)
 
 ;; https://codestats.net/users/cmal
-(use-package code-stats
-  :ensure t
-  :config
-  (setq code-stats-token "SFMyNTY.WTIxaGJBPT0jI01UQXhPRE09.mNPo6ReF_5n32WW-E8_M7Wp84zlF5V8G1OP6DqayH8M")
-  (add-hook 'prog-mode-hook #'code-stats-mode)
-  (run-with-idle-timer 30 t #'code-stats-sync)
-  (add-hook 'kill-emacs-hook (lambda () (code-stats-sync :wait))))
+(comment
+ (use-package code-stats
+   :ensure t
+   :config
+   (setq code-stats-token "SFMyNTY.WTIxaGJBPT0jI01UQXhPRE09.mNPo6ReF_5n32WW-E8_M7Wp84zlF5V8G1OP6DqayH8M")
+   (add-hook 'prog-mode-hook #'code-stats-mode)
+   (run-with-idle-timer 30 t #'code-stats-sync)
+   (add-hook 'kill-emacs-hook (lambda () (code-stats-sync :wait)))))
 
 (goto-address-mode 1)
 
