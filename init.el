@@ -175,6 +175,7 @@ BODY will be ignored."
                ;; swiper ivy councel
                wgrep ;; write grep
                swiper-helm helm-git-grep
+               xml+ ;; need by ereader
                )
        (when mac-p '(wolfram-mode
                      ;; octave-mode
@@ -557,9 +558,14 @@ the sequence, and its index within the sequence."
 (require 'setup-iterm2)
 ;;;  
 ;;;  (require 'setup-ocaml)
-;;;  
-(use-package nov
-  :mode "\\.epub$") ;; epub reader mode
+;;;
+(comment
+ (use-package nov
+   :mode "\\.epub$")) ;; epub reader mode
+
+(require 'xml)
+(require 'org-ebook)
+(require 'ereader)
 
 (global-eldoc-mode 1)
 

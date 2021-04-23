@@ -14,7 +14,9 @@
   (setq company-mode nil)
   )
 
-(add-hook 'python-mode-hook (lambda () (setq company-mode nil)))
+(add-hook 'python-mode-hook (lambda ()
+                              (setq company-mode nil)
+                              (setq python-indent-offset 4)))
 
 (comment
  (use-package lsp-mode
@@ -74,6 +76,19 @@
 ;; (setq lsp-mode-hook nil)
 ;; (setq lsp-after-initialize-hook nil)
 ;; (setq company-mode nil)
+
+(defun py-insert-print (var)
+  "Add console.log of `var' to point."
+  (interactive "s请输入要打印的变量名: ")
+  (insert (format "print('#### %s: ', %s)" var var))
+  )
+
+(use-package python-mode
+  :init (add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
+  :bind
+  (:map python-mode-map
+        ("C-c C-c" . py-insert-print)))
+
 
 (provide 'setup-python)
 
