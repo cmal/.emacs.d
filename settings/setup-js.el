@@ -81,5 +81,21 @@
   :config
   (setq typescript-indent-level 2))
 
+
+(defun function-to-const ()
+  (interactive)
+  (save-excursion
+    (beginning-of-line)
+    (when (re-search-forward "function" (line-end-position) t 1)
+      (replace-match "const"))
+    (when (re-search-forward "(" (line-end-position) t 1)
+      (replace-match " = ("))
+    (when (re-search-forward "{" (line-end-position) t 1)
+      (replace-match "=> {"))
+    )
+  )
+
+
+
 (provide 'setup-js)
 ;;; setup-js.el ends here
