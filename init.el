@@ -176,6 +176,10 @@ BODY will be ignored."
                wgrep ;; write grep
                swiper-helm helm-git-grep
                xml+ ;; need by ereader
+               datetime dice define-word
+               ;; not used but useful
+               ;; describe-hash
+               
                )
        (when mac-p '(wolfram-mode
                      ;; octave-mode
@@ -567,7 +571,7 @@ the sequence, and its index within the sequence."
 (require 'org-ebook)
 (require 'ereader)
 
-(global-eldoc-mode 1)
+(add-hook 'prog-mode 'eldoc-mode)
 
 
 ;; https://github.com/xuchunyang/marionette.el

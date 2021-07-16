@@ -57,12 +57,6 @@
   ;;(prettier-js)
   )
 
-(defun js-insert-console-log (var)
-  "Add console.log of `var' to point."
-  (interactive "s请输入要打印的变量名: ")
-  (insert (format "console.log('#### %s: ', %s);" var var))
-  )
-
 (use-package rjsx-mode
   :init (add-to-list 'auto-mode-alist '("\\.jsx?$" . rjsx-mode))
   :bind
@@ -81,7 +75,6 @@
   :config
   (setq typescript-indent-level 2))
 
-
 (defun function-to-const ()
   (interactive)
   (save-excursion
@@ -95,7 +88,19 @@
     )
   )
 
+(require 'js)
+(require 'my-utils)
+(append-to-list 'js--prettify-symbols-alist
+             '(("=>" . 8658)
+               ("<=" . 8804)
+               (">=" . 8805)
+               ("!=" . 8800)
+               ("===" . 8801)
+               ("!==" . 8802)
+               ("function" . 402)
+               ("&yen;" . 165)))
 
+(add-hook 'js-mode 'prettify-symbols-mode)
 
 (provide 'setup-js)
 ;;; setup-js.el ends here
