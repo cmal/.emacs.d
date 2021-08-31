@@ -139,5 +139,7 @@ the (^:fold ...) expressions."
 ;; (add-to-list 'load-path "~/gits/dingtalk-clj/clomacs-demo/src/elisp/")
 ;; (require 'clomacs-demo)
 
+;; TODO clojure-essential-ref-nov
+;; (require 'clojure-essential-ref-nov)
 
 (provide 'setup-clojure-mode)

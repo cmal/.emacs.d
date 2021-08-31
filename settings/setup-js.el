@@ -102,5 +102,25 @@
 
 (add-hook 'js-mode 'prettify-symbols-mode)
 
+
+(require 'commenter)
+(setq comment-style 'extra-line)
+(add-hook 'js-mode-hook
+          (lambda ()
+            (setq-local commenter-config
+                        '((single
+                           . ((comment-start      . "//")
+                              (comment-end        . "")
+                              (comment-start-skip . "\\(//+\\|/\\*+\\)\\s *")))
+                          (multi
+                           . ((comment-start      . "/* ")
+                              (comment-end        . " */")
+                              (comment-start-skip . "/\\*")
+                              (comment-end-skip   . "\\*/")
+                              (comment-continue   . " * ")
+                              (comment-padding    . " ")
+                              (comment-multi-line . t)))))
+            (commenter-setup)))
+
 (provide 'setup-js)
 ;;; setup-js.el ends here

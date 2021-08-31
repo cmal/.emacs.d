@@ -176,10 +176,18 @@ BODY will be ignored."
                wgrep ;; write grep
                swiper-helm helm-git-grep
                xml+ ;; need by ereader
-               datetime dice define-word
-               ;; not used but useful
+               datetime
+	       ;; dice
+	       define-word
+               ;; describe-number ;; 显示数字代表的字符 ;; not working
+               cedit
+               centered-window
+               chemtable ;; 元素周期表
+               ;; cheat-sh ;; cannot connect
+               commenter ;; 多行注释
+               ;; === not used but useful ===
                ;; describe-hash
-               
+               org-roam org-roam-server
                )
        (when mac-p '(wolfram-mode
                      ;; octave-mode
