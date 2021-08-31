@@ -1,0 +1,40 @@
+(("/Users/yuzhao/gits/reinforcement_learning/btgym/btgym/datafeed/base.py" ((6221 6224 "这些param都被set到了self上" "sep") (6012 6027 "这些参数要根据数据源调整一下的" "source-specific") (17326 17329 "这些self上的属性都是最上面的parameter设置的" "sep")) "8cd323f4196e4dba4188820443799e5d") ("/Users/yuzhao/gits/reinforcement_learning/gym/gym/spaces/multi_discrete.py" ((53 66 "这个回头可能有用" "MultiDiscrete")) "5d72c2db8567027058d080d83728e763") ("/Users/yuzhao/gits/reinforcement_learning/btgym/btgym/spaces.py" ((1050 1059 "gym spaces 的例子：     A dictionary of simpler spaces.
+    Example usage:
+    self.observation_space = spaces.Dict({\"position\": spaces.Discrete(2), \"velocity\": spaces.Discrete(3)})
+    Example usage [nested]:
+    self.nested_observation_space = spaces.Dict({
+        'sensors':  spaces.Dict({
+            'position': spaces.Box(low=-100, high=100, shape=(3,)),
+            'velocity': spaces.Box(low=-1, high=1, shape=(3,)),
+            'front_cam': spaces.Tuple((
+                spaces.Box(low=0, high=1, shape=(10, 10, 3)),
+                spaces.Box(low=0, high=1, shape=(10, 10, 3))
+            )),
+            'rear_cam': spaces.Box(low=0, high=1, shape=(10, 10, 3)),
+        }),
+        'ext_controller': spaces.MultiDiscrete((5, 2, 2)),
+        'inner_state':spaces.Dict({
+            'charge': spaces.Discrete(100),
+            'system_checks': spaces.MultiBinary(10),
+            'job_status': spaces.Dict({
+                'task': spaces.Discrete(5),
+                'progress': spaces.Box(low=0, high=100, shape=()),
+            })
+        })
+    })" "DictSpace") (1575 1580 "gym的MultiDiscrete可能会有用" "class")) "34b50f3b60aba22a325f69d6e1c6a41d") ("/Users/yuzhao/gits/reinforcement_learning/btgym/btgym/server.py" ((17756 17759 "服务器的控制逻辑在这里" "run")) "09db64c4def2b2d0e1e4e148af7b075b") ("/Users/yuzhao/gits/reinforcement_learning/btgym/btgym/algorithms/rollout.py" ((5761 5771 "这里rp意思是reward_prediction" "process_rp")) "432627185e74dfd876b006cce88eb547") ("/Users/yuzhao/.emacs.d/settings/setup-python.el" nil "639aa7989f8983b5c4c8c5b7f337b0b3") ("/Users/yuzhao/py3btgym/lib/python3.7/site-packages/backtrader/cerebro.py" ((33957 33968 "一个大脑可以有多个策略" "addstrategy")) "16422f59caf1c76e2e99c1a5d75b2a41") ("/Users/yuzhao/gits/reinforcement_learning/btgym/btgym/envs/base.py" ((38410 38427 "关闭BackTrader数据服务器" "_stop_data_server") (36044 36062 "启动数据服务器，主要在处理zmq逻辑，主要逻辑在BTgymDataFeedServer这个类中" "_start_data_server") (35649 35654 "完成本幕，不关闭服务器" "_stop") (35508 35522 "返回一张图片" "rgb_array_dict") (35474 35481 "向服务器请求 _render " "_render") (34197 34203 "gymEnv 的 render mode 是控制运行速度的， human 与 batch 是相区别的， human 运行慢， batch 批量运行" "render") (33413 33418 "之前 self.env_response 是 (Observation, Reward, Info, Done)， 这里是什么了？" "print") (33006 33018 "注意这个跟self.env_response不是一个变量" "env_response") (32933 32939 "上面也打印了" "action") (32888 32902 "上面打印了" "server_actions") (31760 31785 "打印看看" "print(\"action: \", action)") (29120 29125 "打印看看" "print") (29070 29106 "env_response is (Observation, Reward, Info, Done)" "self.step(self.get_initial_action())") (29055 29067 "env_response是什么样子的呢？" "env_response") (26802 26812 "hold" "actions[0]") (25419 25431 "打印 gym space, 将其转换为人类可读的文本" "_print_space") (23705 23724 "检查服务器状态，并等待服务器返回可控制状态" "_force_control_mode") (21922 21981 "数据服务使用4999端口" "            data_network_address=self.data_network_address,") (21264 21312 "kill 掉使用同一端口的进程" "        # 2. Kill any process using server port:") (21008 21080 "配置 zero mq bt REQ REP 服务实例，启动服务进程; zmq.REP是服务端 zmq.REQ是客户端" "Configures backtrader REQ/REP server instance and starts server process.") (16164 16212 "baseEnv 只支持一种 asset" "# Only single  asset is supported by base class:") (15864 15869 "打印看看" "print") (15744 15855 "action space" "        self.server_actions = {name: self.params['strategy']['portfolio_actions'] for name in self.asset_names}") (15678 15743 "初始 portfolio_actions 在 baseStrategy 中被设置为 ('hold', 'buy', 'sell', 'close')" "        self.asset_names = self.params['strategy']['asset_names']") (15409 15418 "strats[0]是一个策略实例，strats[0]的结构是什么样的呢？为什么可以[0][0],[0][2]这样用？" "strats[0]") (15302 15307 "打印看看里面是什么东西" "print") (14603 15024 "engine strategy/broker 设置，这里可以添加 dividend" "            strat_idx = self.engine.addstrategy(self.strategy, **kwargs)
+
+            msg += ' ' + msg2
+
+            # Second, set Cerebro-level configuration:
+            self.engine.broker.setcash(self.params['engine']['start_cash'])
+            self.engine.broker.setcommission(self.params['engine']['broker_commission'])
+            self.engine.addsizer(bt.sizers.SizerFix, stake=self.params['engine']['fixed_stake'])") (13327 13362 "engine是bt大脑" "        if self.engine is not None:") (12797 12998 "开启数据服务" "        # Connect/Start data server (and get dataset configuration and statistic):
+        self.log.info('Connecting data_server...')
+        self._start_data_server()
+        self.log.info('...done.')") (11600 11628 "分布式时，master数据服务的设置" "        if self.data_master:") (10589 10921 "gym rendering 相关的设置" "        # Set server rendering:
+        if self.render_enabled:
+            self.renderer = BTgymRendering(self.metadata['render.modes'], log_level=self.log_level, **kwargs)
+
+        else:
+            self.renderer = BTgymNullRendering()
+            self.log.info('Rendering disabled. Call to render() will return null-plug image.')") (9893 9925 "设置log" "# Logging and verbosity control:") (8086 8134 "设置策略参数" "        p2 = dict(  # IS HERE FOR REFERENCE ONLY") (7453 7485 "设置交易参数，主要是backtrader用的" "# Parameters and default values:")) "3a31fd8518b6dea92fc5820924c4e057"))
