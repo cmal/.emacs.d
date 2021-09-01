@@ -583,4 +583,33 @@ same directory as the org-buffer and insert a link to this file."
 (setq org-download-method 'directory)
 (add-hook 'org-mode-hook 'org-download-enable)
 
+
+(setq org-directory (concat (getenv "HOME") "/gits/org/"))
+
+(use-package org-roam
+  :after org
+  :init (setq org-roam-v2-ack t) ;; Acknowledge V2 upgrade
+  :custom
+  (org-roam-directory (file-truename org-directory))
+  :config
+  (org-roam-setup)
+  :bind (("C-c n f" . org-roam-node-find)
+         ("C-c n g" . org-roam-graph)
+         ("C-c n r" . org-roam-node-random)		    
+         (:map org-mode-map
+               (("C-c n i" . org-roam-node-insert)
+                ("C-c n o" . org-id-get-create)
+                ("C-c n t" . org-roam-tag-add)
+                ("C-c n a" . org-roam-alias-add)
+                ("C-c n l" . org-roam-buffer-toggle)))))
+
+  (use-package deft
+    :config
+    (setq deft-directory org-directory
+          deft-recursive t
+          deft-strip-summary-regexp ":PROPERTIES:\n\\(.+\n\\)+:END:\n"
+          deft-use-filename-as-title t)
+    :bind
+    ("C-c n d" . deft))
+
 (provide 'setup-org)
