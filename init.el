@@ -61,6 +61,7 @@ BODY will be ignored."
 
 ;; Setup packages
 (require 'setup-package)
+(require 'setup-org)
 
 
 ;; Setup environment variables from the user's shell.
@@ -276,8 +277,6 @@ BODY will be ignored."
   (require 'setup-helm))
 
 ;; (eval-after-load 'ido '(require 'setup-ido))
-;; (require 'setup-org)
-;; (eval-after-load 'org '(require 'setup-org))
 ;; (eval-after-load 'dired '(require 'setup-dired))
 ;; (eval-after-load 'magit '(require 'setup-magit))
 ;; (eval-after-load 'grep '(require 'setup-rgrep))
