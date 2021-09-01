@@ -605,12 +605,24 @@ same directory as the org-buffer and insert a link to this file."
                 ("C-c n l" . org-roam-buffer-toggle)))))
 
 (use-package deft
+  :ensure t
   :config
-  (setq deft-directory org-roam-directory
+  (setq deft-directory org-directory ;;org-roam-directory
         deft-recursive t
         deft-strip-summary-regexp ":PROPERTIES:\n\\(.+\n\\)+:END:\n"
         deft-use-filename-as-title t)
   :bind
   ("C-c n d" . deft))
+
+
+(comment
+ "TODO"
+ "convert clips to latex equations" 
+ (use-package mathpix.el
+   :straight (:host github :repo "jethrokuan/mathpix.el")
+   :custom ((mathpix-app-id "app-id")
+            (mathpix-app-key "app-key"))
+   :bind
+   ("C-x m" . mathpix-screenshot)))
 
 (provide 'setup-org)
