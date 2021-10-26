@@ -493,4 +493,17 @@ instead."
 
 (add-hook 'prog-mode 'annotate-mode)
 
+
+;; open file with line number: ie. /path/to/file:23
+(defun find-file-at-point-goto-line (ret)
+    "Ignore RET and jump to line number given in `ffap-string-at-point'."
+      (when (and
+	           (stringp ffap-string-at-point)
+		        (string-match ":\\([0-9]+\\)\\'" ffap-string-at-point))
+	    (goto-char (point-min))
+	        (forward-line (string-to-number (match-string 1 ffap-string-at-point))))
+        ret)
+
+(advice-add 'find-file-at-point :filter-return #'find-file-at-point-goto-line)
+
 (provide 'setup-editing)
