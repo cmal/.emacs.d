@@ -493,4 +493,40 @@ instead."
 
 (add-hook 'prog-mode 'annotate-mode)
 
+(defun convert-dos-eol-to-unix ()
+  (interactive)
+  (let ((coding-str (symbol-name buffer-file-coding-system)))
+    (when (string-match "-\\(?:dos\\|mac\\)$" coding-str)
+      (set-buffer-file-coding-system 'unix))))
+
+;; define `multi-occur-in-this-mode'
+;; and `multi-occur-in-buffer-list'
+(progn
+  (eval-when-compile
+    (require 'cl))
+
+  (defun get-buffers-matching-mode (mode)
+    "Returns a list of buffers where their major-mode is equal to MODE"
+    (let ((buffer-mode-matches '()))
+      (dolist (buf (buffer-list))
+        (with-current-buffer buf
+          (if (eq mode major-mode)
+              (add-to-list 'buffer-mode-matches buf))))
+      buffer-mode-matches))
+
+  (defun multi-occur-in-this-mode ()
+    "Show all lines matching REGEXP in buffers with this major mode."
+    (interactive)
+    (multi-occur
+     (get-buffers-matching-mode major-mode)
+     (car (occur-read-primary-args))))
+
+  (defun multi-occur-in-buffer-list ()
+    "Show all lines matching REGEXP in buffer list."
+    (interactive)
+    (multi-occur
+     (buffer-list)
+     (car (occur-read-primary-args))))
+  )
+
 (provide 'setup-editing)
