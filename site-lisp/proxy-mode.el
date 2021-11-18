@@ -198,8 +198,8 @@ If you want use proxy-mode globally, use command ‘global-proxy-mode’."
     ('emacs-http
      (setq url-proxy-services nil)))
   (setq proxy-mode-proxy-type nil))
-
-;;;###autoload
+  
+;;;###autoload 
 (define-minor-mode global-proxy-mode
   "A minor mode to set proxy in Emacs globally."
   :require 'proxy-mode
@@ -215,5 +215,3 @@ If you want use proxy-mode globally, use command ‘global-proxy-mode’."
 
 
 (provide 'proxy-mode)
-
-;;; proxy-mode.el ends here
