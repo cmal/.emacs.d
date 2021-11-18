@@ -99,7 +99,8 @@
   (interactive)
   (set-default-font
    (completing-read "Font: "
-                    '("Monoid-12"
+                    '("Fixedsys-11"
+                      "Monoid-12"
                       "Monoisome-12"
                       "Inziu IosevkaCC CL-16"
                       "Iosevka Slab-16"

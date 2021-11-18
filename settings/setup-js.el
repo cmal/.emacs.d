@@ -104,7 +104,8 @@
 
 
 (require 'commenter)
-(setq comment-style 'extra-line)
+;; (setq comment-style 'extra-line)
+(setq comment-style 'indent)
 (add-hook 'js-mode-hook
           (lambda ()
             (setq-local commenter-config

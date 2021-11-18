@@ -48,7 +48,7 @@ BODY will be ignored."
 
   ;; add site-lisp-dir and all of its first child dir
   ;; to 'load-path
-  (defun recursively-add-dir (from to)
+  (defun add-current-and-children-dir (from to)
     (add-to-list to from)
     (dolist (f (directory-files from))
       (let ((name (concat from "/" f)))
@@ -56,7 +56,7 @@ BODY will be ignored."
                    (not (equal f ".."))
                    (file-directory-p name))
           (add-to-list to name)))))
-  (recursively-add-dir site-lisp-dir 'load-path))
+  (add-current-and-children-dir site-lisp-dir 'load-path))
 
 
 ;; Setup packages
@@ -87,7 +87,7 @@ BODY will be ignored."
 (require 'setup-os)
 
 (require 'setup-keymaps)
-(require 'setup-iterm2)
+;;(require 'setup-iterm2)
 
 ;; Settings for currently logged in user
 (when mac-p
@@ -148,6 +148,7 @@ BODY will be ignored."
                ;; jedi jedi-direx
                ;; python:
                ;; lsp-mode lsp-python lsp-ui helm-lsp
+               cakecrumbs
                rust-mode
                language-detection
                ;; w3m helm-w3m
@@ -155,11 +156,14 @@ BODY will be ignored."
                ledger-mode hledger-mode vlf racket-mode
                exec-path-from-shell
                pangu-spacing aggressive-indent
-               tree-mode geiser monokai-theme haskell-mode intero helm-ag
+               tree-mode geiser monokai-theme haskell-mode
+	       ;; intero
+	       helm-ag
                paredit-menu paredit-everywhere
 	       ;; jdee
 	       log4j-mode log4e
-               buffer-flip doom-themes
+               buffer-flip
+	       ;; doom-themes
                go-mode go-dlv go-errcheck go-eldoc
                rjsx-mode ;; for jsx
                graphql-mode js-comint nvm ;; for js repl
@@ -188,7 +192,9 @@ BODY will be ignored."
                commenter ;; 多行注释
                ;; === not used but useful ===
                ;; describe-hash
-               org-roam org-roam-server
+               org-roam
+               annotate
+	       ;; org-roam-server
                )
        (when mac-p '(wolfram-mode
                      ;; octave-mode
@@ -210,7 +216,9 @@ BODY will be ignored."
            clj-refactor cljr-helm clojure-mode-extra-font-locking
            cider
            ;; cider-eval-sexp-fu
-           company company-lsp ac-cider helm-cider
+           company
+	   ;;company-lsp
+	   ac-cider helm-cider
            clj-refactor 4clojure helm-clojuredocs helm-cider-history
            slack))))
 
@@ -348,10 +356,12 @@ BODY will be ignored."
   (require 'setup-cider)
   (require 'setup-scheme)
   ;;  (require 'setup-lsp)
+  (unless (eq window-system 'w32)
   (when window-system
     (require 'setup-fonts)
     (when (display-graphic-p)
-      (use-font-set-ptmono)))
+      (use-font-set-ptmono)))  )
+  
   (require 'setup-dict))
 
 (require 'setup-elisp)
@@ -664,3 +674,4 @@ the sequence, and its index within the sequence."
 
 (require 'annotate)
 (require 'bookmark+)
+(require 'setup-eaf)

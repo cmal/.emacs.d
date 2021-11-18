@@ -58,7 +58,7 @@
 ;; (load-theme 'leuven)
 ;; (load-theme 'desert)
 ;; (load-theme 'afternoon)
-(load-theme 'doom-material)
+;; (load-theme 'doom-material)
 ;; (load-theme 'doom-challenger-deep)
 ;; (load-theme 'doom-tomorrow-day)
 ;; (load-theme 'doom-nord-light)
@@ -145,6 +145,8 @@
   (add-to-list 'default-frame-alist '(width  . 200))
   (add-to-list 'default-frame-alist '(height  . 65))
   )
+
+(load-theme 'monokai)
 
 (provide 'setup-appearance)
 ;;; setup-appearance.el ends here

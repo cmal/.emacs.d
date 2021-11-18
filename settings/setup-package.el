@@ -1,4 +1,11 @@
 (require 'package)
+
+(when (eq window-system 'w32)
+  (require 'proxy-mode)
+  (setq proxy-mode-env-http-proxy "http://bjproxy2.cicc.group:8080")
+  (setq proxy-mode-proxy-type 'env-http)
+  (proxy-mode-enable-global))
+
 ;;; (require 'dash)
 
 ;; Add melpa to package repos

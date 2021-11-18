@@ -587,6 +587,9 @@ same directory as the org-buffer and insert a link to this file."
 
 (setq org-directory (concat (getenv "HOME") "/gits/org/"))
 
+(when (eq window-system 'w32)
+  (setq org-directory "D:/org/"))
+
 (use-package org-roam
   :after org
   :init (setq org-roam-v2-ack t) ;; Acknowledge V2 upgrade
@@ -624,5 +627,21 @@ same directory as the org-buffer and insert a link to this file."
             (mathpix-app-key "app-key"))
    :bind
    ("C-x m" . mathpix-screenshot)))
+
+(use-package org-roam-ui
+    :after org-roam
+    :config
+    (setq org-roam-ui-sync-theme t
+          org-roam-ui-follow t
+          org-roam-ui-update-on-save t
+          org-roam-ui-open-on-start t))
+
+(use-package org-logseq
+  ;; :straight (org-logseq
+  ;;            :fetcher github
+  ;;            :repo "llcc/org-logseq"
+  ;;            :files ("*"))
+  ;; :custom (org-logseq-dir "D:/org/logseq") ;; set org-logseq-dir in custom.el
+  )
 
 (provide 'setup-org)
