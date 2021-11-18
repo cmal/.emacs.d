@@ -590,6 +590,7 @@ same directory as the org-buffer and insert a link to this file."
 (when (eq window-system 'w32)
   (setq org-directory "D:/org/"))
 
+(comment
 (use-package org-roam
   :after org
   :init (setq org-roam-v2-ack t) ;; Acknowledge V2 upgrade
@@ -605,7 +606,7 @@ same directory as the org-buffer and insert a link to this file."
                 ("C-c n o" . org-id-get-create)
                 ("C-c n t" . org-roam-tag-add)
                 ("C-c n a" . org-roam-alias-add)
-                ("C-c n l" . org-roam-buffer-toggle)))))
+                ("C-c n l" . org-roam-buffer-toggle))))))
 
 (use-package deft
   :ensure t
