@@ -65,5 +65,9 @@
   (:map helm-find-files-map
         ("M-f" . helm-ff-run-grep-ag)))
 
+
+;; for windows, ag pthread_join failed
+(setq helm-grep-ag-command "rg --color=always --smart-case --no-heading --line-number %s %s %s")
+
 (provide 'setup-helm)
 ;;; setup-helm.el ends here

@@ -17,9 +17,11 @@
 
 (remove-org-dir-from-load-path)
 
-(add-to-list 'load-path (expand-file-name "org/lisp" site-lisp-dir))
-(add-to-list 'load-path (expand-file-name "org/contrib/lisp" site-lisp-dir))
+(setq org-source-path (concat site-lisp-dir "/org"))
 
+(add-to-list 'load-path (expand-file-name "lisp" org-source-path))
+;(add-to-list 'load-path (expand-file-name "contrib/lisp" org-source-path))
+(require 'org-loaddefs)
 (require 'org)
 
 (defun myorg-update-parent-cookie ()
@@ -125,14 +127,14 @@ same directory as the org-buffer and insert a link to this file."
   (interactive "*")
   (org-display-inline-images)
   (let (filename (get-png-filename))
-   (unless (file-exists-p (file-name-directory filename))
-     (make-directory (file-name-directory filename))) ; take screenshot
-   (if (eq system-type 'darwin)
-       (call-process "screencapture" nil nil nil "-i" filename))
-   (if (eq system-type 'gnu/linux)
-       (call-process "import" nil nil nil filename)) ; insert into file if correctly taken
-   (if (file-exists-p filename)
-       (insert filename))))
+    (unless (file-exists-p (file-name-directory filename))
+      (make-directory (file-name-directory filename))) ; take screenshot
+    (if (eq system-type 'darwin)
+        (call-process "screencapture" nil nil nil "-i" filename))
+    (if (eq system-type 'gnu/linux)
+        (call-process "import" nil nil nil filename)) ; insert into file if correctly taken
+    (if (file-exists-p filename)
+        (insert filename))))
 
 ;; pasting images into org-mode on Mac, first,
 ;; $ brew install pngpaste
@@ -517,7 +519,7 @@ same directory as the org-buffer and insert a link to this file."
 "
          ("\\section{%s}" . "\\section*{%s}")
          ("\\subsection{%s}" . "\\subsection*{%s}")
-;;         ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+         ;;         ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
          ("\\paragraph{%s}" . "\\paragraph*{%s}")
          ("\\subparagraph{%s}" . "\\subparagraph*{%s}")
          )
@@ -582,5 +584,65 @@ same directory as the org-buffer and insert a link to this file."
 (require 'org-download)
 (setq org-download-method 'directory)
 (add-hook 'org-mode-hook 'org-download-enable)
+
+(setq org-directory (concat (getenv "HOME") "/gits/org/"))
+
+(when (eq window-system 'w32)
+  (setq org-directory "D:/org/"))
+
+(comment
+(use-package org-roam
+  :after org
+  :init (setq org-roam-v2-ack t) ;; Acknowledge V2 upgrade
+  :custom
+  (org-roam-directory (concat (file-truename org-directory) "roam/"))
+  :config
+  (org-roam-setup)
+  :bind (("C-c n f" . org-roam-node-find)
+         ("C-c n g" . org-roam-graph)
+         ("C-c n r" . org-roam-node-random)		    
+         (:map org-mode-map
+               (("C-c n i" . org-roam-node-insert)
+                ("C-c n o" . org-id-get-create)
+                ("C-c n t" . org-roam-tag-add)
+                ("C-c n a" . org-roam-alias-add)
+                ("C-c n l" . org-roam-buffer-toggle))))))
+
+(use-package deft
+  :ensure t
+  :config
+  (setq deft-directory org-directory ;;org-roam-directory
+        deft-recursive t
+        deft-strip-summary-regexp ":PROPERTIES:\n\\(.+\n\\)+:END:\n"
+        deft-use-filename-as-title t)
+  :bind
+  ("C-c n d" . deft))
+
+
+(comment
+ "TODO"
+ "convert clips to latex equations" 
+ (use-package mathpix.el
+   :straight (:host github :repo "jethrokuan/mathpix.el")
+   :custom ((mathpix-app-id "app-id")
+            (mathpix-app-key "app-key"))
+   :bind
+   ("C-x m" . mathpix-screenshot)))
+
+(use-package org-roam-ui
+    :after org-roam
+    :config
+    (setq org-roam-ui-sync-theme t
+          org-roam-ui-follow t
+          org-roam-ui-update-on-save t
+          org-roam-ui-open-on-start t))
+
+(use-package org-logseq
+  ;; :straight (org-logseq
+  ;;            :fetcher github
+  ;;            :repo "llcc/org-logseq"
+  ;;            :files ("*"))
+  ;; :custom (org-logseq-dir "D:/org/logseq") ;; set org-logseq-dir in custom.el
+  )
 
 (provide 'setup-org)

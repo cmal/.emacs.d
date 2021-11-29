@@ -51,4 +51,6 @@
 ;; https://github.com/manateelazycat/aweshell
 ;; (require 'aweshell) ;; in site-lisp/
 
+;; (require 'cheat-sh)
+
 (provide 'setup-shell)

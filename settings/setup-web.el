@@ -101,4 +101,37 @@
 
 ;; use T to toggle image display
 
+;; =======================================================
+;; Cakecrumbs
+;; =======================================================
+;; Specify all major-mode (`cakecrumbs' decide how to deal with
+;; cursor's context by variable `major-mode'.)
+(require 'cakecrumbs)
+(setq cakecrumbs-html-major-modes   '(html-mode web-mode nxml-mode sgml-mode))
+(setq cakecrumbs-jade-major-modes   '(yajade-mode jade-mode pug-mode))
+(setq cakecrumbs-scss-major-modes   '(scss-mode less-css-mode css-mode))
+(setq cakecrumbs-stylus-major-modes '(stylus-mode sass-mode))  ; currently, sass-mode use the same rule with stylus-mode
+
+;; Auto `add-hook' for above major-mode.  (Auto enable `cakecrumbs'
+;; for the major-modes which have specify in above variables)
+;; This automatically do this for you:
+;; (add-hook 'MODE-HOOK 'cakecrumbs-enable-if-disabled)
+(cakecrumbs-auto-setup)
+
+;; Set to number to refresh after idling N seconds.
+;; Set to nil, refresh without any delay.
+(setq cakecrumbs-refresh-delay-seconds 0.1)
+
+;; Appearances
+(setq cakecrumbs-separator " | ")
+(setq cakecrumbs-ellipsis "[...] ")
+
+;; Ignore some patterns in selector string
+(setq cakecrumbs-ignored-patterns
+      '(
+        "[.]col-[a-z][a-z]-[0-9]+"  ; Bootstrap's .col-*
+        ))
+
+(require 'cedit) ;; paredit for c like
+
 (provide 'setup-web)
