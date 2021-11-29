@@ -176,7 +176,10 @@ BODY will be ignored."
                wgrep ;; write grep
                swiper-helm helm-git-grep
                xml+ ;; need by ereader
-               datetime dice define-word
+               ;;datetime
+	       ;;dice
+	       define-word
+               groovy-mode
                ;; not used but useful
                ;; describe-hash
                
@@ -655,5 +658,5 @@ the sequence, and its index within the sequence."
 
 (require 'setup-python)
 
-(require 'annotate)
+;;(require 'annotate)
 (require 'bookmark+)

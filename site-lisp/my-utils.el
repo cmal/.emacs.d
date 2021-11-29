@@ -51,6 +51,7 @@ while append-to-list will add elements one by one to list using add-to-list."
     (add-to-list list-var (car elements))
     (setq elements (cdr elements))))
 
+(comment
 ;; https://github.com/doublep/datetime
 (require 'datetime)
 ;; (prin1-to-string (sort (datetime-list-locales t) #'string<))
@@ -64,5 +65,5 @@ while append-to-list will add elements one by one to list using add-to-list."
                  'java fmt
                  :timezone 'Asia/Shanghai)))
     (funcall parser ts)))
-
+)
 (provide 'my-utils)

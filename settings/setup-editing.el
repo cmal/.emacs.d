@@ -330,19 +330,22 @@ instead."
 
 ;; ============ ace-window ===============
 
-(use-package ace-window
-  :demand t
-  :bind
-  (:map global-map
-   ("C-x o" . ace-window)
-;;   ("C-x 1" . ace-delete-other-windows)
-   ("C-x w" . ace-swap-window)
-   ("C->" . ace-swap-window)
-   ("C-<" . aw-flip-window))
-  :config
-  (setq aw-keys '(?s ?d ?f ?j ?k ?l ?g ?h ?n))
-  (ace-window-display-mode t)
-  (setq aw-dispatch-always nil))
+(comment
+ (use-package ace-window
+   :demand t
+   :bind
+   (:map global-map
+         ("C-x o" . ace-window)
+         ;;   ("C-x 1" . ace-delete-other-windows)
+         ("C-x w" . ace-swap-window)
+         ("C->" . ace-swap-window)
+         ("C-<" . aw-flip-window))
+   :config
+   (setq aw-keys '(?s ?d ?f ?j ?k ?l ?g ?h ?n))
+   (ace-window-display-mode t)
+   (setq aw-dispatch-always nil)))
+
+(define-key global-map (kbd "s-o") 'other-window)
 
 ;; ============ ace-window ===============
 

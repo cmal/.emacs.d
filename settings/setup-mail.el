@@ -3,15 +3,18 @@
 ;; then set smtpmail-smtp-user to yourusername
 ;; and change other settings
 
-(define-mail-alias "yuzhao" "yu.zhao@joudou.com")
-(define-mail-alias "dc" "develop-dc@joudou.com")
+(define-mail-alias "yuzhao" "zyzy5730@163.com")
+;;(define-mail-alias "dc" "develop-dc@joudou.com")
 
-(setq smtpmail-smtp-server "smtp.mxhichina.com")
+(setq smtpmail-smtp-server "smtp.163.com")
 
-(setq smtpmail-smtp-service 25)
+(setq smtpmail-smtp-service 465)
 (setq user-full-name "Yu Zhao 赵宇")
-(setq user-mail-address "yu.zhao@joudou.com")
-(setq smtpmail-smtp-user "yu.zhao@joudou.com")
+
+
+(setq user-mail-address "zyzy5730@163.com")
+(setq smtpmail-smtp-user "zyzy5730@163.com")
+;; (setq smtpmail-servers-requiring-authorization ".*")
 
 ;; use my-org-screenshot in setup-org.el to capture screen
 
